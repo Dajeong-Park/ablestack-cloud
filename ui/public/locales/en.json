@@ -1,4 +1,10 @@
 {
+  "message.dns.provider.server.id.placeholder": "PowerDNS server ID (optional)",
+  "message.dns.server.url.protocol": "Use an HTTP or HTTPS URL.",
+  "message.dns.server.url.port": "Enter the port in the port field.",
+  "message.dns.server.url.invalid": "Enter a valid URL.",
+  "message.dns.server.port.invalid": "Enter a port between 1 and 65535.",
+  "message.dns.server.suffix.invalid": "Enter a valid public domain suffix.",
   "message.dns.provider.load.failed": "Could not load DNS providers.",
   "message.dns.provider.empty": "No DNS providers are available.",
   "message.dns.server.nameserver.invalid": "Enter a valid nameserver hostname.",

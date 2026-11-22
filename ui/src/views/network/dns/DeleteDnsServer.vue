@@ -24,7 +24,11 @@
       <a-alert v-if="impactStatus === 'error'" class="dns-delete-message" type="error" show-icon :message="$t('message.dns.server.impact.failed')">
         <template #description><a-button size="small" @click="fetchDnsZones">{{ $t('label.retry') }}</a-button></template>
       </a-alert>
-      <a-alert v-else-if="impactStatus === 'ready'" class="dns-delete-message" :type="totalDnsZones ? 'warning' : 'info'" show-icon
+      <a-alert
+        v-else-if="impactStatus === 'ready'"
+        class="dns-delete-message"
+        :type="totalDnsZones ? 'warning' : 'info'"
+        show-icon
         :message="$t('message.dns.server.impact.count', { count: totalDnsZones })">
         <template v-if="dnsZones.length" #description>
           <ul><li v-for="zone in dnsZones" :key="zone.id">{{ zone.name }}</li></ul>
@@ -45,12 +49,12 @@
           </a-form-item>
         </fieldset>
         <p>{{ $t(deleteEffect) }}</p>
-        <div class="action-button">
+        <MoldDialogActions :busy="jobLoading">
           <a-button :disabled="jobLoading" @click="$emit('close-action')">{{ $t('label.cancel') }}</a-button>
           <a-button type="primary" danger :disabled="!canSubmit" :loading="jobLoading" @click="handleSubmit">
             {{ $t(jobId ? 'label.dns.job.recheck' : 'label.delete') }}
           </a-button>
-        </div>
+        </MoldDialogActions>
       </a-form>
     </a-spin>
   </div>
@@ -58,12 +62,14 @@
 
 <script>
 import { getAPI } from '@/api'
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import { dnsServerListQuery } from '@/utils/dnsServer'
 import { dnsJob } from './dnsJob'
 
 export default {
   name: 'DeleteDnsServer',
   mixins: [dnsJob],
+  components: { MoldDialogActions },
   props: { resource: { type: Object, required: true } },
   emits: ['close-action', 'refresh-data'],
   data () {
@@ -123,8 +129,6 @@ export default {
 </script>
 
 <style scoped>
-.form-layout { width: min(80vw, 480px); }
 .dns-delete-message { margin-block: 12px; }
 .dns-delete-fields { border: 0; padding: 0; min-width: 0; }
-.action-button { display: flex; justify-content: flex-end; gap: 8px; }
 </style>

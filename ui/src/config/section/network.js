@@ -1673,6 +1673,7 @@ export default {
           label: 'label.dns.add.server',
           listView: true,
           popup: true,
+          standardDialogSize: 'md',
           component: shallowRef(defineAsyncComponent(() => import('@/views/network/dns/AddDnsServer.vue'))),
           show: () => {
             return true
@@ -1684,6 +1685,7 @@ export default {
           label: 'label.dns.update.server',
           dataView: true,
           popup: true,
+          standardDialogSize: 'md',
           show: (record, store) => { return record.account === store.userInfo.account || isAdminOrDomainAdmin(store.userInfo.roletype) },
           component: shallowRef(defineAsyncComponent(() => import('@/views/network/dns/UpdateDnsServer.vue')))
         },
@@ -1694,6 +1696,7 @@ export default {
           message: 'message.action.delete.dns.server',
           dataView: true,
           popup: true,
+          standardDialogSize: 'md',
           component: shallowRef(defineAsyncComponent(() => import('@/views/network/dns/DeleteDnsServer.vue'))),
           show: (record, store) => { return record.account === store.userInfo.account || isAdminOrDomainAdmin(store.userInfo.roletype) },
           groupAction: false,

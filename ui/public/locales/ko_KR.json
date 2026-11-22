@@ -1,4 +1,10 @@
 {
+  "message.dns.provider.server.id.placeholder": "PowerDNS 서버 ID(선택)",
+  "message.dns.server.url.protocol": "HTTP 또는 HTTPS 주소를 입력하세요.",
+  "message.dns.server.url.port": "포트는 포트 입력란에 입력하세요.",
+  "message.dns.server.url.invalid": "올바른 URL을 입력하세요.",
+  "message.dns.server.port.invalid": "1~65535 사이의 포트를 입력하세요.",
+  "message.dns.server.suffix.invalid": "올바른 공개 도메인 접미사를 입력하세요.",
   "message.dns.provider.load.failed": "DNS 제공자 목록을 조회하지 못했습니다.",
   "message.dns.provider.empty": "사용할 수 있는 DNS 제공자가 없습니다.",
   "message.dns.server.nameserver.invalid": "올바른 네임서버 호스트 이름을 입력하세요.",
