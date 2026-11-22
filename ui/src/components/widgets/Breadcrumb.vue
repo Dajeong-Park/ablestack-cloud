@@ -16,7 +16,7 @@
 // under the License.
 
 <template>
-  <a-breadcrumb class="breadcrumb">
+  <a-breadcrumb class="breadcrumb" v-bind="$attrs">
     <a-breadcrumb-item v-for="(item, index) in breadList" :key="index">
       <router-link
         v-if="item && item.name && !tungstenPaths.includes(item.path)"
@@ -31,7 +31,11 @@
         <render-icon v-if="index == 0" :icon="item.meta.icon" style="font-size: 16px" @click="resetToMainView" />
         {{ $t(item.meta.title) }}
       </router-link>
-      <span v-else-if="$route.params.id">
+      <span
+        v-else-if="$route.params.id"
+        :class="{ 'vm-acl-breadcrumb-current': standardLayout }"
+        :aria-current="standardLayout ? 'page' : undefined"
+        :title="standardLayout ? resourceTitle : undefined">
         <label
           v-if="'name' in resource &&
             ['USER.LOGIN', 'USER.LOGOUT', 'ROUTER.HEALTH.CHECKS', 'FIREWALL.CLOSE', 'ALERT.SERVICE.DOMAINROUTER'].includes(resource.name)">
@@ -42,51 +46,64 @@
         <keyboard-tooltip v-else-if="$route.meta?.name === 'kubernetesiso'" :title="resource.name || $route.params.id" :trigger="['hover','focus']">
           <span tabindex="0" class="kubernetes-iso-breadcrumb-name">{{ resource.name || $route.params.id }}</span>
         </keyboard-tooltip>
-        <label v-else>
-          {{ s2sGatewayRoute($route) ? gatewayName(resource) : isVmIdentityRoute($route) ? vmDisplayName(resource) : resource.displayname || resource.name || resource.displaytext || resource.hostname || resource.username || resource.ipaddress || resource.osname || resource.osdisplayname || $route.params.id }}
+        <span v-else-if="isEventDetailRoute($route)" class="event-breadcrumb-title">{{ eventBreadcrumbTitle(resource) || $route.params.id }}</span>
+        <span v-else-if="vpnConnectionRoute($route)" class="s2s-connection-breadcrumb-name">{{ vpnConnectionName(resource, $route.params.id) }}</span>
+        <label v-else :class="{ 'kms-breadcrumb-name': kmsDetailRoute($route) }">
+          {{ resourceTitle }}
         </label>
       </span>
       <span v-else>
         {{ $t(item.meta.title) }}
       </span>
-      <span v-if="index === (breadList.length - 1)" class="breadcrumb-controls" style="margin-left: 8px">
-        <a-tooltip placement="bottom">
-          <template #title>
-            {{ $t('label.open.documentation') }}
-          </template>
-          <a
-            v-if="item.meta.docHelp"
-            style="margin-right: 12px"
-            :href="documentationUrl($config.docBase, $route.meta.docHelp, $i18n.locale)"
-            target="_blank">
-            <QuestionCircleOutlined />
-          </a>
-        </a-tooltip>
-        <slot name="end">
-        </slot>
-      </span>
+      <BreadcrumbControls
+        v-if="!standardLayout && index === breadList.length - 1"
+        :doc-url="helpUrl(item)"
+        :parent-location="kmsParentLocation">
+        <template #end><slot name="end" /></template>
+      </BreadcrumbControls>
     </a-breadcrumb-item>
   </a-breadcrumb>
+  <BreadcrumbControls v-if="standardLayout && breadList.length" standard :doc-url="helpUrl(breadList.at(-1))">
+    <template #end><slot name="end" /></template>
+  </BreadcrumbControls>
 </template>
 
 <script>
+import { dnsServerListQuery } from '@/utils/dnsServer'
+import { physicalNetworkZoneLocation, zoneListQuery } from '@/utils/zone'
+import { clusterListQuery } from '@/utils/clusterSearch'
+import { hostListQuery } from '@/utils/hostSearch'
+import { dnsZoneListQuery } from '@/utils/dnsZone'
+import { ipv4SubnetListQuery } from '@/utils/ipv4Subnet'
+import BreadcrumbControls from '@/components/widgets/BreadcrumbControls'
+import { isProjectDetailRoute, projectListLocation } from '@/utils/projectSearch'
+import { isAccountDetailRoute, accountListLocation } from '@/utils/accountSearch'
+import { isRoleDetailRoute, roleListLocation } from '@/utils/roleSearch'
+import { aclListLocation, isAclListRoute } from '@/utils/vpcAclAccess'
 import KeyboardTooltip from '@/components/widgets/KeyboardTooltip'
 import { kubernetesIsoListLocation } from '@/utils/kubernetesIsoSearch'
 import { templateListLocation } from '@/utils/templateSearch'
 import { isoListLocation } from '@/utils/isoSearch'
+import { guestVlanListQuery, guestVlanRoute } from '@/utils/guestVlan'
 import { networkListLocation } from '@/utils/guestNetworkSearch'
 import { documentationUrl } from '@/utils/cniFileImport'
 
 import { vmDisplayName, isVmIdentityRoute } from '@/utils/vmIdentity'
 import { publicIpListLocation } from '@/utils/publicIpSearch'
+import { vpnUserListLocation, vpnUserRoute } from '@/utils/vpnUserSearch'
 import { gatewayName } from '@/utils/s2sGateway'
-import { s2sGatewayListLocation, s2sGatewayRoute } from '@/utils/s2sGatewaySearch'
+import { s2sGatewayListLocation, s2sGatewayRoute, vpnConnectionApi, vpnConnectionName, vpnConnectionRoute } from '@/utils/s2sGatewaySearch'
 import { vnfListLocation } from '@/utils/vnfSearch'
+import { kmsDetailRoute, kmsListLocation } from '@/utils/kmsNavigation'
+import { eventDisplayTitle, eventListLocation, isEventDetailRoute } from '@/utils/eventTimeline'
+import { kmsRelatedParentLocation } from '@/utils/kmsRelated'
 
 export default {
   name: 'Breadcrumb',
-  components: { KeyboardTooltip },
+  inheritAttrs: false,
+  components: { BreadcrumbControls, KeyboardTooltip },
   props: {
+    standardLayout: { type: Boolean, default: false },
     resource: {
       type: Object,
       default: function () {
@@ -102,6 +119,21 @@ export default {
         '/tungstenpolicyset', '/tungstenroutingpolicy', '/firewallrule', '/tungstenfirewallpolicy']
     }
   },
+  computed: {
+    resourceTitle () {
+      if (s2sGatewayRoute(this.$route)) return gatewayName(this.resource)
+      if (isVmIdentityRoute(this.$route)) return vmDisplayName(this.resource)
+      if (this.$route.meta?.name === 'ipv4subnets' && this.resource.subnet) return this.resource.subnet
+      if (guestVlanRoute(this.$route) && this.resource.vlan) return this.$t('label.vlan') + ' ' + this.resource.vlan
+      const row = this.resource
+      return row.displayname || row.name || row.displaytext || row.hostname || row.username || row.ipaddress || row.osname || row.osdisplayname || this.$route.params.id
+    },
+    kmsParentLocation () {
+      if (!['volume', 'kmskey'].includes(this.$route.meta?.name) || !this.$route.params?.id) return null
+      const state = this.$router?.options?.history?.state
+      return state?.kmsRelatedReturn ? kmsRelatedParentLocation(this.$route, state, this.$store.getters, this.$store.state?.user?.token) : null
+    }
+  },
   created () {
     this.getBreadcrumb()
   },
@@ -112,12 +144,63 @@ export default {
     }
   },
   methods: {
+    helpUrl (item) {
+      return item?.meta?.docHelp ? documentationUrl(this.$config.docBase, this.$route.meta.docHelp, this.$i18n.locale) : ''
+    },
     gatewayName,
+    vpnConnectionName,
+    vpnConnectionRoute,
     s2sGatewayRoute,
     vmDisplayName,
     isVmIdentityRoute,
     documentationUrl,
-    breadcrumbLocation (item) { if (item.path === '/s2svpn' && this.$route.meta?.name === 's2svpn' && this.$route.params?.id) return s2sGatewayListLocation(this.$route, this.$store.getters); if (item.path === '/kubernetesiso' && this.$route.meta?.name === 'kubernetesiso' && this.$route.params?.id) return kubernetesIsoListLocation(this.$route, this.$store.getters, this.$store.state?.user?.token); if (item.path === '/publicip' && this.$route.meta?.name === 'publicip' && this.$route.params?.id) return publicIpListLocation(this.$route, this.$store.getters); if (item.path === '/vnfapp' && this.$route.meta?.name === 'vnfapp' && this.$route.params?.id) return vnfListLocation(this.$route, this.$store.getters); if (item.path === '/iso' && this.$route.meta?.name === 'iso' && this.$route.params?.id) return isoListLocation(this.$route, this.$store.getters); if (item.vpcParent) return { path: item.path, query: { tab: 'pgw' } }; if (item.path === '/template' && this.$route.meta?.name === 'template' && this.$route.params?.id) return templateListLocation(this.$route, this.$store.getters); return item.path === '/guestnetwork' && this.$route.meta?.name === 'guestnetwork' && this.$route.params?.id ? networkListLocation(this.$route) : { path: item.path === '' ? '/' : item.path } },
+    kmsDetailRoute,
+    isEventDetailRoute,
+    eventBreadcrumbTitle (event) { return eventDisplayTitle(event, this.$t, date => this.$toLocaleDate(date)) },
+    breadcrumbLocation (item) {
+      if (item.path === '/account' && isAccountDetailRoute(this.$route)) {
+        return accountListLocation(this.$route, this.$router.options.history.state, this.$store.getters, this.$store.state?.user?.token)
+      }
+      if (item.path === '/role' && isRoleDetailRoute(this.$route)) {
+        return roleListLocation(this.$route, this.$router.options.history.state, this.$store.getters, this.$store.state?.user?.token)
+      }
+      if (item.path === '/project' && isProjectDetailRoute(this.$route)) {
+        return projectListLocation(this.$route, this.$router.options.history.state, this.$store.getters, this.$store.state?.user?.token)
+      }
+      if (item.path === '/acllist' && isAclListRoute(this.$route) && this.$route.params?.id) {
+        return aclListLocation(this.$route, this.resource, this.$store.getters)
+      }
+      if (item.path === '/event' && isEventDetailRoute(this.$route)) {
+        return eventListLocation(this.$route, this.$router.options.history.state, this.$store.getters, this.$store.state?.user?.token, this.resource)
+      }
+      if (kmsDetailRoute(this.$route) && item.path === '/' + this.$route.meta.name) {
+        return kmsListLocation(this.$route, this.$router.options.history.state, this.$store.getters, this.$store.state?.user?.token)
+      }
+      if (item.path === '/s2svpnconn' && this.$route.meta?.name === 's2svpnconn' && this.$route.params?.id) return s2sGatewayListLocation(this.$route, this.$store.getters, vpnConnectionApi)
+      if (item.path === '/s2svpn' && this.$route.meta?.name === 's2svpn' && this.$route.params?.id) return s2sGatewayListLocation(this.$route, this.$store.getters)
+      if (item.path === '/kubernetesiso' && this.$route.meta?.name === 'kubernetesiso' && this.$route.params?.id) return kubernetesIsoListLocation(this.$route, this.$store.getters, this.$store.state?.user?.token)
+      if (item.path === '/vpnuser' && vpnUserRoute(this.$route) && this.$route.params?.id) return vpnUserListLocation(this.$route, this.$store.getters)
+      if (item.path === '/physicalnetwork' && this.$route.params?.id && this.resource?.zoneid) return physicalNetworkZoneLocation(this.$route, this.resource.zoneid)
+      if (item.path === '/cluster' && this.$route.meta?.name === 'cluster' && this.$route.params?.id) return { path: item.path, query: clusterListQuery(this.$route.query) }
+      if (item.path === '/host' && this.$route.meta?.name === 'host' && this.$route.params?.id) return { path: item.path, query: hostListQuery(this.$route.query) }
+      if (item.path === '/zone' && this.$route.params?.id) return { path: item.path, query: zoneListQuery(this.$route.query) }
+      if (item.path === '/dnsserver' && this.$route.params?.id) return { path: item.path, query: dnsServerListQuery(this.$route.query) }
+      if (item.path === '/dnszone' && this.$route.params?.id) return { path: item.path, query: dnsZoneListQuery(this.$route.query) }
+      if (item.path === '/ipv4subnets' && this.$route.params?.id) return { path: item.path, query: ipv4SubnetListQuery(this.$route.query) }
+      if (item.path === '/guestvlans' && guestVlanRoute(this.$route) && this.$route.params?.id) {
+        return { path: item.path, query: guestVlanListQuery(this.$route.query) }
+      }
+      if (item.path === '/vpncustomergateway' && this.$route.params?.id) {
+        const { tab, ...query } = this.$route.query
+        return { path: item.path, query }
+      }
+      if (item.path === '/publicip' && this.$route.meta?.name === 'publicip' && this.$route.params?.id) return publicIpListLocation(this.$route, this.$store.getters)
+      if (item.path === '/vnfapp' && this.$route.meta?.name === 'vnfapp' && this.$route.params?.id) return vnfListLocation(this.$route, this.$store.getters)
+      if (item.path === '/iso' && this.$route.meta?.name === 'iso' && this.$route.params?.id) return isoListLocation(this.$route, this.$store.getters)
+      if (item.vpcParent) return { path: item.path, query: { tab: 'pgw' } }
+      if (item.path === '/template' && this.$route.meta?.name === 'template' && this.$route.params?.id) return templateListLocation(this.$route, this.$store.getters)
+      return item.path === '/guestnetwork' && this.$route.meta?.name === 'guestnetwork' && this.$route.params?.id ? networkListLocation(this.$route) : { path: item.path === '' ? '/' : item.path }
+    },
     getBreadcrumb () {
       this.name = this.$route.name
       this.breadList = []
@@ -149,4 +232,10 @@ export default {
 .ant-breadcrumb .anticon {
   vertical-align: text-bottom;
 }
+.kms-breadcrumb-name,
+.event-breadcrumb-title {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.kms-parent-link { margin-inline-end: 8px; }
 </style>

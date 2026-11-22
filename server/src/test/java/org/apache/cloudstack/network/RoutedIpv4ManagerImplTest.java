@@ -424,10 +424,24 @@ public class RoutedIpv4ManagerImplTest {
         when(ipv4GuestSubnetNetworkMapDao.findById(ipv4GuestSubnetNetworkMapId)).thenReturn(ipv4GuestSubnetNetworkMap);
         when(ipv4GuestSubnetNetworkMap.getState()).thenReturn(ipv4GuestSubnetNetworkMapState);
         when(ipv4GuestSubnetNetworkMap.getNetworkId()).thenReturn(null);
+        when(ipv4GuestSubnetNetworkMap.getVpcId()).thenReturn(null);
 
         routedIpv4Manager.deleteIpv4SubnetForGuestNetwork(cmd);
 
         verify(ipv4GuestSubnetNetworkMapDao).remove(ipv4GuestSubnetNetworkMapId);
+    }
+
+    @Test(expected = InvalidParameterValueException.class)
+    public void testDeleteIpv4SubnetStillAssociatedWithVpc() {
+        DeleteIpv4SubnetForGuestNetworkCmd cmd = new DeleteIpv4SubnetForGuestNetworkCmd();
+        ReflectionTestUtils.setField(cmd, "id", ipv4GuestSubnetNetworkMapId);
+
+        when(ipv4GuestSubnetNetworkMapDao.findById(ipv4GuestSubnetNetworkMapId)).thenReturn(ipv4GuestSubnetNetworkMap);
+        when(ipv4GuestSubnetNetworkMap.getState()).thenReturn(Ipv4GuestSubnetNetworkMap.State.Free);
+        when(ipv4GuestSubnetNetworkMap.getNetworkId()).thenReturn(null);
+        when(ipv4GuestSubnetNetworkMap.getVpcId()).thenReturn(vpcId);
+
+        routedIpv4Manager.deleteIpv4SubnetForGuestNetwork(cmd);
     }
 
     @Test

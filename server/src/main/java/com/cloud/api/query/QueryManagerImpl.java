@@ -204,6 +204,7 @@ import org.apache.commons.lang3.EnumUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
+import com.cloud.api.ApiDBUtils;
 import com.cloud.api.query.dao.AccountJoinDao;
 import com.cloud.api.query.dao.AffinityGroupJoinDao;
 import com.cloud.api.query.dao.AsyncJobJoinDao;
@@ -304,7 +305,6 @@ import com.cloud.projects.ProjectManager;
 import com.cloud.projects.ProjectVO;
 import com.cloud.projects.dao.ProjectAccountDao;
 import com.cloud.projects.dao.ProjectDao;
-import com.cloud.projects.dao.ProjectInvitationDao;
 import com.cloud.resource.ResourceManager;
 import com.cloud.resource.icon.dao.ResourceIconDao;
 import com.cloud.server.ResourceManagerUtil;
@@ -555,8 +555,6 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
     @Inject
     StoragePoolDetailsDao _storagePoolDetailsDao;
 
-    @Inject
-    ProjectInvitationDao projectInvitationDao;
 
     @Inject
     VMTemplatePoolDao templatePoolDao;
@@ -572,6 +570,9 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
 
     @Inject
     VolumeDao volumeDao;
+
+    @Inject
+    org.apache.cloudstack.kms.KMSManager kmsManager;
 
     @Inject
     ResourceIconDao resourceIconDao;
@@ -946,11 +947,15 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
          * List events has start date filter, there is highly possible cause where no objects loaded
          * and next millisecond new event added and finally we ended up with count = 1 and no ids.
          */
-        if (count == 0 || idArray.length < 1) {
+        if (count == 0 || (!cmd.isCreatedOrder() && idArray.length == 0)) {
             count = 0;
         }
 
         List<EventJoinVO> events = _eventJoinDao.searchByIds(idArray);
+        if (cmd.isCreatedOrder()) {
+            Map<Long, EventJoinVO> byId = events.stream().collect(Collectors.toMap(EventJoinVO::getId, event -> event));
+            events = Arrays.stream(idArray).map(byId::get).filter(Objects::nonNull).collect(Collectors.toList());
+        }
         return new Pair<>(events, count);
     }
 
@@ -1002,16 +1007,42 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
         Boolean isRecursive = domainIdRecursiveListProject.second();
         ListProjectResourcesCriteria listProjectResourcesCriteria = domainIdRecursiveListProject.third();
 
-        Filter searchFilter = new Filter(EventVO.class, "id", false, cmd.getStartIndex(), cmd.getPageSizeVal());
-        // additional order by since createdDate does not have milliseconds
-        // and two events, created within one second can be incorrectly ordered (for example VM.CREATE Completed before Scheduled)
-        // searchFilter.addOrderBy(EventVO.class, "id", false);
+        final boolean timeline = cmd.isTimeline();
+        final Long timelineRoot;
+        if (startId == null) {
+            timelineRoot = null;
+        } else {
+            SearchBuilder<EventVO> anchorBuilder = scopedEventSearchBuilder(domainId, isRecursive, permittedAccounts, listProjectResourcesCriteria);
+            SearchCriteria<EventVO> anchorCriteria = scopedEventCriteria(anchorBuilder, domainId, isRecursive, permittedAccounts,
+                    listProjectResourcesCriteria, isRootAdmin);
+            anchorCriteria.setParameters("id", startId);
+            EventVO anchor = eventDao.findOneBy(anchorCriteria);
+            if (anchor == null) {
+                return new Pair<>(List.of(), 0);
+            }
+            // The stored numeric parent remains usable even if the parent event has been removed.
+            timelineRoot = anchor.getStartId() > 0 ? anchor.getStartId() : anchor.getId();
+        }
 
-        SearchBuilder<EventVO> eventSearchBuilder = eventDao.createSearchBuilder();
-        eventSearchBuilder.select(null, Func.DISTINCT, eventSearchBuilder.entity().getId());
-        accountMgr.buildACLSearchBuilder(eventSearchBuilder, domainId, isRecursive, permittedAccounts, listProjectResourcesCriteria);
+        final boolean createdOrder = cmd.isCreatedOrder();
+        final boolean ascending = cmd.isCreatedOrderAscending();
+        Filter searchFilter = new Filter(EventVO.class, createdOrder ? "createDate" : "id", ascending,
+                cmd.getStartIndex(), cmd.getPageSizeVal());
+        if (createdOrder) {
+            searchFilter.addOrderBy(EventVO.class, "id", ascending);
+        }
 
-        eventSearchBuilder.and("id", eventSearchBuilder.entity().getId(), SearchCriteria.Op.EQ);
+        SearchBuilder<EventVO> eventSearchBuilder = scopedEventSearchBuilder(domainId, isRecursive, permittedAccounts, listProjectResourcesCriteria);
+        if (!createdOrder) {
+            eventSearchBuilder.select(null, Func.DISTINCT, eventSearchBuilder.entity().getId());
+        }
+        if (timelineRoot != null) {
+            eventSearchBuilder.and().op("timelineRoot", eventSearchBuilder.entity().getId(), SearchCriteria.Op.EQ);
+            eventSearchBuilder.or("timelineStage", eventSearchBuilder.entity().getStartId(), SearchCriteria.Op.EQ);
+            eventSearchBuilder.cp();
+        }
+
+        eventSearchBuilder.and("eventUuid", eventSearchBuilder.entity().getUuid(), SearchCriteria.Op.EQ);
         eventSearchBuilder.and("levelL", eventSearchBuilder.entity().getLevel(), SearchCriteria.Op.LIKE);
         eventSearchBuilder.and("levelEQ", eventSearchBuilder.entity().getLevel(), SearchCriteria.Op.EQ);
         eventSearchBuilder.and("type", eventSearchBuilder.entity().getType(), SearchCriteria.Op.EQ);
@@ -1019,9 +1050,7 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
         eventSearchBuilder.and("createDateG", eventSearchBuilder.entity().getCreateDate(), SearchCriteria.Op.GTEQ);
         eventSearchBuilder.and("createDateL", eventSearchBuilder.entity().getCreateDate(), SearchCriteria.Op.LTEQ);
         eventSearchBuilder.and("state", eventSearchBuilder.entity().getState(), SearchCriteria.Op.EQ);
-        eventSearchBuilder.or("startId", eventSearchBuilder.entity().getStartId(), SearchCriteria.Op.EQ);
         eventSearchBuilder.and("createDate", eventSearchBuilder.entity().getCreateDate(), SearchCriteria.Op.BETWEEN);
-        eventSearchBuilder.and("displayEvent", eventSearchBuilder.entity().isDisplay(), SearchCriteria.Op.EQ);
         eventSearchBuilder.and("archived", eventSearchBuilder.entity().getArchived(), SearchCriteria.Op.EQ);
         eventSearchBuilder.and("resourceId", eventSearchBuilder.entity().getResourceId(), SearchCriteria.Op.EQ);
         eventSearchBuilder.and("resourceType", eventSearchBuilder.entity().getResourceType(), SearchCriteria.Op.EQ);
@@ -1033,24 +1062,20 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
             eventSearchBuilder.cp();
         }
 
-        SearchCriteria<EventVO> sc = eventSearchBuilder.create();
-        // building ACL condition
-        accountMgr.buildACLSearchCriteria(sc, domainId, isRecursive, permittedAccounts, listProjectResourcesCriteria);
-
-        // For end users display only enabled events
-        if (!accountMgr.isRootAdmin(caller.getId())) {
-            sc.setParameters("displayEvent", true);
-        }
+        SearchCriteria<EventVO> sc = scopedEventCriteria(eventSearchBuilder, domainId, isRecursive, permittedAccounts,
+                listProjectResourcesCriteria, isRootAdmin);
 
         if (id != null) {
             sc.setParameters("id", id);
         }
 
-        if (startId != null) {
-            sc.setParameters("startId", startId);
-            if (id == null) {
-                sc.setParameters("id", startId);
-            }
+        if (cmd.getEventUuid() != null) {
+            sc.setParameters("eventUuid", cmd.getEventUuid());
+        }
+
+        if (timelineRoot != null) {
+            sc.setParameters("timelineRoot", timelineRoot);
+            sc.setParameters("timelineStage", timelineRoot);
         }
 
         if (keyword != null) {
@@ -1083,7 +1108,7 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
             sc.setParameters("resourceType", resourceType.toString());
         }
 
-        if (id == null) {
+        if (cmd.hasArchivedFilter() || (!timeline && id == null)) {
             sc.setParameters("archived", cmd.getArchived());
         }
 
@@ -1123,6 +1148,25 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
             eventPair = new Pair<>(eventIds, count);
         }
         return eventPair;
+    }
+
+    private SearchBuilder<EventVO> scopedEventSearchBuilder(Long domainId, boolean recursive, List<Long> accounts,
+            ListProjectResourcesCriteria projectResources) {
+        SearchBuilder<EventVO> builder = eventDao.createSearchBuilder();
+        accountMgr.buildACLSearchBuilder(builder, domainId, recursive, accounts, projectResources);
+        builder.and("id", builder.entity().getId(), SearchCriteria.Op.EQ);
+        builder.and("displayEvent", builder.entity().isDisplay(), SearchCriteria.Op.EQ);
+        return builder;
+    }
+
+    private SearchCriteria<EventVO> scopedEventCriteria(SearchBuilder<EventVO> builder, Long domainId, boolean recursive,
+            List<Long> accounts, ListProjectResourcesCriteria projectResources, boolean rootAdmin) {
+        SearchCriteria<EventVO> criteria = builder.create();
+        accountMgr.buildACLSearchCriteria(criteria, domainId, recursive, accounts, projectResources);
+        if (!rootAdmin) {
+            criteria.setParameters("displayEvent", true);
+        }
+        return criteria;
     }
 
     @Override
@@ -2181,14 +2225,14 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
         Long pageSize = cmd.getPageSizeVal();
         boolean listAll = cmd.listAll();
         boolean isRecursive = cmd.isRecursive();
-        cmd.getTags();
-
+        Map<String, String> tags = cmd.getTags();
 
         Account caller = CallContext.current().getCallingAccount();
         User user = CallContext.current().getCallingUser();
         Long accountId = null;
         Long userId = null;
         String path = null;
+        DomainVO selectedDomain = null;
 
         Filter searchFilter = new Filter(ProjectJoinVO.class, "id", false, startIndex, pageSize);
         SearchBuilder<ProjectJoinVO> sb = _projectJoinDao.createSearchBuilder();
@@ -2197,12 +2241,12 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
 
         if (accountMgr.isAdmin(caller.getId())) {
             if (domainId != null) {
-                DomainVO domain = _domainDao.findById(domainId);
-                if (domain == null) {
+                selectedDomain = _domainDao.findById(domainId);
+                if (selectedDomain == null) {
                     throw new InvalidParameterValueException("Domain id=" + domainId + " doesn't exist in the system");
                 }
 
-                accountMgr.checkAccess(caller, domain);
+                accountMgr.checkAccess(caller, selectedDomain);
 
                 if (accountName != null) {
                     Account owner = accountMgr.getActiveAccountByName(accountName, domainId);
@@ -2216,10 +2260,11 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
                     if (owner == null) {
                         throw new InvalidParameterValueException("Unable to find user " + username + " in domain " + domainId);
                     }
-                    userId = owner.getId();
-                    if (accountName == null) {
-                        accountId = owner.getAccountId();
+                    if (accountId != null && accountId != owner.getAccountId()) {
+                        throw new InvalidParameterValueException("The username does not belong to the specified account");
                     }
+                    userId = owner.getId();
+                    accountId = owner.getAccountId();
                 }
             } else { // domainId == null
                 if (accountName != null) {
@@ -2249,6 +2294,8 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
         if (domainId == null && accountId == null && (accountMgr.isNormalUser(caller.getId()) || !listAll)) {
             accountId = caller.getId();
             userId = user.getId();
+        } else if (selectedDomain != null && isRecursive) {
+            path = selectedDomain.getPath();
         } else if (accountMgr.isDomainAdmin(caller.getId()) || (isRecursive && !listAll)) {
             DomainVO domain = _domainDao.findById(caller.getDomainId());
             path = domain.getPath();
@@ -2272,6 +2319,23 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
             sb.and().op("userId", sb.entity().getUserId(), Op.EQ);
             sb.or("userIdNull", sb.entity().getUserId(), Op.NULL);
             sb.cp();
+        }
+
+        if (MapUtils.isNotEmpty(tags)) {
+            SearchBuilder<ResourceTagVO> tagSearch = resourceTagDao.createSearchBuilder();
+            tagSearch.and("resourceType", tagSearch.entity().getResourceType(), Op.EQ);
+            tagSearch.and().op();
+            for (int i = 0; i < tags.size(); i++) {
+                if (i == 0) {
+                    tagSearch.op("tagKey" + i, tagSearch.entity().getKey(), Op.EQ);
+                } else {
+                    tagSearch.or().op("tagKey" + i, tagSearch.entity().getKey(), Op.EQ);
+                }
+                tagSearch.and("tagValue" + i, tagSearch.entity().getValue(), Op.EQ);
+                tagSearch.cp();
+            }
+            tagSearch.cp();
+            sb.join("tags", tagSearch, tagSearch.entity().getResourceId(), sb.entity().getId(), JoinBuilder.JoinType.INNER);
         }
 
         SearchCriteria<ProjectJoinVO> sc = sb.create();
@@ -2316,6 +2380,16 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
             sc.setParameters("domainPath", path + "%");
         }
 
+        if (MapUtils.isNotEmpty(tags)) {
+            sc.setJoinParameters("tags", "resourceType", ResourceObjectType.Project);
+            int index = 0;
+            for (Map.Entry<String, String> tag : tags.entrySet()) {
+                sc.setJoinParameters("tags", "tagKey" + index, tag.getKey());
+                sc.setJoinParameters("tags", "tagValue" + index, tag.getValue());
+                index++;
+            }
+        }
+
         // search distinct projects to get count
         Pair<List<ProjectJoinVO>, Integer> uniquePrjPair = _projectJoinDao.searchAndCount(sc, searchFilter);
         Integer count = uniquePrjPair.second();
@@ -2337,76 +2411,90 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
     public ListResponse<ProjectInvitationResponse> listProjectInvitations(ListProjectInvitationsCmd cmd) {
         Pair<List<ProjectInvitationJoinVO>, Integer> invites = listProjectInvitationsInternal(cmd);
         ListResponse<ProjectInvitationResponse> response = new ListResponse<>();
-        List<ProjectInvitationResponse> projectInvitationResponses = ViewResponseHelper.createProjectInvitationResponse(invites.first().toArray(new ProjectInvitationJoinVO[0]));
-
-        response.setResponses(projectInvitationResponses, invites.second());
+        Date cutoff = projectInvitationCutoff();
+        List<ProjectInvitationResponse> rows = invites.first().stream().map(invite -> {
+            ProjectInvitationResponse row = ApiDBUtils.newProjectInvitationResponse(invite);
+            row.setActive(invite.getState() == ProjectInvitation.State.Pending && invite.getCreated().after(cutoff));
+            return row;
+        }).collect(Collectors.toList());
+        response.setResponses(rows, invites.second());
         return response;
     }
 
+    private Date projectInvitationCutoff() {
+        return new Date(DateUtil.currentGMTTime().getTime() - _projectMgr.getInvitationTimeout());
+    }
+
     public Pair<List<ProjectInvitationJoinVO>, Integer> listProjectInvitationsInternal(ListProjectInvitationsCmd cmd) {
-        Long id = cmd.getId();
         Long projectId = cmd.getProjectId();
-        String accountName = cmd.getAccountName();
-        Long domainId = cmd.getDomainId();
-        String state = cmd.getState();
-        boolean activeOnly = cmd.isActiveOnly();
-        Long startIndex = cmd.getStartIndex();
-        Long pageSizeVal = cmd.getPageSizeVal();
-        Long userId = cmd.getUserId();
-        boolean isRecursive = cmd.isRecursive();
-        boolean listAll = cmd.listAll();
-
+        String direction = cmd.getDirection();
+        boolean outgoing = "outgoing".equalsIgnoreCase(direction);
+        boolean incoming = "incoming".equalsIgnoreCase(direction);
         Account caller = CallContext.current().getCallingAccount();
-        User callingUser = CallContext.current().getCallingUser();
-        List<Long> permittedAccounts = new ArrayList<Long>();
+        User user = CallContext.current().getCallingUser();
+        if (direction != null && !incoming && !outgoing) {
+            throw new InvalidParameterValueException("Invitation direction must be incoming or outgoing");
+        }
 
-        Ternary<Long, Boolean, ListProjectResourcesCriteria> domainIdRecursiveListProject = new Ternary<Long, Boolean, ListProjectResourcesCriteria>(domainId, isRecursive, null);
-        accountMgr.buildACLSearchParameters(caller, id, accountName, projectId, permittedAccounts, domainIdRecursiveListProject, listAll, true);
-        domainId = domainIdRecursiveListProject.first();
-        isRecursive = domainIdRecursiveListProject.second();
-        ListProjectResourcesCriteria listProjectResourcesCriteria = domainIdRecursiveListProject.third();
+        Ternary<Long, Boolean, ListProjectResourcesCriteria> acl = new Ternary<>(cmd.getDomainId(), cmd.isRecursive(), null);
+        List<Long> permittedAccounts = new ArrayList<>();
+        if (outgoing) {
+            Project project = projectId == null ? null : _projectMgr.getProject(projectId);
+            if (project == null || cmd.getAccountName() != null) {
+                throw new InvalidParameterValueException("Outgoing invitations require a managed project ID");
+            }
+            accountMgr.checkAccess(caller, SecurityChecker.AccessType.ModifyProject, true, accountMgr.getAccount(project.getProjectAccountId()));
+        } else if (incoming) {
+            if (cmd.getAccountName() != null || (cmd.getDomainId() != null && !cmd.getDomainId().equals(caller.getDomainId()))) {
+                throw new InvalidParameterValueException("Incoming invitations belong to the calling account");
+            }
+            permittedAccounts.add(caller.getId());
+        } else {
+            if (cmd.getAccountName() != null && projectId != null) {
+                throw new InvalidParameterValueException("Account and projectId can't be specified together");
+            }
+            accountMgr.buildACLSearchParameters(caller, cmd.getId(), cmd.getAccountName(), null, permittedAccounts, acl, cmd.listAll(), true);
+        }
 
-        Filter searchFilter = new Filter(ProjectInvitationJoinVO.class, "id", true, startIndex, pageSizeVal);
+        if (cmd.isActiveOnly() && cmd.getState() != null && !ProjectInvitation.State.Pending.name().equalsIgnoreCase(cmd.getState())) {
+            return new Pair<>(Collections.emptyList(), 0);
+        }
+
+        Filter filter = new Filter(ProjectInvitationJoinVO.class, "id", true, cmd.getStartIndex(), cmd.getPageSizeVal());
         SearchBuilder<ProjectInvitationJoinVO> sb = _projectInvitationJoinDao.createSearchBuilder();
-        accountMgr.buildACLViewSearchBuilder(sb, domainId, isRecursive, permittedAccounts, listProjectResourcesCriteria);
-        ProjectInvitation invitation = projectInvitationDao.findByUserIdProjectId(callingUser.getId(), callingUser.getAccountId(), projectId == null ? -1 : projectId);
-        sb.and("projectId", sb.entity().getProjectId(), SearchCriteria.Op.EQ);
-        sb.and("state", sb.entity().getState(), SearchCriteria.Op.EQ);
-        sb.and("created", sb.entity().getCreated(), SearchCriteria.Op.GT);
-        sb.and("id", sb.entity().getId(), SearchCriteria.Op.EQ);
-
+        accountMgr.buildACLViewSearchBuilder(sb, acl.first(), acl.second(), permittedAccounts, acl.third());
+        sb.and("projectId", sb.entity().getProjectId(), Op.EQ);
+        sb.and("state", sb.entity().getState(), Op.EQ);
+        sb.and("created", sb.entity().getCreated(), Op.GT);
+        sb.and("id", sb.entity().getId(), Op.EQ);
+        sb.and("userId", sb.entity().getUserId(), Op.EQ);
         SearchCriteria<ProjectInvitationJoinVO> sc = sb.create();
-        accountMgr.buildACLViewSearchCriteria(sc, domainId, isRecursive, permittedAccounts, listProjectResourcesCriteria);
+        accountMgr.buildACLViewSearchCriteria(sc, acl.first(), acl.second(), permittedAccounts, acl.third());
+        sc.setParametersIfNotNull("projectId", projectId);
+        sc.setParametersIfNotNull("id", cmd.getId());
+        sc.setParametersIfNotNull("userId", cmd.getUserId());
 
-        if (projectId != null) {
-            sc.setParameters("projectId", projectId);
+        if (!outgoing) {
+            SearchCriteria<ProjectInvitationJoinVO> recipient = _projectInvitationJoinDao.createSearchCriteria();
+            recipient.addOr("userId", Op.NULL);
+            recipient.addOr("userId", Op.EQ, user.getId());
+            sc.addAnd("userId", Op.SC, recipient);
         }
-
-        if (invitation != null) {
-            sc.setParameters("userId", invitation.getForUserId());
-        } else if (userId != null) {
-            sc.setParameters("userId", userId);
-        }
-
-        if (state != null) {
-            sc.setParameters("state", state);
-        }
-
-        if (id != null) {
-            sc.setParameters("id", id);
-        }
-
-        if (activeOnly) {
+        if (cmd.isActiveOnly()) {
             sc.setParameters("state", ProjectInvitation.State.Pending);
-            sc.setParameters("created", new Date((DateUtil.currentGMTTime().getTime()) - _projectMgr.getInvitationTimeout()));
+            sc.setParameters("created", projectInvitationCutoff());
+        } else {
+            sc.setParametersIfNotNull("state", cmd.getState());
         }
-
-        Pair<List<ProjectInvitationJoinVO>, Integer> projectInvitations = _projectInvitationJoinDao.searchAndCount(sc, searchFilter);
-        List<ProjectInvitationJoinVO> invitations = projectInvitations.first();
-        invitations = invitations.stream().filter(invite -> invite.getUserId() == null || Long.parseLong(invite.getUserId()) == callingUser.getId()).collect(Collectors.toList());
-        return new Pair<>(invitations, invitations.size());
-
-
+        if (StringUtils.isNotBlank(cmd.getKeyword())) {
+            String keyword = "%" + cmd.getKeyword().trim() + "%";
+            SearchCriteria<ProjectInvitationJoinVO> search = _projectInvitationJoinDao.createSearchCriteria();
+            search.addOr("projectName", Op.LIKE, keyword);
+            search.addOr("accountName", Op.LIKE, keyword);
+            search.addOr("email", Op.LIKE, keyword);
+            sc.addAnd("projectName", Op.SC, search);
+        }
+        return _projectInvitationJoinDao.searchAndCount(sc, filter);
     }
 
     @Override
@@ -2423,6 +2511,8 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
         String accountName = cmd.getAccountName();
         Long userId = cmd.getUserId();
         String role = cmd.getRole();
+        String username = StringUtils.trimToNull(cmd.getUsername());
+        String keyword = StringUtils.trimToNull(cmd.getKeyword());
         Long startIndex = cmd.getStartIndex();
         Long pageSizeVal = cmd.getPageSizeVal();
         Long projectRoleId = cmd.getProjectRoleId();
@@ -2437,10 +2527,10 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
             throw new InvalidParameterValueException("Unable to find the project id=" + projectId);
         }
 
-        // verify permissions - only accounts belonging to the project can list
-        // project's account
-        if (!accountMgr.isAdmin(caller.getId()) && _projectAccountDao.findByProjectIdUserId(projectId, callingUser.getAccountId(), callingUser.getId()) == null &&
-        _projectAccountDao.findByProjectIdAccountId(projectId, caller.getAccountId()) == null) {
+        if (accountMgr.isAdmin(caller.getId())) {
+            accountMgr.checkAccess(caller, _domainDao.findById(project.getDomainId()));
+        } else if (_projectAccountDao.findByProjectIdUserId(projectId, callingUser.getAccountId(), callingUser.getId()) == null
+                && _projectAccountDao.findByProjectIdAccountId(projectId, caller.getAccountId()) == null) {
             throw new PermissionDeniedException("Account " + caller + " is not authorized to list users of the project id=" + projectId);
         }
 
@@ -2455,6 +2545,12 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
 
         if (userId != null) {
             sb.and("userId", sb.entity().getUserId(), Op.EQ);
+        }
+        if (username != null) {
+            sb.and("username", sb.entity().getUsername(), Op.EQ);
+        }
+        if (projectRoleId != null) {
+            sb.and("projectRoleId", sb.entity().getProjectRoleId(), Op.EQ);
         }
         SearchCriteria<ProjectAccountJoinVO> sc = sb.create();
 
@@ -2474,6 +2570,16 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
 
         if (userId != null) {
             sc.setParameters("userId", userId);
+        }
+
+        if (username != null) {
+            sc.setParameters("username", username);
+        }
+        if (keyword != null) {
+            SearchCriteria<ProjectAccountJoinVO> names = _projectAccountJoinDao.createSearchCriteria();
+            names.addOr("accountName", Op.LIKE, "%" + keyword + "%");
+            names.addOr("username", Op.LIKE, "%" + keyword + "%");
+            sc.addAnd("accountName", Op.SC, names);
         }
 
         return _projectAccountJoinDao.searchAndCount(sc, searchFilter);
@@ -2716,6 +2822,14 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
 
         List<VolumeResponse> volumeResponses = ViewResponseHelper.createVolumeResponse(respView, result.first().toArray(new VolumeJoinVO[0]));
 
+        if (cmd.getKmsMigrationKeyId() != null) {
+            org.apache.cloudstack.kms.KMSKey target = kmsManager.getVolumeMigrationTarget(cmd.getKmsMigrationKeyId());
+            for (VolumeResponse item : volumeResponses) {
+                result.first().stream().filter(row -> row.getUuid().equals(item.getId())).findFirst()
+                        .ifPresent(row -> item.setKmsMigrationContext(kmsManager.getVolumeMigrationReason(row.getId(), target)));
+            }
+        }
+
         if (cmd.isIncludeSnapshotContext()) {
             for (VolumeResponse item : volumeResponses) {
                 result.first().stream().filter(row -> row.getUuid().equals(item.getId())).findFirst()
@@ -2784,6 +2898,13 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
     }
     private Pair<List<Long>, Integer> searchForVolumeIdsAndCount(ListVolumesCmd cmd) {
 
+        if (cmd.getKmsMigrationEligible() != null && cmd.getKmsMigrationKeyId() == null) {
+            throw new InvalidParameterValueException("kmsmigrationeligible requires kmsmigrationkeyid");
+        }
+        checkVolumeMigrationPermission(cmd);
+        org.apache.cloudstack.kms.KMSKey migrationTarget = cmd.getKmsMigrationKeyId() == null ? null
+                : kmsManager.getVolumeMigrationTarget(cmd.getKmsMigrationKeyId());
+
         Account caller = CallContext.current().getCallingAccount();
         List<Long> permittedAccounts = new ArrayList<>();
 
@@ -2826,6 +2947,19 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
 
         SearchBuilder<VolumeVO> volumeSearchBuilder = volumeDao.createSearchBuilder();
         volumeSearchBuilder.select(null, Func.DISTINCT, volumeSearchBuilder.entity().getId()); // select distinct
+        List<Long> migrationIds = null;
+        if (migrationTarget != null) {
+            volumeSearchBuilder.and("migrationAccount", volumeSearchBuilder.entity().getAccountId(), Op.EQ);
+            volumeSearchBuilder.and("migrationZone", volumeSearchBuilder.entity().getDataCenterId(), Op.EQ);
+            if (cmd.getKmsMigrationEligible() != null) {
+                migrationIds = kmsManager.listVolumeMigrationEligibleIds(migrationTarget);
+                if (migrationIds.isEmpty()) {
+                    migrationIds = Collections.singletonList(-1L);
+                }
+                volumeSearchBuilder.and("migrationIds", volumeSearchBuilder.entity().getId(),
+                        cmd.getKmsMigrationEligible() ? Op.IN : Op.NIN);
+            }
+        }
         accountMgr.buildACLSearchBuilder(volumeSearchBuilder, domainId, isRecursive, permittedAccounts, listProjectResourcesCriteria);
 
         if (CollectionUtils.isNotEmpty(ids)) {
@@ -2919,6 +3053,13 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
 
         // now set the SC criteria...
         SearchCriteria<VolumeVO> sc = volumeSearchBuilder.create();
+        if (migrationTarget != null) {
+            sc.setParameters("migrationAccount", migrationTarget.getAccountId());
+            sc.setParameters("migrationZone", migrationTarget.getZoneId());
+            if (migrationIds != null) {
+                sc.setParameters("migrationIds", migrationIds.toArray());
+            }
+        }
         accountMgr.buildACLSearchCriteria(sc, domainId, isRecursive, permittedAccounts, listProjectResourcesCriteria);
 
         if (keyword != null) {
@@ -3002,6 +3143,13 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
         return new Pair<>(vmIds, count);
     }
 
+
+    void checkVolumeMigrationPermission(ListVolumesCmd cmd) {
+        if (cmd.getKmsMigrationKeyId() != null) {
+            String apiKey = cmd.getFullUrlParams() == null ? null : cmd.getFullUrlParams().get(ApiConstants.API_KEY);
+            accountMgr.checkApiAccessForUser(CallContext.current().getCallingUser(), "migrateVolumesToKMS", apiKey);
+        }
+    }
 
     private boolean shouldListSystemVms(ListVolumesCmd cmd, Long callerId) {
         return Boolean.TRUE.equals(cmd.getListSystemVms()) && accountMgr.isRootAdmin(callerId);
@@ -3200,8 +3348,10 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
                 if (domainId == null) {
                     domainId = caller.getDomainId();
                 }
-                // mark recursive
-                isRecursive = true;
+                // Preserve the historical recursive default for requests that omit the flag.
+                if (!cmd.hasRecursiveFilter()) {
+                    isRecursive = true;
+                }
             } else if (!callerIsAdmin || domainId == null) {
                 accountId = caller.getAccountId();
             }

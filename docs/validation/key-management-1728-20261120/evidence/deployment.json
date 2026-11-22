@@ -1,0 +1,27 @@
+{
+  "source_commit": "5e058ec22328c43f3b0d9f20ab0e980cffe00d91",
+  "before_sha256": "55f802d2b22c9d4d471644c6157781cc2604e27d4ba0d7b055e4a934bb1d6171",
+  "after_sha256": "ab4d2490066a93e00ae4de454d492ca797872e54f0398d651c672791ec5672cb",
+  "backup": "/var/lib/cloudstack/management/key-management-1728-backup-20261120/cloudstack-4.23.0.0-ABLESTACK.Mold.jar",
+  "patch_sha256": "c6ba8560d8207d1109efd911e3c76cbb9ab9300356fe4b7282ccf97594784f48",
+  "entries": 92939,
+  "changed_entries": [
+    "org/apache/cloudstack/kms/KMSManagerImpl.class",
+    "org/apache/cloudstack/kms/KMSManagerImpl$1.class"
+  ],
+  "unchanged_entries": 92937,
+  "patched_classes": {
+    "org/apache/cloudstack/kms/KMSManagerImpl$KmsOperation.class": {
+      "sha256": "520e2751f3aaa2c6b3326c494afbfe5bac28ee287615bb7f4fa304483f0b1ae9",
+      "major": 55
+    },
+    "org/apache/cloudstack/kms/KMSManagerImpl.class": {
+      "sha256": "6576da511f0fe49c15afb97f83e7ee8ccca5e09350abfa5f82b25a5fc4bd4a80",
+      "major": 55
+    },
+    "org/apache/cloudstack/kms/KMSManagerImpl$1.class": {
+      "sha256": "b205b8c48e97fded6637a48464f2264bdc29f8031c3e92a8168a5e96d4c90494",
+      "major": 55
+    }
+  }
+}

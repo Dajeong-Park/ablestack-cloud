@@ -73,6 +73,14 @@ public class Ipv4SubnetForGuestNetworkResponse extends BaseResponse {
     @Param(description = "Name of the VPC which the IPv4 subnet is associated with.")
     private String vpcName;
 
+    @SerializedName("networkprojectid")
+    @Param(description = "UUID of the project owning the associated network.")
+    private String networkProjectId;
+
+    @SerializedName("vpcprojectid")
+    @Param(description = "UUID of the project owning the associated VPC.")
+    private String vpcProjectId;
+
     @SerializedName(ApiConstants.CREATED)
     @Param(description = "date when this IPv4 subnet was created." )
     private Date created;
@@ -119,6 +127,14 @@ public class Ipv4SubnetForGuestNetworkResponse extends BaseResponse {
 
     public void setVpcName(String vpcName) {
         this.vpcName = vpcName;
+    }
+
+    public void setNetworkProjectId(String networkProjectId) {
+        this.networkProjectId = networkProjectId;
+    }
+
+    public void setVpcProjectId(String vpcProjectId) {
+        this.vpcProjectId = vpcProjectId;
     }
 
     public void setZoneId(String zoneId) {

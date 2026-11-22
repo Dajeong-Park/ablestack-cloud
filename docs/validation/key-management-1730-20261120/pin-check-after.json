@@ -1,0 +1,18 @@
+{
+  "checks": [
+    {
+      "profile": "qa-km1730-pin-check",
+      "decrypted_value_matches_expected": true,
+      "stored_value_differs_from_plaintext": true,
+      "matching_log_metadata": [],
+      "test_digest_plaintext_found_in_log": {
+        "qa-km1730-pin-check": false,
+        "qa-km1730-failure": false
+      },
+      "server_log_scan_bytes": 67108864,
+      "plaintext_found_in_scanned_server_log": false
+    }
+  ],
+  "test_values_only": true,
+  "raw_values_not_recorded": true
+}

@@ -26,6 +26,8 @@ import org.apache.cloudstack.api.response.EventResponse;
 import org.apache.cloudstack.api.response.ListResponse;
 
 import com.cloud.event.Event;
+import com.cloud.exception.InvalidParameterValueException;
+import com.cloud.utils.UuidUtils;
 
 @APICommand(name = "listEvents", description = "A command to list events.", responseObject = EventResponse.class, entityType = {Event.class},
         requestHasSensitiveInfo = false, responseHasSensitiveInfo = false)
@@ -38,6 +40,18 @@ public class ListEventsCmd extends BaseListProjectAndAccountResourcesCmd {
 
     @Parameter(name = ApiConstants.ID, type = CommandType.UUID, entityType = EventResponse.class, description = "The ID of the event")
     private Long id;
+
+    @Parameter(name = "eventuuid", type = CommandType.STRING, length = 36,
+            description = "Filter by the exact event UUID. A valid UUID without a visible matching event returns an empty result.")
+    private String eventUuid;
+
+    @Parameter(name = ApiConstants.SORT_KEY, type = CommandType.STRING,
+            description = "Set to created to sort all matching events by creation time before paging.")
+    private String sortKey;
+
+    @Parameter(name = "sortorder", type = CommandType.STRING,
+            description = "With sortkey=created, asc or desc (default desc). Event ID is the tie-breaker in the same direction.")
+    private String sortOrder;
 
     @Parameter(name = ApiConstants.DURATION, type = CommandType.INTEGER, description = "The duration of the event")
     private Integer duration;
@@ -61,8 +75,12 @@ public class ListEventsCmd extends BaseListProjectAndAccountResourcesCmd {
     @Parameter(name = ApiConstants.TYPE, type = CommandType.STRING, description = "The event type (see event types)")
     private String type;
 
-    @Parameter(name = ApiConstants.START_ID, type = CommandType.UUID, entityType = EventResponse.class, description = "The parent/start ID of the event, when provided this will list all the events with the start/parent ID including the parent event")
+    @Parameter(name = ApiConstants.START_ID, type = CommandType.UUID, entityType = EventResponse.class, description = "An event ID used to find its operation and related stages, including the parent when visible")
     private Long startId;
+
+    @Parameter(name = "timeline", type = CommandType.BOOLEAN, description = "With startid, list the operation in chronological order. "
+            + "When archived is omitted, include active and archived stages.")
+    private Boolean timeline;
 
     @Parameter(name = ApiConstants.RESOURCE_ID, type = CommandType.STRING, description = "The ID of the resource associated with the event", since="4.17.0")
     private String resourceId;
@@ -82,6 +100,18 @@ public class ListEventsCmd extends BaseListProjectAndAccountResourcesCmd {
 
     public Long getId() {
         return id;
+    }
+
+    public String getEventUuid() {
+        return eventUuid;
+    }
+
+    public boolean isCreatedOrder() {
+        return isTimeline() || "created".equals(sortKey);
+    }
+
+    public boolean isCreatedOrderAscending() {
+        return isTimeline() || "asc".equals(sortOrder);
     }
 
     public Integer getDuration() {
@@ -121,7 +151,15 @@ public class ListEventsCmd extends BaseListProjectAndAccountResourcesCmd {
     }
 
     public boolean getArchived() {
-        return archived != null && archived;
+        return Boolean.TRUE.equals(archived);
+    }
+
+    public boolean hasArchivedFilter() {
+        return archived != null;
+    }
+
+    public boolean isTimeline() {
+        return Boolean.TRUE.equals(timeline);
     }
 
     public String getState() {
@@ -134,7 +172,22 @@ public class ListEventsCmd extends BaseListProjectAndAccountResourcesCmd {
 
     @Override
     public void execute() {
-
+        if (isTimeline() && startId == null) {
+            throw new InvalidParameterValueException("startid is required when timeline is true.");
+        }
+        if (eventUuid != null && !UuidUtils.isUuid(eventUuid)) {
+            throw new InvalidParameterValueException("eventuuid must be a valid UUID.");
+        }
+        if (startDate != null && endDate != null && startDate.after(endDate)) {
+            throw new InvalidParameterValueException("startdate must be on or before enddate.");
+        }
+        if ((sortKey != null && !"created".equals(sortKey)) || (sortOrder != null
+                && (!"created".equals(sortKey) || !("asc".equals(sortOrder) || "desc".equals(sortOrder))))) {
+            throw new InvalidParameterValueException("Use sortkey=created with sortorder=asc or desc.");
+        }
+        if (isTimeline() && "desc".equals(sortOrder)) {
+            throw new InvalidParameterValueException("Event timelines use chronological order.");
+        }
         ListResponse<EventResponse> response = _queryService.searchForEvents(this);
         response.setResponseName(getCommandName());
         setResponseObject(response);

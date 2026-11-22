@@ -56,8 +56,9 @@
           </template>
           <a-select
             v-model:value="form.provider"
-            :placeholder="apiParams.provider?.description || 'Select Provider'"
-            :loading="fetchingProviders"
+            :placeholder="$t('label.provider')"
+            :loading="providerStatus === 'loading'"
+            :disabled="providerStatus !== 'ready'"
             showSearch>
             <a-select-option
               v-for="provider in providers"
@@ -66,6 +67,15 @@
               {{ provider.description || provider.name }}
             </a-select-option>
           </a-select>
+          <a-alert
+            v-if="['error', 'forbidden'].includes(providerStatus)"
+            class="provider-status"
+            type="error"
+            show-icon
+            :message="$t(providerStatus === 'forbidden' ? 'label.unauthorized' : 'message.dns.provider.load.failed')">
+            <template #description><a-button size="small" @click="fetchProviders">{{ $t('label.retry') }}</a-button></template>
+          </a-alert>
+          <a-alert v-else-if="providerStatus === 'empty'" class="provider-status" type="info" show-icon :message="$t('message.dns.provider.empty')" />
         </a-form-item>
 
         <a-form-item name="port" ref="port">
@@ -89,7 +99,7 @@
           </template>
           <a-input-password
             v-model:value="form.dnsapikey"
-            :placeholder="apiParams.dnsapikey?.description || 'Enter API Key'" />
+            :placeholder="$t('label.dns.dnsapikey')" />
         </a-form-item>
 
         <a-form-item v-if="form.provider === 'PowerDNS'" name="pdnsserverid" ref="pdnsserverid">
@@ -100,7 +110,7 @@
           </template>
           <a-input
             v-model:value="form.pdnsserverid"
-            :placeholder="'Enter PowerDNS Server ID (optional if localhost)'" />
+            :placeholder="$t('message.dns.provider.server.id.placeholder')" />
         </a-form-item>
 
         <Transition name="slide-down">
@@ -112,7 +122,7 @@
             </template>
             <a-input
               v-model:value="form.publicdomainsuffix"
-              :placeholder="apiParams.publicdomainsuffix?.description || 'Enter Public Domain Suffix e.g. example.com'" />
+              :placeholder="'example.com'" />
           </a-form-item>
         </Transition>
 
@@ -139,17 +149,18 @@
           <a-switch v-model:checked="form.ispublic" />
         </a-form-item>
 
-        <div class="action-button">
+        <MoldDialogActions :busy="loading">
           <a-button @click="closeAction">
             {{ $t('label.cancel') }}
           </a-button>
           <a-button
             type="primary"
             :loading="loading"
-            htmlType="submit">
+            :disabled="!providerSelected"
+            @click="handleSubmit">
             {{ $t('label.ok') }}
           </a-button>
-        </div>
+        </MoldDialogActions>
       </a-form>
     </a-spin>
   </div>
@@ -157,6 +168,8 @@
 
 <script>
 import { getAPI, postAPI } from '@/api'
+import { dnsNameserverError, normalizeDnsNameservers } from '@/utils/dnsServer'
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 
 const FQDN_REGEX = /^(?=.{1,253}$)(?:(?!-)[A-Za-z0-9-]{1,63}(?<!-)\.)+[A-Za-z]{2,63}$/
@@ -164,6 +177,7 @@ const FQDN_REGEX = /^(?=.{1,253}$)(?:(?!-)[A-Za-z0-9-]{1,63}(?<!-)\.)+[A-Za-z]{2
 export default {
   name: 'AddDnsServer',
   components: {
+    MoldDialogActions,
     TooltipLabel
   },
   data () {
@@ -181,8 +195,13 @@ export default {
         pdnsserverid: ''
       },
       rules: {},
-      fetchingProviders: false,
+      providerStatus: 'loading',
       providers: []
+    }
+  },
+  computed: {
+    providerSelected () {
+      return this.providerStatus === 'ready' && this.providers.some(provider => provider.name === this.form.provider)
     }
   },
   created () {
@@ -214,7 +233,7 @@ export default {
   },
   methods: {
     async handleSubmit () {
-      if (this.loading) return
+      if (this.loading || !this.providerSelected || !this.$store.getters.apis?.addDnsServer) return
       try {
         await this.$refs.formRef.validate()
       } catch (error) {
@@ -231,7 +250,7 @@ export default {
           port: this.form.port,
           provider: this.form.provider,
           dnsapikey: this.form.dnsapikey?.trim(),
-          nameservers: this.form.nameservers || [],
+          nameservers: normalizeDnsNameservers(this.form.nameservers),
           ispublic: this.form.ispublic
         }
         if (this.form.publicdomainsuffix) {
@@ -240,12 +259,12 @@ export default {
         if (this.form.pdnsserverid) {
           params['details[0].pdnsServerId'] = this.form.pdnsserverid?.trim()
         }
-        const response = await postAPI('addDnsServer', params)
+        const response = await postAPI('addDnsServer', params, { preserveOnFailure: true })
         const serverData = response?.adddnsserverresponse?.dnsserver || response?.adddnsserverresponse
         if (!serverData?.id) {
           this.$notification.error({
             message: this.$t('message.request.failed'),
-            description: 'Failed to get server from response',
+            description: this.$t('error.fetching.data'),
             duration: 0
           })
           this.loading = false
@@ -271,21 +290,18 @@ export default {
       this.$emit('close-action')
     },
     async fetchProviders () {
-      this.fetchingProviders = true
+      this.providerStatus = 'loading'
       try {
-        const response = await getAPI('listDnsProviders')
-        const listResponse = response?.listdnsprovidersresponse || {}
-        this.providers = Array.isArray(listResponse.dnsprovider) ? listResponse.dnsprovider : []
-        if (!this.form.provider && this.providers.length > 0) {
-          this.form.provider = this.providers[0].name || ''
+        const response = await getAPI('listDnsProviders', { pagesize: -1 }, { preserveOnFailure: true })
+        const body = response?.listdnsprovidersresponse
+        if (!body || body.errorcode) throw new Error('Invalid DNS provider response')
+        this.providers = (body.dnsprovider || []).filter(provider => typeof provider.name === 'string' && provider.name)
+        if (!this.providers.some(provider => provider.name === this.form.provider)) {
+          this.form.provider = this.providers[0]?.name ?? ''
         }
+        this.providerStatus = this.providers.length ? 'ready' : 'empty'
       } catch (error) {
-        console.error('Failed to fetch DNS providers', error)
-        this.providers = []
-        this.form.provider = ''
-        this.$message.warning('Could not load DNS providers.')
-      } finally {
-        this.fetchingProviders = false
+        this.providerStatus = error?.response?.status === 403 ? 'forbidden' : 'error'
       }
     },
     validateUrl (rule, value) {
@@ -293,13 +309,13 @@ export default {
       try {
         const parsed = new URL(value)
         if (!['http:', 'https:'].includes(parsed.protocol)) {
-          return Promise.reject(new Error('URL must start with http:// or https://'))
+          return Promise.reject(new Error(this.$t('message.dns.server.url.protocol')))
         }
         if (parsed.port) {
-          return Promise.reject(new Error('Do not include port in URL. Use the port field instead.'))
+          return Promise.reject(new Error(this.$t('message.dns.server.url.port')))
         }
       } catch (e) {
-        return Promise.reject(new Error('Invalid URL format'))
+        return Promise.reject(new Error(this.$t('message.dns.server.url.invalid')))
       }
       return Promise.resolve()
     },
@@ -309,27 +325,14 @@ export default {
       }
 
       if (value < 1 || value > 65535) {
-        return Promise.reject(new Error('Port must be between 1 and 65535'))
+        return Promise.reject(new Error(this.$t('message.dns.server.port.invalid')))
       }
 
       return Promise.resolve()
     },
-    validateNameservers (rule, value) {
-      if (!value || !value.length) {
-        return Promise.resolve()
-      }
-
-      for (const ns of value) {
-        if (!FQDN_REGEX.test(ns)) {
-          return Promise.reject(new Error('Invalid nameserver'))
-        }
-      }
-
-      if (new Set(value).size !== value.length) {
-        return Promise.reject(new Error('Nameservers must be unique'))
-      }
-
-      return Promise.resolve()
+    async validateNameservers (rule, value) {
+      const error = dnsNameserverError(value)
+      if (error) throw new Error(this.$t(error))
     },
     validatePublicDomainSuffix (rule, value) {
       const normalized = value?.toLowerCase().trim()
@@ -337,7 +340,7 @@ export default {
         return Promise.reject(new Error(this.$t('message.error.required.input')))
       }
       if (!FQDN_REGEX.test(normalized)) {
-        return Promise.reject(new Error('Invalid domain suffix'))
+        return Promise.reject(new Error(this.$t('message.dns.server.suffix.invalid')))
       }
 
       return Promise.resolve()
@@ -354,31 +357,6 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-.form-layout {
-  width: 80vw;
-  @media (min-width: 600px) {
-    width: 450px;
-  }
-}
-
-.action-button {
-  text-align: right;
-  margin-top: 20px;
-}
-.action-button button {
-  margin-left: 8px;
-}
-
-.slide-down-enter-active,
-.slide-down-leave-active {
-  transition: max-height 0.3s ease, opacity 0.3s ease;
-  overflow: hidden;
-  max-height: 120px;
-}
-.slide-down-enter-from,
-.slide-down-leave-to {
-  max-height: 0;
-  opacity: 0;
-}
+<style scoped>
+.provider-status { margin-top: 8px; }
 </style>

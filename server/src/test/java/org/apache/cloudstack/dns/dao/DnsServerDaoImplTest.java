@@ -92,7 +92,7 @@ public class DnsServerDaoImplTest {
 
         Filter filter = new Filter(DnsServerVO.class, "id", true, 0L, 10L);
         Set<Long> domainIds = new HashSet<>(Arrays.asList(10L, 20L));
-        Pair<List<DnsServerVO>, Integer> result = dao.searchDnsServer(100L, 1L, domainIds, DnsProviderType.PowerDNS, "test", filter);
+        Pair<List<DnsServerVO>, Integer> result = dao.searchDnsServer(100L, 1L, domainIds, DnsProviderType.PowerDNS, "test", false, filter);
 
         assertNotNull(result);
         assertEquals(1, result.first().size());
@@ -108,7 +108,7 @@ public class DnsServerDaoImplTest {
 
         Filter filter = new Filter(DnsServerVO.class, "id", true, 0L, 10L);
         Set<Long> domainIds = new HashSet<>();
-        Pair<List<DnsServerVO>, Integer> result = dao.searchDnsServer(null, null, domainIds, null, null, filter);
+        Pair<List<DnsServerVO>, Integer> result = dao.searchDnsServer(null, null, domainIds, null, null, true, filter);
 
         assertNotNull(result);
         assertEquals(1, result.first().size());

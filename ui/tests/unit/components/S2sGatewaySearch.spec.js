@@ -41,9 +41,9 @@ test('failed or stale candidates cannot be selected or reused in another project
   complete(reply([{ id, name: 'old' }])); await request; expect(c.selected).toBeNull(); expect(c.options).toEqual([])
 })
 test('refresh failure invalidates a previously verified chip without clearing the UUID filter', () => {
-  const c = { $route: { query: { vpcid: id } }, labels: { vpcid: 'VPC' }, verification: '', validationError: '', config: () => ({ label: 'label.vpc' }), $t: key => key }
+  const c = { $route: { query: { vpcid: id } }, labels: { vpcid: 'VPC' }, validationError: '', config: () => ({ label: 'label.vpc' }), $t: key => key }
   expect(Search.computed.chips.call(c)[0].value).toBe('VPC'); c.validationError = 'lookup'
-  expect(Search.computed.chips.call(c)[0].value).toContain(id); expect(c.$route.query.vpcid).toBe(id)
+  expect(Search.computed.chips.call(c)[0].value).toBe(id); expect(c.$route.query.vpcid).toBe(id)
 })
 
 test('removing a domain chip clears dependent owner/VPC filters while retaining display and keyword', () => {

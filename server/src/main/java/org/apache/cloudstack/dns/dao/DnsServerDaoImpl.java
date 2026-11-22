@@ -101,7 +101,7 @@ public class DnsServerDaoImpl extends GenericDaoBase<DnsServerVO, Long> implemen
 
     @Override
     public Pair<List<DnsServerVO>, Integer> searchDnsServer(Long dnsServerId, Long accountId, Set<Long> domainIds, DnsProviderType providerType,
-                                                            String keyword, Filter filter) {
+                                                            String keyword, boolean includeDisabled, Filter filter) {
 
         SearchBuilder<DnsServerVO> sb = createSearchBuilder();
         sb.and(ApiConstants.ID, sb.entity().getId(), SearchCriteria.Op.EQ);
@@ -135,7 +135,9 @@ public class DnsServerDaoImpl extends GenericDaoBase<DnsServerVO, Long> implemen
         if (keyword != null) {
             sc.setParameters(ApiConstants.NAME, "%" + keyword + "%");
         }
-        sc.setParameters(ApiConstants.STATE, DnsServer.State.Enabled);
+        if (!includeDisabled) {
+            sc.setParameters(ApiConstants.STATE, DnsServer.State.Enabled);
+        }
         return searchAndCount(sc, filter);
     }
 

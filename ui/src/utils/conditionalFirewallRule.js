@@ -15,7 +15,7 @@
 // specific language governing permissions and limitations
 // under the License.
 
-function validCidr (cidr, ipv6) {
+export function validCidr (cidr, ipv6) {
   const [ip, prefix, extra] = cidr.split('/')
   if (extra !== undefined || !/^\d{1,3}$/.test(prefix || '') || Number(prefix) > (ipv6 ? 128 : 32)) return false
   if (!ipv6) return /^(\d{1,3}\.){3}\d{1,3}$/.test(ip) && ip.split('.').every(octet => Number(octet) <= 255)

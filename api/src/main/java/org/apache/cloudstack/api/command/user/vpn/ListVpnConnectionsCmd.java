@@ -29,10 +29,11 @@ import org.apache.cloudstack.api.response.ListResponse;
 import org.apache.cloudstack.api.response.Site2SiteVpnConnectionResponse;
 import org.apache.cloudstack.api.response.VpcResponse;
 
+import com.cloud.exception.InvalidParameterValueException;
 import com.cloud.network.Site2SiteVpnConnection;
 import com.cloud.utils.Pair;
 
-@APICommand(name = "listVpnConnections", description = "Lists site to site VPN connection gateways", responseObject = Site2SiteVpnConnectionResponse.class, entityType = {Site2SiteVpnConnection.class},
+@APICommand(name = "listVpnConnections", description = "Lists site-to-site VPN connections. Keyword matches a literal substring of the connection UUID, local public IP or remote gateway address.", responseObject = Site2SiteVpnConnectionResponse.class, entityType = {Site2SiteVpnConnection.class},
         requestHasSensitiveInfo = false, responseHasSensitiveInfo = false)
 public class ListVpnConnectionsCmd extends BaseListProjectAndAccountResourcesCmd {
 
@@ -49,6 +50,14 @@ public class ListVpnConnectionsCmd extends BaseListProjectAndAccountResourcesCmd
     @Parameter(name = ApiConstants.FOR_DISPLAY, type = CommandType.BOOLEAN, description = "List resources by display flag; only ROOT admin is eligible to pass this parameter", since = "4.4", authorized = {RoleType.Admin})
     private Boolean display;
 
+    @Parameter(name = "displayall", type = CommandType.BOOLEAN,
+            description = "Include both display flag values. Mutually exclusive with fordisplay; ROOT admin only.", authorized = {RoleType.Admin})
+    private Boolean displayAll;
+
+    @Parameter(name = "excludeprojectresources", type = CommandType.BOOLEAN,
+            description = "Exclude project connections even when filtering by ID. Use without projectid.")
+    private Boolean excludeProjectResources;
+
     /////////////////////////////////////////////////////
     /////////////////// Accessors ///////////////////////
     /////////////////////////////////////////////////////
@@ -61,8 +70,18 @@ public class ListVpnConnectionsCmd extends BaseListProjectAndAccountResourcesCmd
         return vpcId;
     }
 
+    public boolean isExcludeProjectResources() {
+        return Boolean.TRUE.equals(excludeProjectResources);
+    }
+
     @Override
     public Boolean getDisplay() {
+        if (Boolean.TRUE.equals(displayAll)) {
+            if (display != null) {
+                throw new InvalidParameterValueException("displayall and fordisplay are mutually exclusive");
+            }
+            return null;
+        }
         if (display != null) {
             return display;
         }

@@ -17,19 +17,14 @@
 
 <template>
   <div>
-    <a-modal
-      centered
+    <MoldDialog
       :visible="showAction"
-      :closable="true"
-      :maskClosable="false"
-      :confirmLoading="action.loading"
-      :footer="null"
-      @cancel="parentCloseAction"
-      style="top: 20px;"
-    >
-      <template #title>
-        {{ $t(action.label) }}
-      </template>
+      :title="$t(action.label)"
+      :doc-help="action.docHelp"
+      size="sm"
+      form-actions
+      focus-guard
+      @cancel="cancelAction">
       <a-spin :spinning="actionLoading" v-ctrl-enter="handleSubmit">
         <a-form
           :ref="formRef"
@@ -37,6 +32,13 @@
           :rules="rules"
           @finish="handleSubmit"
           layout="vertical">
+          <p v-if="['createDomain', 'updateDomain', 'moveDomain'].includes(action.api)">{{ resource.path || resource.name }}</p>
+          <a-alert v-if="action.api === 'moveDomain'" type="warning" show-icon :message="$t('message.domain.move.children')" />
+          <a-button
+            v-if="action.api === 'createDomain'"
+            type="link"
+            :aria-expanded="advanced"
+            @click="advanced = !advanced">{{ $t('label.advanced.settings') }}</a-button>
           <a-alert type="warning" v-if="action.message">
             <template #message>{{ $t(action.message) }}</template>
           </a-alert>
@@ -44,8 +46,8 @@
             <a-form-item
               :ref="field.name"
               :name="field.name"
-              :v-bind="field.name"
-              v-if="!(action.mapping && field.name in action.mapping && action.mapping[field.name].value)"
+              :extra="action.api === 'updateDomain' && field.name === 'networkdomain' ? $t('message.account.networkdomain.clear') : undefined"
+              v-if="!(action.mapping && field.name in action.mapping && action.mapping[field.name].value) && (action.api !== 'createDomain' || field.name !== 'domainid' || advanced)"
             >
               <template #label>
                 <tooltip-label :title="$t('label.' + field.name)" :tooltip="field.description"/>
@@ -67,8 +69,11 @@
                 :filterOption="(input, option) => {
                   return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
                 }" >
-                <a-select-option v-for="(opt, optIndex) in action.mapping[field.name].options" :key="optIndex" :label="opt">
-                  {{ opt }}
+                <a-select-option
+                  v-for="(opt, optIndex) in action.mapping[field.name].options"
+                  :key="optIndex"
+                  :label="mappedOptionLabel(field.name, opt, optIndex)">
+                  {{ mappedOptionLabel(field.name, opt, optIndex) }}
                 </a-select-option>
               </a-select>
               <a-select
@@ -86,8 +91,8 @@
                 <a-select-option
                   v-for="(opt, optIndex) in field.opts"
                   :key="optIndex"
-                  :label="opt.name || opt.description || opt.traffictype || opt.publicip">
-                  {{ opt.name || opt.description || opt.traffictype || opt.publicip }}
+                  :label="opt.path || opt.name || opt.description || opt.traffictype || opt.publicip">
+                  {{ opt.path || opt.name || opt.description || opt.traffictype || opt.publicip }}
                 </a-select-option>
               </a-select>
               <a-select
@@ -123,25 +128,36 @@
             </a-form-item>
           </template>
 
-          <div :span="24" class="action-button">
-            <a-button @click="parentCloseAction">{{ $t('label.cancel') }}</a-button>
-            <a-button type="primary" ref="submit" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
-          </div>
+          <template v-if="action.api === 'moveDomain'">
+            <a-alert v-if="moveField?.loadError" type="error" show-icon :message="moveField.loadError" />
+            <a-empty v-else-if="moveField && !moveField.loading && !moveField.opts?.length" :description="$t('label.no.data')" />
+            <p v-if="moveParent">{{ $t('message.domain.move.path', { path: moveParent.path + '/' + resource.name }) }}</p>
+          </template>
+          <MoldDialogActions :busy="actionLoading">
+            <a-button :disabled="actionLoading" @click="cancelAction">{{ $t('label.cancel') }}</a-button>
+            <a-button type="primary" ref="submit" :loading="actionLoading" :disabled="action.api === 'moveDomain' && !moveParent" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
+          </MoldDialogActions>
         </a-form>
       </a-spin>
-    </a-modal>
+    </MoldDialog>
   </div>
 </template>
 
 <script>
 import { postAPI } from '@/api'
+import { Empty } from 'ant-design-vue'
 import { ref, reactive, toRaw } from 'vue'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
+import MoldDialog from '@/components/view/MoldDialog'
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 
 export default {
   name: 'DomainActionForm',
   components: {
-    TooltipLabel
+    AEmpty: Empty,
+    TooltipLabel,
+    MoldDialog,
+    MoldDialogActions
   },
   props: {
     action: {
@@ -159,8 +175,13 @@ export default {
   },
   data () {
     return {
-      actionLoading: false
+      actionLoading: false,
+      advanced: false
     }
+  },
+  computed: {
+    moveField () { return this.action.paramFields.find(field => field.name === 'parentdomainid') },
+    moveParent () { return this.moveField?.opts?.[this.form.parentdomainid] }
   },
   created () {
     this.actionLoading = this.action.loading
@@ -182,20 +203,30 @@ export default {
       this.fillEditFormFieldValues()
     }
   },
-  inject: ['parentCloseAction', 'parentFetchData', 'parentForceRerender'],
+  inject: ['parentCloseAction', 'parentFetchData', 'parentForceRerender', 'parentRefreshMovedDomain'],
   methods: {
-    handleSubmit (e) {
-      e.preventDefault()
-      if (this.action.loading) return
+    mappedOptionLabel (name, value, index) {
+      const label = this.action.mapping[name].labels?.[index]
+      return label ? this.$t(label) : value
+    },
+    cancelAction () {
+      if (!this.actionLoading) this.parentCloseAction()
+    },
+    handleSubmit (event) {
+      if (typeof event?.preventDefault === 'function') event.preventDefault()
+      if (this.actionLoading || this.action.loading || (this.action.api === 'moveDomain' && !this.moveParent)) return
+      this.actionLoading = true
       this.formRef.value.validate().then(() => {
         const values = toRaw(this.form)
-        this.actionLoading = true
+        const edit = this.action.api === 'updateDomain'
         const params = {}
         if ('id' in this.resource && this.action.params.map(i => { return i.name }).includes('id')) {
           params.id = this.resource.id
         }
         for (const key in values) {
           const input = values[key]
+          if (edit && input === (this.resource[key] ?? '')) continue
+          if (this.action.api === 'createDomain' && key === 'domainid' && !this.advanced) continue
           for (const param of this.action.params) {
             if (param.name === key) {
               if (input === undefined) {
@@ -238,11 +269,15 @@ export default {
         const resourceName = params.displayname || params.displaytext || params.name || this.resource.name
         let hasJobId = false
         Object.keys(params).forEach(key => {
-          if (params[key] === '') {
+          if (params[key] === '' && !(edit && key === 'networkdomain')) {
             delete params[key]
           }
         })
-        postAPI(this.action.api, params).then(json => {
+        if (edit && Object.keys(params).length === 1 && params.id) {
+          this.parentCloseAction()
+          return
+        }
+        return postAPI(this.action.api, params, { preserveOnFailure: true }).then(json => {
           for (const obj in json) {
             if (obj.includes('response')) {
               for (const res in json[obj]) {
@@ -292,23 +327,28 @@ export default {
               key: this.action.label + resourceName,
               duration: duration
             })
-            this.parentFetchData()
+            if (this.action.api === 'moveDomain') {
+              this.parentRefreshMovedDomain(this.resource.id, this.moveParent.ancestors)
+            } else {
+              this.parentFetchData()
+            }
           }
           this.parentCloseAction()
-        }).catch(error => {
-          this.$notification.error({
-            message: this.$t('message.request.failed'),
-            description: (error.response && error.response.headers && error.response.headers['x-description']) || error.message
-          })
-        }).finally(f => {
-          this.actionLoading = false
         })
       }).catch(error => {
-        this.formRef.value.scrollToField(error.errorFields[0].name)
+        if (error.errorFields?.length) {
+          this.formRef.value.scrollToField(error.errorFields[0].name)
+          return
+        }
+        const description = Object.values(error.response?.data || {}).find(value => value?.errortext)?.errortext ||
+          error.response?.headers?.['x-description'] || error.message
+        this.$notification.error({ message: this.$t('message.request.failed'), description })
+      }).finally(() => {
+        this.actionLoading = false
       })
     },
     fillEditFormFieldValues () {
-      this.action.paramFields.map(field => {
+      for (const field of this.action.paramFields) {
         let fieldName = null
         if (field.type === 'uuid' ||
           field.type === 'list' ||
@@ -319,13 +359,15 @@ export default {
           fieldName = field.name
         }
         const fieldValue = this.resource[fieldName] ? this.resource[fieldName] : null
-        if (fieldValue) {
+        if (field.name === 'networkdomain') {
+          this.form.networkdomain = this.resource.networkdomain ?? ''
+        } else if (fieldValue) {
           this.form[field.name] = fieldValue
         }
-      })
+      }
     },
     setRules (field) {
-      let rule = {}
+      const rule = {}
 
       switch (true) {
         case (field.type === 'boolean'):
@@ -356,13 +398,23 @@ export default {
           this.rules[field.name].push(rule)
           break
         default:
-          rule.required = field.required
+          rule.required = field.required || (field.name === 'name' && this.action.api === 'updateDomain')
           rule.message = this.$t('message.error.required.input')
           this.rules[field.name].push(rule)
           break
       }
 
-      rule = {}
+      if (field.name === 'networkdomain' && this.action.api === 'updateDomain') {
+        this.rules[field.name].push({
+          validator: (_, value) => {
+            if (value === '' || (typeof value === 'string' && value.length <= 190 &&
+              value.split('.').every(label => /^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$/i.test(label)))) {
+              return Promise.resolve()
+            }
+            return Promise.reject(new Error(this.$t('message.domain.networkdomain.invalid')))
+          }
+        })
+      }
     }
   }
 }

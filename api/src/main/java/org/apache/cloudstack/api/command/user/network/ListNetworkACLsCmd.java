@@ -90,6 +90,13 @@ public class ListNetworkACLsCmd extends BaseListTaggedResourcesCmd {
         return action;
     }
 
+    /**
+     * Returns the explicit rule filter. An omitted value lists all rules, as in existing callers.
+     */
+    public Boolean getDisplayFilter() {
+        return display;
+    }
+
     @Override
     public Boolean getDisplay() {
         if (display != null) {

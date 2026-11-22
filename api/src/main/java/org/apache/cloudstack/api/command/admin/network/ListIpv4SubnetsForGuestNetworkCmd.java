@@ -19,6 +19,8 @@ package org.apache.cloudstack.api.command.admin.network;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.cloud.utils.Pair;
+
 import org.apache.cloudstack.acl.RoleType;
 import org.apache.cloudstack.api.APICommand;
 import org.apache.cloudstack.api.ApiConstants;
@@ -107,15 +109,15 @@ public class ListIpv4SubnetsForGuestNetworkCmd extends BaseListCmd {
 
     @Override
     public void execute() {
-        List<? extends Ipv4GuestSubnetNetworkMap> subnets = routedIpv4Manager.listIpv4GuestSubnetsForGuestNetwork(this);
+        Pair<List<? extends Ipv4GuestSubnetNetworkMap>, Integer> result = routedIpv4Manager.listIpv4GuestSubnetsForGuestNetwork(this);
         ListResponse<Ipv4SubnetForGuestNetworkResponse> response = new ListResponse<>();
         List<Ipv4SubnetForGuestNetworkResponse> subnetResponses = new ArrayList<>();
-        for (Ipv4GuestSubnetNetworkMap subnet : subnets) {
+        for (Ipv4GuestSubnetNetworkMap subnet : result.first()) {
             Ipv4SubnetForGuestNetworkResponse subnetResponse = routedIpv4Manager.createIpv4SubnetForGuestNetworkResponse(subnet);
             subnetResponses.add(subnetResponse);
         }
 
-        response.setResponses(subnetResponses, subnets.size());
+        response.setResponses(subnetResponses, result.second());
         response.setResponseName(getCommandName());
         this.setResponseObject(response);
     }

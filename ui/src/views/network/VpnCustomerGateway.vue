@@ -16,6 +16,10 @@
 // under the License.
 <template>
   <div>
+    <a-alert v-if="parametersError" class="gateway-policy-error" type="error" show-icon :message="$t('message.vpn.customer.gateway.policy.failed')">
+      <template #description><a-button size="small" @click="fetchVpnCustomerGatewayParameters">{{ $t('label.retry') }}</a-button></template>
+    </a-alert>
+    <a-spin :spinning="loadingParameters">
     <a-form
       class="form-layout"
       :ref="formRef"
@@ -23,32 +27,32 @@
       :rules="rules"
       layout="vertical"
       @finish="handleSubmit"
-      v-ctrl-enter="handleSubmit"
      >
+      <h3 class="gateway-form-section">{{ $t('label.vpn.customer.gateway.section.general') }}</h3>
       <a-form-item ref="name" name="name">
         <template #label>
-          <tooltip-label :title="$t('label.name')" :tooltip="apiParams.name.description"/>
+          <tooltip-label :title="$t('label.name')" :tooltip="$t('message.vpn.customer.gateway.form.name')"/>
         </template>
         <a-input
           v-model:value="form.name"
-          :placeholder="apiParams.name.description"
+          :placeholder="$t('message.vpn.customer.gateway.form.name')"
           v-focus="true" />
       </a-form-item>
       <a-form-item ref="gateway" name="gateway">
         <template #label>
-          <tooltip-label :title="$t('label.gateway')" :tooltip="apiParams.gateway.description"/>
+          <tooltip-label :title="$t('label.vpn.customer.gateway.peer')" :tooltip="$t('message.vpn.customer.gateway.form.peer')"/>
         </template>
         <a-input
           v-model:value="form.gateway"
-          :placeholder="apiParams.gateway.description" />
+          placeholder="203.0.113.10 / vpn.example.com" />
       </a-form-item>
       <a-form-item ref="cidrlist" name="cidrlist">
         <template #label>
-          <tooltip-label :title="$t('label.cidrlist')" :tooltip="apiParams.cidrlist.description"/>
+          <tooltip-label :title="$t('label.cidrlist')" :tooltip="$t('message.vpn.customer.gateway.form.cidr')"/>
         </template>
         <a-input
           v-model:value="form.cidrlist"
-          :placeholder="apiParams.cidrlist.description" />
+          placeholder="192.0.2.0/24, 198.51.100.0/24" />
       </a-form-item>
       <a-form-item ref="ipsecpsk" name="ipsecpsk">
         <template #label>
@@ -60,6 +64,7 @@
           autocomplete="new-password"
           :placeholder="apiParams.ipsecpsk.description" />
       </a-form-item>
+      <h3 class="gateway-form-section">{{ $t('label.vpn.customer.gateway.section.ike') }}</h3>
       <a-form-item ref="ikeEncryption" name="ikeEncryption" :label="$t('label.ikeencryption')">
         <a-select
           v-model:value="form.ikeEncryption"
@@ -184,6 +189,7 @@
           </span>
         </template>
       </a-form-item>
+      <h3 class="gateway-form-section">{{ $t('label.vpn.customer.gateway.section.esp') }}</h3>
       <a-form-item ref="espEncryption" name="espEncryption" :label="$t('label.espencryption')">
         <a-select
           v-model:value="form.espEncryption"
@@ -281,20 +287,23 @@
       </a-form-item>
       <a-form-item ref="ikelifetime" name="ikelifetime">
         <template #label>
-          <tooltip-label :title="$t('label.ikelifetime')" :tooltip="apiParams.ikelifetime.description"/>
+          <tooltip-label :title="$t('label.ikelifetime')" :tooltip="$t('message.vpn.customer.gateway.form.lifetime', [86400])"/>
         </template>
         <a-input
           v-model:value="form.ikelifetime"
-          :placeholder="apiParams.ikelifetime.description"/>
+          inputmode="numeric"
+          placeholder="86400"/>
       </a-form-item>
       <a-form-item ref="esplifetime" name="esplifetime">
         <template #label>
-          <tooltip-label :title="$t('label.esplifetime')" :tooltip="apiParams.esplifetime.description"/>
+          <tooltip-label :title="$t('label.esplifetime')" :tooltip="$t('message.vpn.customer.gateway.form.lifetime', [3600])"/>
         </template>
         <a-input
           v-model:value="form.esplifetime"
-          :placeholder="apiParams.esplifetime.description"/>
+          inputmode="numeric"
+          placeholder="3600"/>
       </a-form-item>
+      <h3 class="gateway-form-section">{{ $t('label.vpn.customer.gateway.section.options') }}</h3>
       <a-form-item ref="dpd" name="dpd">
         <template #label>
           <tooltip-label :title="$t('label.dpd')" :tooltip="apiParams.dpd.description"/>
@@ -313,15 +322,8 @@
         </template>
         <a-switch v-model:checked="form.forceencap"/>
       </a-form-item>
-      <div class="action-button">
-        <a-button @click="$emit('cancel')">
-          {{ $t('label.cancel') }}
-        </a-button>
-        <a-button type="primary" @click="handleSubmit" html-type="submit">
-          {{ $t('label.ok') }}
-        </a-button>
-      </div>
     </a-form>
+    </a-spin>
   </div>
 </template>
 <script>
@@ -331,11 +333,14 @@ import { ref, reactive, toRaw } from 'vue'
 import { mixinForm } from '@/utils/mixin'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 import { vpnPskContext } from '@/utils/vpnPsk'
+import { gatewayRequestOptions } from '@/utils/vpnCustomerGatewayJobs'
+import { gatewayCidrParts, validateGatewayCidrs, validGatewayLifetime, validGatewayPeer } from '@/utils/vpnCustomerGatewayForm'
 import eventBus from '@/config/eventBus'
 
 export default {
   name: 'VpnCustomerGateway',
   mixins: [mixinForm],
+  emits: ['cancel', 'ready', 'submit'],
   components: {
     TooltipLabel
   },
@@ -344,6 +349,7 @@ export default {
       type: Object,
       default: () => ({})
     },
+    policyOwner: { type: String, default: '' },
     apiParams: {
       type: Object,
       default: () => {}
@@ -394,20 +400,44 @@ export default {
       obsoleteHashingAlgos: [],
       obsoleteIkeVersions: [],
       obsoleteDhGroups: [],
-      loadingParameters: false,
+      loadingParameters: true,
+      parametersVersion: 0,
+      parametersError: false,
       pskInputVersion: 0
     }
   },
   created () {
     this.initForm()
     eventBus.on('project-switch-start', this.clearPskAndClose)
-    this.fetchVpnCustomerGatewayParameters()
+    if (this.policyOwner) this.fetchVpnCustomerGatewayParameters()
   },
-  beforeUnmount () { eventBus.off('project-switch-start', this.clearPskAndClose) },
+  beforeUnmount () {
+    this.parametersVersion++
+    eventBus.off('project-switch-start', this.clearPskAndClose)
+  },
   computed: {
+    policyReady () {
+      if (this.loadingParameters || this.parametersError) return false
+      const { ikeEncryption, ikeHash, ikeversion, ikeDh, espEncryption, espHash, perfectForwardSecrecy } = this.form
+      return [
+        ['encryption', ikeEncryption], ['hash', ikeHash], ['ikeversion', ikeversion], ['dh', ikeDh],
+        ['encryption', espEncryption], ['hash', espHash], ['dh', perfectForwardSecrecy]
+      ].every(([type, value]) => value && !this.isExcluded(type, value))
+    },
     pskFormScope () { return JSON.stringify([vpnPskContext(this, ['createVpnCustomerGateway', 'updateVpnCustomerGateway']), this.$route.fullPath || this.$route.path, this.initialValues.id]) }
   },
   watch: {
+    policyReady: { immediate: true, handler (ready) { this.$emit('ready', ready) } },
+    policyOwner (owner, previous) {
+      this.parametersVersion++
+      this.loadingParameters = true
+      this.parametersError = false
+      if (previous) {
+        this.form.ipsecpsk = ''
+        this.pskInputVersion++
+      }
+      if (owner) this.fetchVpnCustomerGatewayParameters()
+    },
     pskFormScope: { flush: 'sync', handler () { this.clearPskAndClose() } },
     'initialValues.ipsecpsk' () { this.clearPskAndClose() }
   },
@@ -449,15 +479,15 @@ export default {
         const espDhKey = Object.keys(this.DHGroups).find(key => this.DHGroups[key] === this.initialValues.espDh)
         this.form.perfectForwardSecrecy = espDhKey + '(' + this.initialValues.espDh + ')'
       }
+      const required = { required: true, message: this.$t('label.required') }
+      const lifetime = { validator: (_, value) => validGatewayLifetime(value) ? Promise.resolve() : Promise.reject(new Error(this.$t('message.vpn.customer.gateway.form.lifetime.invalid'))) }
       this.rules = reactive({
-        name: [{ required: true, message: this.$t('label.required') }],
-        gateway: [{ required: true, message: this.$t('label.required') }],
-        cidrlist: [{ required: true, message: this.$t('label.required') }],
-        ipsecpsk: [{ required: true, message: this.$t('label.required') }]
+        gateway: [required, { validator: (_, value) => !value || validGatewayPeer(value.trim()) ? Promise.resolve() : Promise.reject(new Error(this.$t('message.vpn.customer.gateway.form.peer'))) }],
+        cidrlist: [required, { validator: (_, value) => value ? validateGatewayCidrs(value).catch(() => Promise.reject(new Error(this.$t('message.vpn.customer.gateway.form.cidr')))) : Promise.resolve() }],
+        ipsecpsk: [required],
+        ikelifetime: [lifetime],
+        esplifetime: [lifetime]
       })
-    },
-    closeModal () {
-      this.$emit('close-action')
     },
     resetSubmission () {
       this.isSubmitted = false
@@ -490,6 +520,7 @@ export default {
       }
     },
     isExcluded (type, value) {
+      if (!value || this.loadingParameters || this.parametersError) return false
       switch (type) {
         case 'encryption':
           return !this.allowedEncryptionAlgos.some(v => v.toLowerCase() === value)
@@ -519,10 +550,23 @@ export default {
       }
 
       this.loadingParameters = true
-
-      const response = await getAPI('listCapabilities', { domainid: this.initialValues.domainid })
-      const capability = response.listcapabilitiesresponse?.capability || {}
-      const parameters = capability.vpncustomergatewayparameters || {}
+      this.parametersError = false
+      const version = ++this.parametersVersion
+      let parameters
+      try {
+        const domainid = this.policyOwner ? JSON.parse(this.policyOwner)[1] : this.initialValues.domainid
+        const response = await getAPI('listCapabilities', { domainid, ignoreproject: true }, gatewayRequestOptions)
+        const capability = response?.listcapabilitiesresponse?.capability
+        if (!capability) throw new Error('Missing VPN policy capability')
+        parameters = capability.vpncustomergatewayparameters || {}
+      } catch (_) {
+        if (version === this.parametersVersion) {
+          this.parametersError = true
+          this.loadingParameters = false
+        }
+        return
+      }
+      if (version !== this.parametersVersion) return
 
       const excludedEnc = getParam(parameters, 'excludedEncryptionAlgorithms')
       const excludedHash = getParam(parameters, 'excludedHashingAlgorithms')
@@ -559,48 +603,44 @@ export default {
 
       this.loadingParameters = false
     },
-    handleSubmit (e) {
-      if (e && e.preventDefault) {
-        e.preventDefault()
-      }
-      if (this.isSubmitted) return
-
-      this.formRef.value.validate().then(() => {
-        this.isSubmitted = true
-        const formRaw = toRaw(this.form)
-        const values = this.handleRemoveFields(formRaw)
-        const { ikepolicy, esppolicy } = this.buildPolicies(values)
-
-        const payload = {
-          name: values.name,
-          gateway: values.gateway,
-          cidrlist: values.cidrlist,
-          ipsecpsk: values.ipsecpsk,
-          ikelifetime: values.ikelifetime,
-          esplifetime: values.esplifetime,
-          dpd: values.dpd,
-          forceencap: values.forceencap,
-          ikepolicy: ikepolicy,
-          esppolicy: esppolicy,
-          splitconnections: values.splitconnections,
-          ikeversion: values.ikeversion
-        }
+    async handleSubmit () {
+      if (this.isSubmitted || !this.policyReady) return
+      this.isSubmitted = true
+      try {
+        await this.formRef.value.validate()
+        const values = this.handleRemoveFields(toRaw(this.form))
+        const policies = this.buildPolicies(values)
         this.$emit('submit', {
-          payload,
-          rawValues: values
+          payload: {
+            name: values.name?.trim() || undefined,
+            gateway: values.gateway.trim(),
+            cidrlist: gatewayCidrParts(values.cidrlist).join(','),
+            ipsecpsk: values.ipsecpsk,
+            ikelifetime: String(values.ikelifetime ?? '').trim() || undefined,
+            esplifetime: String(values.esplifetime ?? '').trim() || undefined,
+            dpd: values.dpd,
+            forceencap: values.forceencap,
+            splitconnections: values.ikeversion === 'ikev1' ? false : values.splitconnections,
+            ikeversion: values.ikeversion,
+            ...policies
+          }
         })
-      }).catch(error => {
-        this.formRef.value.scrollToField(error.errorFields[0].name)
-      })
+      } catch (error) {
+        this.resetSubmission()
+        const field = error.errorFields?.[0]?.name
+        if (field) this.formRef.value.scrollToField(field)
+      }
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.form-layout {
-  width: min(500px, calc(100vw - 80px));
-  max-width: 500px;
-  min-width: 0;
+.form-layout { min-width: 0; }
+.gateway-policy-error { margin-bottom: 16px; }
+.gateway-form-section {
+  margin-block: 14px 10px;
+  color: var(--ui-text-primary);
+  font-weight: 600;
 }
 </style>

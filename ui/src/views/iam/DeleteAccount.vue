@@ -46,18 +46,20 @@
         style="width: 100%"/>
     </a-form-item>
     <p v-if="error" class="error">{{ error }}</p>
-    <div :span="24" class="actions">
+    <MoldDialogActions>
       <a-button @click="closeModal">{{ $t('label.cancel') }}</a-button>
       <a-button type="primary" ref="submit" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
-    </div>
+    </MoldDialogActions>
   </a-form>
 </template>
 
 <script>
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import { ref, reactive } from 'vue'
 import { postAPI } from '@/api'
 
 export default {
+  components: { MoldDialogActions },
   name: 'DeleteAccount',
   props: {
     resource: {

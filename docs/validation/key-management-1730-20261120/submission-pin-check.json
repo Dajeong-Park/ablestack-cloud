@@ -1,0 +1,18 @@
+{
+  "checks": [
+    {
+      "profile": "qa-km1730-pin-check",
+      "decrypted_value_matches_expected": true,
+      "stored_value_differs_from_plaintext": true,
+      "matching_log_metadata": [],
+      "test_digest_plaintext_found_in_log": {
+        "qa-km1730-pin-check": false
+      },
+      "server_log_scan_bytes": 67108864,
+      "plaintext_found_in_scanned_server_log": false
+    }
+  ],
+  "profile_uuid": "20bb2306-06e6-40a9-877d-94b84b92185e",
+  "test_values_only": true,
+  "raw_values_not_recorded": true
+}

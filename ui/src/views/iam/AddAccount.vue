@@ -25,6 +25,33 @@
         :loading="loading"
         layout="vertical"
         @finish="handleSubmit">
+        <a-alert v-if="optionsFailed" type="error" show-icon :message="$t('message.account.create.options.failed')">
+          <template #action>
+            <a-button size="small" @click="fetchOptions">{{ $t('label.refresh') }}</a-button>
+          </template>
+        </a-alert>
+        <a-form-item v-if="canChooseDomain" ref="domainid" name="domainid">
+          <template #label>
+            <tooltip-label :title="$t('label.domainid')" :tooltip="apiParams.domainid.description"/>
+          </template>
+          <a-select
+            :loading="domainLoading"
+            v-model:value="form.domainid"
+            :placeholder="apiParams.domainid.description"
+            showSearch
+            optionFilterProp="label"
+            :filterOption="(input, option) => {
+              return  option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
+            }" >
+            <a-select-option v-for="domain in domainsList" :key="domain.id" :label="domain.path || domain.name || domain.description">
+              <span>
+                <resource-icon v-if="domain && domain.icon" :image="domain.icon.base64image" size="1x" style="margin-right: 5px"/>
+                <block-outlined v-else style="margin-right: 5px"/>
+                {{ domain.path || domain.name || domain.description }}
+              </span>
+            </a-select-option>
+          </a-select>
+        </a-form-item>
         <a-form-item ref="roleid" name="roleid">
           <template #label>
             <tooltip-label :title="$t('label.role')" :tooltip="apiParams.roleid.description"/>
@@ -36,14 +63,18 @@
             v-focus="true"
             showSearch
             optionFilterProp="label"
-            @change="onRoleChange"
             :filterOption="(input, option) => {
               return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
             }">
-            <a-select-option v-for="role in roles" :key="role.id" :label="role.name + ' (' + role.type + ')'">
+            <a-select-option v-for="role in availableRoles" :key="role.id" :label="role.name + ' (' + role.type + ')'">
               {{ role.name + ' (' + role.type + ')' }}
             </a-select-option>
           </a-select>
+        </a-form-item>
+        <a-form-item v-if="requiresRoleConfirmation" name="confirmRole">
+          <a-checkbox v-model:checked="form.confirmRole">
+            {{ $t('message.account.create.confirm.role', { role: selectedRole.name, domain: selectedDomainLabel }) }}
+          </a-checkbox>
         </a-form-item>
         <a-form-item ref="username" name="username">
           <template #label>
@@ -55,7 +86,7 @@
         </a-form-item>
         <a-row :gutter="12">
           <a-col :md="24" :lg="12">
-            <a-form-item ref="password" name="password">
+            <a-form-item ref="password" name="password" :extra="passwordHint">
               <template #label>
                 <tooltip-label :title="$t('label.password')" :tooltip="apiParams.password.description"/>
               </template>
@@ -105,29 +136,6 @@
             </a-form-item>
           </a-col>
         </a-row>
-        <a-form-item v-if="isAdminOrDomainAdmin()" ref="domainid" name="domainid">
-          <template #label>
-            <tooltip-label :title="$t('label.domainid')" :tooltip="apiParams.domainid.description"/>
-          </template>
-          <a-select
-            :loading="domain.loading"
-            v-model:value="form.domainid"
-            :placeholder="apiParams.domainid.description"
-            showSearch
-            optionFilterProp="label"
-            @change="onDomainChange"
-            :filterOption="(input, option) => {
-              return  option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
-            }" >
-            <a-select-option v-for="domain in domainsList" :key="domain.id" :label="domain.path || domain.name || domain.description">
-              <span>
-                <resource-icon v-if="domain && domain.icon" :image="domain.icon.base64image" size="1x" style="margin-right: 5px"/>
-                <block-outlined v-else style="margin-right: 5px"/>
-                {{ domain.path || domain.name || domain.description }}
-              </span>
-            </a-select-option>
-          </a-select>
-        </a-form-item>
         <a-form-item ref="account" name="account">
           <template #label>
             <tooltip-label :title="$t('label.account')" :tooltip="apiParams.account.description"/>
@@ -183,15 +191,21 @@
             </a-select>
           </a-form-item>
         </div>
-        <div :span="24" class="action-button">
+        <MoldDialogActions :busy="loading">
           <a-button @click="closeAction">{{ $t('label.cancel') }}</a-button>
-          <a-button :loading="loading" ref="submit" type="primary" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
-        </div>
+          <a-button
+            :loading="loading"
+            :disabled="domainLoading || roleLoading || optionsFailed || (requiresRoleConfirmation && !form.confirmRole)"
+            ref="submit"
+            type="primary"
+            @click="handleSubmit">{{ $t('label.ok') }}</a-button>
+        </MoldDialogActions>
       </a-form>
     </a-spin>
   </div>
 </template>
 <script>
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import { ref, reactive, toRaw } from 'vue'
 import { getAPI, postAPI } from '@/api'
 import { timeZone } from '@/utils/timezone'
@@ -199,20 +213,26 @@ import debounce from 'lodash/debounce'
 import ResourceIcon from '@/components/view/ResourceIcon'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 
+const roleTypes = ['Admin', 'ResourceAdmin', 'DomainAdmin', 'User']
+const passwordLengthKeys = ['password.policy.minimum.length', 'password.policy.maximum.length']
+
 export default {
   name: 'AddAccountForm',
   components: {
+    MoldDialogActions,
     TooltipLabel,
     ResourceIcon
   },
   data () {
     this.fetchTimeZone = debounce(this.fetchTimeZone, 800)
     return {
+      form: {},
       loading: false,
-      domain: { id: null, loading: false },
+      domainLoading: false,
       domainsList: [],
-      dom: null,
-      roleManuallySelected: false,
+      optionsFailed: false,
+      passwordBounds: [],
+      passwordRequest: 0,
       roleLoading: false,
       roles: [],
       timeZoneLoading: false,
@@ -232,38 +252,63 @@ export default {
     samlAllowed () {
       return 'authorizeSamlSso' in this.$store.getters.apis
     },
+    canChooseDomain () {
+      const { userInfo, apis } = this.$store.getters
+      return roleTypes.slice(0, 3).includes(userInfo.roletype) && 'listDomains' in apis
+    },
     selectedDomain () {
       return this.domainsList.find(domain => domain.id === this.form.domainid)
     },
-    isNonRootDomain () {
-      if (!this.selectedDomain) return false
-      return this.selectedDomain.level > 0 && this.selectedDomain.path !== 'ROOT'
+    selectedDomainLabel () {
+      return this.selectedDomain?.path || this.selectedDomain?.name || this.$store.getters.userInfo.domain || this.form.domainid
+    },
+    availableRoles () {
+      const caller = roleTypes.indexOf(this.$store.getters.userInfo.roletype)
+      if (caller === -1) return []
+      return this.roles.filter(role => roleTypes.slice(caller).includes(role.type) &&
+        (role.type !== 'Admin' || Number(this.selectedDomain?.level) === 0))
+    },
+    selectedRole () {
+      return this.availableRoles.find(role => role.id === this.form.roleid)
+    },
+    requiresRoleConfirmation () {
+      return this.selectedRole && this.selectedRole.type !== 'User'
+    },
+    passwordHint () {
+      const [min, max] = this.passwordBounds
+      return [
+        this.$t('message.account.password.policy'),
+        min > 0 && this.$t('message.account.password.minimum', { count: min }),
+        max > 0 && this.$t('message.account.password.maximum', { count: max })
+      ].filter(Boolean).join(' ')
     }
   },
   watch: {
-    'form.domainid': {
-      handler (newDomainId, oldDomainId) {
-        if (newDomainId && this.roles.length > 0) {
-          this.$nextTick(() => {
-            this.setDefaultRole()
-          })
-        }
-      },
-      immediate: false
+    'form.domainid' () {
+      this.form.confirmRole = false
+      this.selectDefaultRole()
+      this.fetchPasswordBounds()
+    },
+    'form.roleid' () {
+      this.form.confirmRole = false
     }
   },
   methods: {
     initForm () {
-      var domId = this.$route.query.domainid || this.$store.getters.userInfo.domainid
+      const userDomain = this.$store.getters.userInfo.domainid
+      const routeDomain = this.$route.query.domainid
       this.formRef = ref()
       this.form = reactive({
-        domainid: domId
+        domainid: this.canChooseDomain && typeof routeDomain === 'string' && routeDomain ? routeDomain : userDomain,
+        confirmRole: false
       })
-      this.domain.id = domId
       this.rules = reactive({
         roleid: [{ required: true, message: this.$t('message.error.select') }],
         username: [{ required: true, message: this.$t('message.error.required.input') }],
-        password: [{ required: true, message: this.$t('message.error.required.input') }],
+        password: [
+          { required: true, message: this.$t('message.error.required.input') },
+          { validator: this.validatePasswordLength }
+        ],
         confirmpassword: [
           { required: true, message: this.$t('message.error.required.input') },
           { validator: this.validateConfirmPassword }
@@ -271,57 +316,78 @@ export default {
         email: [{ required: true, message: this.$t('message.error.required.input') }],
         firstname: [{ required: true, message: this.$t('message.error.required.input') }],
         lastname: [{ required: true, message: this.$t('message.error.required.input') }],
-        domain: [{ required: true, message: this.$t('message.error.select') }]
+        domainid: [{ required: true, message: this.$t('message.error.select') }]
       })
     },
     fetchData () {
-      this.fetchDomains()
-      this.fetchRoles()
+      this.fetchOptions()
       this.fetchTimeZone()
       if (this.samlAllowed) {
         this.fetchIdps()
       }
     },
-    isAdminOrDomainAdmin () {
-      return ['Admin', 'DomainAdmin'].includes(this.$store.getters.userInfo.roletype)
-    },
-    isDomainAdmin () {
-      return this.$store.getters.userInfo.roletype === 'DomainAdmin'
-    },
-    isAdmin () {
-      return this.$store.getters.userInfo.roletype === 'Admin'
-    },
     isValidValueForKey (obj, key) {
       return key in obj && obj[key] != null
     },
-    onDomainChange (newDomainId) {
-      if (newDomainId && this.roles.length > 0) {
-        this.$nextTick(() => {
-          this.setDefaultRole()
-        })
+    selectDefaultRole () {
+      if (!this.selectedRole) {
+        this.form.roleid = this.availableRoles.find(role => role.type === 'User' && role.isdefault && role.name === 'User')?.id
       }
     },
-    onRoleChange (newRoleId) {
-      if (newRoleId) {
-        this.roleManuallySelected = true
+    async fetchOptions () {
+      this.optionsFailed = false
+      this.domainLoading = this.canChooseDomain
+      this.roleLoading = true
+      try {
+        const [domains, roles] = await Promise.all([
+          this.canChooseDomain ? this.fetchOptionPages('listDomains', 'domain', { listall: true, details: 'min' }) : [],
+          this.fetchOptionPages('listRoles', 'role', { state: 'enabled' })
+        ])
+        this.domainsList = domains
+        this.roles = roles
+        if (this.canChooseDomain && !this.selectedDomain) {
+          this.form.domainid = undefined
+        }
+        this.selectDefaultRole()
+        this.fetchPasswordBounds()
+      } catch (error) {
+        this.optionsFailed = true
+      } finally {
+        this.domainLoading = false
+        this.roleLoading = false
       }
     },
-    setDefaultRole () {
-      if (this.roles.length === 0 || this.roleManuallySelected) return
-
-      let targetRoleType = null
-
-      if (this.isAdmin()) {
-        targetRoleType = this.isNonRootDomain ? 'DomainAdmin' : 'Admin'
-      } else if (this.isDomainAdmin()) {
-        targetRoleType = 'User'
+    async fetchOptionPages (api, key, filters) {
+      const options = []
+      for (let page = 1; ; page++) {
+        const response = await getAPI(api, { ...filters, pagesize: 100, page }, { preserveOnFailure: true })
+        const result = response[api.toLowerCase() + 'response'] || {}
+        const items = result[key] || []
+        options.push(...items)
+        if (items.length === 0 || options.length >= (result.count ?? options.length)) return options
       }
-
-      const targetRole = targetRoleType
-        ? this.roles.find(role => role.type === targetRoleType)
-        : this.roles[0]
-
-      this.form.roleid = (targetRole || this.roles[0]).id
+    },
+    async fetchPasswordBounds () {
+      const request = ++this.passwordRequest
+      this.passwordBounds = []
+      const domainid = this.form.domainid
+      if (!domainid || !('listConfigurations' in this.$store.getters.apis)) return
+      const bounds = await Promise.all(passwordLengthKeys.map(async name => {
+        try {
+          const response = await getAPI('listConfigurations', { name, domainid }, { preserveOnFailure: true })
+          const value = response.listconfigurationsresponse?.configuration?.find(config => config.name === name)?.value
+          return value != null && /^\d+$/.test(value) ? Number(value) : undefined
+        } catch {
+          return undefined
+        }
+      }))
+      if (request === this.passwordRequest) this.passwordBounds = bounds
+    },
+    async validatePasswordLength (rule, value) {
+      if (!value) return
+      const [min, max] = this.passwordBounds
+      if (value.length < min) throw new Error(this.$t('message.account.password.minimum', { count: min }))
+      if (max !== undefined && value.length > max) throw new Error(this.$t('message.account.password.maximum', { count: max }))
     },
     async validateConfirmPassword (rule, value) {
       if (!value || value.length === 0) {
@@ -338,49 +404,6 @@ export default {
         return Promise.resolve()
       }
     },
-    fetchDomains () {
-      this.domain.loading = true
-      this.loadMore('listDomains', 1, this.domain)
-    },
-    loadMore (apiToCall, page, sema) {
-      const params = {
-        listAll: true,
-        details: 'min',
-        pagesize: 100,
-        page: page
-      }
-      var count
-      getAPI(apiToCall, params).then(json => {
-        const listDomains = json.listdomainsresponse.domain
-        count = json.listdomainsresponse.count
-        this.domainsList = this.domainsList.concat(listDomains)
-        this.dom = this.domainsList.find(domain => domain.id === this.domain.id)
-
-        if (this.roles.length > 0) {
-          this.setDefaultRole()
-        }
-      }).finally(() => {
-        if (count <= this.domainsList.length) {
-          sema.loading = false
-        } else {
-          this.loadMore(apiToCall, page + 1, sema)
-        }
-        this.form.domainid = this.domainsList[0].id || ''
-      })
-    },
-    fetchRoles () {
-      this.roleLoading = true
-      const params = {
-        state: 'enabled'
-      }
-
-      getAPI('listRoles', params).then(response => {
-        this.roles = response.listrolesresponse.role || []
-        this.setDefaultRole()
-      }).finally(() => {
-        this.roleLoading = false
-      })
-    },
     fetchTimeZone (value) {
       this.timeZoneMap = []
       this.timeZoneLoading = true
@@ -394,17 +417,19 @@ export default {
       this.idpLoading = true
       getAPI('listIdps').then(response => {
         this.idps = response.listidpsresponse.idp || []
-        this.form.samlentity = this.idps[0].id || ''
+        this.form.samlentity = this.idps[0]?.id || ''
       }).finally(() => {
         this.idpLoading = false
       })
     },
     handleSubmit (e) {
-      e.preventDefault()
-      if (this.loading) return
+      if (typeof e?.preventDefault === 'function') e.preventDefault()
+      if (this.loading || this.domainLoading || this.roleLoading || this.optionsFailed ||
+          (this.requiresRoleConfirmation && !this.form.confirmRole)) return
+      this.loading = true
       this.formRef.value.validate().then(() => {
+        if (!this.selectedRole || !this.form.domainid || (this.canChooseDomain && !this.selectedDomain)) return
         const values = toRaw(this.form)
-        this.loading = true
         const params = {
           roleid: values.roleid,
           username: values.username,
@@ -425,7 +450,7 @@ export default {
           params.networkdomain = values.networkdomain
         }
 
-        postAPI('createAccount', params).then(response => {
+        return postAPI('createAccount', params).then(response => {
           this.$emit('refresh-data')
           this.$notification.success({
             message: this.$t('label.create.account'),
@@ -454,16 +479,27 @@ export default {
           }
           this.closeAction()
         }).catch(error => {
+          const description = error.response?.data?.errorresponse?.errortext ||
+            error.response?.headers?.['x-description'] || error.message
+          if (/user password/i.test(description || '')) {
+            const limit = /password (must be less than|should contain at least) \[(\d+)\] characters\./i.exec(description)
+            const key = limit
+              ? (limit[1] === 'must be less than' ? 'message.account.password.maximum' : 'message.account.password.minimum')
+              : 'message.account.password.rejected'
+            this.formRef.value.setFields([{ name: 'password', errors: [this.$t(key, { count: Number(limit?.[2]) })] }])
+            this.formRef.value.scrollToField('password')
+            return
+          }
           this.$notification.error({
             message: this.$t('message.request.failed'),
-            description: (error.response && error.response.headers && error.response.headers['x-description']) || error.message,
+            description,
             duration: 0
           })
-        }).finally(() => {
-          this.loading = false
         })
       }).catch(error => {
-        this.formRef.value.scrollToField(error.errorFields[0].name)
+        if (error.errorFields?.length) this.formRef.value.scrollToField(error.errorFields[0].name)
+      }).finally(() => {
+        this.loading = false
       })
     },
     closeAction () {

@@ -17,314 +17,308 @@
 
 <template>
   <div class="form-layout" v-ctrl-enter="handleSubmit">
-    <a-spin :spinning="loading">
-      <a-form
-        :ref="formRef"
-        :model="form"
-        :rules="rules"
-        layout="vertical"
-        @finish="handleSubmit">
-        <a-form-item name="file" ref="file">
+    <a-spin :spinning="locked">
+      <a-form ref="formRef" :model="form" :rules="formRules" layout="vertical" @finish="handleSubmit">
+        <a-form-item required>
           <template #label>
-            <tooltip-label :title="$t('label.rules.file')" :tooltip="$t('label.rules.file.to.import')"/>
+            <tooltip-label :title="$t('label.rules.file')" :tooltip="$t('label.rules.file.to.import')" />
           </template>
           <a-upload-dragger
+            accept=".csv"
             :multiple="false"
-            :fileList="fileList"
-            @remove="handleRemove"
-            :beforeUpload="beforeUpload"
-            @change="handleChange"
-            v-model:value="form.file">
-            <p class="ant-upload-drag-icon">
-              <cloud-upload-outlined />
-            </p>
-            <p class="ant-upload-text" v-if="fileList.length === 0">
-              {{ $t('label.rules.file.import.description') }}
-            </p>
+            :file-list="fileList"
+            :disabled="loading"
+            :before-upload="beforeUpload"
+            @remove="removeFile">
+            <p class="ant-upload-drag-icon"><cloud-upload-outlined /></p>
+            <p class="ant-upload-text" v-if="!fileList.length">{{ $t('label.rules.file.import.description') }}</p>
           </a-upload-dragger>
-        </a-form-item>
-        <a-form-item name="name" ref="name">
-          <template #label>
-            <tooltip-label :title="$t('label.name')" :tooltip="apiParams.name.description"/>
-          </template>
-          <a-input
-            v-model:value="form.name"
-            :placeholder="apiParams.name.description"
-            v-focus="true" />
-        </a-form-item>
-
-        <a-form-item name="description" ref="description">
-          <template #label>
-            <tooltip-label :title="$t('label.description')" :tooltip="apiParams.description.description"/>
-          </template>
-          <a-input
-            v-model:value="form.description"
-            :placeholder="apiParams.description.description" />
+          <a-alert v-if="csvErrors.length" class="import-notice" type="error" show-icon :message="$t('label.error.rules.file.import')">
+            <template #description>
+              <ul class="import-errors">
+                <li v-for="error in csvErrors" :key="error.line">
+                  {{ error.line ? $t('message.role.csv.line', { line: error.line, detail: $t(error.message) }) : $t(error.message) }}
+                </li>
+              </ul>
+            </template>
+          </a-alert>
+          <p v-else-if="csvRules.length" role="status">{{ $t('message.role.csv.ready', { count: csvRules.length }) }}</p>
         </a-form-item>
 
-        <a-form-item name="type" ref="type">
+        <a-form-item name="name">
           <template #label>
-            <tooltip-label :title="$t('label.type')" :tooltip="apiParams.type.description"/>
+            <tooltip-label :title="$t('label.name')" :tooltip="apiParams.name.description" />
           </template>
-          <a-select
-            v-model:value="form.type"
-            :placeholder="apiParams.type.description"
-            showSearch
-            optionFilterProp="value"
-            :filterOption="(input, option) => {
-              return option.value.toLowerCase().indexOf(input.toLowerCase()) >= 0
-            }" >
-            <a-select-option v-for="role in defaultRoles" :key="role">
+          <a-input v-model:value="form.name" :placeholder="apiParams.name.description" :disabled="loading" v-focus="true" />
+        </a-form-item>
+
+        <a-form-item name="description">
+          <template #label>
+            <tooltip-label :title="$t('label.description')" :tooltip="apiParams.description.description" />
+          </template>
+          <a-input v-model:value="form.description" :placeholder="apiParams.description.description" :disabled="loading" />
+        </a-form-item>
+
+        <a-form-item name="type">
+          <template #label>
+            <tooltip-label :title="$t('label.type')" :tooltip="apiParams.type.description" />
+          </template>
+          <a-select v-model:value="form.type" :placeholder="apiParams.type.description" show-search :disabled="loading">
+            <a-select-option v-for="role in roleTypes" :key="role">
               {{ role }}
             </a-select-option>
           </a-select>
         </a-form-item>
 
-        <a-form-item name="ispublic" ref="ispublic">
+        <a-form-item name="ispublic">
           <template #label>
-            <tooltip-label :title="$t('label.ispublic')" :tooltip="apiParams.ispublic.description"/>
+            <tooltip-label :title="$t('label.ispublic')" :tooltip="apiParams.ispublic.description" />
           </template>
-          <a-switch v-model:checked="form.ispublic"/>
+          <a-switch v-model:checked="form.ispublic" :aria-label="$t('label.ispublic')" :disabled="loading" />
         </a-form-item>
 
-        <a-form-item name="forced" ref="forced">
+        <a-form-item v-if="canReviewForce" name="forced">
           <template #label>
-            <tooltip-label :title="$t('label.forced')" :tooltip="apiParams.forced.description"/>
+            <tooltip-label :title="$t('label.role.csv.force')" :tooltip="apiParams.forced.description" />
           </template>
-          <a-switch v-model:checked="form.forced" />
+          <a-switch v-model:checked="form.forced" :aria-label="$t('label.role.csv.force')" :disabled="loading" />
         </a-form-item>
 
-        <div :span="24" class="action-button">
-          <a-button @click="closeAction">{{ $t('label.cancel') }}</a-button>
-          <a-button :loading="loading" ref="submit" type="primary" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
-        </div>
+        <a-alert v-if="error" class="import-notice" type="error" show-icon :message="error" />
+        <a-alert v-if="preview" class="import-notice" type="warning" show-icon :message="$t('label.role.csv.review')">
+          <template #description>
+            {{ preview.role
+              ? $t('message.role.csv.replace', { name: preview.role.name, type: preview.role.type, old: preview.rules.length, count: csvRules.length })
+              : $t('message.role.csv.new', { name: form.name.trim(), type: form.type, count: csvRules.length }) }}
+            <p v-if="preview.role" class="import-impact">
+              {{ $t(preview.role.inuse === true ? 'message.role.usage.linked' : preview.role.inuse === false ? 'message.role.usage.unlinked' : 'message.role.usage.unknown') }}
+            </p>
+          </template>
+        </a-alert>
+
+        <mold-dialog-actions :busy="loading" @keydown.ctrl.enter.prevent.stop="!$event.repeat && handleSubmit($event)">
+          <a-button :disabled="loading" @click="closeAction">{{ $t('label.cancel') }}</a-button>
+          <a-button
+            v-if="preview"
+            :danger="!!preview.role"
+            :disabled="!canImport"
+            :loading="loading"
+            type="primary"
+            @click="confirmForce">
+            {{ $t(preview.role ? 'label.role.csv.replace' : 'label.import.role') }}
+          </a-button>
+          <a-button v-else :disabled="!canImport" :loading="loading" type="primary" @click="handleSubmit">
+            {{ $t(form.forced ? 'label.role.csv.review' : 'label.import.role') }}
+          </a-button>
+        </mold-dialog-actions>
       </a-form>
     </a-spin>
   </div>
 </template>
 
 <script>
-import { ref, reactive, toRaw } from 'vue'
-import { postAPI } from '@/api'
+import { getAPI, postAPI } from '@/api'
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
+import { parseRoleCsv } from '@/utils/roleCsv'
+import { roleTypes } from '@/utils/roleSearch'
+import { canRoleAction, roleUsageParams } from '@/utils/roleActions'
+
+const requestOptions = { preserveOnFailure: true, timeout: 15000 }
 
 export default {
   name: 'ImportRole',
-  components: {
-    TooltipLabel
-  },
+  components: { TooltipLabel, MoldDialogActions },
+  emits: ['close-action', 'refresh-data'],
   data () {
     return {
+      roleTypes,
+      form: { name: '', description: undefined, type: undefined, ispublic: true, forced: false },
       fileList: [],
-      defaultRoles: ['Admin', 'DomainAdmin', 'ResourceAdmin', 'User'],
-      rulesCsv: '',
+      csvRules: [],
+      csvErrors: [],
+      fileRead: 0,
+      reading: false,
       loading: false,
-      csvFileType: ['.csv', 'text/csv', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-excel']
+      error: '',
+      preview: null,
+      active: true
+    }
+  },
+  computed: {
+    locked () { return this.loading || this.reading },
+    apis () { return this.$store.getters.apis },
+    canWrite () { return canRoleAction('importRole', null, this.apis) },
+    canReviewForce () { return this.canWrite && !!this.apis.listRoles && !!this.apis.listRolePermissions },
+    canImport () {
+      return this.canWrite && (!this.form.forced || this.canReviewForce) &&
+        !this.locked && !!this.csvRules.length && !this.csvErrors.length
+    },
+    formRules () {
+      return {
+        name: [{ required: true, whitespace: true, message: this.$t('message.error.required.input') }],
+        type: [{ required: true, message: this.$t('message.error.select') }]
+      }
+    }
+  },
+  watch: {
+    form: {
+      deep: true,
+      handler () {
+        this.preview = null
+        this.error = ''
+      }
     }
   },
   beforeCreate () {
     this.apiParams = this.$getApiParams('importRole')
   },
-  created () {
-    this.initForm()
+  beforeUnmount () {
+    this.active = false
   },
   methods: {
-    initForm () {
-      this.formRef = ref()
-      this.form = reactive({ ispublic: true })
-      this.rules = reactive({
-        file: [
-          { required: true, message: this.$t('message.error.required.input') },
-          {
-            validator: this.checkCsvRulesFile,
-            message: this.$t('label.error.rules.file.import')
-          }
-        ],
-        name: [{ required: true, message: this.$t('message.error.required.input') }],
-        type: [{ required: true, message: this.$t('message.error.select') }]
-      })
-    },
-    handleRemove (file) {
-      const index = this.fileList.indexOf(file)
-      const newFileList = this.fileList.slice()
-      newFileList.splice(index, 1)
-      this.fileList = newFileList
-      this.form.file = undefined
-    },
-    handleChange (info) {
-      if (info.file.status === 'error') {
-        this.$notification.error({
-          message: this.$t('label.error.file.upload'),
-          description: this.$t('label.error.file.upload')
-        })
-      }
-    },
     beforeUpload (file) {
-      if (!this.csvFileType.includes(file.type)) {
-        return false
-      }
-
-      this.fileList = [file]
-      this.form.file = file
+      if (!this.loading) this.readFile(file)
       return false
     },
-    handleSubmit (e) {
-      e.preventDefault()
-      if (this.loading) return
-      this.formRef.value.validate().then(() => {
-        const values = toRaw(this.form)
-        const params = {}
-        for (const key in values) {
-          const input = values[key]
-          if (input === undefined) {
-            continue
-          }
-          if (key === 'file') {
-            continue
-          }
-
-          params[key] = input
+    async readFile (file) {
+      const sequence = ++this.fileRead
+      this.fileList = [file]
+      this.csvRules = []
+      this.csvErrors = []
+      this.preview = null
+      this.error = ''
+      if (!/\.csv$/i.test(file.name)) {
+        this.reading = false
+        this.csvErrors = [{ message: 'label.error.rules.file.import' }]
+        return
+      }
+      this.reading = true
+      try {
+        const parsed = parseRoleCsv(await file.text())
+        if (this.active && sequence === this.fileRead) {
+          this.csvRules = parsed.rules
+          this.csvErrors = parsed.errors
         }
-
-        if (this.fileList.length !== 1) {
-          return
-        }
-
-        var rules = this.rulesCsvToJson(this.rulesCsv)
-        rules.forEach(function (values, index) {
-          for (const key in values) {
-            params['rules[' + index + '].' + key] = values[key]
-          }
-        })
-
-        this.importRole(params)
-      }).catch(error => {
-        this.formRef.value.scrollToField(error.errorFields[0].name)
-      })
+      } catch {
+        if (this.active && sequence === this.fileRead) this.csvErrors = [{ message: 'label.error.file.read' }]
+      } finally {
+        if (this.active && sequence === this.fileRead) this.reading = false
+      }
+    },
+    removeFile () {
+      if (this.loading) return false
+      this.fileRead++
+      this.fileList = []
+      this.csvRules = []
+      this.csvErrors = []
+      this.reading = false
+      this.preview = null
+      this.error = ''
+      return true
     },
     closeAction () {
-      this.$emit('close-action')
+      if (!this.loading) this.$emit('close-action')
     },
-    importRole (params) {
+    errorText (error) {
+      return Object.values(error?.response?.data || {}).find(value => value?.errortext)?.errortext ||
+        error?.message || this.$t('message.request.failed')
+    },
+    async handleSubmit (event) {
+      if (event?.preventDefault) event.preventDefault()
+      if (!this.canImport || this.preview) return
       this.loading = true
-      postAPI('importRole', params).then(json => {
-        const role = json.importroleresponse.role
-        if (role) {
-          this.$emit('refresh-data')
-          this.$notification.success({
-            message: 'Import Role',
-            description: 'Sucessfully imported role ' + params.name
-          })
-        }
-        this.closeAction()
-      }).catch(error => {
-        this.$notifyError(error)
-      }).finally(() => {
-        this.loading = false
-      })
-    },
-    rulesCsvToJson (rulesCsv) {
-      const columnDelimiter = ','
-      const lineDelimiter = '\n'
-      var lines = rulesCsv.split(lineDelimiter)
-      var result = []
-      if (lines.length === 0) {
-        return result
-      }
-      var headers = lines[0].split(columnDelimiter)
-      lines = lines.slice(1) // Remove header
-
-      lines.map((line, indexLine) => {
-        if (line.trim() === '') return // Empty line
-        var obj = {}
-        var currentline = line.trim().split(columnDelimiter)
-
-        headers.map((header, indexHeader) => {
-          if (indexHeader === 2 && currentline.length > 3) {
-            if (currentline[indexHeader].startsWith('"')) {
-              obj[header.trim()] = currentline[indexHeader].substr(1)
-            } else {
-              obj[header.trim()] = currentline[indexHeader]
-            }
-
-            for (let i = 3; i < currentline.length - 1; i++) {
-              obj[header.trim()] += columnDelimiter + currentline[i]
-            }
-
-            var lastColumn = currentline[currentline.length - 1]
-            if (lastColumn.endsWith('"')) {
-              obj[header.trim()] += columnDelimiter + lastColumn.substr(0, lastColumn.length - 1)
-            } else {
-              obj[header.trim()] += columnDelimiter + lastColumn
-            }
-          } else {
-            obj[header.trim()] = currentline[indexHeader]
-          }
-        })
-        result.push(obj)
-      })
-      return result
-    },
-    async checkCsvRulesFile (rule, value) {
-      if (!value || value === '') {
-        return Promise.resolve()
-      } else {
-        if (!this.csvFileType.includes(value.type)) {
-          return Promise.reject(rule.message)
-        }
-
-        try {
-          const validFile = await this.readCsvFile(value)
-          if (!validFile) {
-            return Promise.reject(rule.message)
-          } else {
-            return Promise.resolve()
-          }
-        } catch (reason) {
-          console.log(reason)
-          return Promise.reject(rule.message)
-        }
-      }
-    },
-    readCsvFile (file) {
-      return new Promise((resolve, reject) => {
-        if (window.FileReader) {
-          var reader = new FileReader()
-          reader.onload = (event) => {
-            this.rulesCsv = event.target.result
-            var lines = this.rulesCsv.split('\n')
-            var headers = lines[0].split(',')
-            if (headers.length !== 3) {
-              resolve(false)
-            } else if (!(headers[0].trim() === 'rule' && headers[1].trim() === 'permission' && headers[2].trim() === 'description')) {
-              resolve(false)
-            } else {
-              resolve(true)
-            }
-          }
-
-          reader.onerror = (event) => {
-            if (event.target.error.name === 'NotReadableError') {
-              reject(event.target.error)
-            }
-          }
-
-          reader.readAsText(file)
+      this.error = ''
+      try {
+        await this.$refs.formRef.validate()
+        const params = this.importParams()
+        if (!this.active || !this.canWrite || (params.forced && !this.canReviewForce)) return
+        if (params.forced) {
+          this.preview = await this.resolveTarget(params)
         } else {
-          reject(this.$t('label.error.file.read'))
+          await this.submitImport(params)
         }
+      } catch (error) {
+        if (this.active && !error?.errorFields) this.error = this.errorText(error)
+      } finally {
+        if (this.active) this.loading = false
+      }
+    },
+    importParams () {
+      const params = { ...this.form, name: this.form.name.trim() }
+      this.csvRules.forEach((row, index) => {
+        for (const [key, value] of Object.entries(row)) params['rules[' + index + '].' + key] = value
       })
+      return params
+    },
+    async resolveTarget (params) {
+      const result = await getAPI('listRoles', { name: params.name, ...roleUsageParams(this.apis) }, requestOptions)
+      const list = result.listrolesresponse
+      const roles = list?.role || []
+      const matches = roles.filter(role => role.type === params.type)
+      if (!list || list.count > roles.length || matches.length > 1 ||
+          (matches.length && matches[0].name.toLowerCase() !== params.name.toLowerCase())) {
+        throw new Error(this.$t('message.role.csv.ambiguous'))
+      }
+      const [role = null] = matches
+      if (role?.isdefault) throw new Error(this.$t('message.role.csv.default'))
+      if (!role) return { role, rules: [] }
+      const query = await getAPI('listRolePermissions', { roleid: role.id }, requestOptions)
+      if (!query.listrolepermissionsresponse) throw new Error(this.$t('message.request.failed'))
+      return { role, rules: query.listrolepermissionsresponse.rolepermission || [] }
+    },
+    async confirmForce () {
+      if (!this.canImport || !this.preview || !this.form.forced) return
+      const preview = this.preview
+      const params = this.importParams()
+      this.loading = true
+      this.error = ''
+      try {
+        const current = await this.resolveTarget(params)
+        if (!this.active || !this.canReviewForce || this.preview !== preview) return
+        if (JSON.stringify(current) !== JSON.stringify(preview)) {
+          this.preview = current
+          this.error = this.$t('message.role.csv.changed')
+          return
+        }
+        await this.submitImport(params, current.role)
+      } catch (error) {
+        if (this.active) this.error = this.errorText(error)
+      } finally {
+        if (this.active) this.loading = false
+      }
+    },
+    async submitImport (params, expectedRole) {
+      if (!this.active || !this.canWrite || (params.forced && !this.canReviewForce)) return
+      const response = await postAPI('importRole', params, requestOptions)
+      if (!this.active) return
+      const imported = response.importroleresponse?.role
+      if (!imported?.id) throw new Error(this.$t('message.request.failed'))
+      this.$emit('refresh-data')
+      if (expectedRole && imported.id !== expectedRole.id) {
+        this.preview = null
+        throw new Error(this.$t('message.role.csv.target.changed'))
+      }
+      this.$notification.success({ message: this.$t('label.import.role'), description: this.$t('message.role.csv.imported', { name: imported.name || params.name }) })
+      this.$emit('close-action')
     }
   }
 }
 </script>
 
 <style scoped lang="less">
-  .form-layout {
-    width: 80vw;
+  .form-layout { min-width: 0; }
 
-    @media (min-width: 700px) {
-      width: 550px;
-    }
+  .import-notice {
+    margin-block: 8px;
+  }
+
+  .import-impact { margin: 8px 0 0; }
+
+  .import-errors {
+    max-height: 10em;
+    overflow: auto;
+    padding-inline-start: 20px;
+    margin: 0;
   }
 </style>

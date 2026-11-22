@@ -1,0 +1,23 @@
+{
+  "jar_before_sha256": "ab4d2490066a93e00ae4de454d492ca797872e54f0398d651c672791ec5672cb",
+  "jar_after_sha256": "9a08a406e369ef14be9ce23e97eb9a0ed6cf4181973311895767babc0cd12430",
+  "changed_entries": [
+    "org/apache/cloudstack/api/command/admin/kms/MigrateVolumesToKMSCmd.class",
+    "org/apache/cloudstack/api/command/user/volume/ListVolumesCmd.class",
+    "org/apache/cloudstack/api/response/VolumeResponse.class",
+    "org/apache/cloudstack/kms/KMSManager.class",
+    "org/apache/cloudstack/kms/KMSManagerImpl.class",
+    "org/apache/cloudstack/kms/KMSManagerImpl$1.class",
+    "com/cloud/api/query/QueryManagerImpl$1.class",
+    "com/cloud/api/query/QueryManagerImpl.class"
+  ],
+  "added_entries": [
+    "org/apache/cloudstack/api/response/KMSMigrationResponse.class"
+  ],
+  "unchanged_entries": 92931,
+  "source_classes_match": true,
+  "ui_files_verified": 690,
+  "ui_index_sha256": "fddf3888552f9f0fb8d0bbe1308330592b4cf313ae9515d1d717f2ba59844d64",
+  "ui_config_sha256_preserved": "71c175523a2e251faf574bd5d977c37e81d21c9cc0b8a98dfb1642c6b8a448d7",
+  "mold_active": "active"
+}

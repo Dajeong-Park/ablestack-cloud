@@ -15,7 +15,12 @@
 // specific language governing permissions and limitations
 // under the License.
 
+import { defineAsyncComponent, shallowRef } from 'vue'
 import store from '@/store'
+import { canMutateEvents } from '@/utils/eventActions'
+import { eventSearchKeys } from '@/utils/eventSearch'
+
+const canExportEvents = () => store.getters.apis.downloadEvents?.response?.some(field => field.name === 'csv')
 
 export default {
   name: 'event',
@@ -32,11 +37,16 @@ export default {
     return fields
   },
   details: ['username', 'id', 'description', 'resourcetype', 'resourceid', 'state', 'level', 'type', 'account', 'domain', 'created'],
-  searchFilters: ['level', 'domainid', 'account', 'keyword', 'resourcetype', 'state'],
+  searchFilters: eventSearchKeys,
+  tabs: [
+    { name: 'details', component: shallowRef(defineAsyncComponent(() => import('@/components/view/DetailsTab.vue'))) },
+    { name: 'event.timeline', resourceType: 'EventTimeline', component: shallowRef(defineAsyncComponent(() => import('@/components/view/EventsTab.vue'))) }
+  ],
   related: [{
     name: 'event',
     title: 'label.event.timeline',
-    param: 'startid'
+    param: 'startid',
+    show: record => !!record.id
   }],
   filters: () => {
     return ['active', 'archived']
@@ -46,56 +56,34 @@ export default {
       api: 'archiveEvents',
       icon: 'book-outlined',
       label: 'label.archive.events',
-      message: 'message.confirm.archive.selected.events',
+      toolbarLabel: 'label.archive.events',
       docHelp: 'adminguide/events.html#deleting-and-archiving-events-and-alerts',
       dataView: true,
-      successMessage: 'label.event.archived',
       groupAction: true,
-      groupMap: (selection) => { return [{ ids: selection.join(',') }] },
-      args: ['ids'],
-      mapping: {
-        ids: {
-          value: (record) => { return record.id }
-        }
-      },
-      show: (record) => {
-        return !(record.archived)
-      }
+      show: (record, getters = store.getters) => canMutateEvents('archiveEvents', [record], getters),
+      groupShow: (selection, getters) => canMutateEvents('archiveEvents', selection, getters)
     },
     {
       api: 'downloadEvents',
       icon: 'download-outlined',
       label: 'label.download.events',
-      message: 'message.confirm.archive.selected.events',
-      docHelp: 'adminguide/events.html#deleting-and-archiving-events-and-alerts',
+      toolbarLabel: 'label.download.csv',
+      docHelp: 'adminguide/events.html',
       dataView: true,
-      successMessage: 'label.event.archived',
       groupAction: true,
-      groupMap: (selection) => { return [{ ids: selection.join(',') }] },
-      args: ['ids'],
-      mapping: {
-        ids: {
-          value: (record) => { return record.id }
-        }
-      }
+      show: canExportEvents,
+      groupShow: canExportEvents
     },
     {
       api: 'deleteEvents',
       icon: 'delete-outlined',
       label: 'label.delete.events',
-      message: 'message.confirm.remove.selected.events',
+      toolbarLabel: 'label.delete.events',
       docHelp: 'adminguide/events.html#deleting-and-archiving-events-and-alerts',
       dataView: true,
-      successMessage: 'label.event.deleted',
       groupAction: true,
-      show: () => { return (store.getters.features.eventdeleteenabled) },
-      groupMap: (selection) => { return [{ ids: selection.join(',') }] },
-      args: ['ids'],
-      mapping: {
-        ids: {
-          value: (record) => { return record.id }
-        }
-      }
+      show: (record, getters = store.getters) => canMutateEvents('deleteEvents', [record], getters),
+      groupShow: (selection, getters) => canMutateEvents('deleteEvents', selection, getters)
     }
   ]
 }

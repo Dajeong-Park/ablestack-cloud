@@ -39,6 +39,7 @@ import com.cloud.utils.net.NetUtils;
 import org.apache.cloudstack.acl.SecurityChecker.AccessType;
 import org.apache.cloudstack.api.ServerApiException;
 import org.apache.cloudstack.api.command.user.network.CreateNetworkACLCmd;
+import org.apache.cloudstack.api.command.user.network.ImportNetworkACLCmd;
 import org.apache.cloudstack.api.command.user.network.MoveNetworkAclItemCmd;
 import org.apache.cloudstack.api.command.user.network.UpdateNetworkACLItemCmd;
 import org.apache.cloudstack.api.command.user.network.UpdateNetworkACLListCmd;
@@ -114,7 +115,7 @@ public class NetworkACLServiceImplTest {
     private Long networkAclMockId = 5L;
     private Long networkOfferingMockId = 2L;
     private Long networkMockVpcMockId = 3L;
-    private long networkAclListId = 1l;
+    private long networkAclListId = 101L;
     private static final String SOME_UUID = "someUuid";
 
     @Mock
@@ -791,8 +792,7 @@ public class NetworkACLServiceImplTest {
         Mockito.when(updateNetworkACLItemCmdMock.getCustomId()).thenReturn(null);
         Mockito.when(updateNetworkACLItemCmdMock.getReason()).thenReturn(null);
 
-        Mockito.when(updateNetworkACLItemCmdMock.isDisplay()).thenReturn(false);
-        Mockito.when(networkAclItemVoMock.isDisplay()).thenReturn(false);
+        Mockito.when(updateNetworkACLItemCmdMock.getDisplay()).thenReturn(null);
 
         networkAclServiceImpl.transferDataToNetworkAclRulePojo(updateNetworkACLItemCmdMock, networkAclItemVoMock, networkAclMock);
 
@@ -824,7 +824,7 @@ public class NetworkACLServiceImplTest {
         Mockito.when(updateNetworkACLItemCmdMock.getCustomId()).thenReturn(null);
         Mockito.when(updateNetworkACLItemCmdMock.getReason()).thenReturn(null);
 
-        Mockito.when(updateNetworkACLItemCmdMock.isDisplay()).thenReturn(false);
+        Mockito.when(updateNetworkACLItemCmdMock.getDisplay()).thenReturn(null);
         Mockito.when(networkAclItemVoMock.getProtocol()).thenReturn("");
 
         networkAclServiceImpl.transferDataToNetworkAclRulePojo(updateNetworkACLItemCmdMock, networkAclItemVoMock, networkAclMock);
@@ -839,7 +839,7 @@ public class NetworkACLServiceImplTest {
         Mockito.verify(networkAclItemVoMock, Mockito.times(1)).setTrafficType(nullable(TrafficType.class));
         Mockito.verify(networkAclItemVoMock, Mockito.times(0)).setUuid(nullable(String.class));
         Mockito.verify(networkAclItemVoMock, Mockito.times(1)).setReason(nullable(String.class));
-        Mockito.verify(networkAclItemVoMock, Mockito.times(1)).setDisplay(nullable(Boolean.class));
+        Mockito.verify(networkAclItemVoMock, Mockito.never()).setDisplay(Mockito.anyBoolean());
         Mockito.verify(networkAclServiceImpl, Mockito.times(1)).validateAndCreateNetworkAclRuleAction(nullable(String.class));
     }
 
@@ -859,7 +859,7 @@ public class NetworkACLServiceImplTest {
         Mockito.when(updateNetworkACLItemCmdMock.getCustomId()).thenReturn("customUuid");
         Mockito.when(updateNetworkACLItemCmdMock.getReason()).thenReturn("reason");
 
-        Mockito.when(updateNetworkACLItemCmdMock.isDisplay()).thenReturn(true);
+        Mockito.when(updateNetworkACLItemCmdMock.getDisplay()).thenReturn(true);
         Mockito.when(networkAclItemVoMock.getProtocol()).thenReturn("");
 
         networkAclServiceImpl.transferDataToNetworkAclRulePojo(updateNetworkACLItemCmdMock, networkAclItemVoMock, networkAclMock);
@@ -876,6 +876,16 @@ public class NetworkACLServiceImplTest {
         Mockito.verify(networkAclItemVoMock).setReason("reason");
         Mockito.verify(networkAclItemVoMock).setDisplay(true);
         Mockito.verify(networkAclServiceImpl).validateAndCreateNetworkAclRuleAction("deny");
+    }
+
+    @Test
+    public void transferDataToNetworkAclRulePojoAppliesExplicitFalseDuringPartialUpdate() {
+        Mockito.when(updateNetworkACLItemCmdMock.isPartialUpgrade()).thenReturn(true);
+        Mockito.when(updateNetworkACLItemCmdMock.getDisplay()).thenReturn(false);
+
+        networkAclServiceImpl.transferDataToNetworkAclRulePojo(updateNetworkACLItemCmdMock, networkAclItemVoMock, networkAclMock);
+
+        Mockito.verify(networkAclItemVoMock).setDisplay(false);
     }
 
     private void setUpdateICMPCodeAndTypeTest(String protocol, Integer icmpCode, Integer icmpType) {
@@ -956,6 +966,14 @@ public class NetworkACLServiceImplTest {
 
         Mockito.verify(networkAclItemVoMock).setIcmpCode(null);
         Mockito.verify(networkAclItemVoMock).setIcmpType(null);
+    }
+
+    @Test(expected = InvalidParameterValueException.class)
+    public void updateDefaultAclRejectsMetadataChanges() {
+        long id = NetworkACL.DEFAULT_DENY;
+        Mockito.when(updateNetworkACLListCmdMock.getId()).thenReturn(id);
+        Mockito.when(networkAclDaoMock.findById(id)).thenReturn(networkACLVOMock);
+        networkAclServiceImpl.updateNetworkACL(updateNetworkACLListCmdMock);
     }
 
     @Test
@@ -1506,4 +1524,46 @@ public class NetworkACLServiceImplTest {
 
         networkAclServiceImpl.validateAclAssociatedToVpc(networkMockVpcMockId, accountMock, SOME_UUID);
     }
+
+    @Test
+    public void importNetworkAclReturnsRowFailuresWithoutDiscardingSuccesses() throws Exception {
+        ImportNetworkACLCmd command = Mockito.mock(ImportNetworkACLCmd.class);
+        Mockito.when(command.getAclId()).thenReturn(42L);
+        Mockito.when(command.isReportDetails()).thenReturn(true);
+        Mockito.doReturn(Map.of("2", Map.of("protocol", "all"), "3", Map.of("number", "30"))).when(command).getRules();
+        NetworkACLItem rule = Mockito.mock(NetworkACLItem.class);
+        Mockito.doReturn(rule).when(networkAclServiceImpl).createNetworkACLItem(Mockito.any());
+        Mockito.doReturn(true).when(networkAclServiceImpl).applyNetworkACL(42L);
+
+        NetworkACLService.ImportResult result = networkAclServiceImpl.importNetworkACLRules(command);
+
+        Assert.assertEquals(List.of(rule), result.getCreatedRules());
+        Assert.assertEquals(Map.of("3", "Protocol is required"), result.getFailedRows());
+        Assert.assertTrue(result.isApplied());
+        Mockito.verify(networkAclServiceImpl).applyNetworkACL(42L);
+    }
+
+    @Test
+    public void importNetworkAclReturnsAllFailuresOnlyWhenRequested() throws Exception {
+        ImportNetworkACLCmd command = Mockito.mock(ImportNetworkACLCmd.class);
+        Mockito.when(command.getAclId()).thenReturn(42L);
+        Mockito.doReturn(Map.of("2", Map.of("number", "30"))).when(command).getRules();
+        Mockito.when(command.isReportDetails()).thenReturn(true);
+
+        NetworkACLService.ImportResult result = networkAclServiceImpl.importNetworkACLRules(command);
+        Assert.assertTrue(result.getCreatedRules().isEmpty());
+        Assert.assertEquals(Map.of("2", "Protocol is required"), result.getFailedRows());
+        Assert.assertFalse(result.isApplied());
+        Mockito.verify(networkAclServiceImpl, Mockito.never()).applyNetworkACL(42L);
+
+        Mockito.when(command.isReportDetails()).thenReturn(false);
+        try {
+            networkAclServiceImpl.importNetworkACLRules(command);
+            Assert.fail("Legacy import must fail when no rules are created");
+        } catch (CloudRuntimeException exception) {
+            Assert.assertEquals("Failed to import any ACL rules.", exception.getMessage());
+        }
+    }
+
+
 }

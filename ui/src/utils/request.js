@@ -64,7 +64,6 @@ const err = (error) => {
   }
   let countNotify = store.getters.countNotify
   if (response) {
-    console.log(response)
     if (response.status === 403) {
       const data = response.data
       countNotify++

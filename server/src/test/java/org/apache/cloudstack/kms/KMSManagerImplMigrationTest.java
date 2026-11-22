@@ -20,6 +20,7 @@ package org.apache.cloudstack.kms;
 import com.cloud.event.ActionEventUtils;
 import com.cloud.exception.InvalidParameterValueException;
 import com.cloud.storage.VolumeVO;
+import com.cloud.storage.Volume;
 import com.cloud.storage.dao.VolumeDao;
 import com.cloud.user.Account;
 import com.cloud.user.User;
@@ -92,6 +93,9 @@ public class KMSManagerImplMigrationTest {
         volume.setAccountId(2L);
         volume.setDataCenterId(3L);
         volume.setPassphraseId(11L);
+        volume.setEncryptFormat("luks");
+        ReflectionTestUtils.setField(volume, "state", Volume.State.Ready);
+        ReflectionTestUtils.setField(manager, "accountManager", mock(com.cloud.user.AccountManager.class));
         when(key.getId()).thenReturn(5L);
         when(key.getAccountId()).thenReturn(2L);
         when(key.getZoneId()).thenReturn(3L);
@@ -190,6 +194,7 @@ public class KMSManagerImplMigrationTest {
     @Test
     public void repeatedMigrationDoesNotReplaceExistingKey() {
         volume.setKmsWrappedKeyId(12L);
+        volume.setKmsKeyId(5L);
         volume.setPassphraseId(null);
         assertFalse(manager.migrateVolumeToKmsKey(provider, volume, key, version));
         verifyNoInteractions(provider);
@@ -198,13 +203,14 @@ public class KMSManagerImplMigrationTest {
     @Test
     public void missingPassphraseFailsBeforeProviderAccess() {
         when(passphrases.findById(11L)).thenReturn(null);
-        assertThrows(CloudRuntimeException.class, () -> manager.migrateVolumeToKmsKey(provider, volume, key, version));
+        assertThrows(InvalidParameterValueException.class, () -> manager.migrateVolumeToKmsKey(provider, volume, key, version));
         verifyNoInteractions(provider);
         assertEquals(Long.valueOf(11), volume.getPassphraseId());
     }
 
     @Test
     public void busyKeyLockFailsBeforeChangingKeys() {
+        assertEquals("ELIGIBLE_LEGACY", manager.migrationReason(volume, key));
         com.cloud.utils.db.GlobalLock lock = mock(com.cloud.utils.db.GlobalLock.class);
         try (MockedStatic<com.cloud.utils.db.GlobalLock> locks = Mockito.mockStatic(com.cloud.utils.db.GlobalLock.class)) {
             locks.when(() -> com.cloud.utils.db.GlobalLock.getInternLock("kms.key.5")).thenReturn(lock);
@@ -229,5 +235,116 @@ public class KMSManagerImplMigrationTest {
             verify(lock).unlock();
             verify(lock).releaseRef();
         }
+    }
+
+    @Test
+    public void eligibilityRejectsPlaintextAndBusyAndMissingLegacy() {
+        volume.setEncryptFormat(null);
+        assertEquals("NOT_ENCRYPTED", manager.migrationReason(volume, key));
+        volume.setEncryptFormat("luks");
+        ReflectionTestUtils.setField(volume, "state", Volume.State.Resizing);
+        assertEquals("UNSUPPORTED_STATE", manager.migrationReason(volume, key));
+        ReflectionTestUtils.setField(volume, "state", Volume.State.Ready);
+        volume.setPassphraseId(null);
+        assertEquals("LEGACY_KEY_UNAVAILABLE", manager.migrationReason(volume, key));
+    }
+
+    @Test
+    public void otherKmsKeyCannotBeRekeyedImplicitly() {
+        volume.setKmsKeyId(99L);
+        volume.setKmsWrappedKeyId(12L);
+        assertEquals("ALREADY_KMS", manager.migrationReason(volume, key));
+        assertThrows(InvalidParameterValueException.class, () -> manager.migrateVolumeToKmsKey(provider, volume, key, version));
+        verifyNoInteractions(provider);
+    }
+
+    @Test
+    public void removedVolumeFailsClosed() {
+        ReflectionTestUtils.setField(volume, "removed", new java.util.Date());
+        assertEquals("NOT_FOUND", manager.migrationReason(volume, key));
+        assertThrows(InvalidParameterValueException.class, () -> manager.migrateVolumeToKmsKey(provider, volume, key, version));
+        verifyNoInteractions(provider);
+    }
+
+    private org.apache.cloudstack.api.command.admin.kms.MigrateVolumesToKMSCmd bulkCommand(java.util.List<Long> ids) {
+        KMSKeyVO target = mock(KMSKeyVO.class);
+        when(target.getId()).thenReturn(5L);
+        when(target.getAccountId()).thenReturn(2L);
+        when(target.getZoneId()).thenReturn(3L);
+        when(target.isEnabled()).thenReturn(true);
+        when(target.getPurpose()).thenReturn(KeyPurpose.VOLUME_ENCRYPTION);
+        when(target.getHsmProfileId()).thenReturn(null);
+        doReturn(target).when(manager).getVolumeMigrationTarget(5L);
+        doReturn(provider).when(manager).getKMSProvider("database");
+        org.apache.cloudstack.kms.dao.KMSKekVersionDao versions = mock(org.apache.cloudstack.kms.dao.KMSKekVersionDao.class);
+        when(versions.getActiveVersion(5L)).thenReturn(version);
+        ReflectionTestUtils.setField(manager, "kmsKekVersionDao", versions);
+        org.apache.cloudstack.api.command.admin.kms.MigrateVolumesToKMSCmd cmd = mock(org.apache.cloudstack.api.command.admin.kms.MigrateVolumesToKMSCmd.class);
+        when(cmd.getKmsKeyId()).thenReturn(5L);
+        when(cmd.getVolumeIds()).thenReturn(ids);
+        when(cmd.getDomainId()).thenReturn(null);
+        return cmd;
+    }
+
+    @Test
+    public void batchRejectsMissingUuidBeforeAnyProviderWrite() {
+        Object cmd = bulkCommand(java.util.Arrays.asList(7L, 8L));
+        when(volumes.listByIds(any())).thenReturn(java.util.Collections.singletonList(volume));
+        assertThrows(InvalidParameterValueException.class,
+                () -> ReflectionTestUtils.invokeMethod(manager, "migrateVolumesToKMSLocked", cmd));
+        verifyNoInteractions(provider);
+    }
+
+    @Test
+    public void sameTargetBatchSkipsAndReturnsZero() {
+        Object cmd = bulkCommand(java.util.Arrays.asList(7L, 7L));
+        volume.setKmsKeyId(5L);
+        volume.setKmsWrappedKeyId(12L);
+        when(volumes.listByIds(any())).thenReturn(java.util.Collections.singletonList(volume));
+        assertEquals(Integer.valueOf(0), ReflectionTestUtils.invokeMethod(manager, "migrateVolumesToKMSLocked", cmd));
+        verifyNoInteractions(provider);
+    }
+
+    @Test
+    public void partialFailureRemainsAsyncFailureAfterOneMigration() {
+        Object cmd = bulkCommand(java.util.Arrays.asList(7L, 8L));
+        VolumeVO second = mock(VolumeVO.class);
+        when(second.getAccountId()).thenReturn(2L);
+        when(second.getDataCenterId()).thenReturn(3L);
+        when(second.getKmsKeyId()).thenReturn(null);
+        when(second.getKmsWrappedKeyId()).thenReturn(null);
+        // Both candidates pass preflight; the second changes/fails under its row lock.
+        when(second.getEncryptFormat()).thenReturn("luks");
+        when(second.getState()).thenReturn(Volume.State.Ready);
+        when(second.getPassphraseId()).thenReturn(11L);
+        when(volumes.listByIds(any())).thenReturn(java.util.Arrays.asList(volume, second));
+        doReturn(true).when(manager).migrateVolumeToKmsKey(eq(provider), eq(volume), any(), eq(version));
+        org.mockito.Mockito.doThrow(new CloudRuntimeException("fixture second failure")).when(manager)
+                .migrateVolumeToKmsKey(eq(provider), eq(second), any(), eq(version));
+        assertThrows(KMSException.class, () -> ReflectionTestUtils.invokeMethod(manager, "migrateVolumesToKMSLocked", cmd));
+        verify(manager).migrateVolumeToKmsKey(eq(provider), eq(volume), any(), eq(version));
+    }
+
+    @Test
+    public void migrationContextRequiresAdministratorAndMigrationPermission() {
+        com.cloud.user.AccountManager accounts = mock(com.cloud.user.AccountManager.class);
+        ReflectionTestUtils.setField(manager, "accountManager", accounts);
+        assertThrows(com.cloud.exception.PermissionDeniedException.class, () -> manager.getVolumeMigrationTarget(5L));
+        when(accounts.isRootAdmin(anyLong())).thenReturn(true);
+        org.mockito.Mockito.doThrow(new com.cloud.exception.PermissionDeniedException("Denied migration API")).when(accounts)
+                .checkApiAccessForUser(any(User.class), eq("migrateVolumesToKMS"), eq(null));
+        assertThrows(com.cloud.exception.PermissionDeniedException.class, () -> manager.getVolumeMigrationTarget(5L));
+    }
+
+    @Test
+    public void successResponsePreservesSuccessAndReportsSkippedSeparately() {
+        org.apache.cloudstack.api.response.KMSMigrationResponse receipt =
+                new org.apache.cloudstack.api.response.KMSMigrationResponse("migration", 3, 1);
+        com.google.gson.JsonObject json = new com.google.gson.Gson().toJsonTree(receipt).getAsJsonObject();
+        assertTrue(json.get("success").getAsBoolean());
+        assertEquals(3, json.get("requested").getAsInt());
+        assertEquals(1, json.get("migrated").getAsInt());
+        assertEquals(2, json.get("skipped").getAsInt());
+        assertFalse(json.has("passphrase"));
     }
 }

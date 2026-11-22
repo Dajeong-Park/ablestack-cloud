@@ -23,6 +23,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.net.InetAddress;
 import java.net.URLEncoder;
 import java.net.UnknownHostException;
@@ -552,6 +553,28 @@ public class ApiServletTest {
         boolean result = servlet.isStateChangingCommandNotUsingPOST(command, method, params);
         Assert.assertTrue(result);
     }
+    @Test
+    public void hsmConfigurationNeverAppearsInGetRequestLogging() {
+        Assert.assertEquals("createHSMProfile", ApiServlet.safeQueryForLog("createHSMProfile", "command=createHSMProfile&details[0].pin=example"));
+        Assert.assertEquals("CrEaTeHSMPrOfIlE", ApiServlet.safeQueryForLog("CrEaTeHSMPrOfIlE", "details[0].pin=example"));
+        Assert.assertEquals("command=listZones", ApiServlet.safeQueryForLog("listZones", "command=listZones"));
+    }
+
+    @Test
+    public void nestedPinIsOmittedFromDiagnosticParametersAndHsmPostBodyIsSuppressed() throws Exception {
+        Method method = ApiServlet.class.getDeclaredMethod("getCleanParamsString", Map.class);
+        method.setAccessible(true);
+        Map<String, String[]> params = new HashMap<>();
+        params.put("details[0].pin", new String[]{"example"});
+        params.put("details[0].library", new String[]{"/opt/nonexistent.so"});
+        String result = (String) method.invoke(servlet, params);
+        Assert.assertFalse(result.contains("example"));
+        Assert.assertTrue(result.contains("/opt/nonexistent.so"));
+        Field field = ApiServlet.class.getDeclaredField("POST_REQUESTS_TO_DISABLE_LOGGING");
+        field.setAccessible(true);
+        Assert.assertTrue(((java.util.Set<?>) field.get(null)).contains("createhsmprofile"));
+    }
+
     @Test public void credentialCommandsRequirePostAndDisableCachingRegardlessOfGlobalEnforcement() {
         String[] commands = {"checkObjectStoragePool", "getBucketObjectMetadata", "getBucketCredentials", "rotateBucketCredentials", "addObjectStoragePool", "updateObjectStoragePool"};
         Mockito.when(request.getMethod()).thenReturn("GET");

@@ -142,7 +142,7 @@ public class PKCS11HSMProvider extends AdapterBase implements KMSProvider {
      * <li>{@code library}: Required, should point to PKCS#11 library</li>
      * <li>{@code slot}, {@code slot_list_index}, or {@code token_label}: At least
      * one required</li>
-     * <li>{@code pin}: Required for HSM authentication</li>
+     * <li>{@code pin}: Optional; token authentication policy applies when a connection is used</li>
      * <li>{@code max_sessions}: Optional, must be positive integer if provided</li>
      * </ul>
      *

@@ -18,6 +18,8 @@
 package org.apache.cloudstack.acl;
 
 import com.cloud.user.Account;
+import com.cloud.user.AccountVO;
+import com.cloud.user.dao.AccountDao;
 import com.cloud.user.AccountManager;
 import com.cloud.utils.Pair;
 
@@ -50,6 +52,8 @@ public class RoleManagerImplTest {
     private AccountManager accountManagerMock;
     @Mock
     private RoleDao roleDaoMock;
+    @Mock
+    private AccountDao accountDaoMock;
     @Mock
     private RolePermissionsDao rolePermissionsDaoMock;
     @Mock
@@ -378,5 +382,56 @@ public class RoleManagerImplTest {
         Assert.assertEquals(roles.size(), returnedRoles.size());
         Mockito.verify(roleDaoMock).listAll();
         Mockito.verify(roleManagerImpl).removeRolesIfNeeded(roles);
+    }
+
+    @Test
+    public void searchRolesCountsVisibleMatchesBeforePagination() {
+        String uuid = "ea4647e6-0921-4bdc-a954-7bdc93b2228f";
+        RoleVO hidden = new RoleVO(1, "matching", RoleType.ResourceAdmin, "keyword");
+        RoleVO first = new RoleVO(2, "matching", RoleType.ResourceAdmin, "keyword");
+        RoleVO second = new RoleVO(3, "matching", RoleType.ResourceAdmin, "keyword");
+        Mockito.doReturn(new Pair<>(List.of(hidden, first, second), 3)).when(roleDaoMock)
+                .searchRoles(uuid, "matching", "keyword", RoleType.ResourceAdmin, "enabled", null, null, false);
+        Mockito.doAnswer(invocation -> {
+            List<RoleVO> roles = invocation.getArgument(0);
+            roles.remove(hidden);
+            return 1;
+        }).when(roleManagerImpl).removeRolesIfNeeded(Mockito.anyList());
+
+        Pair<List<Role>, Integer> result = roleManagerImpl.searchRoles(uuid, "matching", "keyword", RoleType.ResourceAdmin, "enabled", 1L, 1L);
+
+        Assert.assertEquals(Integer.valueOf(2), result.second());
+        Assert.assertEquals(List.of(second), result.first());
+    }
+
+    @Test
+    public void searchRolesPreservesVisibilityOfUuidAndTypeLookups() {
+        String uuid = "ea4647e6-0921-4bdc-a954-7bdc93b2228f";
+        RoleVO role = new RoleVO(2, "matching", RoleType.ResourceAdmin, "description");
+        Mockito.doReturn(new Pair<>(List.of(role), 1)).when(roleDaoMock)
+                .searchRoles(uuid, null, null, RoleType.ResourceAdmin, "disabled", 0L, 1L, false);
+
+        Pair<List<Role>, Integer> result = roleManagerImpl.searchRoles(uuid, null, null, RoleType.ResourceAdmin, "disabled", 0L, 1L);
+
+        Assert.assertEquals(Integer.valueOf(1), result.second());
+        Assert.assertEquals(List.of(role), result.first());
+        Mockito.verify(roleManagerImpl, Mockito.never()).removeRolesIfNeeded(Mockito.anyList());
+    }
+
+    @Test
+    public void searchRolesDoesNotAllowNonRootAdminTypeFilter() {
+        Pair<List<Role>, Integer> result = roleManagerImpl.searchRoles(null, "Admin", null, RoleType.Admin, null, 0L, 20L);
+
+        Assert.assertEquals(Integer.valueOf(0), result.second());
+        Assert.assertTrue(result.first().isEmpty());
+        Mockito.verifyNoInteractions(roleDaoMock);
+    }
+
+    @Test
+    public void roleUsageUsesExistingAccountAssignments() {
+        Mockito.doReturn(List.of(Mockito.mock(AccountVO.class))).when(accountDaoMock).findAccountsByRole(15L);
+        Mockito.doReturn(Collections.emptyList()).when(accountDaoMock).findAccountsByRole(16L);
+        Assert.assertTrue(roleManagerImpl.isRoleInUse(15L));
+        Assert.assertFalse(roleManagerImpl.isRoleInUse(16L));
     }
 }

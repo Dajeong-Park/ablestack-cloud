@@ -37,6 +37,11 @@ public class MockProjectManagerImpl extends ManagerBase implements ProjectManage
     }
 
     @Override
+    public Account resolveProjectOwner(String accountName, Long domainId, Long userId, Long accountId) {
+        return null;
+    }
+
+    @Override
     public boolean deleteProject(long id, Boolean cleanup) {
         // TODO Auto-generated method stub
         return false;
@@ -92,6 +97,12 @@ public class MockProjectManagerImpl extends ManagerBase implements ProjectManage
     @Override
     public Project updateProject(long id, String name, String displayText, String newOwnerName, Long userId, Role newRole) throws ResourceAllocationException {
         // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Project updateProject(long id, String name, String displayText, String accountName, Long userId, Role newRole,
+            boolean swapOwner, Long projectRoleId, boolean clearProjectRole) {
         return null;
     }
 

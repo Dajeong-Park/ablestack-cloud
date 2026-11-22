@@ -1,0 +1,5 @@
+{
+  "exit_code": 0,
+  "stdout": "pending_async_jobs\n2\nactive_kms_keys\n0\nuuid\tname\tprotocol\tenabled\tis_public\nbc91cad9-e49f-400f-bbc0-1f047202631f\tHSM Database Provider\tdatabase\tfalse\ttrue\nuuid\tkey_bits\tversion_number\tprotocol\tprovider_key_bits\n",
+  "stderr": ""
+}

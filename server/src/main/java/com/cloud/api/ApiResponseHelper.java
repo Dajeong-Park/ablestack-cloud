@@ -3376,11 +3376,9 @@ public class ApiResponseHelper implements ResponseGenerator, ResourceIdSupport {
         }
         response.setServices(services);
 
-        Provider serviceProvider = networkModel.resolveProvider(result.getProviderName());
-        if (serviceProvider != null) {
-            boolean canEnableIndividualServices = ApiDBUtils.canElementEnableIndividualServices(serviceProvider);
-            response.setCanEnableIndividualServices(canEnableIndividualServices);
-        }
+        final var element = networkModel.getElementImplementingProvider(result.getProviderName());
+        response.setSupported(element != null);
+        response.setCanEnableIndividualServices(element != null && element.canEnableIndividualServices());
 
         response.setObjectName("networkserviceprovider");
         return response;
@@ -5157,6 +5155,7 @@ public class ApiResponseHelper implements ResponseGenerator, ResourceIdSupport {
         response.setName(networkACL.getName());
         response.setDescription(networkACL.getDescription());
         response.setForDisplay(networkACL.isDisplay());
+        response.setDefault(NetworkACL.isDefault(networkACL.getId()));
         Vpc vpc = ApiDBUtils.findVpcById(networkACL.getVpcId());
         if (vpc != null) {
             response.setVpcId(vpc.getUuid());

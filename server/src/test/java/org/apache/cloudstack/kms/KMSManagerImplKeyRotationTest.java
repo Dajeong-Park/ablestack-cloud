@@ -47,6 +47,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doReturn;
@@ -97,6 +98,8 @@ public class KMSManagerImplKeyRotationTest {
         doReturn(5).when(kmsManager).getOperationTimeoutSec();
         doReturn(0).when(kmsManager).getRetryCount();
         doReturn(0).when(kmsManager).getRetryDelayMs();
+        Mockito.lenient().when(kmsKeyDao.update(anyLong(), any(KMSKeyVO.class))).thenReturn(true);
+        Mockito.lenient().when(kmsKekVersionDao.update(anyLong(), any(KMSKekVersionVO.class))).thenReturn(true);
     }
 
     @After
@@ -125,6 +128,7 @@ public class KMSManagerImplKeyRotationTest {
         HSMProfileVO hsmProfile = mock(HSMProfileVO.class);
         when(hsmProfile.getId()).thenReturn(oldProfileId);
         when(hsmProfile.getProtocol()).thenReturn(testProviderName);
+        when(hsmProfile.isEnabled()).thenReturn(true);
         when(hsmProfileDao.findById(oldProfileId)).thenReturn(hsmProfile);
 
         // Old version should be marked as Previous
@@ -182,6 +186,7 @@ public class KMSManagerImplKeyRotationTest {
         HSMProfileVO hsmProfile = mock(HSMProfileVO.class);
         when(hsmProfile.getId()).thenReturn(newProfileId);
         when(hsmProfile.getProtocol()).thenReturn(testProviderName);
+        when(hsmProfile.isEnabled()).thenReturn(true);
 
         KMSKekVersionVO oldVersion = mock(KMSKekVersionVO.class);
         when(oldVersion.getVersionNumber()).thenReturn(1);
@@ -287,6 +292,7 @@ public class KMSManagerImplKeyRotationTest {
         HSMProfileVO hsmProfile = mock(HSMProfileVO.class);
         when(hsmProfile.getId()).thenReturn(oldProfileId);
         when(hsmProfile.getProtocol()).thenReturn(testProviderName);
+        when(hsmProfile.isEnabled()).thenReturn(true);
         when(hsmProfileDao.findById(oldProfileId)).thenReturn(hsmProfile);
 
         KMSKekVersionVO oldVersion = mock(KMSKekVersionVO.class);
@@ -329,6 +335,7 @@ public class KMSManagerImplKeyRotationTest {
         HSMProfileVO hsmProfile = mock(HSMProfileVO.class);
         when(hsmProfile.getId()).thenReturn(oldProfileId);
         when(hsmProfile.getProtocol()).thenReturn(testProviderName);
+        when(hsmProfile.isEnabled()).thenReturn(true);
         when(hsmProfileDao.findById(oldProfileId)).thenReturn(hsmProfile);
 
         // Provider throws because the old KEK label doesn't exist in the HSM
@@ -358,6 +365,7 @@ public class KMSManagerImplKeyRotationTest {
         HSMProfileVO hsmProfile = mock(HSMProfileVO.class);
         when(hsmProfile.getId()).thenReturn(currentProfileId);
         when(hsmProfile.getProtocol()).thenReturn(testProviderName);
+        when(hsmProfile.isEnabled()).thenReturn(true);
         when(hsmProfileDao.findById(currentProfileId)).thenReturn(hsmProfile);
 
         KMSKekVersionVO oldVersion = mock(KMSKekVersionVO.class);

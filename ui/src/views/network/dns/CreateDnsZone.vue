@@ -17,7 +17,8 @@
 
 <template>
   <div class="form-layout" v-ctrl-enter="handleSubmit">
-    <a-spin :spinning="loading">
+    <a-alert v-if="jobError" :message="jobError" type="error" show-icon class="dns-job-error" />
+    <a-spin :spinning="jobLoading">
       <a-form
         ref="formRef"
         :model="form"
@@ -25,94 +26,118 @@
         layout="vertical"
         @finish="handleSubmit">
 
-        <a-form-item name="dnsserverid" ref="dnsserverid">
-          <template #label>
-            <tooltip-label
-              :title="$t('label.dns.server')"
-              :tooltip="apiParams.dnsserverid?.description" />
-          </template>
-          <a-select
-            v-model:value="form.dnsserverid"
-            :placeholder="apiParams.dnsserverid?.description || 'Select DNS Server'"
-            :loading="fetchingServers"
-            showSearch
-            optionFilterProp="label">
-            <a-select-option
-              v-for="server in dnsServers"
-              :key="server.id"
-              :value="server.id"
-              :label="server.name">
-              {{ server.name }}
-            </a-select-option>
-          </a-select>
-        </a-form-item>
+        <fieldset class="dns-form-fields" :disabled="jobLoading || !!jobId || jobTracking === 'unconfirmed'">
+          <a-form-item name="dnsserverid" ref="dnsserverid">
+            <template #label>
+              <tooltip-label
+                :title="$t('label.dns.server')"
+                :tooltip="apiParams.dnsserverid?.description" />
+            </template>
+            <a-select
+              v-model:value="form.dnsserverid"
+              :placeholder="$t('label.dns.server')"
+              :loading="serverStatus === 'loading'"
+              :disabled="serverStatus !== 'ready' || !!jobId"
+              showSearch
+              optionFilterProp="label">
+              <a-select-option
+                v-for="server in dnsServers"
+                :key="server.id"
+                :value="server.id"
+                :label="server.name">
+                {{ server.name }}
+              </a-select-option>
+            </a-select>
+            <a-alert v-if="serverStatus === 'error'" type="error" show-icon :message="$t('error.fetching.data')">
+              <template #description><a-button size="small" @click="fetchDnsServers">{{ $t('label.retry') }}</a-button></template>
+            </a-alert>
+            <a-alert v-else-if="serverStatus === 'empty'" type="info" show-icon :message="$t('message.dns.no.enabled.servers')" />
+          </a-form-item>
 
-        <a-form-item name="name" ref="name">
-          <template #label>
-            <tooltip-label
-              :title="$t('label.name')"
-              :tooltip="apiParams.name?.description" />
-          </template>
-          <a-input
-            v-model:value="form.name"
-            :placeholder="apiParams.name?.description || 'e.g. example.com'"
-            v-focus="true" />
-        </a-form-item>
+          <a-form-item name="name" ref="name">
+            <template #label>
+              <tooltip-label
+                :title="$t('label.name')"
+                :tooltip="apiParams.name?.description" />
+            </template>
+            <a-input
+              v-model:value="form.name"
+              :placeholder="'example.com'"
+              v-focus="true" />
+          </a-form-item>
 
-        <a-form-item name="description" ref="description">
-          <template #label>
-            <tooltip-label :title="$t('label.description')" :tooltip="apiParams.description.description"/>
-          </template>
-          <a-input
-            v-model:value="form.description"
-            :placeholder="apiParams.description.description"/>
-        </a-form-item>
+          <a-form-item name="description" ref="description">
+            <template #label>
+              <tooltip-label :title="$t('label.description')" :tooltip="apiParams.description?.description"/>
+            </template>
+            <a-input
+              v-model:value="form.description"
+              :placeholder="apiParams.description?.description"/>
+          </a-form-item>
 
-        <a-form-item name="existing" ref="existing">
-          <template #label>
-            <tooltip-label :title="$t('label.existing')" :tooltip="apiParams.existing?.description" />
-          </template>
-          <a-switch v-model:checked="form.existing" />
-        </a-form-item>
+          <a-form-item name="type" :label="$t('label.type')">
+            <a-select v-model:value="form.type" :disabled="jobLoading || !!jobId">
+              <a-select-option value="Public">{{ $t('label.public') }}</a-select-option>
+              <a-select-option value="Private">{{ $t('label.role.visibility.private') }}</a-select-option>
+            </a-select>
+          </a-form-item>
 
-        <div class="action-button">
-          <a-button @click="closeAction">
+          <a-form-item name="existing" ref="existing">
+            <template #label>
+              <tooltip-label :title="$t('label.existing')" :tooltip="apiParams.existing?.description" />
+            </template>
+            <a-switch v-model:checked="form.existing" />
+          </a-form-item>
+        </fieldset>
+
+        <MoldDialogActions :busy="jobLoading">
+          <a-button :disabled="jobLoading" @click="closeAction">
             {{ $t('label.cancel') }}
           </a-button>
           <a-button
             type="primary"
-            :loading="loading"
-            htmlType="submit">
-            {{ $t('label.ok') }}
+            :loading="jobLoading"
+            :disabled="jobTracking === 'unconfirmed' || (!jobId && !canSelectServer)"
+            @click="handleSubmit">
+            {{ $t(jobId ? 'label.dns.job.recheck' : 'label.ok') }}
           </a-button>
-        </div>
+        </MoldDialogActions>
       </a-form>
     </a-spin>
   </div>
 </template>
 
 <script>
-import { getAPI, postAPI } from '@/api'
+import { getAPI } from '@/api'
+import { dnsJob } from './dnsJob'
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 
 export default {
   name: 'CreateDnsZone',
+  mixins: [dnsJob],
   components: {
+    MoldDialogActions,
     TooltipLabel
   },
   data () {
     return {
-      loading: false,
       apiParams: {},
       form: {
         name: '',
         dnsserverid: undefined,
         description: '',
+        type: 'Public',
         existing: false
       },
       rules: {},
-      fetchingServers: false,
+      serverStatus: 'loading',
       dnsServers: []
+    }
+  },
+  computed: {
+    canSelectServer () {
+      return this.serverStatus === 'ready' && this.dnsServers.some(server => server.id === this.form.dnsserverid)
     }
   },
   created () {
@@ -125,10 +150,11 @@ export default {
   },
   methods: {
     async handleSubmit () {
-      if (this.loading) return
+      if (!this.$store.getters.apis?.createDnsZone) return
+      if (this.jobLoading || this.jobTracking === 'unconfirmed' || (!this.jobId && !this.canSelectServer)) return
 
       try {
-        await this.$refs.formRef.validate()
+        if (!this.jobId) await this.$refs.formRef.validate()
       } catch (error) {
         const field = error?.errorFields?.[0]?.name
         if (field) {
@@ -137,86 +163,39 @@ export default {
         return
       }
 
-      this.loading = true
-
-      try {
-        const params = {
-          name: this.form.name.trim(),
-          dnsserverid: this.form.dnsserverid,
-          description: this.form.description?.trim(),
-          existing: this.form.existing
-        }
-
-        const response = await postAPI('createDnsZone', params)
-        const jobId = response.creatednszoneresponse.jobid
-        if (!jobId) {
-          this.$notification.error({
-            message: this.$t('message.request.failed'),
-            description: 'Failed to get jobid for CreateDnsZone',
-            duration: 0
-          })
-          this.loading = false
-          return
-        }
-        this.$pollJob({
-          jobId: jobId,
-          title: this.$t('label.dns.create.zone'),
-          description: params.name,
-          successMethod: () => {
-            this.$notification.success({
-              message: this.$t('label.dns.create.zone'),
-              description: `${this.$t('message.success.create.dns.zone')} ${params.name}`
-            })
-          },
-          loadingMessage: `${this.$t('label.dns.create.zone')} ${params.name} ${this.$t('label.in.progress')}`,
-          catchMessage: this.$t('error.fetching.async.job.result')
-        })
-        this.closeAction()
-      } catch (error) {
-        this.$notification.error({
-          message: this.$t('message.request.failed'),
-          description: error?.response?.headers['x-description'] || error.message,
-          duration: 0
-        })
-        this.loading = false
+      const params = {
+        name: this.form.name.trim(),
+        dnsserverid: this.form.dnsserverid,
+        description: this.form.description?.trim(),
+        type: this.form.type,
+        existing: this.form.existing
       }
+      return this.submitDnsJob('createDnsZone', params, 'label.dns.create.zone', params.name, () => {
+        this.$emit('refresh-data')
+        this.closeAction()
+      })
     },
     closeAction () {
       this.$emit('close-action')
     },
     async fetchDnsServers () {
-      this.fetchingServers = true
+      this.serverStatus = 'loading'
       try {
-        const response = await getAPI('listDnsServers')
-        const listResponse = response?.listdnsserversresponse || {}
-        this.dnsServers = listResponse.dnsserver || []
-        if (this.dnsServers.length > 0) {
-          this.form.dnsserverid = this.dnsServers[0].id
-        }
-      } catch (error) {
-        console.error('Failed to fetch DNS servers', error)
-        this.$message.warning('Could not load DNS servers.')
-      } finally {
-        this.fetchingServers = false
+        const response = await getAPI('listDnsServers', { pagesize: -1 }, { preserveOnFailure: true })
+        const body = response?.listdnsserversresponse
+        if (!body || body.errorcode) throw new Error('listDnsServers')
+        this.dnsServers = (body.dnsserver || []).filter(server => server.state === 'Enabled')
+        if (!this.dnsServers.some(server => server.id === this.form.dnsserverid)) this.form.dnsserverid = undefined
+        this.serverStatus = this.dnsServers.length ? 'ready' : 'empty'
+      } catch {
+        this.serverStatus = 'error'
       }
     }
   }
 }
 </script>
 
-<style lang="less" scoped>
-.form-layout {
-  width: 80vw;
-  @media (min-width: 600px) {
-    width: 450px;
-  }
-}
-
-.action-button {
-  text-align: right;
-  margin-top: 20px;
-}
-.action-button button {
-  margin-left: 8px;
-}
+<style scoped>
+.dns-form-fields { border: 0; padding: 0; min-width: 0; }
+.dns-job-error { margin-bottom: 12px; }
 </style>

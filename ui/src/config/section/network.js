@@ -15,6 +15,8 @@
 // specific language governing permissions and limitations
 // under the License.
 
+import { aclDisplaySupported, aclHasParam, aclListMutable } from '@/utils/vpcAclAccess'
+import { vpnConnectionDisplaySupported } from '@/utils/s2sConnection'
 import { shallowRef, defineAsyncComponent } from 'vue'
 import { hasVnfReinstallJob } from '@/utils/vnfReinstall'
 import { vmStoredUserDataAction, vmVbmcAction, vmUnmanageAction, vmCloneAction } from '@/config/section/vmCommonActions'
@@ -23,6 +25,7 @@ import { vnfStates } from '@/utils/vnfSearch'
 import tungsten from '@/assets/icons/tungsten.svg?inline'
 import { isAdmin, isAdminOrDomainAdmin } from '@/role'
 import { isZoneCreated } from '@/utils/zone'
+import { canCreateVpnUser } from '@/utils/vpnUserCreation'
 import { escapeHtml } from '@/utils/util'
 import { vueProps } from '@/vue-app'
 import { publicIpFilterLabels } from '@/utils/publicIpPresentation'
@@ -37,6 +40,8 @@ import { networkBusy } from '@/utils/networkLifecycle'
 import { canReadNetworkPermissions } from '@/utils/networkPermissions'
 import { vpcRestartParams, vpcRestartReason } from '@/utils/vpcRestart'
 import { vpcMigrationVisible } from '@/utils/vpcMigration'
+import { canDeleteVpnUsers } from '@/utils/vpnUserDeletion'
+import { canDeleteIpv4Subnet, ipv4SubnetFilters } from '@/utils/ipv4Subnet'
 
 const activeFastCloneStatuses = ['pending', 'running']
 const fastCloneOperationBlockedLabel = 'message.sharedmountpoint.clone.flatten.in.progress'
@@ -1139,12 +1144,17 @@ export default {
     },
     {
       name: 's2svpnconn',
+      filters: () => vpnConnectionDisplaySupported(store.getters) ? ['all', 'true', 'false'] : [],
+      filterLabels: { true: 'label.s2s.display.visible', false: 'label.s2s.display.hidden' },
       title: 'label.site.to.site.vpn.connections',
       docHelp: 'adminguide/networking_and_traffic.html#setting-up-a-site-to-site-vpn-connection',
       icon: 'sync-outlined',
       permission: ['listVpnConnections'],
       columns: ['publicip', 'state', 'gateway', 'ipsecpsk', 'ikepolicy', 'esppolicy'],
-      details: ['publicip', 'gateway', 'passive', 'cidrlist', 'ipsecpsk', 'ikepolicy', 'esppolicy', 'ikelifetime', 'ikeversion', 'esplifetime', 'dpd', 'splitconnections', 'forceencap', 'created'],
+      tabs: ['details', 's2s.connection.crypto'].map(name => ({
+        name,
+        component: shallowRef(defineAsyncComponent(() => import('@/views/network/S2sConnectionDetails.vue')))
+      })),
       actions: [
         {
           api: 'createVpnConnection',
@@ -1152,15 +1162,20 @@ export default {
           label: 'label.create.vpn.connection',
           docHelp: 'adminguide/networking_and_traffic.html#creating-a-vpn-connection',
           listView: true,
-          args: ['s2scustomergatewayid', 's2svpngatewayid', 'passive'],
-          mapping: {
-            s2scustomergatewayid: {
-              api: 'listVpnCustomerGateways'
-            },
-            s2svpngatewayid: {
-              api: 'listVpnGateways'
-            }
-          }
+          popup: true,
+          selfManagedDialog: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/network/S2sConnectionDialog.vue')))
+        },
+        {
+          api: 'updateVpnConnection',
+          icon: 'edit-outlined',
+          label: 'label.s2s.display.edit',
+          docHelp: 'adminguide/networking_and_traffic.html#setting-up-a-site-to-site-vpn-connection',
+          dataView: true,
+          show: (row, getters) => vpnConnectionDisplaySupported(getters) && vpnConnectionDisplaySupported(getters, 'updateVpnConnection') && typeof row.fordisplay === 'boolean',
+          popup: true,
+          selfManagedDialog: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/network/S2sConnectionDialog.vue')))
         },
         {
           api: 'resetVpnConnection',
@@ -1168,7 +1183,10 @@ export default {
           label: 'label.reset.vpn.connection',
           message: 'message.reset.vpn.connection',
           docHelp: 'adminguide/networking_and_traffic.html#restarting-and-removing-a-vpn-connection',
-          dataView: true
+          dataView: true,
+          popup: true,
+          selfManagedDialog: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/network/S2sConnectionDialog.vue')))
         },
         {
           api: 'deleteVpnConnection',
@@ -1176,7 +1194,10 @@ export default {
           label: 'label.delete.vpn.connection',
           message: 'message.delete.vpn.connection',
           docHelp: 'adminguide/networking_and_traffic.html#restarting-and-removing-a-vpn-connection',
-          dataView: true
+          dataView: true,
+          popup: true,
+          selfManagedDialog: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/network/S2sConnectionDialog.vue')))
         }
       ]
     },
@@ -1186,8 +1207,12 @@ export default {
       icon: 'bars-outlined',
       docHelp: 'adminguide/networking_and_traffic.html#configuring-network-access-control-list',
       permission: ['listNetworkACLLists'],
-      columns: ['name', 'description', 'id'],
-      details: ['name', 'description', 'id'],
+      columns: getters => ['name', 'description', { field: 'vpcname', customTitle: 'scope' }, ...(aclDisplaySupported(getters) ? ['fordisplay'] : []), 'id'],
+      details: () => ['name', 'scope', 'description', ...(aclDisplaySupported(store.getters) ? ['fordisplay'] : []), 'id'],
+      filters: () => aclDisplaySupported(store.getters) ? ['true', 'false'] : [],
+      filterLabels: { true: 'label.acl.display.visible', false: 'label.acl.display.hidden' },
+      searchFilters: () => ['name', 'vpcid'].filter(field =>
+        aclHasParam(store.getters, 'listNetworkACLLists', field) && (field !== 'vpcid' || 'listVPCs' in store.getters.apis)),
       tabs: [{
         name: 'details',
         component: shallowRef(defineAsyncComponent(() => import('@/components/view/DetailsTab.vue')))
@@ -1203,21 +1228,25 @@ export default {
           label: 'label.add.acl',
           docHelp: 'adminguide/networking_and_traffic.html#creating-acl-lists',
           listView: true,
-          args: ['name', 'description', 'vpcid']
+          args: (row, getters) => ['name', 'description', 'vpcid',
+            ...(aclDisplaySupported(getters, 'createNetworkACLList') ? ['fordisplay'] : [])]
         },
         {
           api: 'updateNetworkACLList',
           icon: 'edit-outlined',
           label: 'label.edit.acl',
           dataView: true,
-          args: ['name', 'description']
+          show: (row, getters) => aclListMutable(row, getters.userInfo?.roletype === 'Admin'),
+          args: (row, getters) => ['name', 'description',
+            ...(aclDisplaySupported(getters, 'updateNetworkACLList') && typeof row?.fordisplay === 'boolean' ? ['fordisplay'] : [])]
         },
         {
           api: 'deleteNetworkACLList',
           icon: 'delete-outlined',
           label: 'label.delete.acl',
           message: 'message.confirm.delete.acl',
-          dataView: true
+          dataView: true,
+          show: (row, getters) => aclListMutable(row, getters.userInfo?.roletype === 'Admin')
         }
       ]
     },
@@ -1277,51 +1306,30 @@ export default {
       title: 'label.vpn.users',
       icon: 'user-switch-outlined',
       permission: ['listVpnUsers'],
-      columns: ['username', 'state', 'account', 'domain'],
-      details: ['username', 'state', 'account', 'domain'],
+      searchFilters: ['username', 'domainid', 'account'],
+      columns: ['username', 'state', 'owners'],
+      details: ['state', 'owners', 'id'],
       actions: [
         {
           api: 'addVpnUser',
           icon: 'plus-outlined',
           label: 'label.add.vpn.user',
           listView: true,
-          show: isZoneCreated,
-          args: (record, store) => {
-            if (store.userInfo.roletype === 'User') {
-              return ['username', 'password']
-            }
-
-            return ['username', 'password', 'domainid', 'account']
-          }
+          show: (record, store) => isZoneCreated() && canCreateVpnUser(store),
+          popup: true,
+          selfManagedDialog: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/network/VpnUserCreateDialog.vue')))
         },
         {
           api: 'removeVpnUser',
           icon: 'delete-outlined',
           label: 'label.delete.vpn.user',
-          message: 'message.action.delete.vpn.user',
+          toolbarLabel: 'label.vpn.user.delete.selected',
           dataView: true,
-          args: ['username', 'domainid', 'account'],
-          mapping: {
-            username: {
-              value: (record) => { return record.username }
-            },
-            domainid: {
-              value: (record) => { return record.domainid }
-            },
-            account: {
-              value: (record) => { return record.account }
-            }
-          },
+          show: (record, store) => canDeleteVpnUsers(store),
           groupAction: true,
-          popup: true,
-          groupMap: (selection, values, record) => {
-            return selection.map(x => {
-              const data = record.filter(y => { return y.id === x })
-              return {
-                username: data[0].username, account: data[0].account, domainid: data[0].domainid
-              }
-            })
-          }
+          groupShow: (records, store) => canDeleteVpnUsers(store),
+          popup: true
         }
       ]
     },
@@ -1330,21 +1338,14 @@ export default {
       title: 'label.vpncustomergatewayid',
       icon: 'lock-outlined',
       permission: ['listVpnCustomerGateways'],
-      columns: () => {
-        var fields = ['name', 'gateway', 'cidrlist', 'ipsecpsk', 'account']
-        if (store.getters.listAllProjects) {
-          fields.push('project')
-        }
-        fields.push('domain')
-        return fields
-      },
+      columns: ['name', 'gateway', 'project', 'account', 'domain', 'cidrlist'],
       details: ['name', 'id', 'gateway', 'cidrlist', 'ipsecpsk', 'ikepolicy', 'ikelifetime', 'ikeversion', 'esppolicy', 'esplifetime', 'dpd', 'splitconnections', 'forceencap', 'account', 'domain'],
-      searchFilters: ['keyword', 'domainid', 'account'],
+      searchFilters: ['keyword', 'id', 'domainid', 'account'],
       resourceType: 'VPNCustomerGateway',
       tabs: [
         {
           name: 'details',
-          component: shallowRef(defineAsyncComponent(() => import('@/components/view/DetailsTab.vue')))
+          component: shallowRef(defineAsyncComponent(() => import('@/views/network/VpnCustomerGatewayDetails.vue')))
         },
         {
           name: 'events',
@@ -1366,7 +1367,8 @@ export default {
           listView: true,
           popup: true,
           show: isZoneCreated,
-          component: shallowRef(defineAsyncComponent(() => import('@/views/network/CreateVpnCustomerGateway.vue')))
+          selfManagedDialog: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/network/VpnCustomerGatewayDialog.vue')))
         },
         {
           api: 'updateVpnCustomerGateway',
@@ -1375,7 +1377,8 @@ export default {
           docHelp: 'adminguide/networking_and_traffic.html#updating-and-removing-a-vpn-customer-gateway',
           dataView: true,
           popup: true,
-          component: shallowRef(defineAsyncComponent(() => import('@/views/network/UpdateVpnCustomerGateway.vue')))
+          selfManagedDialog: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/network/VpnCustomerGatewayDialog.vue')))
         },
         {
           api: 'deleteVpnCustomerGateway',
@@ -1385,8 +1388,10 @@ export default {
           docHelp: 'adminguide/networking_and_traffic.html#updating-and-removing-a-vpn-customer-gateway',
           dataView: true,
           groupAction: true,
+          toolbarLabel: 'label.delete.vpn.customer.gateway',
           popup: true,
-          groupMap: (selection) => { return selection.map(x => { return { id: x } }) }
+          selfManagedDialog: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/network/VpnCustomerGatewayDeleteDialog.vue')))
         }
       ]
     },
@@ -1543,7 +1548,7 @@ export default {
       filters: ['allocatedonly', 'all'],
       columns: ['vlan', 'allocationstate', 'physicalnetworkname', 'taken', 'account', 'project', 'domain', 'zonename', 'guest.networks'],
       details: ['vlan', 'allocationstate', 'physicalnetworkname', 'taken', 'account', 'project', 'domain', 'isdedicated', 'zonename'],
-      searchFilters: ['zoneid'],
+      searchFilters: () => ['zoneid', ...('listPhysicalNetworks' in store.getters.apis ? ['physicalnetworkid'] : []), 'vnet'],
       tabs: [{
         name: 'details',
         component: shallowRef(defineAsyncComponent(() => import('@/components/view/DetailsTab.vue')))
@@ -1559,9 +1564,9 @@ export default {
       title: 'label.ipv4.subnets',
       icon: 'pic-center-outlined',
       permission: ['listIpv4SubnetsForGuestNetwork'],
-      columns: ['subnet', 'zonename', 'parentsubnet', 'networkname', 'vpcname', 'created', 'allocated'],
-      details: ['subnet', 'zonename', 'zoneid', 'parentsubnet', 'networkname', 'networkid', 'vpcname', 'vpcid', 'created', 'allocated', 'state'],
-      searchFilters: ['zoneid'],
+      columns: ['subnet', 'zonename', 'parentsubnet', 'networkname', 'vpcname', 'created', 'allocated', 'state'],
+      details: ['subnet', 'zonename', 'parentsubnet', 'networkname', 'vpcname', 'created', 'allocated', 'state'],
+      searchFilters: ipv4SubnetFilters,
       show: () => {
         if (!store.getters.zones || store.getters.zones.length === 0) {
           return false
@@ -1577,6 +1582,7 @@ export default {
           api: 'createIpv4SubnetForGuestNetwork',
           icon: 'plus-outlined',
           label: 'label.add.ipv4.subnet',
+          standardDialogSize: 'md',
           listView: true,
           popup: true,
           component: shallowRef(defineAsyncComponent(() => import('@/views/network/CreateIpv4SubnetForNetwork.vue')))
@@ -1585,12 +1591,13 @@ export default {
           api: 'deleteIpv4SubnetForGuestNetwork',
           icon: 'delete-outlined',
           label: 'label.delete.ipv4.subnet',
-          message: 'message.action.delete.ipv4.subnet',
           dataView: true,
-          show: (record) => { return !record.networkid },
+          show: canDeleteIpv4Subnet,
           groupAction: true,
+          groupShow: selection => selection.some(canDeleteIpv4Subnet),
           popup: true,
-          groupMap: (selection) => { return selection.map(x => { return { id: x } }) }
+          selfManagedDialog: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/network/DeleteIpv4Subnet.vue')))
         }
       ]
     },
@@ -1599,8 +1606,9 @@ export default {
       title: 'label.dns.zones',
       icon: 'apartment-outlined',
       permission: ['listDnsZones'],
-      columns: ['name', 'state', 'dnsservername', 'account', 'description'],
-      details: ['name', 'id', 'state', 'dnsservername', 'dnsserverid', 'account', 'domainpath', 'description'],
+      searchFilters: () => ['listDnsServers' in store.getters.apis && store.getters.apis.listDnsZones?.params?.some(param => param.name === 'dnsserverid') ? 'dnsserverid' : null].filter(Boolean),
+      columns: ['name', 'state', 'type', 'dnsservername', 'account', 'description'],
+      details: ['name', 'id', 'state', 'type', 'dnsservername', 'account', 'domain', 'associatednetworks', 'description'],
       tabs: [{
         name: 'details',
         component: shallowRef(defineAsyncComponent(() => import('@/components/view/DetailsTab.vue')))
@@ -1608,7 +1616,7 @@ export default {
       {
         name: 'dns.records',
         component: shallowRef(defineAsyncComponent(() => import('@/views/network/dns/DnsRecordsTab.vue'))),
-        show: () => true
+        permission: ['listDnsRecords']
       }],
       actions: [
         {
@@ -1617,10 +1625,9 @@ export default {
           label: 'label.dns.create.zone',
           listView: true,
           popup: true,
+          standardDialogSize: 'md',
           component: shallowRef(defineAsyncComponent(() => import('@/views/network/dns/CreateDnsZone.vue'))),
-          show: () => {
-            return true
-          }
+          show: (_, context) => !!context.apis?.listDnsServers
         },
         {
           api: 'updateDnsZone',
@@ -1628,6 +1635,7 @@ export default {
           label: 'label.dns.update.zone',
           dataView: true,
           popup: true,
+          standardDialogSize: 'md',
           show: (record, store) => { return record.account === store.userInfo.account || isAdminOrDomainAdmin(store.userInfo.roletype) },
           component: shallowRef(defineAsyncComponent(() => import('@/views/network/dns/UpdateDnsZone.vue')))
         },
@@ -1638,6 +1646,7 @@ export default {
           message: 'message.action.delete.dns.zone',
           dataView: true,
           popup: true,
+          standardDialogSize: 'md',
           component: shallowRef(defineAsyncComponent(() => import('@/views/network/dns/DeleteDnsZone.vue'))),
           show: (record, store) => { return record.account === store.userInfo.account || isAdminOrDomainAdmin(store.userInfo.roletype) },
           groupAction: false
@@ -1649,8 +1658,9 @@ export default {
       title: 'label.dns.servers',
       icon: 'cloud-server-outlined',
       permission: ['listDnsServers'],
-      columns: ['name', 'url', 'provider', 'ispublic', 'port', 'nameservers', 'publicdomainsuffix'],
-      details: ['name', 'url', 'provider', 'ispublic', 'port', 'nameservers', 'publicdomainsuffix', 'domain', 'account'],
+      searchFilters: () => ['listDnsProviders' in store.getters.apis && store.getters.apis.listDnsServers?.params?.some(param => param.name === 'providertype') ? 'providertype' : null].filter(Boolean),
+      columns: ['name', 'state', 'url', 'provider', 'ispublic', 'port', 'nameservers', 'publicdomainsuffix'],
+      details: ['name', 'state', 'url', 'provider', 'ispublic', 'port', 'nameservers', 'publicdomainsuffix', 'domain', 'account'],
       related: [{
         name: 'dnszone',
         title: 'label.dns.zone',
@@ -1663,6 +1673,7 @@ export default {
           label: 'label.dns.add.server',
           listView: true,
           popup: true,
+          standardDialogSize: 'md',
           component: shallowRef(defineAsyncComponent(() => import('@/views/network/dns/AddDnsServer.vue'))),
           show: () => {
             return true
@@ -1674,6 +1685,7 @@ export default {
           label: 'label.dns.update.server',
           dataView: true,
           popup: true,
+          standardDialogSize: 'md',
           show: (record, store) => { return record.account === store.userInfo.account || isAdminOrDomainAdmin(store.userInfo.roletype) },
           component: shallowRef(defineAsyncComponent(() => import('@/views/network/dns/UpdateDnsServer.vue')))
         },
@@ -1684,6 +1696,7 @@ export default {
           message: 'message.action.delete.dns.server',
           dataView: true,
           popup: true,
+          standardDialogSize: 'md',
           component: shallowRef(defineAsyncComponent(() => import('@/views/network/dns/DeleteDnsServer.vue'))),
           show: (record, store) => { return record.account === store.userInfo.account || isAdminOrDomainAdmin(store.userInfo.roletype) },
           groupAction: false,

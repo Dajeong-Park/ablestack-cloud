@@ -16,33 +16,42 @@
 // under the License.
 
 <template>
-  <a-modal
+  <component
+    :is="standardDialog ? 'MoldDialog' : 'a-modal'"
+    v-bind="standardDialog ? { size: 'md', formActions: true, focusGuard: true } : { footer: null }"
     :visible="dedicatedDomainModal"
     :title="label"
     :closable="true"
     :maskClosable="false"
-    :footer="null"
     @cancel="closeModal">
     <div v-ctrl-enter="handleDedicateForm">
+      <cluster-action-context v-if="$route.meta.name === 'cluster'" :resource="resource" impact="message.cluster.dedicate.confirm" />
+      <a-alert v-if="zoneError" type="error" show-icon :message="zoneError" />
       <DedicateDomain
-        @domainChange="id => domainId = id"
+        @domainChange="id => { domainId = id; dedicatedAccount = null }"
         @accountChange="id => dedicatedAccount = id"
         :error="domainError" />
-      <div :span="24" class="action-button">
+      <component :is="standardDialog ? 'MoldDialogActions' : 'div'" :class="{ 'action-button': !standardDialog }" v-bind="standardDialog ? { busy: isSubmitted } : {}">
         <a-button @click="closeModal">{{ $t('label.cancel') }}</a-button>
-        <a-button type="primary" ref="submit" @click="handleDedicateForm">{{ $t('label.ok') }}</a-button>
-      </div>
+        <a-button type="primary" ref="submit" @click="handleDedicateForm">{{ $t(zoneJob ? 'label.zone.update.recheck' : 'label.ok') }}</a-button>
+      </component>
     </div>
-  </a-modal>
+  </component>
 </template>
 
 <script>
 import { postAPI } from '@/api'
 import DedicateDomain from './DedicateDomain'
+import ClusterActionContext from '@/views/infra/ClusterActionContext.vue'
+import MoldDialog from './MoldDialog'
+import MoldDialogActions from './MoldDialogActions'
 
 export default {
   components: {
-    DedicateDomain
+    DedicateDomain,
+    ClusterActionContext,
+    MoldDialog,
+    MoldDialogActions
   },
   inject: ['parentFetchData'],
   props: {
@@ -69,12 +78,22 @@ export default {
       domainId: null,
       dedicatedAccount: null,
       domainError: false,
-      isSubmitted: false
+      isSubmitted: false,
+      zoneError: '',
+      zoneJob: ''
     }
+  },
+  computed: {
+    zoneDialog () { return this.$route.meta.name === 'zone' },
+    standardDialog () { return this.zoneDialog || ['host', 'cluster'].includes(this.$route.meta.name) }
   },
   watch: {
     active () {
       this.dedicatedDomainModal = this.active
+      if (this.active && this.standardDialog) {
+        this.zoneError = ''
+        this.zoneJob = ''
+      }
     }
   },
   mounted () {
@@ -87,47 +106,39 @@ export default {
     closeModal () {
       this.$emit('close')
     },
-    dedicateZone () {
+    async dedicateZone () {
+      this.zoneError = ''
       if (!this.domainId) {
         this.domainError = true
+        this.isSubmitted = false
         return
       }
-      postAPI('dedicateZone', {
-        zoneId: this.resource.id,
-        domainId: this.domainId,
-        account: this.dedicatedAccount
-      }).then(response => {
-        this.$pollJob({
-          jobId: response.dedicatezoneresponse.jobid,
-          title: this.$t('label.dedicate.zone'),
-          description: `${this.$t('label.domain.id')} : ${this.domainId}`,
-          successMessage: `${this.$t('label.zone.dedicated')}`,
-          successMethod: () => {
-            this.fetchParentData()
-            this.dedicatedDomainId = this.domainId
-            this.dedicatedDomainModal = false
-            this.isSubmitted = false
-          },
-          errorMessage: this.$t('error.dedicate.zone.failed'),
-          errorMethod: () => {
-            this.fetchParentData()
-            this.dedicatedDomainModal = false
-            this.isSubmitted = false
-          },
-          loadingMessage: this.$t('message.dedicating.zone'),
-          catchMessage: this.$t('error.fetching.async.job.result'),
-          catchMethod: () => {
-            this.parentFetchData()
-            this.fetchParentData()
-            this.dedicatedDomainModal = false
-            this.isSubmitted = false
-          }
-        })
-      }).catch(error => {
-        this.$notifyError(error)
-        this.dedicatedDomainModal = false
+      try {
+        const retry = !!this.zoneJob
+        if (!retry) {
+          const response = await postAPI('dedicateZone', {
+            zoneId: this.resource.id,
+            domainId: this.domainId,
+            account: this.dedicatedAccount
+          }, { preserveOnFailure: true })
+          this.zoneJob = response.dedicatezoneresponse?.jobid
+        }
+        if (!this.zoneJob) throw new Error(this.$t('message.job.result.unknown'))
+        const result = await this.$pollJob({ jobId: this.zoneJob, retry, showLoading: false, successMessage: this.$t('label.zone.dedicated'), errorMessage: this.$t('error.dedicate.zone.failed') })
+        if (result.jobstatus === 1) {
+          this.fetchParentData()
+          this.closeModal()
+        } else if (result.jobstatus === 2) {
+          this.zoneJob = ''
+          this.zoneError = this.$t('error.dedicate.zone.failed')
+        } else {
+          this.zoneError = this.$t('message.job.result.unknown')
+        }
+      } catch (error) {
+        this.zoneError = Object.values(error.response?.data || {}).find(item => item?.errortext)?.errortext || error.message
+      } finally {
         this.isSubmitted = false
-      })
+      }
     },
     dedicatePod () {
       if (!this.domainId) {
@@ -171,89 +182,43 @@ export default {
         this.isSubmitted = false
       })
     },
-    dedicateCluster () {
+    async dedicateHostOrCluster () {
+      const scope = this.$route.meta.name
+      const api = scope === 'host' ? 'dedicateHost' : 'dedicateCluster'
+      const failure = 'error.dedicate.' + scope + '.failed'
+      this.zoneError = ''
       if (!this.domainId) {
         this.domainError = true
+        this.isSubmitted = false
         return
       }
-      postAPI('dedicateCluster', {
-        clusterId: this.resource.id,
-        domainId: this.domainId,
-        account: this.dedicatedAccount
-      }).then(response => {
-        this.$pollJob({
-          jobId: response.dedicateclusterresponse.jobid,
-          title: this.$t('label.dedicate.cluster'),
-          description: `${this.$t('label.domain.id')} : ${this.domainId}`,
-          successMessage: this.$t('message.cluster.dedicated'),
-          successMethod: () => {
-            this.fetchParentData()
-            this.dedicatedDomainId = this.domainId
-            this.dedicatedDomainModal = false
-            this.isSubmitted = false
-          },
-          errorMessage: this.$t('error.dedicate.cluster.failed'),
-          errorMethod: () => {
-            this.fetchParentData()
-            this.dedicatedDomainModal = false
-            this.isSubmitted = false
-          },
-          loadingMessage: this.$t('message.dedicating.cluster'),
-          catchMessage: this.$t('error.fetching.async.job.result'),
-          catchMethod: () => {
-            this.parentFetchData()
-            this.fetchParentData()
-            this.dedicatedDomainModal = false
-            this.isSubmitted = false
-          }
-        })
-      }).catch(error => {
-        this.$notifyError(error)
-        this.dedicatedDomainModal = false
+      try {
+        const retry = !!this.zoneJob
+        if (!retry) {
+          const response = await postAPI(api, {
+            [scope + 'id']: this.resource.id,
+            domainid: this.domainId,
+            account: this.dedicatedAccount
+          }, { preserveOnFailure: true })
+          this.zoneJob = response[api.toLowerCase() + 'response']?.jobid
+        }
+        if (!this.zoneJob) throw new Error(this.$t('message.job.result.unknown'))
+        const result = await this.$pollJob({ jobId: this.zoneJob, retry, showLoading: false, successMessage: this.$t('message.' + scope + '.dedicated'), errorMessage: this.$t(failure) })
+        if (result.jobstatus === 1) {
+          this.zoneJob = ''
+          this.fetchParentData()
+          this.closeModal()
+        } else if (result.jobstatus === 2) {
+          this.zoneJob = ''
+          this.zoneError = this.$t(failure)
+        } else {
+          this.zoneError = this.$t('message.job.result.unknown')
+        }
+      } catch (error) {
+        this.zoneError = Object.values(error.response?.data || {}).find(item => item?.errortext)?.errortext || error.message
+      } finally {
         this.isSubmitted = false
-      })
-    },
-    dedicateHost () {
-      if (!this.domainId) {
-        this.domainError = true
-        return
       }
-      postAPI('dedicateHost', {
-        hostId: this.resource.id,
-        domainId: this.domainId,
-        account: this.dedicatedAccount
-      }).then(response => {
-        this.$pollJob({
-          jobId: response.dedicatehostresponse.jobid,
-          title: this.$t('label.dedicate.host'),
-          description: `${this.$t('label.domain.id')} : ${this.domainId}`,
-          successMessage: this.$t('message.host.dedicated'),
-          successMethod: () => {
-            this.fetchParentData()
-            this.dedicatedDomainId = this.domainId
-            this.dedicatedDomainModal = false
-            this.isSubmitted = false
-          },
-          errorMessage: this.$t('error.dedicate.host.failed'),
-          errorMethod: () => {
-            this.fetchParentData()
-            this.dedicatedDomainModal = false
-            this.isSubmitted = false
-          },
-          loadingMessage: this.$t('message.dedicating.host'),
-          catchMessage: this.$t('error.fetching.async.job.result'),
-          catchMethod: () => {
-            this.parentFetchData()
-            this.fetchParentData()
-            this.dedicatedDomainModal = false
-            this.isSubmitted = false
-          }
-        })
-      }).catch(error => {
-        this.$notifyError(error)
-        this.dedicatedDomainModal = false
-        this.isSubmitted = false
-      })
     },
     handleDedicateForm () {
       if (this.isSubmitted) {
@@ -266,11 +231,8 @@ export default {
       if (this.$route.meta.name === 'pod') {
         this.dedicatePod()
       }
-      if (this.$route.meta.name === 'cluster') {
-        this.dedicateCluster()
-      }
-      if (this.$route.meta.name === 'host') {
-        this.dedicateHost()
+      if (['host', 'cluster'].includes(this.$route.meta.name)) {
+        this.dedicateHostOrCluster()
       }
     }
   }

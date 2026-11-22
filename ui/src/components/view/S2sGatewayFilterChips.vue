@@ -16,9 +16,8 @@
 // under the License.
 
 <template>
-  <a-row v-if="chips.length || validationError || verification" class="s2s-gateway-filter-row" style="min-height: 36px; padding-top: 12px; padding-left: 12px;">
+  <a-row v-if="chips.length" class="s2s-gateway-filter-row" style="min-height: 36px; padding-top: 12px; padding-left: 12px;">
     <a-tag v-for="chip in chips" :key="chip.key" closable @close.prevent="remove(chip.key)"><span :title="chip.value">{{ chip.label }}: {{ chip.value }}</span></a-tag>
-    <span v-if="validationError || verification" role="status" class="s2s-gateway-search-verification">{{ $t('message.s2s.gateway.search.' + (validationError || verification)) }}</span>
   </a-row>
 </template>
 <script>
@@ -26,12 +25,12 @@ import { getAPI } from '@/api'
 import { s2sGatewayAuth, s2sGatewayFields, s2sGatewayPickerConfig, s2sGatewayQuery, s2sGatewayError, s2sGatewaySelection } from '@/utils/s2sGatewaySearch'
 export default {
   name: 'S2sGatewayFilterChips',
-  props: { validationError: { type: String, default: '' } },
+  props: { validationError: { type: String, default: '' }, apiName: { type: String, default: 'listVpnGateways' } },
   emits: ['search'],
-  data () { return { labels: {}, verification: '', version: 0, disposed: false } },
+  data () { return { labels: {}, version: 0, disposed: false } },
   computed: {
     auth () { return s2sGatewayAuth(this.$store.getters, this.$store.state?.user?.token) },
-    chips () { return s2sGatewayFields.filter(key => this.$route.query[key]).map(key => ({ key, label: this.$t(key === 'id' ? 'label.id' : this.config(key).label), value: (!this.validationError && this.labels[key]) || String(this.$route.query[key]) + (key !== 'id' && (this.verification || this.validationError) ? ' · ' + this.$t('message.s2s.gateway.search.unverified') : '') })) }
+    chips () { return s2sGatewayFields.filter(key => this.$route.query[key]).map(key => ({ key, label: this.$t(key === 'id' ? 'label.id' : this.config(key).label), value: (!this.validationError && this.labels[key]) || String(this.$route.query[key]) })) }
   },
   watch: {
     auth: { flush: 'sync', handler () { this.labels = {}; this.verify() } },
@@ -43,12 +42,12 @@ export default {
     async verify () {
       const version = ++this.version; const auth = this.auth
       const current = () => !this.disposed && version === this.version && auth === this.auth
-      this.labels = {}; this.verification = s2sGatewayFields.some(key => this.$route.query[key]) ? 'checking' : ''
-      const query = s2sGatewayQuery(this.$route.query, 20, this.$store.getters)
-      const error = s2sGatewayError(query, this.$store.getters, this.$getApiParams('listVpnGateways'))
-      if (error) { if (this.chips.length) this.verification = error; return }
+      this.labels = {}
       if (!this.chips.length) return
-      try { const labels = await s2sGatewaySelection(getAPI, query, this.$store.getters, current); if (current()) { this.labels = labels; this.verification = '' } } catch (error) { if (current()) this.verification = ['permission', 'scope', 'missing'].includes(error.message) ? error.message : 'lookup' }
+      const query = s2sGatewayQuery(this.$route.query, 20, this.$store.getters, this.apiName)
+      if (s2sGatewayError(query, this.$store.getters, this.$getApiParams(this.apiName), this.apiName)) return
+      const labels = await s2sGatewaySelection(getAPI, query, this.$store.getters, current).catch(() => null)
+      if (labels && current()) this.labels = labels
     },
     remove (key) {
       const query = { ...this.$route.query }
@@ -61,5 +60,4 @@ export default {
 <style scoped>
 .s2s-gateway-filter-row { align-items: center; row-gap: 4px; min-width: 0; }
 .s2s-gateway-filter-row :deep(.ant-tag) { max-width: 100%; white-space: normal; overflow-wrap: anywhere; }
-.s2s-gateway-search-verification { color: var(--ui-text-secondary); overflow-wrap: anywhere; }
 </style>

@@ -84,6 +84,7 @@
       v-if="showUploadForm"
       class="ssl-cert-upload-dialog"
       size="md"
+      :focus-guard="$route.meta.name === 'account'"
       :title="$t('label.upload.ssl.certificate')"
       :closable="!uploading"
       :keyboard="!uploading"

@@ -89,3 +89,42 @@ test('an authorized named URL project is restored with its query intact and one 
   getAPI.mockResolvedValueOnce({ listprojectsresponse: { count: 1, project: [project] } }).mockResolvedValueOnce(reply({ ...linked, state: 'Reserved', projectid: project.id }))
   await c.fetchData(); expect(store.getters.project.id).toBe(project.id); expect(c.$route.query.state).toBe('Reserved'); expect(getAPI).toHaveBeenCalledTimes(2); expect(c.items).toHaveLength(1)
 })
+
+function chipState () {
+  c.$config = { showSearchFilters: true }
+  c.activeFiltersList = Autogen.computed.activeFiltersList.call(c)
+  return Autogen.computed.showSearchFilters.call(c)
+}
+
+test('Root unfiltered entry selects all, sends an unallocated-capable read and renders no filter row', async () => {
+  c.$route.query = {}
+  expect(Autogen.computed.filterValue.call(c)).toBe('all')
+  route()
+  getAPI.mockResolvedValueOnce({ listpublicipaddressesresponse: { count: 3, publicipaddress: [linked, { ...free, state: 'Free' }, { id: 'reserved', state: 'Reserved' }] } })
+  await c.fetchData()
+  expect(getAPI.mock.calls[0][1]).toMatchObject({ allocatedonly: false, ignoreproject: true })
+  expect(getAPI.mock.calls[0][1]).not.toHaveProperty('state')
+  expect(c.items.map(row => row.state)).toEqual(['Allocated', 'Free', 'Reserved'])
+  expect(chipState()).toBe(false)
+})
+
+test.each(['Allocated', 'Reserved', 'Free', 'Allocating', 'Releasing'])('explicit %s selection keeps its chip and clearing it restores all', state => {
+  route({ state, page: '3', pagesize: '50' })
+  expect(Autogen.computed.filterValue.call(c)).toBe(state.toLowerCase())
+  expect(chipState()).toBe(true)
+  expect(c.activeFiltersList).toContainEqual({ key: 'state', value: state, isTag: false })
+  c.removeFilter({ key: 'state' })
+  const query = c.$router.push.mock.calls[0][0].query
+  expect(query.filter).toBe('all')
+  expect(query).not.toHaveProperty('state')
+  expect(query.page).toBe('1')
+  route(query)
+  expect(chipState()).toBe(false)
+})
+
+test('all hides the default state chip while preserving an active display predicate', () => {
+  route({ filter: 'all', fordisplay: 'false' })
+  expect(chipState()).toBe(true)
+  expect(c.activeFiltersList).toContainEqual({ key: 'fordisplay', value: 'false', isTag: false })
+  expect(c.activeFiltersList.some(filter => ['state', 'filter'].includes(filter.key))).toBe(false)
+})

@@ -17,13 +17,27 @@
 
 import { shallowRef, defineAsyncComponent } from 'vue'
 import store from '@/store'
+import { kmsDetails, kmsSearchFields } from '@/utils/kmsSearch'
+
+import { actionAvailability, kmsAvailabilityLabel } from '@/utils/kmsAvailability'
+
+const availability = api => {
+  const reason = (resource, getters) => actionAvailability(api, { resource, scope: { role: getters.userInfo?.roletype }, apis: getters.apis })
+  return {
+    disabled: (resource, getters) => !!reason(resource, getters),
+    tooltip: (resource, getters) => kmsAvailabilityLabel(reason(resource, getters))
+  }
+}
+
+const relatedTab = shallowRef(defineAsyncComponent(() => import('@/views/infra/KmsRelatedResources.vue')))
+const operationDialog = shallowRef(defineAsyncComponent(() => import('@/views/infra/KmsOperationDialog.vue')))
 
 export default {
   name: 'kms',
   title: 'label.kms',
   icon: 'lock-outlined',
   show: () => {
-    return ['Admin'].includes(store.getters.userInfo.roletype) || store.getters.features.hashsmprofiles
+    return ['listKMSKeys', 'listHSMProfiles'].some(api => api in store.getters.apis)
   },
   children: [
     {
@@ -32,6 +46,7 @@ export default {
       icon: 'file-text-outlined',
       permission: ['listKMSKeys'],
       resourceType: 'KMSKey',
+      docHelp: 'adminguide/kms.html',
       columns: () => {
         const fields = ['name', 'enabled', 'hsmprofile']
         if (['Admin', 'DomainAdmin'].includes(store.getters.userInfo.roletype)) {
@@ -43,14 +58,7 @@ export default {
         fields.push('domainpath')
         return fields
       },
-      details: () => {
-        const fields = ['id', 'name', 'description', 'version']
-        if (['Admin'].includes(store.getters.userInfo.roletype)) {
-          fields.push('keklabel')
-        }
-        fields.push('keybits', 'enabled', 'account', 'domainpath', 'project', 'created', 'hsmprofile')
-        return fields
-      },
+      details: () => kmsDetails('kmskey', store.getters.userInfo.roletype),
       related: [
         {
           name: 'volume',
@@ -64,6 +72,11 @@ export default {
           component: shallowRef(defineAsyncComponent(() => import('@/components/view/DetailsTab.vue')))
         },
         {
+          name: 'kms.used.volumes',
+          component: relatedTab,
+          show: () => 'listVolumes' in store.getters.apis
+        },
+        {
           name: 'events',
           resourceType: 'KmsKey',
           component: shallowRef(defineAsyncComponent(() => import('@/components/view/EventsTab.vue'))),
@@ -72,102 +85,67 @@ export default {
           }
         }
       ],
-      searchFilters: () => {
-        var filters = ['zoneid', 'hsmprofileid']
-        if (store.getters.userInfo.roletype === 'Admin') {
-          filters.push('domainid', 'account', 'projectid')
-        }
-        return filters
-      },
+      searchFilters: () => kmsSearchFields('listKMSKeys', store.getters),
       actions: [
         {
           api: 'createKMSKey',
+          ...availability('createKMSKey'),
           icon: 'plus-outlined',
           label: 'label.create.kms.key',
           docHelp: 'adminguide/kms.html#creating-a-kms-key',
           listView: true,
           popup: true,
-          dataView: false,
-          args: (record, store, group) => {
-            return ['Admin'].includes(store.userInfo.roletype)
-              ? ['zoneid', 'domainid', 'account', 'projectid', 'name', 'description', 'hsmprofileid', 'keybits']
-              : ['zoneid', 'name', 'description', 'hsmprofileid', 'keybits']
-          },
-          mapping: {
-            hsmprofileid: {
-              api: 'listHSMProfiles',
-              params: (record) => { return { enabled: true } }
-            }
-          }
+          selfManagedDialog: true,
+          component: operationDialog,
+          dataView: false
         },
         {
           api: 'updateKMSKey',
+          ...availability('updateKMSKey'),
           icon: 'edit-outlined',
           label: 'label.update.kms.key',
           dataView: true,
           popup: true,
-          args: ['id', 'name', 'description', 'enabled'],
-          mapping: {
-            id: {
-              value: (record) => record.id
-            }
-          }
+          selfManagedDialog: true,
+          component: operationDialog
         },
         {
           api: 'rotateKMSKey',
+          ...availability('rotateKMSKey'),
           icon: 'sync-outlined',
           docHelp: 'adminguide/kms.html#rotating-a-kms-key',
           label: 'label.rotate.kms.key',
           dataView: true,
           popup: true,
-          args: ['id', 'keybits', 'hsmprofileid'],
-          mapping: {
-            id: {
-              value: (record) => record.id
-            }
-          }
+          selfManagedDialog: true,
+          component: operationDialog
         },
         {
           api: 'migrateVolumesToKMS',
+          ...availability('migrateVolumesToKMS'),
           icon: 'swap-outlined',
           docHelp: 'adminguide/kms.html#migrating-existing-volumes-to-kms',
           label: 'label.migrate.volumes.to.kms',
           message: 'message.action.migrate.volumes.to.kms',
           dataView: true,
+          selfManagedDialog: true,
           popup: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/compute/MigrateVolumesToKMS.vue'))),
           show: (record, store) => {
             return ['Admin'].includes(store.userInfo.roletype)
           },
-          args: (record, store) => {
-            var fields = ['domainid', 'account', 'kmskeyid', 'volumeids']
-            if (!['Admin'].includes(store.userInfo.roletype)) {
-              fields = ['kmskeyid', 'volumeids']
-            }
-            return fields
-          },
-          mapping: {
-            kmskeyid: {
-              value: (record) => record.id
-            },
-            volumeids: {
-              api: 'listVolumes',
-              params: (record) => { return { account: record.account, domainid: record.domainid, zoneid: record.zoneid } }
-            }
-          }
+          args: ['kmskeyid', 'volumeids']
         },
         {
           api: 'deleteKMSKey',
+          ...availability('deleteKMSKey'),
           icon: 'delete-outlined',
           label: 'label.delete.kms.key',
           message: 'message.action.delete.kms.key',
           dataView: true,
           popup: true,
-          args: ['id'],
-          mapping: {
-            id: {
-              value: (record) => record.id
-            }
-          }
+          selfManagedDialog: true,
+          component: operationDialog
         }
       ]
     },
@@ -176,10 +154,10 @@ export default {
       title: 'label.hsm.profile',
       icon: 'safety-outlined',
       permission: ['listHSMProfiles'],
-      show: () => { return ['Admin'].includes(store.getters.userInfo.roletype) },
       resourceType: 'HSMProfile',
+      docHelp: 'adminguide/kms.html',
       columns: () => {
-        const fields = ['name', 'enabled', 'ispublic']
+        const fields = ['name', 'protocol', 'enabled', 'ispublic']
         if (['Admin', 'DomainAdmin'].includes(store.getters.userInfo.roletype)) {
           fields.push('account')
         }
@@ -189,7 +167,7 @@ export default {
         fields.push('domainpath')
         return fields
       },
-      details: ['id', 'name', 'description', 'protocol', 'enabled', 'ispublic', 'account', 'domainpath', 'project', 'created', 'details'],
+      details: () => kmsDetails('hsmprofile', store.getters.userInfo.roletype),
       related: [
         {
           name: 'kmskey',
@@ -203,6 +181,11 @@ export default {
           component: shallowRef(defineAsyncComponent(() => import('@/components/view/DetailsTab.vue')))
         },
         {
+          name: 'kms.related.keys',
+          component: relatedTab,
+          show: () => 'listKMSKeys' in store.getters.apis
+        },
+        {
           name: 'events',
           resourceType: 'HsmProfile',
           component: shallowRef(defineAsyncComponent(() => import('@/components/view/EventsTab.vue'))),
@@ -211,67 +194,49 @@ export default {
           }
         }
       ],
-      searchFilters: () => {
-        var filters = ['zoneid']
-        if (store.getters.userInfo.roletype === 'Admin') {
-          filters.push('domainid', 'account', 'projectid')
-        }
-        return filters
-      },
+      searchFilters: () => kmsSearchFields('listHSMProfiles', store.getters),
       actions: [
         {
           api: 'createHSMProfile',
+          ...availability('createHSMProfile'),
           icon: 'plus-outlined',
           docHelp: 'adminguide/kms.html#adding-an-hsm-profile',
           label: 'label.create.hsmprofile',
+          selfManagedDialog: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/infra/CreateHSMProfile.vue'))),
           listView: true,
           popup: true,
           dataView: false,
           show: (record, store) => {
             return ['Admin'].includes(store.userInfo.roletype)
           },
-          args: (record, store, group) => {
-            return ['Admin'].includes(store.userInfo.roletype)
-              ? ['name', 'zoneid', 'vendorname', 'domainid', 'account', 'projectid', 'details', 'ispublic']
-              : ['name', 'zoneid', 'vendorname', 'details']
-          },
-          mapping: {
-            details: {
-              optionalKeys: ['pin', 'library', 'slot', 'slot_list_index', 'token_label']
-            }
-          }
+          args: ['name', 'protocol', 'zoneid', 'vendorname', 'domainid', 'account', 'projectid', 'ispublic', 'details']
         },
         {
           api: 'updateHSMProfile',
+          ...availability('updateHSMProfile'),
           icon: 'edit-outlined',
           label: 'label.update.hsm.profile',
           dataView: true,
           popup: true,
+          selfManagedDialog: true,
+          component: operationDialog,
           show: (record, store) => {
             return ['Admin'].includes(store.userInfo.roletype)
-          },
-          args: ['id', 'name', 'enabled'],
-          mapping: {
-            id: {
-              value: (record) => record.id
-            }
           }
         },
         {
           api: 'deleteHSMProfile',
+          ...availability('deleteHSMProfile'),
           icon: 'delete-outlined',
           label: 'label.delete.hsm.profile',
           message: 'message.action.delete.hsm.profile',
           dataView: true,
           popup: true,
+          selfManagedDialog: true,
+          component: operationDialog,
           show: (record, store) => {
             return ['Admin'].includes(store.userInfo.roletype)
-          },
-          args: ['id'],
-          mapping: {
-            id: {
-              value: (record) => record.id
-            }
           }
         }
       ]

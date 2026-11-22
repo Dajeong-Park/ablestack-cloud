@@ -22,7 +22,14 @@ for the specific language governing permissions and limitations. -->
     :closable="$attrs.closable !== false && !formBusy"
     :keyboard="$attrs.keyboard !== false && !formBusy"
     @cancel="!formBusy && $emit('cancel')">
-    <template #title><slot name="title">{{ title }}</slot></template>
+    <template #title>
+      <slot name="title">
+        {{ title }}
+        <a v-if="docHelp" class="mold-dialog-help" :href="documentationUrl($config.docBase, docHelp, $i18n.locale)" target="_blank" rel="noopener noreferrer" :aria-label="$t('label.open.documentation')">
+          <question-circle-outlined />
+        </a>
+      </slot>
+    </template>
     <div v-if="focusGuard" ref="focusContent" tabindex="-1" class="mold-dialog-focus-content"><slot /></div>
     <slot v-else />
     <template #footer><slot name="footer"><div v-if="formActions" ref="footerTarget" class="mold-dialog-form-actions" /><a-button v-else @click="$emit('cancel')">{{ $t('label.close') }}</a-button></slot></template>
@@ -30,24 +37,35 @@ for the specific language governing permissions and limitations. -->
 </template>
 <script>
 import { computed, provide, reactive, shallowRef, watch, onBeforeUnmount } from 'vue'
+import { documentationUrl } from '@/utils/cniFileImport'
 export default {
   name: 'MoldDialog',
   inheritAttrs: false,
-  props: { visible: { type: Boolean, default: true }, title: { type: String, default: '' }, width: { type: [Number, String], default: 760 }, size: { type: String, default: '', validator: value => ['', 'sm', 'md', 'lg', 'xl'].includes(value) }, formActions: { type: Boolean, default: false }, focusGuard: { type: Boolean, default: false } },
+  props: { visible: { type: Boolean, default: true }, title: { type: String, default: '' }, docHelp: { type: String, default: '' }, width: { type: [Number, String], default: 760 }, size: { type: String, default: '', validator: value => ['', 'sm', 'md', 'lg', 'xl'].includes(value) }, formActions: { type: Boolean, default: false }, focusGuard: { type: Boolean, default: false }, initialFocus: { type: String, default: '' } },
   setup (props) {
     const footerTarget = shallowRef(null)
     const focusContent = shallowRef(null)
     let observer
-    watch(focusContent, node => {
+    watch([focusContent, () => props.visible], ([node, visible]) => {
       if (observer) observer.disconnect()
       const owner = node?.closest('.ant-modal')
-      if (!owner) return
+      if (!owner || !visible) return
+      let focused = false
+      const focusInitialControl = () => {
+        if (focused || !props.initialFocus) return
+        const control = owner.querySelector(props.initialFocus)
+        if (!control?.getClientRects().length || control.disabled) return
+        control.focus({ preventScroll: true })
+        focused = document.activeElement === control
+      }
       observer = new MutationObserver(() => {
+        focusInitialControl()
         // Disabled or removed controls can drop focus to BODY while the modal is open.
         // Preserve focus in this opt-in dialog; never steal focus from a live control or portal.
         if (props.focusGuard && document.activeElement === document.body && owner.isConnected && owner.getClientRects().length && getComputedStyle(owner).display !== 'none') node.focus({ preventScroll: true })
       })
       observer.observe(owner, { childList: true, subtree: true, attributes: true, attributeFilter: ['disabled', 'aria-disabled', 'class', 'style'] })
+      focusInitialControl()
     }, { flush: 'post' })
     onBeforeUnmount(() => { if (observer) observer.disconnect() })
     const busyOwners = reactive(new Set())
@@ -56,10 +74,13 @@ export default {
     return { footerTarget, focusContent, formBusy: computed(() => busyOwners.size > 0) }
   },
   emits: ['cancel'],
+  methods: { documentationUrl },
   computed: { dialogWidth () { return { sm: 480, md: 720, lg: 960, xl: 1120 }[this.size] || this.width } }
 }
 </script>
 
 <style scoped>
+.mold-dialog-help { margin-inline-start: 8px; color: var(--ui-link); }
+.mold-dialog-help:focus-visible { outline: 2px solid var(--ui-focus); outline-offset: 2px; }
 .mold-dialog-focus-content { min-width: 0; outline: none; }
 </style>

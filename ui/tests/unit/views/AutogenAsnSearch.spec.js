@@ -24,7 +24,7 @@ beforeEach(() => {
   store.getters = { defaultListViewPageSize: 20, userInfo: { id: 'admin', roletype: 'Admin', domainid: '11111111-1111-4111-8111-111111111111' }, project: {}, apis: { listASNumbers: {} }, customColumns: {}, metrics: false, listAllProjects: false }
   c = { $store: store, $router: { replace: jest.fn(), push: jest.fn() }, $refs: { listview: { resetSelection: jest.fn(), closeContextQuickView: jest.fn() } }, $emit: jest.fn(), $t: k => k, $getApiParams: () => Object.fromEntries(['state', 'allocatedonly', 'domainid', 'isrecursive', 'projectid', 'page', 'pagesize', 'listall'].map(k => [k, {}])), $showIcon: () => false, $i18n: { locale: 'ko_KR' }, $message: { info: jest.fn(), error: jest.fn() }, $notifyError: jest.fn(), $nextTick: fn => fn() }
   route(); Object.assign(c, Autogen.data.call(c)); Object.entries(Autogen.methods).forEach(([key, fn]) => { c[key] = fn.bind(c) }); c.dataView = false; c.updateSelectedColumns = jest.fn()
-  for (const key of ['publicIpDetail', 'publicIpAuth', 'asnSearchAuth', 'asnListReady', 'asnListEmptyText']) Object.defineProperty(c, key, { get: () => Autogen.computed[key].call(c) })
+  for (const key of ['publicIpDetail', 'publicIpAuth', 'asnSearchAuth', 'asnListReady']) Object.defineProperty(c, key, { get: () => Autogen.computed[key].call(c) })
   getAPI.mockResolvedValue(reply(linked))
 })
 test('canonical URL strips arbitrary API arguments before any request', async () => {
@@ -64,7 +64,7 @@ test('same-scope refresh keeps selection coherent and replaces eligibility with 
   expect(c.selectedItems[0].releasereason).toBe('notallocated')
 })
 
-test('a delayed empty refresh keeps its empty message and toolbar ready without rebuilding the table', async () => {
+test('a delayed empty refresh keeps the standard empty state and toolbar ready without rebuilding the table', async () => {
   getAPI.mockResolvedValue({ listasnumbersresponse: { count: 0 } })
   await c.fetchData()
   const columns = c.columns
@@ -75,12 +75,10 @@ test('a delayed empty refresh keeps its empty message and toolbar ready without 
   expect(c.listRequestPending).toBe(true)
   expect(c.loading).toBe(false)
   expect(c.asnListReady).toBe(true)
-  expect(c.asnListEmptyText).toBe('label.no.data')
   expect(c.columns).toBe(columns)
   expect(c.items).toBe(rows)
   pending.resolve({ listasnumbersresponse: { count: 0 } })
   await request
-  expect(c.asnListEmptyText).toBe('label.no.data')
 })
 
 test('background selection stays usable but initial, changed-scope and failed reads stay guarded', async () => {
@@ -88,7 +86,6 @@ test('background selection stays usable but initial, changed-scope and failed re
   getAPI.mockReturnValueOnce(initial.promise)
   const first = c.fetchData()
   expect(c.asnListReady).toBe(false)
-  expect(c.asnListEmptyText).toBe('label.loading')
   initial.resolve(reply(linked))
   await first
   const pending = deferred()

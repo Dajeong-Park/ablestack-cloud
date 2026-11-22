@@ -17,6 +17,24 @@
 
 <template>
   <a-spin :spinning="formLoading">
+    <a-alert
+      v-if="$route.meta.name === 'account'"
+      class="account-limit-notice"
+      type="info"
+      show-icon
+      :message="$t('message.account.limit.tag.scope')" />
+    <a-alert
+      v-if="$route.meta.name === 'domain'"
+      type="info"
+      show-icon
+      :message="$t('message.domain.limit.scope', { path: resource.path || resource.name })"
+      :description="$t('message.domain.limit.values')" />
+    <a-alert
+      v-if="saveSummary"
+      :type="saveSummary.failed.length ? 'warning' : 'success'"
+      show-icon
+      :message="$t('message.account.limit.save.result', { success: saveSummary.success, failed: saveSummary.failed.length })"
+      :description="saveSummary.failed.join(' · ')" />
     <a-form
       :ref="formRef"
       :model="form"
@@ -29,7 +47,7 @@
         <a-form-item
           v-if="item.resourcetypename !== 'project' || !$route.path.startsWith('/project')"
           :v-bind="item.resourcetypename"
-          :label="$t('label.max' + (item.resourcetypename ? item.resourcetypename.replace('_', '') : '')) + (item.tag ? ' [' + item.tag + ']': '')"
+          :label="$t(item.resourcetypename === 'backup' ? 'label.maxbackups' : 'label.max' + (item.resourcetypename || '').replace('_', '')) + (item.tag ? ' [' + item.tag + ']': '')"
           :name="item.key"
           :ref="item.key">
           <a-input-number
@@ -80,6 +98,7 @@ import _ from 'lodash'
 
 export default {
   name: 'ResourceLimitTab',
+  emits: ['refresh'],
   props: {
     resource: {
       type: Object,
@@ -93,6 +112,8 @@ export default {
   data () {
     return {
       formLoading: false,
+      loadVersion: 0,
+      saveSummary: null,
       dataResource: [],
       collpaseActive: {},
       resourceTypeIdNames: {}
@@ -102,18 +123,16 @@ export default {
     this.formRef = ref()
     this.form = reactive({})
     this.rules = reactive({})
-    this.dataResource = this.resource
-    this.origValues = []
+    this.origValues = {}
     this.fetchData()
   },
   watch: {
-    resource: {
-      handler (newData) {
-        if (!newData || !newData.id) {
-          return
-        }
-        this.fetchData()
-      }
+    'resource.id' () {
+      this.saveSummary = null
+      this.fetchData()
+    },
+    'resource.name' (name, oldName) {
+      if (this.$route.meta.name === 'account' && oldName && name !== oldName) this.fetchData()
     }
   },
   methods: {
@@ -130,76 +149,71 @@ export default {
       return params
     },
     async fetchData () {
+      const version = ++this.loadVersion
+      if (!this.resource?.id) return
       const params = this.getParams()
       const form = reactive({})
+      this.formLoading = true
       try {
-        this.formLoading = true
-        this.dataResource = await this.listResourceLimits(params)
-        this.dataResource.forEach(item => {
+        const rows = await this.listResourceLimits(params)
+        if (version !== this.loadVersion) return
+        for (const item of rows) {
           this.resourceTypeIdNames[item.resourcetype] = item.resourcetypename
-          item.key = item.tag ? (item.resourcetype + '-' + item.tag) : item.resourcetype
-          this.origValues[item.key] = form[item.key] = item.max || -1
-          item.taggedresource.forEach(subItem => {
-            subItem.key = subItem.tag ? (subItem.resourcetype + '-' + subItem.tag) : subItem.resourcetype
-            form[subItem.key] = subItem.max || -1
-          })
-          form[item.resourcetype] = item.max == null ? -1 : item.max
-        })
+          item.key = item.resourcetype
+          form[item.key] = item.max ?? -1
+          for (const subItem of item.taggedresource) {
+            subItem.key = subItem.resourcetype + '-' + subItem.tag
+            form[subItem.key] = subItem.max ?? -1
+          }
+        }
+        this.dataResource = rows
+        this.origValues = { ...form }
         this.form = form
-        this.formRef.value.resetFields()
-        this.formLoading = false
-      } catch (e) {
-        this.$notification.error({
-          message: this.$t('message.request.failed'),
-          description: e
-        })
-        this.formLoading = false
+        if (this.formRef.value) this.formRef.value.clearValidate()
+      } catch (error) {
+        if (version === this.loadVersion) this.$notification.error({ message: this.$t('message.request.failed'), description: error })
+      } finally {
+        if (version === this.loadVersion) this.formLoading = false
       }
     },
-    handleSubmit (e) {
-      e.preventDefault()
-
-      if (this.formLoading) return
-      if (!this.validateTaggedLimitsForUntaggedLimits(toRaw(this.form))) {
-        return
-      }
-
-      this.formRef.value.validate().then(() => {
-        const values = toRaw(this.form)
-        const arrAsync = []
-        const params = this.getParams()
-        for (const key in values) {
-          const input = values[key]
-
-          if (input === this.origValues[key]) {
-            continue
+    async handleSubmit (event) {
+      if (typeof event?.preventDefault === 'function') event.preventDefault()
+      if (this.formLoading || !this.resource.id || !this.validateTaggedLimitsForUntaggedLimits(toRaw(this.form))) return
+      const changes = Object.entries(this.form).filter(([key, value]) => value != null && value !== this.origValues[key])
+      if (!changes.length) return
+      const scope = this.getParams()
+      const version = this.loadVersion
+      const failed = []
+      let success = 0
+      this.formLoading = true
+      try {
+        await this.formRef.value.validate()
+        for (const [key, max] of changes) {
+          if (version !== this.loadVersion) return
+          const separator = key.indexOf('-')
+          const resourcetype = separator === -1 ? key : key.slice(0, separator)
+          const tag = separator === -1 ? undefined : key.slice(separator + 1)
+          try {
+            await this.updateResourceLimit({ ...scope, resourcetype, max, ...(tag ? { tag } : {}) })
+            if (version !== this.loadVersion) return
+            this.origValues[key] = max
+            success++
+          } catch (error) {
+            const type = this.resourceTypeIdNames[resourcetype] || ''
+            const label = this.$t(type === 'backup' ? 'label.maxbackups' : 'label.max' + type.replace('_', ''))
+            const detail = Object.values(error.response?.data || {}).find(value => value?.errortext)?.errortext
+            failed.push([label, tag && '#' + tag, detail].filter(Boolean).join(' '))
           }
-          if (input === undefined) {
-            continue
-          }
-          params.resourcetype = key
-          if (key.includes('-')) {
-            const idx = key.indexOf('-')
-            params.resourcetype = key.substring(0, idx)
-            params.tag = key.substring(idx + 1)
-          }
-          params.max = input
-          arrAsync.push(this.updateResourceLimit(params))
         }
-
-        this.formLoading = true
-
-        Promise.all(arrAsync).then(() => {
-          this.$message.success(this.$t('message.apply.success'))
-          this.fetchData()
-        }).catch(error => {
-          this.$notifyError(error)
-        }).finally(() => {
-          this.formLoading = false
-        })
-      }).catch(error => {
-        this.formRef.value.scrollToField(error.errorFields[0].name)
-      })
+        if (version !== this.loadVersion) return
+        this.saveSummary = { success, failed }
+        if (success) this.$emit('refresh')
+        if (!failed.length) await this.fetchData()
+      } catch (error) {
+        if (error.errorFields?.length) this.formRef.value.scrollToField(error.errorFields[0].name)
+      } finally {
+        if (version === this.loadVersion) this.formLoading = false
+      }
     },
     validateTaggedLimitsForUntaggedLimits (values) {
       for (const key in values) {
@@ -212,7 +226,7 @@ export default {
           const resourcetype = key.substring(0, idx)
           const tag = key.substring(idx + 1)
           const untaggedInput = values[resourcetype]
-          if (untaggedInput > 0 && untaggedInput < input) {
+          if (untaggedInput >= 0 && untaggedInput < input) {
             var err = this.$t('message.update.resource.limit.max.untagged.error').replace('%x', this.$t('label.max' + this.resourceTypeIdNames[resourcetype].replace('_', '')))
             err = err.replace('%y', untaggedInput).replace('%z', tag)
             this.$notification.error({
@@ -245,7 +259,7 @@ export default {
           }
           resolve(dataResource)
         }).catch(error => {
-          reject(error.response.headers['x-description'])
+          reject(error.response?.headers?.['x-description'] || error.message)
         })
       })
     },
@@ -275,6 +289,7 @@ export default {
       margin-left: 8px;
     }
   }
+  .account-limit-notice { margin-bottom: 12px; }
   .tagged-limit-collapse {
     margin-top: 10px;
     margin-bottom: 20px;

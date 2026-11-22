@@ -1,0 +1,1589 @@
+[
+  {
+    "requestId": "54044.1843",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 128,
+          "version": 2,
+          "enabled": false,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.1847",
+    "command": "updateKMSKey",
+    "method": "POST",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+      "name": "qa-km1728-256-20261120",
+      "enabled": "true"
+    },
+    "http_status": 200,
+    "response": {
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 128,
+          "version": 2,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.1848",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 128,
+          "version": 2,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.1861",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 128,
+          "version": 2,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.1863",
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {},
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "hsmprofile": [
+        {
+          "id": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "name": "HSM Database Provider",
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.1867",
+    "command": "rotateKMSKey",
+    "method": "POST",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+      "keybits": "129"
+    },
+    "http_status": 200,
+    "response": {
+      "jobid": "705417f9-b6b3-49ef-92a6-aae3e9dd80c9"
+    }
+  },
+  {
+    "requestId": "54044.1869",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 128,
+          "version": 2,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.1870",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 128,
+          "version": 2,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.1877",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 128,
+          "version": 2,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.1897",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 128,
+          "version": 2,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.1899",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 128,
+          "version": 2,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.1905",
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {},
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "hsmprofile": [
+        {
+          "id": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "name": "HSM Database Provider",
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.1915",
+    "command": "rotateKMSKey",
+    "method": "POST",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+      "keybits": "192"
+    },
+    "http_status": 200,
+    "response": {
+      "jobid": "94f1a2c5-9fbb-4ffa-a65e-dd435ceeeee9"
+    }
+  },
+  {
+    "requestId": "54044.1917",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 192,
+          "version": 3,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.1918",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 192,
+          "version": 3,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.1919",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 192,
+          "version": 3,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.1925",
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {},
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "hsmprofile": [
+        {
+          "id": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "name": "HSM Database Provider",
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.1928",
+    "command": "rotateKMSKey",
+    "method": "POST",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "jobid": "898b58de-22f7-4aac-80c6-c867161725d6"
+    }
+  },
+  {
+    "requestId": "54044.1930",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 192,
+          "version": 4,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.1931",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 192,
+          "version": 4,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.1932",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 192,
+          "version": 4,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.1942",
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {},
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "hsmprofile": [
+        {
+          "id": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "name": "HSM Database Provider",
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.1945",
+    "command": "rotateKMSKey",
+    "method": "POST",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+      "keybits": "256"
+    },
+    "http_status": 200,
+    "response": {
+      "jobid": "b4753a8e-c41c-44c2-b39b-81a1329d6ab2"
+    }
+  },
+  {
+    "requestId": "54044.1947",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 256,
+          "version": 5,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.1948",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 256,
+          "version": 5,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.1949",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 256,
+          "version": 5,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.1963",
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {
+      "id": "bc91cad9-e49f-400f-bbc0-1f047202631f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "hsmprofile": [
+        {
+          "id": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "name": "HSM Database Provider",
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.1977",
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {
+      "id": "bc91cad9-e49f-400f-bbc0-1f047202631f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "hsmprofile": [
+        {
+          "id": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "name": "HSM Database Provider",
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.1988",
+    "command": "updateHSMProfile",
+    "method": "POST",
+    "params": {
+      "id": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+      "name": "HSM Database Provider",
+      "enabled": "false"
+    },
+    "http_status": 200,
+    "response": {
+      "hsmprofile": [
+        {
+          "id": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "name": "HSM Database Provider",
+          "enabled": false
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.1989",
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {
+      "id": "bc91cad9-e49f-400f-bbc0-1f047202631f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "hsmprofile": [
+        {
+          "id": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "name": "HSM Database Provider",
+          "enabled": false
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.1992",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 256,
+          "version": 5,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.2000",
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {},
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "hsmprofile": [
+        {
+          "id": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "name": "HSM Database Provider",
+          "enabled": false
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.2002",
+    "command": "rotateKMSKey",
+    "method": "POST",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+      "keybits": "128"
+    },
+    "http_status": 200,
+    "response": {
+      "jobid": "943422c9-b1ee-4fcd-b419-62a0ab44693a"
+    }
+  },
+  {
+    "requestId": "54044.2004",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 256,
+          "version": 5,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.2005",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 256,
+          "version": 5,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.2006",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 256,
+          "version": 5,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.2016",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 256,
+          "version": 5,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.2024",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 256,
+          "version": 5,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.2031",
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {
+      "id": "bc91cad9-e49f-400f-bbc0-1f047202631f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "hsmprofile": [
+        {
+          "id": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "name": "HSM Database Provider",
+          "enabled": false
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.2043",
+    "command": "updateHSMProfile",
+    "method": "POST",
+    "params": {
+      "id": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+      "name": "HSM Database Provider",
+      "enabled": "true"
+    },
+    "http_status": 200,
+    "response": {
+      "hsmprofile": [
+        {
+          "id": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "name": "HSM Database Provider",
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.2044",
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {
+      "id": "bc91cad9-e49f-400f-bbc0-1f047202631f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "hsmprofile": [
+        {
+          "id": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "name": "HSM Database Provider",
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.2047",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {},
+    "http_status": 200,
+    "response": {
+      "count": 3,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 256,
+          "version": 5,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        },
+        {
+          "id": "98863536-7f91-4d6e-9773-d0a6116848cd",
+          "name": "qa-km1728-128-20261120",
+          "keybits": 128,
+          "version": 1,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        },
+        {
+          "id": "776e86ac-6f77-409f-950f-f9a8f01fff24",
+          "name": "qa-km1728-192-20261120",
+          "keybits": 192,
+          "version": 1,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.2056",
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {
+      "enabled": "true"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "hsmprofile": [
+        {
+          "id": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "name": "HSM Database Provider",
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.2062",
+    "command": "createKMSKey",
+    "method": "POST",
+    "params": {
+      "name": "qa-km1728-default-20261120",
+      "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+      "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f"
+    },
+    "http_status": 200,
+    "response": {
+      "kmskey": [
+        {
+          "id": "82513fa6-23a9-4feb-a6ed-e81436e9d93d",
+          "name": "qa-km1728-default-20261120",
+          "keybits": 256,
+          "version": 1,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.2063",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {},
+    "http_status": 200,
+    "response": {
+      "count": 4,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 256,
+          "version": 5,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        },
+        {
+          "id": "98863536-7f91-4d6e-9773-d0a6116848cd",
+          "name": "qa-km1728-128-20261120",
+          "keybits": 128,
+          "version": 1,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        },
+        {
+          "id": "776e86ac-6f77-409f-950f-f9a8f01fff24",
+          "name": "qa-km1728-192-20261120",
+          "keybits": 192,
+          "version": 1,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        },
+        {
+          "id": "82513fa6-23a9-4feb-a6ed-e81436e9d93d",
+          "name": "qa-km1728-default-20261120",
+          "keybits": 256,
+          "version": 1,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.2065",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "82513fa6-23a9-4feb-a6ed-e81436e9d93d"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "82513fa6-23a9-4feb-a6ed-e81436e9d93d",
+          "name": "qa-km1728-default-20261120",
+          "keybits": 256,
+          "version": 1,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.2243",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 256,
+          "version": 5,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.2256",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 256,
+          "version": 5,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.2263",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 256,
+          "version": 5,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.2274",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 256,
+          "version": 5,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.2281",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 256,
+          "version": 5,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.2293",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 256,
+          "version": 5,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.2300",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 256,
+          "version": 5,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.2306",
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {},
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "hsmprofile": [
+        {
+          "id": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "name": "HSM Database Provider",
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.2312",
+    "command": "rotateKMSKey",
+    "method": "POST",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+      "keybits": "128"
+    },
+    "http_status": 200,
+    "response": {
+      "jobid": "3cb84c0f-3025-4e0f-94bd-cbf77539e15f"
+    }
+  },
+  {
+    "requestId": "54044.2329",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 256,
+          "version": 5,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.2346",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 256,
+          "version": 5,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.2347",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 256,
+          "version": 5,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.2348",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 256,
+          "version": 5,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.2352",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 256,
+          "version": 5,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.2359",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 256,
+          "version": 5,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.2370",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 256,
+          "version": 5,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.2378",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 256,
+          "version": 5,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.2391",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 256,
+          "version": 5,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.2398",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 256,
+          "version": 5,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.2409",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 256,
+          "version": 5,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.2412",
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {},
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "hsmprofile": [
+        {
+          "id": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "name": "HSM Database Provider",
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.2414",
+    "command": "rotateKMSKey",
+    "method": "POST",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+      "keybits": "128"
+    },
+    "http_status": 200,
+    "response": {
+      "jobid": "7e7573f8-eab7-4ab0-8f9e-25ebdd245aaf"
+    }
+  },
+  {
+    "requestId": "54044.2416",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 128,
+          "version": 6,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.2417",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 128,
+          "version": 6,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  },
+  {
+    "requestId": "54044.2418",
+    "command": "listKMSKeys",
+    "method": "GET",
+    "params": {
+      "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f"
+    },
+    "http_status": 200,
+    "response": {
+      "count": 1,
+      "kmskey": [
+        {
+          "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+          "name": "qa-km1728-256-20261120",
+          "keybits": 128,
+          "version": 6,
+          "enabled": true,
+          "hsmprofileid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+          "zonename": "13-Zone",
+          "algorithm": "AES/GCM/NoPadding"
+        }
+      ]
+    }
+  }
+]

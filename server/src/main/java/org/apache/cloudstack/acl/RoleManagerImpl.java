@@ -300,8 +300,7 @@ public class RoleManagerImpl extends ManagerBase implements RoleService, Configu
             roleVO.setName(name);
         }
         if (roleType != null) {
-            List<? extends Account> accounts = accountDao.findAccountsByRole(role.getId());
-            if (accounts == null || accounts.isEmpty()) {
+            if (!isRoleInUse(role.getId())) {
                 roleVO.setRoleType(roleType);
             } else {
                 throw new PermissionDeniedException("Found accounts that have role in use, won't allow to change role type");
@@ -320,6 +319,11 @@ public class RoleManagerImpl extends ManagerBase implements RoleService, Configu
     }
 
     @Override
+    public boolean isRoleInUse(Long roleId) {
+        return CollectionUtils.isNotEmpty(accountDao.findAccountsByRole(roleId));
+    }
+
+    @Override
     @ActionEvent(eventType = EventTypes.EVENT_ROLE_DELETE, eventDescription = "deleting Role")
     public boolean deleteRole(final Role role) {
         checkCallerAccess();
@@ -329,8 +333,7 @@ public class RoleManagerImpl extends ManagerBase implements RoleService, Configu
         if (role.isDefault()) {
             throw new PermissionDeniedException("Default roles cannot be deleted");
         }
-        List<? extends Account> accounts = accountDao.findAccountsByRole(role.getId());
-        if (accounts == null || accounts.size() == 0) {
+        if (!isRoleInUse(role.getId())) {
             return Transaction.execute(new TransactionCallback<Boolean>() {
                 @Override
                 public Boolean doInTransaction(TransactionStatus status) {
@@ -559,6 +562,32 @@ public class RoleManagerImpl extends ManagerBase implements RoleService, Configu
         Pair<List<RoleVO>, Integer> data = roleDao.listAllRoles(state, startIndex, limit, isCallerRootAdmin());
         int removed = removeRolesIfNeeded(data.first());
         return new Pair<List<Role>,Integer>(ListUtils.toListOfInterface(data.first()), Integer.valueOf(data.second() - removed));
+    }
+
+    @Override
+    public Pair<List<Role>, Integer> searchRoles(String uuid, String name, String keyword, RoleType type,
+            String state, Long startIndex, Long limit) {
+        boolean rootAdmin = isCallerRootAdmin();
+        if (!rootAdmin && type == RoleType.Admin) {
+            return new Pair<>(Collections.emptyList(), 0);
+        }
+
+        // UUID and type lookups retain their existing visibility rules. Text searches and the
+        // unfiltered list also apply permission compatibility before computing count and page.
+        boolean checkPermissions = StringUtils.isNotBlank(name) || StringUtils.isNotBlank(keyword)
+                || (uuid == null && type == null);
+        Pair<List<RoleVO>, Integer> matches = roleDao.searchRoles(uuid, name, keyword, type, state,
+                checkPermissions ? null : startIndex, checkPermissions ? null : limit, rootAdmin);
+        if (!checkPermissions) {
+            return new Pair<>(ListUtils.toListOfInterface(matches.first()), matches.second());
+        }
+
+        List<RoleVO> visible = new ArrayList<>(matches.first());
+        removeRolesIfNeeded(visible);
+        int count = visible.size();
+        int from = startIndex == null ? 0 : (int) Math.min(count, startIndex);
+        int size = limit == null ? count - from : (int) Math.min(limit, count - from);
+        return new Pair<>(ListUtils.toListOfInterface(visible.subList(from, from + size)), count);
     }
 
     @Override

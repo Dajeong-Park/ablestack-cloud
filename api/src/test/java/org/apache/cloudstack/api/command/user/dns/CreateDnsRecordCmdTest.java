@@ -21,6 +21,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
+import java.util.Map;
 
 import org.apache.cloudstack.api.ServerApiException;
 import org.apache.cloudstack.api.response.DnsRecordResponse;
@@ -52,6 +53,26 @@ public class CreateDnsRecordCmdTest extends BaseDnsCmdTest {
         assertEquals(DnsRecord.RecordType.A, cmd.getType());
         assertEquals(Arrays.asList("192.168.1.1"), cmd.getContents());
         assertEquals(Integer.valueOf(7200), cmd.getTtl());
+    }
+
+    @Test
+    public void testStructuredContentsPreserveQuotedCommaAndSeparateValues() throws Exception {
+        CreateDnsRecordCmd cmd = createCmd();
+        String json = "[\"\\\"one,two\\\"\",\"second\"]";
+        cmd.validateSpecificParameters(Map.of("contentsjson", json));
+        setField(cmd, "contents", null);
+        setField(cmd, "contentsJson", json);
+        assertEquals(Arrays.asList("\"one,two\"", "second"), cmd.getContents());
+    }
+
+    @Test(expected = ServerApiException.class)
+    public void testRejectBothContentsParameters() throws Exception {
+        createCmd().validateSpecificParameters(Map.of("contents", "one", "contentsjson", "[\"two\"]"));
+    }
+
+    @Test(expected = ServerApiException.class)
+    public void testRejectInvalidStructuredContents() throws Exception {
+        createCmd().validateSpecificParameters(Map.of("contentsjson", "[42]"));
     }
 
     @Test

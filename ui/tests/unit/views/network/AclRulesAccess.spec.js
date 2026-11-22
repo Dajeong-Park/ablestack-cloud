@@ -17,21 +17,26 @@
 
 import { shallowMount, flushPromises } from '@vue/test-utils'
 import { reactive } from 'vue'
+import md5 from 'md5'
 import AclRulesTab from '@/views/network/AclRulesTab.vue'
 import ImportNetworkACL from '@/views/network/ImportNetworkACL.vue'
-import { aclCommands, discoverAclAccess, parseAclCsv, resolveAclScope, runAclWrite } from '@/utils/vpcAclAccess'
+import { aclCommands, aclListDetailLocation, aclListLocation, aclListMutable, aclListSearchQuery, discoverAclAccess, readAclList, resolveAclScope, runAclWrite } from '@/utils/vpcAclAccess'
 import { getAPI, postAPI } from '@/api'
+import { aclCsvError, formatAclCsv, parseAclCsv } from '@/utils/aclCsv'
 
 jest.mock('@/api', () => ({ getAPI: jest.fn(), postAPI: jest.fn() }))
 
 const acl = { id: 'acl', vpcid: 'vpc', name: 'review' }
 const rules = [
-  { id: 'rule1', number: 10, reason: 'original', protocol: 'all', action: 'Deny', traffictype: 'Ingress' },
-  { id: 'rule2', number: 20 }
+  { id: 'rule1', aclid: 'acl', number: 10, reason: 'original', protocol: 'all', action: 'Deny', traffictype: 'Ingress' },
+  { id: 'rule2', aclid: 'acl', number: 20 }
 ]
 const allApis = ['queryAsyncJobResult', ...Object.values(aclCommands)]
 const apis = names => ({ listapisresponse: { api: names.map(name => ({ name })) } })
-const ruleList = { listnetworkaclsresponse: { networkacl: rules } }
+const ruleList = listRules(rules)
+function listRules (networkacl, count = networkacl.length) {
+  return { listnetworkaclsresponse: { count, networkacl } }
+}
 const job = status => ({ queryasyncjobresultresponse: { jobid: 'job', jobstatus: status } })
 const defaultGet = command => Promise.resolve({
   listApis: apis(allApis),
@@ -62,14 +67,15 @@ const mountOptions = {
     'a-input-number': true,
     'a-input': true,
     'a-textarea': true,
+    'a-switch': true,
     'a-space': true
   },
   mocks: { $t: key => key, $message: { success: jest.fn() } },
   config: { warnHandler () {} }
 }
-async function mountTab () {
+async function mountTab (role = 'Admin', apiSchema = {}) {
   const route = reactive({ fullPath: '/acllist/acl?tab=acl.rules', name: 'acllist', params: { id: 'acl' } })
-  const getters = reactive({ token: 'test', apis: {}, project: { id: 'p1' }, userInfo: { id: 'u', roletype: 'Admin' } })
+  const getters = reactive({ token: 'test', apis: apiSchema, project: { id: 'p1' }, userInfo: { id: 'u', roletype: role } })
   const wrapper = shallowMount(AclRulesTab, { props: { resource: acl }, global: { ...mountOptions, mocks: { ...mountOptions.mocks, $route: route, $store: { getters, state: { user: {} } } } } })
   await flushPromises()
   return { wrapper, route, getters }
@@ -86,6 +92,131 @@ test.each(Object.keys(aclCommands).filter(key => key !== 'readTags'))('gates %s 
   expect(access[action]).toBe(false)
   expect(access.readTags).toBe(true)
   expect(Object.keys(access).filter(key => access[key])).toHaveLength(Object.keys(aclCommands).length - 1)
+})
+
+function mockRuleDisplay (value, supported = true) {
+  const rule = { ...rules[0], fordisplay: value }
+  const discovery = apis(allApis)
+  if (supported) discovery.listapisresponse.api.find(api => api.name === aclCommands.edit).params = [{ name: 'fordisplay' }]
+  getAPI.mockImplementation(command => {
+    if (command === 'listApis') return Promise.resolve(discovery)
+    if (command === 'listNetworkACLs') return Promise.resolve({ listnetworkaclsresponse: { networkacl: [rule] } })
+    return defaultGet(command)
+  })
+  return rule
+}
+
+test.each([
+  [false, false, undefined],
+  [true, true, undefined],
+  [true, false, false],
+  [false, true, true]
+])('admin rule edit sends display only when explicitly changed from %s to %s', async (original, edited, expected) => {
+  const rule = mockRuleDisplay(original)
+  const { wrapper } = await mountTab()
+  const vm = wrapper.vm
+  await vm.openRule('edit', rule)
+  expect(vm.canSetDisplay).toBe(true)
+  expect(vm.form.fordisplay).toBe(original)
+  vm.form.reason = 'updated'
+  vm.form.fordisplay = edited
+  await vm.submitRule()
+  const params = postAPI.mock.calls[0][1]
+  expect(params).toMatchObject({ id: rule.id, partialupgrade: false, reason: 'updated' })
+  if (expected === undefined) expect(params).not.toHaveProperty('fordisplay')
+  else expect(params.fordisplay).toBe(expected)
+  wrapper.unmount()
+})
+
+test.each([
+  ['User', true, false],
+  ['Admin', false, false],
+  ['Admin', true, undefined]
+])('omits display for %s without field access or a known value', async (role, supported, original) => {
+  const rule = mockRuleDisplay(original, supported)
+  const { wrapper } = await mountTab(role)
+  const vm = wrapper.vm
+  await vm.openRule('edit', rule)
+  expect(vm.canSetDisplay).toBe(false)
+  vm.form.fordisplay = true
+  await vm.submitRule()
+  expect(postAPI.mock.calls[0][1]).not.toHaveProperty('fordisplay')
+  wrapper.unmount()
+})
+
+test('ACL searches reset the page and preserve independently applied conditions and return context', () => {
+  const getters = {
+    userInfo: { roletype: 'Admin' },
+    apis: { listNetworkACLLists: { params: ['name', 'vpcid', 'fordisplay'].map(name => ({ name })) } }
+  }
+  const initial = { page: '3', pagesize: '5', fordisplay: 'false', q: 'description', keyword: 'description' }
+  const filtered = aclListSearchQuery(initial, { aclAdvanced: { name: ' Exact ', vpcid: 'vpc' } }, 5, getters)
+  expect(filtered).toMatchObject({ page: '1', name: 'Exact', vpcid: 'vpc', keyword: 'description', fordisplay: 'false' })
+  const searched = aclListSearchQuery(filtered, { searchQuery: ' changed ' }, 5, getters)
+  expect(searched).toMatchObject({ q: 'changed', keyword: 'changed', name: 'Exact', vpcid: 'vpc' })
+  const page = { ...searched, page: '2' }
+  const detail = aclListDetailLocation({ query: page }, { id: 'acl' }, getters)
+  expect(aclListLocation(detail, {}, getters).query).toEqual(page)
+  expect(aclListSearchQuery(page, { aclReset: true }, 5, getters)).toEqual({ page: '1', pagesize: '5', fordisplay: 'false' })
+})
+
+test('built-in ACL write protection follows the server flag regardless of name', async () => {
+  const target = { row: { id: 'built-in', name: 'renamed globally', isdefault: true }, params: {} }
+  expect(aclListMutable(target.row, true)).toBe(false)
+  const flags = await discoverAclAccess(() => apis(allApis), target, true)
+  expect(Object.keys(flags).filter(key => flags[key])).toEqual(['readTags'])
+  const custom = { row: { id: 'custom', name: 'default_deny', isdefault: false }, params: {} }
+  expect(aclListMutable(custom.row, true)).toBe(true)
+  expect(aclListMutable(custom.row, false)).toBe(false)
+  expect((await discoverAclAccess(() => apis(allApis), custom, true)).add).toBe(true)
+})
+
+test('hidden list details use an exact fallback only for an authorized scope', async () => {
+  const empty = { listnetworkacllistsresponse: { count: 0 } }
+  const hidden = { listnetworkacllistsresponse: { count: 1, networkacllist: [{ ...acl, fordisplay: false }] } }
+  const get = jest.fn().mockResolvedValueOnce(empty).mockResolvedValueOnce(hidden)
+  const context = { aclreturn: '{}', fordisplay: 'false', keyword: 'other', page: 2, projectid: 'p1' }
+  await expect(readAclList(get, context, true, 'acl')).resolves.toBe(hidden)
+  expect(get.mock.calls.map(call => call[1])).toEqual([
+    { projectid: 'p1', id: 'acl', page: 1, pagesize: 1 },
+    { projectid: 'p1', id: 'acl', page: 1, pagesize: 1, fordisplay: false }
+  ])
+  get.mockClear().mockResolvedValue(empty)
+  await expect(readAclList(get, context, false, 'acl')).resolves.toBe(empty)
+  expect(get).toHaveBeenCalledTimes(1)
+  expect(get.mock.calls[0][1]).not.toHaveProperty('fordisplay')
+  await readAclList(get, context, true, 'acl', () => false)
+  expect(get).toHaveBeenCalledTimes(2)
+})
+
+test.each(['Admin', 'DomainAdmin', 'User'])('%s visibility filter and creation use authorized schema', async role => {
+  const display = [{ name: 'fordisplay' }]
+  const schema = { listNetworkACLs: { params: display } }
+  const discovery = apis(allApis)
+  discovery.listapisresponse.api.find(api => api.name === aclCommands.add).params = display
+  getAPI.mockImplementation((command, data) => {
+    if (command === 'listApis') return Promise.resolve(discovery)
+    if (command === 'listNetworkACLs' && data.fordisplay === 'false') return Promise.resolve(listRules([rules[0]]))
+    return defaultGet(command)
+  })
+  const { wrapper } = await mountTab(role, schema)
+  const vm = wrapper.vm
+  const admin = role === 'Admin'
+  expect(vm.ruleCount).toBe(2)
+  await vm.changeRuleDisplay('false')
+  expect(vm.acls).toHaveLength(admin ? 1 : 2)
+  expect(vm.ruleCount).toBe(admin ? 1 : 2)
+  expect(getAPI.mock.calls.filter(([cmd, data]) => cmd === 'listNetworkACLs' && data.fordisplay === 'false')).toHaveLength(admin ? 1 : 0)
+  if (admin) expect(vm.canMove).toBe(false)
+  await vm.openRule('add')
+  expect(vm.canSetDisplay).toBe(admin)
+  expect(vm.form.fordisplay).toBe(true)
+  vm.form.fordisplay = false
+  await vm.submitRule()
+  const params = postAPI.mock.calls[0][1]
+  if (admin) expect(params.fordisplay).toBe(false)
+  else expect(params).not.toHaveProperty('fordisplay')
+  wrapper.unmount()
 })
 
 test('missing discovery or target does not enable writes; direct link uses VPC project', async () => {
@@ -111,7 +242,7 @@ test('read-only controls and direct handlers send no writes; tags remain readabl
   vm.openDialog('remove', rules[0])
   vm.openDialog('import')
   await vm.changeOrder({ moved: { element: rules[0], newIndex: 1 } })
-  await vm.moveRule('rule1', 'rule2', null)
+  await vm.moveRule('rule1', 1, 'bottom')
   await vm.submitRule()
   expect(vm.dialog).toBeNull()
   vm.openTags(rules[0])
@@ -207,13 +338,75 @@ test('drag and top/bottom use move permission and send the intended neighbors', 
   const { wrapper } = await mountTab()
   const vm = wrapper.vm
   postAPI.mockResolvedValue({ moveNetworkAclItemResponse: { jobid: 'job' } })
-  vm.dragScope = vm.scope
+  vm.dragRead = vm.ruleRead
   vm.acls = [rules[1], rules[0]]
   await vm.changeOrder({ moved: { element: rules[0], newIndex: 1 } })
-  expect(postAPI).toHaveBeenLastCalledWith('moveNetworkAclItem', expect.objectContaining({ id: 'rule1', previousaclruleid: 'rule2', nextaclruleid: undefined, projectid: 'p1' }), expect.anything())
+  expect(postAPI).toHaveBeenLastCalledWith('moveNetworkAclItem', expect.objectContaining({ id: 'rule1', previousaclruleid: 'rule2', nextaclruleid: undefined, projectid: 'p1', aclconsistencyhash: md5('rule1rule2') }), expect.anything())
   vm.searchQuery = 'filtered'
-  await vm.moveRule('rule1', 'rule2', null)
+  await vm.moveRule('rule1', 1, 'bottom')
   expect(postAPI).toHaveBeenCalledTimes(1)
+  wrapper.unmount()
+})
+
+test('a rejected stale move fetches the authoritative order without resubmitting', async () => {
+  const { wrapper } = await mountTab()
+  const vm = wrapper.vm
+  postAPI.mockResolvedValue({ moveNetworkAclItemResponse: { jobid: 'job' } })
+  const message = 'It seems that the access control list in the database is not in the state that you used to apply the changed. Could you try it again?'
+  getAPI.mockResolvedValueOnce({
+    queryasyncjobresultresponse: { jobid: 'job', jobstatus: 2, jobresult: { errorcode: 431, errortext: message } }
+  }).mockResolvedValueOnce(listRules([{ ...rules[1], number: 1 }, rules[0]]))
+  await vm.moveRule('rule2', 0, 'top')
+  expect(postAPI).toHaveBeenCalledTimes(1)
+  expect(vm.acls.map(rule => rule.id)).toEqual(['rule2', 'rule1'])
+  expect(vm.orderHash).toBe(md5('rule2rule1'))
+  expect(vm.notice.message).toBe('message.acl.order.conflict')
+  wrapper.unmount()
+})
+
+test('a lost move poll keeps its receipt and checks that job without a second POST', async () => {
+  const { wrapper } = await mountTab()
+  const vm = wrapper.vm
+  postAPI.mockResolvedValue({ moveNetworkAclItemResponse: { jobid: 'job' } })
+  getAPI.mockRejectedValueOnce(new Error('lost poll'))
+  await vm.moveRule('rule2', 0, 'top')
+  expect(vm.pending).toMatchObject({ action: 'move', jobId: 'job' })
+  expect(vm.notice.recheck).toBe(true)
+  expect(vm.acls.map(rule => rule.id)).toEqual(['rule1', 'rule2'])
+  expect(vm.openDialog('import')).toBe(false)
+  await vm.moveRule('rule1', 1, 'bottom')
+  expect(postAPI).toHaveBeenCalledTimes(1)
+  await vm.recheck()
+  expect(postAPI).toHaveBeenCalledTimes(1)
+  expect(getAPI).toHaveBeenCalledWith('queryAsyncJobResult', { jobid: 'job', ignoreproject: true }, expect.anything())
+  expect(vm.pending).toBeNull()
+  wrapper.unmount()
+})
+
+test('movement requires all unfiltered ACL rule pages with verifiable order', async () => {
+  const extra = { id: 'rule3', aclid: 'acl', number: 30 }
+  let missingPage = false
+  getAPI.mockImplementation((command, params) => {
+    if (command !== 'listNetworkACLs') return defaultGet(command)
+    if (params.page === 2) return Promise.resolve(listRules(missingPage ? [] : [extra], 3))
+    return Promise.resolve(listRules(rules, 3))
+  })
+  const { wrapper } = await mountTab()
+  const vm = wrapper.vm
+  expect(vm.acls).toHaveLength(3)
+  expect(vm.orderHash).toBe(md5('rule1rule2rule3'))
+  expect(vm.canMove).toBe(true)
+  vm.target.params.fordisplay = false
+  await vm.fetchData()
+  expect(vm.orderHash).toBeNull()
+  expect(vm.canMove).toBe(false)
+  delete vm.target.params.fordisplay
+  missingPage = true
+  await vm.fetchData()
+  expect(vm.acls).toHaveLength(2)
+  expect(vm.moveHint).toBe('message.acl.order.full.required')
+  await vm.moveRule('rule1', 1, 'down')
+  expect(postAPI).not.toHaveBeenCalled()
   wrapper.unmount()
 })
 
@@ -225,7 +418,7 @@ test('CSV validates quoted fields, preserves failed input and ignores stale file
   const wrapper = shallowMount(ImportNetworkACL, { props: { resource: acl, projectArgs: { projectid: 'p1' }, canWrite: () => allowed }, global: mountOptions })
   const vm = wrapper.vm
   await vm.readFile({ name: 'test.csv', text: async () => csv })
-  postAPI.mockRejectedValueOnce(denied(530))
+  postAPI.mockRejectedValueOnce(denied(431))
   await vm.handleSubmit()
   expect(vm.csvData).toHaveLength(1)
   expect(vm.error.message).toBe('message.acl.import.failed')
@@ -237,5 +430,52 @@ test('CSV validates quoted fields, preserves failed input and ignores stale file
   await vm.handleSubmit()
   expect(vm.csvData).toHaveLength(0)
   expect(postAPI).toHaveBeenCalledTimes(1)
+  wrapper.unmount()
+})
+
+test('CSV retains physical line numbers, quotes, multiline reasons and empty fields', () => {
+  const one = { protocol: 'tcp', cidrlist: '192.0.2.0/24,2001:db8::/64', traffictype: 'Ingress', reason: '  "문자",\nthen line  ' }
+  const two = { protocol: 'all', cidrlist: '', traffictype: 'Egress', reason: 'null' }
+  const rows = parseAclCsv(formatAclCsv([one, two]))
+  expect(rows[0]).toMatchObject({ ...one, line: 2 })
+  expect(rows[1]).toMatchObject({ reason: 'null', line: 4 })
+  expect(rows[1]).not.toHaveProperty('cidrlist')
+  expect(rows.map(aclCsvError)).toEqual(['', ''])
+  expect(aclCsvError(parseAclCsv('protocol,cidrlist,traffictype,startport,endport\ntcp,0.0.0.0/0,ingress,65536,65535')[0])).toBe('message.acl.csv.row.ports')
+  expect(aclCsvError(parseAclCsv('protocol,cidrlist,traffictype\nall,invalid,ingress')[0])).toBe('message.acl.csv.row.cidr')
+  expect(aclCsvError(parseAclCsv('protocol,cidrlist,traffictype\nall,invalid,ingress,extra')[0])).toBe('message.acl.csv.row.columns')
+})
+
+test('CSV checks the same pending job and submits only a repaired failed row', async () => {
+  const wrapper = shallowMount(ImportNetworkACL, { props: { resource: acl, projectArgs: {}, canWrite: () => true }, global: mountOptions })
+  const vm = wrapper.vm
+  await vm.readFile({ name: 'rules.csv', text: async () => 'protocol,cidrlist,traffictype,number\nall,192.0.2.1/32,ingress,10\nall,192.0.2.2/32,egress,10' })
+  postAPI.mockResolvedValue({ importnetworkaclresponse: { jobid: 'job' } })
+  getAPI.mockRejectedValueOnce(new Error('poll lost'))
+  await vm.handleSubmit()
+  expect(vm.pending).toBe('job')
+  getAPI.mockResolvedValueOnce({
+    queryasyncjobresultresponse: {
+      jobstatus: 1, jobid: 'job', jobresult: { networkaclimport: { successcount: 1, failurecount: 1, applied: true, importedrules: [{ id: 'new' }], failedrows: { 3: 'Duplicate rule' } } }
+    }
+  })
+  await vm.handleSubmit()
+  expect(postAPI).toHaveBeenCalledTimes(1)
+  expect(vm.report).toEqual({ saved: 1, failed: 1, applied: true })
+  expect(vm.csvData.map(row => row.line)).toEqual([3])
+  vm.editor = { ...vm.csvData[0], number: '30' }
+  vm.saveEdit()
+  getAPI.mockResolvedValueOnce({
+    queryasyncjobresultresponse: {
+      jobstatus: 1, jobid: 'job', jobresult: { networkaclimport: { successcount: 1, failurecount: 0, applied: true, importedrules: [{ id: 'newer' }], failedrows: {} } }
+    }
+  })
+  await vm.handleSubmit()
+  const params = postAPI.mock.calls[1][1]
+  expect(params['rules[3].number']).toBe('30')
+  expect(Object.keys(params).some(key => key.startsWith('rules[2]'))).toBe(false)
+  expect(vm.report).toEqual({ saved: 1, failed: 0, applied: true })
+  vm.closeAction()
+  expect(wrapper.emitted('imported')).toHaveLength(1)
   wrapper.unmount()
 })

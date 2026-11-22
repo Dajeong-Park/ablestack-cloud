@@ -40,6 +40,14 @@ public class RoleResponse extends BaseRoleResponse {
     @Param(description = "the state of the role")
     private String state;
 
+    @SerializedName("inuse")
+    @Param(description = "Whether this role is assigned to any account, when requested")
+    private Boolean inUse;
+
+    public void setInUse(boolean inUse) {
+        this.inUse = inUse;
+    }
+
     public void setRoleType(RoleType roleType) {
         if (roleType != null) {
             this.roleType = roleType.name();

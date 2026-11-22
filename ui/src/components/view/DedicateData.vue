@@ -31,7 +31,7 @@
         <strong>{{ $t('label.account') }}</strong><br/>
         <router-link :to="{ path: '/account/' + dedicatedAccountId }">{{ dedicatedAccountId }}</router-link>
       </p>
-      <a-button style="margin-top: 10px; margin-bottom: 10px;" type="primary" danger @click="handleRelease">
+      <a-button ref="releaseTrigger" style="margin-top: 10px; margin-bottom: 10px;" type="primary" danger :disabled="releaseApi && !$store.getters.apis[releaseApi]" @click="handleRelease">
         {{ releaseButtonLabel }}
       </a-button>
     </div>
@@ -40,7 +40,7 @@
     <div>
       <strong>{{ $t('label.dedicated') }}</strong>
       <div>{{ $t('label.no') }}</div>
-      <a-button type="primary" style="margin-top: 10px; margin-bottom: 10px;" @click="modalActive = true" :disabled="!dedicateButtonAvailable">
+      <a-button ref="dedicateTrigger" type="primary" style="margin-top: 10px; margin-bottom: 10px;" @click="modalActive = true" :disabled="!dedicateButtonAvailable">
         {{ dedicatedButtonLabel }}
       </a-button>
     </div>
@@ -48,9 +48,31 @@
       :resource="resource"
       :active="modalActive"
       :label="dedicatedModalLabel"
+      :after-close="restoreClusterFocus"
       @close="modalActive = false"
       :fetchData="fetchData" />
   </a-list-item>
+  <mold-dialog
+    v-if="releaseConfirmVisible || $route.meta.name === 'cluster'"
+    :visible="releaseConfirmVisible"
+    :title="releaseButtonLabel"
+    size="md"
+    form-actions
+    focus-guard
+    :initial-focus="$route.meta.name === 'cluster' ? '.ant-modal-footer .cluster-release-cancel' : ''"
+    :after-close="restoreClusterFocus"
+    @cancel="releaseConfirmVisible = false">
+    <cluster-action-context v-if="$route.meta.name === 'cluster'" :resource="resource" impact="message.cluster.release.confirm" destructive />
+    <template v-else>
+      <p>{{ resource.name }}</p>
+      <p>{{ $t($route.meta.name === 'host' ? 'message.host.release.confirm' : 'message.zone.release.confirm') }}</p>
+    </template>
+    <a-alert v-if="releaseError" type="error" show-icon :message="releaseError" />
+    <mold-dialog-actions :busy="releaseBusy">
+      <a-button class="cluster-release-cancel" @click="releaseConfirmVisible = false">{{ $t('label.cancel') }}</a-button>
+      <a-button danger type="primary" @click="releaseInfrastructureDedication">{{ releaseJob ? $t($route.meta.name === 'host' ? 'label.host.operation.recheck' : 'label.zone.update.recheck') : releaseButtonLabel }}</a-button>
+    </mold-dialog-actions>
+  </mold-dialog>
 </template>
 
 <script>
@@ -58,6 +80,9 @@ import { listRefreshMixin } from '@/utils/listRefreshMixin'
 
 import { getAPI, postAPI } from '@/api'
 import DedicateModal from './DedicateModal'
+import ClusterActionContext from '@/views/infra/ClusterActionContext.vue'
+import MoldDialog from './MoldDialog'
+import MoldDialogActions from './MoldDialogActions'
 
 export default {
   mixins: [listRefreshMixin(['fetchDedicatedZones', 'fetchDedicatedPods', 'fetchDedicatedClusters', 'fetchDedicatedHosts'], { select: vm => ({ zone: ['fetchDedicatedZones'], pod: ['fetchDedicatedPods'], cluster: ['fetchDedicatedClusters'], host: ['fetchDedicatedHosts'] })[vm.$route.meta.name] || [] })],
@@ -68,7 +93,10 @@ export default {
     }
   },
   components: {
-    DedicateModal
+    DedicateModal,
+    ClusterActionContext,
+    MoldDialog,
+    MoldDialogActions
   },
   inject: ['parentFetchData'],
   created () {
@@ -77,12 +105,24 @@ export default {
   data () {
     return {
       modalActive: false,
+      releaseConfirmVisible: false,
+      releaseBusy: false,
+      releaseError: '',
+      releaseJob: '',
       dedicateButtonAvailable: true,
       dedicatedButtonLabel: this.$t('label.dedicate'),
       releaseButtonLabel: this.$t('label.release'),
       dedicatedModalLabel: this.$t('label.dedicate'),
       dedicatedDomainId: null,
       dedicatedAccountId: null
+    }
+  },
+  computed: {
+    releaseApi () {
+      if (this.$route.meta.name === 'host') return 'releaseDedicatedHost'
+      if (this.$route.meta.name === 'zone') return 'releaseDedicatedZone'
+      if (this.$route.meta.name === 'cluster') return 'releaseDedicatedCluster'
+      return ''
     }
   },
   watch: {
@@ -96,6 +136,11 @@ export default {
     }
   },
   methods: {
+    restoreClusterFocus () {
+      if (this.$route.meta.name !== 'cluster' || this.resource.id !== this.$route.params.id) return
+      const trigger = this.$refs.releaseTrigger || this.$refs.dedicateTrigger
+      if (trigger?.$el) trigger.$el.focus({ preventScroll: true })
+    },
     fetchData () {
       this.dedicateButtonAvailable = true
       if (this.$route.meta.name === 'zone') {
@@ -211,28 +256,39 @@ export default {
         this.$notifyError(error)
       })
     },
-    releaseDedidcatedZone () {
-      postAPI('releaseDedicatedZone', {
-        zoneid: this.resource.id
-      }).then(response => {
-        this.$pollJob({
-          jobId: response.releasededicatedzoneresponse.jobid,
-          title: this.$t('label.release.dedicated.zone'),
-          description: this.resource.id,
-          successMessage: this.$t('message.dedicated.zone.released'),
-          successMethod: () => {
-            this.dedicatedDomainId = null
-          },
-          errorMessage: this.$t('error.release.dedicate.zone'),
-          loadingMessage: this.$t('message.releasing.dedicated.zone'),
-          catchMessage: this.$t('error.fetching.async.job.result'),
-          catchMethod: () => {
-            this.parentFetchData()
-          }
-        })
-      }).catch(error => {
-        this.$notifyError(error)
-      })
+    async releaseInfrastructureDedication () {
+      const api = this.releaseApi
+      if (this.releaseBusy || !api || !this.$store.getters.apis[api]) return
+      const scope = this.$route.meta.name
+      const idKey = scope + 'id'
+      const failure = 'error.release.dedicate.' + scope
+      const success = scope === 'zone' ? 'message.dedicated.zone.released' : 'message.' + scope + '.dedication.released'
+      this.releaseBusy = true
+      this.releaseError = ''
+      try {
+        const retry = !!this.releaseJob
+        if (!retry) {
+          const response = await postAPI(api, { [idKey]: this.resource.id }, { preserveOnFailure: true })
+          this.releaseJob = response[api.toLowerCase() + 'response']?.jobid
+        }
+        if (!this.releaseJob) throw new Error(this.$t('message.job.result.unknown'))
+        const result = await this.$pollJob({ jobId: this.releaseJob, retry, showLoading: false, successMessage: this.$t(success), errorMessage: this.$t(failure) })
+        if (result.jobstatus === 1) {
+          this.releaseConfirmVisible = false
+          this.releaseJob = ''
+          this.fetchData()
+          this.parentFetchData()
+        } else if (result.jobstatus === 2) {
+          this.releaseJob = ''
+          this.releaseError = this.$t(failure)
+        } else {
+          this.releaseError = this.$t('message.job.result.unknown')
+        }
+      } catch (error) {
+        this.releaseError = Object.values(error.response?.data || {}).find(item => item?.errortext)?.errortext || error.message
+      } finally {
+        this.releaseBusy = false
+      }
     },
     releaseDedidcatedPod () {
       postAPI('releaseDedicatedPod', {
@@ -257,65 +313,14 @@ export default {
         this.$notifyError(error)
       })
     },
-    releaseDedidcatedCluster () {
-      postAPI('releaseDedicatedCluster', {
-        clusterid: this.resource.id
-      }).then(response => {
-        this.$pollJob({
-          jobId: response.releasededicatedclusterresponse.jobid,
-          title: this.$t('label.release.dedicated.cluster'),
-          description: this.resource.id,
-          successMessage: this.$t('message.cluster.dedication.released'),
-          successMethod: () => {
-            this.dedicatedDomainId = null
-          },
-          errorMessage: this.$t('error.release.dedicate.cluster'),
-          loadingMessage: this.$t('message.releasing.dedicated.cluster'),
-          catchMessage: this.$t('error.fetching.async.job.result'),
-          catchMethod: () => {
-            this.parentFetchData()
-          }
-        })
-      }).catch(error => {
-        this.$notifyError(error)
-      })
-    },
-    releaseDedidcatedHost () {
-      postAPI('releaseDedicatedHost', {
-        hostid: this.resource.id
-      }).then(response => {
-        this.$pollJob({
-          jobId: response.releasededicatedhostresponse.jobid,
-          title: this.$t('label.release.dedicated.host'),
-          description: this.resource.id,
-          successMessage: this.$t('message.host.dedication.released'),
-          successMethod: () => {
-            this.dedicatedDomainId = null
-          },
-          errorMessage: this.$t('error.release.dedicate.host'),
-          loadingMessage: this.$t('message.releasing.dedicated.host'),
-          catchMessage: this.$t('error.fetching.async.job.result'),
-          catchMethod: () => {
-            this.parentFetchData()
-          }
-        })
-      }).catch(error => {
-        this.$notifyError(error)
-      })
-    },
     handleRelease () {
       this.modalActive = false
-      if (this.$route.meta.name === 'zone') {
-        this.releaseDedidcatedZone()
+      if (this.releaseApi) {
+        this.releaseError = ''
+        this.releaseConfirmVisible = true
       }
       if (this.$route.meta.name === 'pod') {
         this.releaseDedidcatedPod()
-      }
-      if (this.$route.meta.name === 'cluster') {
-        this.releaseDedidcatedCluster()
-      }
-      if (this.$route.meta.name === 'host') {
-        this.releaseDedidcatedHost()
       }
     }
   }

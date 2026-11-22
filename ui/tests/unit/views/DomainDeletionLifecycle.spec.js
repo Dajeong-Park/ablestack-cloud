@@ -18,7 +18,6 @@
 import { flushPromises } from '@vue/test-utils'
 import DomainView from '@/views/iam/DomainView'
 import DomainDeleteConfirm from '@/components/view/DomainDeleteConfirm'
-import TreeView from '@/components/view/TreeView'
 import { getAPI, postAPI } from '@/api'
 import store from '@/store'
 
@@ -59,10 +58,10 @@ test('successful deletion awaits navigation before the only root reload; no dele
 })
 test('tree deletion clears deleted selection and reloads root exactly once', async () => {
   const c = parent('/domain'); await c.confirmDeleteDomain()
-  expect(c.domainStore.treeSelected).toEqual({})
+  expect(c.domainStore.selectedId).toBe(root.id)
   expect(c.treeViewKey).toBe(1)
   expect(getAPI).toHaveBeenCalledTimes(1)
-  expect(store.dispatch).toHaveBeenCalledWith('SetDomainStore', expect.objectContaining({ treeSelected: {} }))
+  expect(store.dispatch).toHaveBeenCalledWith('SetDomainStore', expect.objectContaining({ selectedId: root.id }))
 })
 test('route watcher does not race the awaited post-delete reload', async () => {
   const c = parent(); await c.confirmDeleteDomain()
@@ -129,18 +128,98 @@ test('changing impact target discards old accounts instead of querying the new t
   read.resolve({ listaccountsresponse: { account: [{ name: 'old' }] } }); await task
   expect(getAPI).toHaveBeenCalledTimes(1); expect(c.accountVmSummary).toEqual([])
 })
-test('an unmounted domain tree never sends its queued detail lookup', async () => {
-  const c = context(TreeView, { metaName: 'domain' }); c.domainTreeDisposed = true
-  await c.getDetailResource(domain.id); expect(getAPI).not.toHaveBeenCalled()
+function list (...records) {
+  return { listdomainsresponse: { domain: records } }
+}
+
+test('a successful empty search clears the previous selection and available operations', async () => {
+  const c = parent('/domain')
+  c.resource = { ...domain }
+  c.changeDomainStore({ keyword: 'old', selectedId: domain.id })
+  getAPI.mockResolvedValue(list())
+  await c.searchDomains('new')
+  expect(c.resource).toEqual({})
+  expect(c.menuActions).toEqual([])
+  expect(c.treeData).toEqual([])
+  expect(c.readError).toBe('')
+  expect(c.domainStore.selectedId).toBe('')
 })
-test('a late domain tree failure is local and silent after disposal', async () => {
-  const c = context(TreeView, { metaName: 'domain', $route: { fullPath: '/domain', meta: { permission: ['listDomains'] } } }); const read = deferred()
-  getAPI.mockReturnValue(read.promise); const task = c.getDetailResource(domain.id)
-  TreeView.beforeUnmount.call(c); read.reject(new Error('deleted domain')); await task
-  expect(c.$notification.error).not.toHaveBeenCalled(); expect(getAPI.mock.calls[0][2].preserveOnFailure).toBe(true)
+
+test('late search responses cannot replace the newer result or bring back an action target', async () => {
+  const c = parent('/domain')
+  const first = deferred()
+  getAPI.mockReturnValueOnce(first.promise).mockResolvedValueOnce(list({ ...root }))
+  const oldSearch = c.searchDomains('first')
+  const oldSignal = getAPI.mock.calls[0][2].signal
+  await c.searchDomains('second')
+  expect(oldSignal.aborted).toBe(true)
+  first.resolve(list({ ...domain }))
+  await oldSearch
+  expect(c.resource.id).toBe(root.id)
+  expect(c.domainStore.keyword).toBe('second')
+  expect(c.loading).toBe(false)
 })
-test('a current domain tree lookup error remains visible', async () => {
-  const c = context(TreeView, { metaName: 'domain', $route: { fullPath: '/domain', meta: { permission: ['listDomains'] } } })
-  getAPI.mockRejectedValue({ response: { headers: { 'x-description': 'visible current error' } } }); await c.getDetailResource(domain.id)
+
+test('a failed current search clears operations and shows a retryable read error', async () => {
+  const c = parent('/domain')
+  c.resource = { ...domain }
+  getAPI.mockRejectedValueOnce({ response: { headers: { 'x-description': 'read failed' } } })
+  await c.searchDomains('search')
+  expect(c.readError).toBe('read failed')
+  expect(c.menuActions).toEqual([])
+  expect(c.loading).toBe(false)
+})
+
+test('refresh preserves result selection and tab, then clears a renamed result that leaves the search', async () => {
+  const c = parent('/domain')
+  c.changeDomainStore({ keyword: 'qa', selectedId: domain.id, tab: 'events' })
+  getAPI.mockResolvedValueOnce(list({ ...domain })).mockResolvedValueOnce(list())
+  await c.fetchData()
+  expect(c.resource.id).toBe(domain.id)
+  expect(c.domainStore.tab).toBe('events')
+  await c.fetchData()
+  expect(c.resource).toEqual({})
+  expect(c.domainStore.keyword).toBe('qa')
+})
+
+test('restoring the browsing context reloads expanded ancestors and the exact selected resource', async () => {
+  const c = parent('/domain')
+  const stored = { owner: c.domainOwner, selectedId: domain.id, selectedPath: [root.id, domain.id], expanded: [root.id], tab: 'limits' }
+  store.getters.domainStore = stored
+  c.restoreDomainStore()
+  getAPI.mockResolvedValueOnce(list({ ...root, haschild: true }))
+    .mockResolvedValueOnce({ listdomainchildrenresponse: { domain: [{ ...domain }] } })
+    .mockResolvedValueOnce(list({ ...domain, vmlimit: 3 }))
+  await c.fetchData()
+  expect(getAPI.mock.calls.map(([action, params]) => [action, params.id])).toEqual([
+    ['listDomains', root.id], ['listDomainChildren', root.id], ['listDomains', domain.id]
+  ])
+  expect(c.resource.vmlimit).toBe(3)
+  expect(c.domainStore.tab).toBe('limits')
+  expect(c.domainStore.expanded).toEqual([root.id])
+})
+
+test('a disposed domain view ignores its late tree selection failure', async () => {
+  const c = parent('/domain')
+  c.treeData = [{ ...domain }]
+  c.domainRequestAbort = new AbortController()
+  const read = deferred()
+  getAPI.mockReturnValueOnce(read.promise)
+  const task = c.selectDomain(domain.id)
+  DomainView.beforeUnmount.call(c)
+  read.reject(new Error('disposed domain'))
+  await task
+  expect(c.$notification.error).not.toHaveBeenCalled()
+  expect(getAPI.mock.calls[0][2].signal.aborted).toBe(true)
+})
+
+test('a current tree detail failure remains visible and clears the action target', async () => {
+  const c = parent('/domain')
+  c.treeData = [{ ...domain }]
+  c.domainRequestAbort = new AbortController()
+  getAPI.mockRejectedValueOnce({ response: { headers: { 'x-description': 'visible current error' } } })
+  await c.selectDomain(domain.id)
   expect(c.$notification.error).toHaveBeenCalledWith(expect.objectContaining({ description: 'visible current error' }))
+  expect(c.resource).toEqual({})
+  expect(c.selecting).toBe(false)
 })

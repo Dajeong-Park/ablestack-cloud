@@ -17,6 +17,8 @@
 
 package org.apache.cloudstack.dns.dao;
 
+import java.util.List;
+
 import org.apache.cloudstack.api.ApiConstants;
 import org.apache.cloudstack.dns.vo.DnsZoneNetworkMapVO;
 import org.springframework.stereotype.Component;
@@ -53,6 +55,13 @@ public class DnsZoneNetworkMapDaoImpl extends GenericDaoBase<DnsZoneNetworkMapVO
         SearchCriteria<DnsZoneNetworkMapVO> sc = NetworkSearch.create();
         sc.setParameters(ApiConstants.NETWORK_ID, networkId);
         return findOneBy(sc);
+    }
+
+    @Override
+    public List<DnsZoneNetworkMapVO> listByZoneId(long dnsZoneId) {
+        SearchCriteria<DnsZoneNetworkMapVO> sc = ZoneNetworkSearch.create();
+        sc.setParameters(ApiConstants.DNS_ZONE_ID, dnsZoneId);
+        return listBy(sc);
     }
 
     @Override

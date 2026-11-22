@@ -57,6 +57,8 @@ public interface RoleService {
 
     Role updateRole(Role role, String name, RoleType roleType, String description, Boolean publicRole);
 
+    boolean isRoleInUse(Long roleId);
+
     boolean deleteRole(Role role);
 
     boolean enableRole(Role role);
@@ -101,6 +103,9 @@ public interface RoleService {
     List<Role> findRolesByType(RoleType roleType);
 
     Pair<List<Role>, Integer> findRolesByType(RoleType roleType, String state, Long startIndex, Long limit);
+
+    Pair<List<Role>, Integer> searchRoles(String uuid, String name, String keyword, RoleType type,
+            String state, Long startIndex, Long limit);
 
     List<RolePermission> findAllPermissionsBy(Long roleId);
 

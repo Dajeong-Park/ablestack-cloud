@@ -18,18 +18,25 @@
 package org.apache.cloudstack.kms.dao;
 
 import com.cloud.utils.db.Filter;
+import com.cloud.utils.db.GenericDao;
 import com.cloud.utils.db.GenericDaoBase;
+import com.cloud.utils.db.JoinBuilder;
 import com.cloud.utils.db.SearchBuilder;
 import com.cloud.utils.db.SearchCriteria;
+import org.apache.cloudstack.kms.KMSKekVersionVO;
 import org.apache.cloudstack.kms.KMSWrappedKeyVO;
 import org.springframework.stereotype.Component;
 
+import javax.inject.Inject;
 import java.util.List;
 
 @Component
 public class KMSWrappedKeyDaoImpl extends GenericDaoBase<KMSWrappedKeyVO, Long> implements KMSWrappedKeyDao {
 
     private final SearchBuilder<KMSWrappedKeyVO> allFieldSearch;
+
+    @Inject
+    private KMSKekVersionDao kekVersionDao;
 
     public KMSWrappedKeyDaoImpl() {
         super();
@@ -47,6 +54,20 @@ public class KMSWrappedKeyDaoImpl extends GenericDaoBase<KMSWrappedKeyVO, Long> 
         sc.setParameters("kmsKeyId", kmsKeyId);
         Integer count = getCount(sc);
         return count != null ? count.longValue() : 0L;
+    }
+
+    @Override
+    public long countByHsmProfileId(long profileId) {
+        SearchBuilder<KMSWrappedKeyVO> wrappedKeys = createSearchBuilder();
+        SearchBuilder<KMSKekVersionVO> versions = kekVersionDao.createSearchBuilder();
+        versions.and("profileId", versions.entity().getHsmProfileId(), SearchCriteria.Op.EQ);
+        versions.and(GenericDao.REMOVED_COLUMN, versions.entity().getRemoved(), SearchCriteria.Op.NULL);
+        wrappedKeys.join("versions", versions, wrappedKeys.entity().getKekVersionId(), versions.entity().getId(), JoinBuilder.JoinType.INNER);
+        wrappedKeys.done();
+
+        SearchCriteria<KMSWrappedKeyVO> criteria = wrappedKeys.create();
+        criteria.setJoinParameters("versions", "profileId", profileId);
+        return getCount(criteria);
     }
 
     @Override

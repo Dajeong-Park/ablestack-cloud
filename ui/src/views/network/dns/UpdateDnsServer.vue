@@ -37,6 +37,13 @@
             v-focus />
         </a-form-item>
 
+        <a-form-item v-if="apiParams.state" name="state" :label="$t('label.state')">
+          <a-select v-model:value="form.state">
+            <a-select-option value="Enabled">{{ $t('state.enabled') }}</a-select-option>
+            <a-select-option value="Disabled">{{ $t('state.disabled') }}</a-select-option>
+          </a-select>
+        </a-form-item>
+
         <a-form-item name="url" ref="url">
           <template #label>
             <tooltip-label
@@ -100,17 +107,17 @@
           <a-switch v-model:checked="form.ispublic" />
         </a-form-item>
 
-        <div class="action-button">
+        <MoldDialogActions :busy="loading">
           <a-button @click="closeAction">
             {{ $t('label.cancel') }}
           </a-button>
           <a-button
             type="primary"
             :loading="loading"
-            htmlType="submit">
+            @click="handleSubmit">
             {{ $t('label.ok') }}
           </a-button>
-        </div>
+        </MoldDialogActions>
       </a-form>
     </a-spin>
   </div>
@@ -118,6 +125,8 @@
 
 <script>
 import { postAPI } from '@/api'
+import { dnsNameserverError, normalizeDnsNameservers } from '@/utils/dnsServer'
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 
 const FQDN_REGEX = /^(?=.{1,253}$)(?:(?!-)[A-Za-z0-9-]{1,63}(?<!-)\.)+[A-Za-z]{2,63}$/
@@ -125,6 +134,7 @@ const FQDN_REGEX = /^(?=.{1,253}$)(?:(?!-)[A-Za-z0-9-]{1,63}(?<!-)\.)+[A-Za-z]{2
 export default {
   name: 'UpdateDnsServer',
   components: {
+    MoldDialogActions,
     TooltipLabel
   },
   props: {
@@ -141,7 +151,8 @@ export default {
         name: '',
         url: '',
         port: 53,
-        dnsapikey: ''
+        dnsapikey: '',
+        state: undefined
       },
       rules: {}
     }
@@ -170,6 +181,7 @@ export default {
       }]
     }
     this.form.name = this.resource.name
+    this.form.state = this.resource.state
     this.form.url = this.resource.url
     this.form.port = this.resource.port
     this.form.nameservers = this.resource.nameservers || []
@@ -199,9 +211,10 @@ export default {
           name: this.form.name.trim(),
           url: this.form.url?.trim().replace(/\/+$/, ''),
           port: this.form.port,
-          nameservers: this.form.nameservers || [],
+          nameservers: normalizeDnsNameservers(this.form.nameservers),
           ispublic: this.form.ispublic
         }
+        if (this.apiParams.state && this.form.state) params.state = this.form.state
         const dnsapikey = this.form.dnsapikey?.trim()
         if (dnsapikey) {
           params.dnsapikey = dnsapikey
@@ -234,13 +247,13 @@ export default {
       try {
         const parsed = new URL(value)
         if (!['http:', 'https:'].includes(parsed.protocol)) {
-          return Promise.reject(new Error('URL must start with http:// or https://'))
+          return Promise.reject(new Error(this.$t('message.dns.server.url.protocol')))
         }
         if (parsed.port) {
-          return Promise.reject(new Error('Do not include port in URL. Use the port field instead.'))
+          return Promise.reject(new Error(this.$t('message.dns.server.url.port')))
         }
       } catch (e) {
-        return Promise.reject(new Error('Invalid URL format'))
+        return Promise.reject(new Error(this.$t('message.dns.server.url.invalid')))
       }
       return Promise.resolve()
     },
@@ -250,27 +263,14 @@ export default {
       }
 
       if (value < 1 || value > 65535) {
-        return Promise.reject(new Error('Port must be between 1 and 65535'))
+        return Promise.reject(new Error(this.$t('message.dns.server.port.invalid')))
       }
 
       return Promise.resolve()
     },
-    validateNameservers (rule, value) {
-      if (!value || !value.length) {
-        return Promise.resolve()
-      }
-
-      for (const ns of value) {
-        if (!FQDN_REGEX.test(ns)) {
-          return Promise.reject(new Error('Invalid nameserver'))
-        }
-      }
-
-      if (new Set(value).size !== value.length) {
-        return Promise.reject(new Error('Nameservers must be unique'))
-      }
-
-      return Promise.resolve()
+    async validateNameservers (rule, value) {
+      const error = dnsNameserverError(value)
+      if (error) throw new Error(this.$t(error))
     },
     validatePublicDomainSuffix (rule, value) {
       const normalized = value?.toLowerCase().trim()
@@ -278,7 +278,7 @@ export default {
         return Promise.reject(new Error(this.$t('message.error.required.input')))
       }
       if (!FQDN_REGEX.test(normalized)) {
-        return Promise.reject(new Error('Invalid domain suffix'))
+        return Promise.reject(new Error(this.$t('message.dns.server.suffix.invalid')))
       }
 
       return Promise.resolve()
@@ -287,37 +287,8 @@ export default {
       return ['Admin', 'DomainAdmin'].includes(this.$store.getters.userInfo.roletype)
     },
     onNameserversChange (value) {
-      this.form.nameservers = Array.isArray(value) ? value.map(ns => ns.toLowerCase().trim()).filter(Boolean) : []
+      this.form.nameservers = normalizeDnsNameservers(value)
     }
   }
 }
 </script>
-
-<style lang="less" scoped>
-.form-layout {
-  width: 80vw;
-  @media (min-width: 600px) {
-    width: 450px;
-  }
-}
-
-.action-button {
-  text-align: right;
-  margin-top: 20px;
-}
-.action-button button {
-  margin-left: 8px;
-}
-
-.slide-down-enter-active,
-.slide-down-leave-active {
-  transition: max-height 0.3s ease, opacity 0.3s ease;
-  overflow: hidden;
-  max-height: 120px;
-}
-.slide-down-enter-from,
-.slide-down-leave-to {
-  max-height: 0;
-  opacity: 0;
-}
-</style>

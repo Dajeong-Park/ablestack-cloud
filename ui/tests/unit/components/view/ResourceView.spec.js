@@ -62,8 +62,23 @@ describe('ResourceView resource navigation', () => {
     expect(router.currentRoute.value.path).toBe('/affinitygroup/group')
     expect(router.currentRoute.value.query).toEqual({ keyword: 'kept', tab: 'instances' })
   })
+  it('keeps the KMS return entry when tab navigation goes through the router', () => {
+    const kmsReturn = { kind: 'kmskey', query: { page: '2' } }
+    const vm = {
+      $route: { path: '/kmskey/key', params: { id: 'key' }, meta: { name: 'kmskey' }, query: { projectid: 'project' } },
+      $router: { push: jest.fn(), options: { history: { state: { kmsReturn } } } },
+      $emit: jest.fn()
+    }
+    ResourceView.methods.onTabChange.call(vm, 'events')
+    expect(vm.$router.push).toHaveBeenCalledWith({
+      path: '/kmskey/key',
+      query: { projectid: 'project', tab: 'events' },
+      state: { kmsReturn }
+    })
+  })
+
   it('affinity tab-only navigation preserves loaded data and selection but owner changes requery', () => {
-    const vm = { resetSelection: jest.fn(), clearAutoRefresh: jest.fn(), fetchData: jest.fn(), scheduleAutoRefresh: jest.fn() }
+    const vm = { currentAction: {}, resetSelection: jest.fn(), clearAutoRefresh: jest.fn(), fetchData: jest.fn(), scheduleAutoRefresh: jest.fn() }
     const from = { path: '/affinitygroup/group', fullPath: '/affinitygroup/group', params: { id: 'group' }, meta: { name: 'affinitygroup' }, query: {} }
     const to = { ...from, fullPath: from.path + '?tab=instances', query: { tab: 'instances' } }
     AutogenView.watch.$route.call(vm, to, from)
@@ -79,6 +94,7 @@ describe('ResourceView resource navigation', () => {
     ['/vm/4', { tab: 'browser' }, false]
   ])('refreshes the destination data for %s with query %j: %s', (routePath, query, refresh) => {
     const vm = {
+      currentAction: {},
       resetSelection: jest.fn(),
       clearAutoRefresh: jest.fn(),
       fetchData: jest.fn(),
@@ -90,9 +106,9 @@ describe('ResourceView resource navigation', () => {
     expect(vm.fetchData).toHaveBeenCalledTimes(refresh ? 1 : 0)
   })
 
-  it('isolates general detail by path and SSH or snapshot detail by verified identity scope', () => {
+  it('isolates general detail by path and KMS, SSH or snapshot detail by verified identity scope', () => {
     const source = fs.readFileSync(path.resolve(__dirname, '../../../../src/views/AutogenView.vue'), 'utf8')
-    expect(source).toMatch(/<resource-view\s+v-else(?:-if="[^"]*")?\s+:key="isSshKeyPairDetail \|\| isSnapshotDetail \|\| isPolicyDetail \? listScope\(\) : \$route.path"/)
+    expect(source).toMatch(/<resource-view\s+v-else(?:-if="[^"]*")?\s+:key="isKmsDetail \|\| isSshKeyPairDetail \|\| isSnapshotDetail \|\| isPolicyDetail \? listScope\(\) : \$route.path"/)
   })
 
   it.each([
@@ -253,4 +269,31 @@ test('departing VM or image views cannot rewrite a valid destination library tab
     expect(vm.activeTab).toBe('userdata.usage.vms')
     expect(vm.$router.replace).not.toHaveBeenCalled()
   }
+})
+
+test.each([['Allocated', 'guest.networks'], ['Free', 'details']])('reconciles a guest VLAN network tab after the requested VLAN loads as %s', async (allocationstate, expectedTab) => {
+  const content = { render: () => null }
+  const tabs = [
+    { name: 'details', component: content },
+    { name: 'guest.networks', component: content, show: vlan => vlan.allocationstate === 'Allocated' }
+  ]
+  const route = { path: '/guestvlans/93', params: { id: '93' }, meta: { name: 'guestvlans', tabs }, query: { tab: 'guest.networks', page: '2' } }
+  const replace = jest.fn()
+  const wrapper = mount(ResourceView, {
+    props: { resource: {}, tabs, loading: true },
+    global: {
+      mocks: { $route: route, $router: { replace }, $t: key => key, $store: { state: { app: { device: 'desktop' } }, getters: { userInfo: {} } } },
+      stubs: { ResourceLayout: { render () { return h('div', this.$slots.right()) } } }
+    }
+  })
+  expect(replace).not.toHaveBeenCalled()
+
+  await wrapper.setProps({ resource: { id: 93, allocationstate }, loading: false })
+  expect(wrapper.vm.activeTab).toBe(expectedTab)
+  if (expectedTab === 'details') {
+    expect(replace).toHaveBeenCalledWith({ path: route.path, query: { tab: 'details', page: '2' } })
+  } else {
+    expect(replace).not.toHaveBeenCalled()
+  }
+  wrapper.unmount()
 })

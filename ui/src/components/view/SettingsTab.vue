@@ -17,14 +17,40 @@
 
 <template>
   <div>
+    <a-alert
+      v-if="scopeKey === 'accountid'"
+      type="info"
+      show-icon
+      :message="$t('message.account.settings.scope', { account: resource.name, domain: resource.domainpath || resource.domain || resource.domainid })" />
+    <a-alert
+      v-if="scopeKey === 'domainid'"
+      type="info"
+      show-icon
+      :message="$t('message.domain.settings.scope', { path: resource.path || resource.name })"
+      :description="$t('message.domain.settings.inheritance')" />
     <a-col :span="24">
-      <a-input-search
-        style="width: 25vw;float: right;margin-bottom: 10px; z-index: 8;"
-        :placeholder="$t('label.search')"
-        v-model:value="filter"
-        @search="handleSearch" />
+      <resource-table-toolbar
+        v-if="standardLayout"
+        v-model:search="filter"
+        searchable
+        :loading="tabLoading"
+        @search="handleSearch"
+        @refresh="fetchData()" />
+      <div v-else :class="{ 'domain-settings-toolbar': scopeKey === 'domainid' }">
+        <a-button v-if="scopeKey === 'domainid'" :loading="tabLoading" size="small" shape="round" @click="fetchData()">
+          <template #icon><reload-outlined /></template>
+          {{ $t('label.refresh') }}
+        </a-button>
+        <a-input-search
+          :class="{ 'account-settings-search': scopeKey === 'accountid' }"
+          :style="scopeKey === 'domainid' ? undefined : 'width: 25vw;float: right;margin-bottom: 10px; z-index: 8;'"
+          :placeholder="$t('label.search')"
+          v-model:value="filter"
+          @search="handleSearch" />
+      </div>
       <ConfigurationTable
-        :columns="columns"
+        :columns="standardLayout ? columns.map(column => ({ ...column, title: $t('label.' + column.title) })) : columns"
+        :standard-layout="standardLayout"
         :config="items"
         :resource="resource"
         @refresh-config="handleConfigRefresh" />
@@ -33,12 +59,14 @@
 </template>
 
 <script>
+import ResourceTableToolbar from '@/components/view/ResourceTableToolbar'
 import { getAPI } from '@/api'
 import TooltipButton from '@/components/widgets/TooltipButton'
 import ConfigurationTable from '@/views/setting/ConfigurationTable.vue'
 
 export default {
   components: {
+    ResourceTableToolbar,
     ConfigurationTable,
     TooltipButton
   },
@@ -52,6 +80,9 @@ export default {
       type: Boolean,
       required: true
     }
+  },
+  computed: {
+    standardLayout () { return ['zoneid', 'clusterid'].includes(this.scopeKey) }
   },
   data () {
     return {
@@ -257,4 +288,16 @@ export default {
 
   }
 
+</style>
+
+<style scoped>
+.domain-settings-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 12px 0;
+}
+.domain-settings-toolbar :deep(.ant-input-search) { width: min(100%, 280px); }
 </style>

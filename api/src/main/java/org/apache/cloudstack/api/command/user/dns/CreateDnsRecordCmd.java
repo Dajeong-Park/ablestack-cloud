@@ -17,7 +17,15 @@
 
 package org.apache.cloudstack.api.command.user.dns;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonParser;
+
+import org.apache.commons.lang3.StringUtils;
 
 import org.apache.cloudstack.acl.RoleType;
 import org.apache.cloudstack.api.ACL;
@@ -56,9 +64,15 @@ public class CreateDnsRecordCmd extends BaseAsyncCmd {
     @Parameter(name = ApiConstants.TYPE, type = CommandType.STRING, required = true, description = "DNS record type (e.g., A, AAAA, CNAME, MX, TXT, etc.)")
     private String type;
 
-    @Parameter(name = ApiConstants.CONTENTS, type = CommandType.LIST, collectionType = CommandType.STRING, required = true,
-            description = "The content of the record (IP address for A/AAAA, FQDN for CNAME/NS, quoted string for TXT, etc.)")
+    @Parameter(name = ApiConstants.CONTENTS, type = CommandType.LIST, collectionType = CommandType.STRING,
+            description = "Legacy comma-separated content of the record (IP address for A/AAAA, FQDN for CNAME/NS, quoted string for TXT, etc.)")
     private List<String> contents;
+
+    private static final String CONTENTS_JSON = "contentsjson";
+
+    @Parameter(name = CONTENTS_JSON, type = CommandType.STRING,
+            description = "DNS record values as a JSON array of strings. Use either contentsjson or contents.")
+    private String contentsJson;
 
     @Parameter(name = "ttl", type = CommandType.INTEGER, description = "Time to live")
     private Integer ttl;
@@ -67,7 +81,47 @@ public class CreateDnsRecordCmd extends BaseAsyncCmd {
     public Long getDnsZoneId() { return dnsZoneId; }
     public String getName() { return name; }
 
-    public List<String> getContents() { return contents; }
+    public List<String> getContents() {
+        return contentsJson == null ? contents : parseContents(contentsJson);
+    }
+
+    @Override
+    public void validateSpecificParameters(final Map<String, String> params) {
+        super.validateSpecificParameters(params);
+        final String legacy = params.get(ApiConstants.CONTENTS);
+        final String json = params.get(CONTENTS_JSON);
+        if (legacy == null && json == null || legacy != null && json != null || legacy != null && StringUtils.isBlank(legacy.replace(",", ""))) {
+            throw new ServerApiException(ApiErrorCode.PARAM_ERROR, "Supply either contents or contentsjson with at least one DNS record value");
+        }
+        if (json != null) {
+            try {
+                parseContents(json);
+            } catch (InvalidParameterValueException e) {
+                throw new ServerApiException(ApiErrorCode.PARAM_ERROR, e.getMessage());
+            }
+        }
+    }
+
+    private static List<String> parseContents(String json) {
+        try {
+            JsonElement element = JsonParser.parseString(json);
+            if (element.isJsonArray()) {
+                List<String> values = new ArrayList<>();
+                for (JsonElement value : element.getAsJsonArray()) {
+                    if (!value.isJsonPrimitive() || !value.getAsJsonPrimitive().isString() || StringUtils.isBlank(value.getAsString())) {
+                        throw new InvalidParameterValueException("contentsjson must contain non-blank strings");
+                    }
+                    values.add(value.getAsString());
+                }
+                if (!values.isEmpty()) {
+                    return values;
+                }
+            }
+        } catch (JsonParseException e) {
+            throw new InvalidParameterValueException("contentsjson must be a non-empty JSON array of strings");
+        }
+        throw new InvalidParameterValueException("contentsjson must be a non-empty JSON array of strings");
+    }
     public Integer getTtl() { return (ttl == null) ? 3600 : ttl; }
 
     public DnsRecord.RecordType getType() {

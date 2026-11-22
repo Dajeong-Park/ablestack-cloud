@@ -71,7 +71,7 @@ public class UpdateNetworkACLItemCmd extends BaseAsyncCustomIdCmd {
     @Parameter(name = ApiConstants.ACTION, type = CommandType.STRING, description = "ACL entry action, allow or deny")
     private String action;
 
-    @Parameter(name = ApiConstants.FOR_DISPLAY, type = CommandType.BOOLEAN, description = "An optional field, whether to the display the rule to the end User or not", since = "4.4", authorized = {
+    @Parameter(name = ApiConstants.FOR_DISPLAY, type = CommandType.BOOLEAN, description = "An optional field, whether to display the rule to the end user. Omitting this field preserves the current value", since = "4.4", authorized = {
             RoleType.Admin})
     private Boolean display;
 
@@ -87,11 +87,11 @@ public class UpdateNetworkACLItemCmd extends BaseAsyncCustomIdCmd {
 
     @Override
     public boolean isDisplay() {
-        if (display != null) {
-            return display;
-        } else {
-            return true;
-        }
+        return !Boolean.FALSE.equals(display);
+    }
+
+    public Boolean getDisplay() {
+        return display;
     }
 
     public Long getId() {

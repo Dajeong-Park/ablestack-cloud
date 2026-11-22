@@ -1,0 +1,569 @@
+[
+  {
+    "command": "listKMSKeys",
+    "params": {
+      "id": "c5fafd0f-c395-4237-bba1-083eb74e8ec5",
+      "listall": "true"
+    },
+    "method": "GET",
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "emptyEnvelope": false,
+      "keys": [
+        {
+          "id": "c5fafd0f-c395-4237-bba1-083eb74e8ec5",
+          "account": "admin",
+          "domainid": "47178e2f-bd56-11f1-b573-002481560363",
+          "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "command": "listVolumes",
+    "params": {
+      "kmsmigrationkeyid": "c5fafd0f-c395-4237-bba1-083eb74e8ec5",
+      "kmsmigrationeligible": "true",
+      "page": "1",
+      "pagesize": "10",
+      "keyword": "ROOT-241",
+      "account": "admin",
+      "domainid": "47178e2f-bd56-11f1-b573-002481560363",
+      "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+      "listall": "true"
+    },
+    "method": "GET",
+    "httpStatus": 200,
+    "response": {
+      "emptyEnvelope": true,
+      "volumes": []
+    }
+  },
+  {
+    "command": "listKMSKeys",
+    "params": {
+      "id": "c5fafd0f-c395-4237-bba1-083eb74e8ec5",
+      "listall": "true"
+    },
+    "method": "GET",
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "emptyEnvelope": false,
+      "keys": [
+        {
+          "id": "c5fafd0f-c395-4237-bba1-083eb74e8ec5",
+          "account": "admin",
+          "domainid": "47178e2f-bd56-11f1-b573-002481560363",
+          "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "command": "listVolumes",
+    "params": {
+      "kmsmigrationkeyid": "c5fafd0f-c395-4237-bba1-083eb74e8ec5",
+      "kmsmigrationeligible": "true",
+      "page": "1",
+      "pagesize": "10",
+      "keyword": "ROOT-241",
+      "account": "admin",
+      "domainid": "47178e2f-bd56-11f1-b573-002481560363",
+      "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+      "listall": "true"
+    },
+    "method": "GET",
+    "httpStatus": 431,
+    "response": {
+      "emptyEnvelope": false,
+      "errorCode": 431,
+      "volumes": []
+    }
+  },
+  {
+    "command": "listKMSKeys",
+    "params": {
+      "id": "c5fafd0f-c395-4237-bba1-083eb74e8ec5",
+      "page": "1",
+      "pagesize": "20",
+      "listall": "true"
+    },
+    "method": "GET",
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "emptyEnvelope": false,
+      "keys": [
+        {
+          "id": "c5fafd0f-c395-4237-bba1-083eb74e8ec5",
+          "account": "admin",
+          "domainid": "47178e2f-bd56-11f1-b573-002481560363",
+          "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "command": "listKMSKeys",
+    "params": {
+      "id": "c5fafd0f-c395-4237-bba1-083eb74e8ec5",
+      "listall": "true"
+    },
+    "method": "GET",
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "emptyEnvelope": false,
+      "keys": [
+        {
+          "id": "c5fafd0f-c395-4237-bba1-083eb74e8ec5",
+          "account": "admin",
+          "domainid": "47178e2f-bd56-11f1-b573-002481560363",
+          "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "command": "listVolumes",
+    "params": {
+      "kmsmigrationkeyid": "c5fafd0f-c395-4237-bba1-083eb74e8ec5",
+      "page": "1",
+      "pagesize": "10",
+      "account": "admin",
+      "domainid": "47178e2f-bd56-11f1-b573-002481560363",
+      "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+      "listall": "true"
+    },
+    "method": "GET",
+    "httpStatus": 200,
+    "response": {
+      "count": 176,
+      "emptyEnvelope": false,
+      "volumes": [
+        {
+          "id": "0d321ece-ff01-42d4-8d59-32c58d7eddb4",
+          "name": "ROOT-232",
+          "state": "Ready",
+          "eligible": false,
+          "reason": "NOT_ENCRYPTED"
+        },
+        {
+          "id": "8e839809-5c0a-4551-8c1b-550a989ff0b5",
+          "name": "ROOT-234",
+          "state": "Ready",
+          "eligible": false,
+          "reason": "NOT_ENCRYPTED"
+        },
+        {
+          "id": "9b02b10f-922e-41fb-a9c8-088c52d813cd",
+          "name": "ROOT-235",
+          "state": "Ready",
+          "eligible": false,
+          "reason": "NOT_ENCRYPTED"
+        },
+        {
+          "id": "554b37e6-feee-4e59-80f0-f9d4bee44354",
+          "name": "ROOT-236",
+          "state": "Ready",
+          "eligible": false,
+          "reason": "NOT_ENCRYPTED"
+        },
+        {
+          "id": "e623ad39-429d-44f9-8e6d-4b10ce5ab4f6",
+          "name": "ROOT-240",
+          "state": "Ready",
+          "eligible": false,
+          "reason": "NOT_ENCRYPTED"
+        },
+        {
+          "id": "6254ef33-9adb-497f-89fc-46428a923167",
+          "name": "ROOT-241",
+          "state": "Ready",
+          "eligible": false,
+          "reason": "NOT_ENCRYPTED"
+        },
+        {
+          "id": "500f8724-49a8-41b2-81fe-4cc1c7a95e15",
+          "name": "sharedfs-ROOT-242",
+          "state": "Ready",
+          "eligible": false,
+          "reason": "NOT_ENCRYPTED"
+        },
+        {
+          "id": "e15293f0-14d3-4fb6-981e-373f57d02ded",
+          "name": "sharedfs-DATA-242",
+          "state": "Ready",
+          "eligible": false,
+          "reason": "NOT_ENCRYPTED"
+        },
+        {
+          "id": "02ce4ae7-9021-42c4-ac26-893038dd67b9",
+          "name": "sharedfs-ROOT-243",
+          "state": "Ready",
+          "eligible": false,
+          "reason": "NOT_ENCRYPTED"
+        },
+        {
+          "id": "69f1eb1c-c6ea-4cc7-abea-b4ded6408bf1",
+          "name": "sharedfs-DATA-243",
+          "state": "Ready",
+          "eligible": false,
+          "reason": "NOT_ENCRYPTED"
+        }
+      ]
+    }
+  },
+  {
+    "command": "listKMSKeys",
+    "params": {
+      "id": "c5fafd0f-c395-4237-bba1-083eb74e8ec5",
+      "listall": "true"
+    },
+    "method": "GET",
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "emptyEnvelope": false,
+      "keys": [
+        {
+          "id": "c5fafd0f-c395-4237-bba1-083eb74e8ec5",
+          "account": "admin",
+          "domainid": "47178e2f-bd56-11f1-b573-002481560363",
+          "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "command": "listVolumes",
+    "params": {
+      "kmsmigrationkeyid": "c5fafd0f-c395-4237-bba1-083eb74e8ec5",
+      "page": "2",
+      "pagesize": "10",
+      "account": "admin",
+      "domainid": "47178e2f-bd56-11f1-b573-002481560363",
+      "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+      "listall": "true"
+    },
+    "method": "GET",
+    "httpStatus": 200,
+    "response": {
+      "count": 176,
+      "emptyEnvelope": false,
+      "volumes": [
+        {
+          "id": "45b2520a-1b42-4596-a4c9-b88d1b405406",
+          "name": "issue1462-iscsi-sparse",
+          "state": "Ready",
+          "eligible": false,
+          "reason": "NOT_ENCRYPTED"
+        },
+        {
+          "id": "3940999e-3065-488b-9d64-ef483d9af506",
+          "name": "sharedfs-DATA-225",
+          "state": "Ready",
+          "eligible": false,
+          "reason": "NOT_ENCRYPTED"
+        },
+        {
+          "id": "a59c2c54-02ee-4a4a-8132-47967728d1bc",
+          "name": "issue1462-binding-iscsi-sparse",
+          "state": "Ready",
+          "eligible": false,
+          "reason": "NOT_ENCRYPTED"
+        },
+        {
+          "id": "d647e089-ef59-4187-b608-8196cd9e646a",
+          "name": "issue1462-binding-nvme-sparse",
+          "state": "Ready",
+          "eligible": false,
+          "reason": "NOT_ENCRYPTED"
+        },
+        {
+          "id": "e23dbfc1-6e63-4701-934c-ff3074d54e27",
+          "name": "ROOT-227",
+          "state": "Ready",
+          "eligible": false,
+          "reason": "NOT_ENCRYPTED"
+        },
+        {
+          "id": "9fed478c-a363-49fa-bcba-0bad084f7390",
+          "name": "sharedfs-ROOT-228",
+          "state": "Ready",
+          "eligible": false,
+          "reason": "NOT_ENCRYPTED"
+        },
+        {
+          "id": "c14a6445-6de0-433a-b4df-fde4aca852ba",
+          "name": "sharedfs-DATA-228",
+          "state": "Ready",
+          "eligible": false,
+          "reason": "NOT_ENCRYPTED"
+        },
+        {
+          "id": "b699dec7-2ad0-42fc-8112-1010582118c1",
+          "name": "sharedfs-ROOT-229",
+          "state": "Ready",
+          "eligible": false,
+          "reason": "NOT_ENCRYPTED"
+        },
+        {
+          "id": "2a75f6d4-5808-47d7-81fc-5fcd2d4f73bf",
+          "name": "sharedfs-DATA-229",
+          "state": "Ready",
+          "eligible": false,
+          "reason": "NOT_ENCRYPTED"
+        },
+        {
+          "id": "f9fdba48-72f4-41b4-ae61-8fcea1d1fb08",
+          "name": "ROOT-231",
+          "state": "Ready",
+          "eligible": false,
+          "reason": "NOT_ENCRYPTED"
+        }
+      ]
+    }
+  },
+  {
+    "command": "listKMSKeys",
+    "params": {
+      "id": "c5fafd0f-c395-4237-bba1-083eb74e8ec5",
+      "listall": "true"
+    },
+    "method": "GET",
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "emptyEnvelope": false,
+      "keys": [
+        {
+          "id": "c5fafd0f-c395-4237-bba1-083eb74e8ec5",
+          "account": "admin",
+          "domainid": "47178e2f-bd56-11f1-b573-002481560363",
+          "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "command": "listVolumes",
+    "params": {
+      "kmsmigrationkeyid": "c5fafd0f-c395-4237-bba1-083eb74e8ec5",
+      "page": "1",
+      "pagesize": "10",
+      "keyword": "ROOT-241",
+      "account": "admin",
+      "domainid": "47178e2f-bd56-11f1-b573-002481560363",
+      "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+      "listall": "true"
+    },
+    "method": "GET",
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "emptyEnvelope": false,
+      "volumes": [
+        {
+          "id": "6254ef33-9adb-497f-89fc-46428a923167",
+          "name": "ROOT-241",
+          "state": "Ready",
+          "eligible": false,
+          "reason": "NOT_ENCRYPTED"
+        }
+      ]
+    }
+  },
+  {
+    "command": "listKMSKeys",
+    "params": {
+      "id": "c5fafd0f-c395-4237-bba1-083eb74e8ec5",
+      "listall": "true"
+    },
+    "method": "GET",
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "emptyEnvelope": false,
+      "keys": [
+        {
+          "id": "c5fafd0f-c395-4237-bba1-083eb74e8ec5",
+          "account": "admin",
+          "domainid": "47178e2f-bd56-11f1-b573-002481560363",
+          "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "command": "listVolumes",
+    "params": {
+      "kmsmigrationkeyid": "c5fafd0f-c395-4237-bba1-083eb74e8ec5",
+      "kmsmigrationeligible": "true",
+      "page": "1",
+      "pagesize": "10",
+      "keyword": "ROOT-241",
+      "account": "admin",
+      "domainid": "47178e2f-bd56-11f1-b573-002481560363",
+      "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+      "listall": "true"
+    },
+    "method": "GET",
+    "httpStatus": 200,
+    "response": {
+      "emptyEnvelope": true,
+      "volumes": []
+    }
+  },
+  {
+    "command": "listKMSKeys",
+    "params": {
+      "id": "c5fafd0f-c395-4237-bba1-083eb74e8ec5",
+      "listall": "true"
+    },
+    "method": "GET",
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "emptyEnvelope": false,
+      "keys": [
+        {
+          "id": "c5fafd0f-c395-4237-bba1-083eb74e8ec5",
+          "account": "admin",
+          "domainid": "47178e2f-bd56-11f1-b573-002481560363",
+          "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "command": "listVolumes",
+    "params": {
+      "kmsmigrationkeyid": "c5fafd0f-c395-4237-bba1-083eb74e8ec5",
+      "kmsmigrationeligible": "false",
+      "page": "1",
+      "pagesize": "10",
+      "keyword": "ROOT-241",
+      "account": "admin",
+      "domainid": "47178e2f-bd56-11f1-b573-002481560363",
+      "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+      "listall": "true"
+    },
+    "method": "GET",
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "emptyEnvelope": false,
+      "volumes": [
+        {
+          "id": "6254ef33-9adb-497f-89fc-46428a923167",
+          "name": "ROOT-241",
+          "state": "Ready",
+          "eligible": false,
+          "reason": "NOT_ENCRYPTED"
+        }
+      ]
+    }
+  },
+  {
+    "command": "listKMSKeys",
+    "params": {
+      "id": "c5fafd0f-c395-4237-bba1-083eb74e8ec5",
+      "page": "1",
+      "pagesize": "20",
+      "listall": "true"
+    },
+    "method": "GET",
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "emptyEnvelope": false,
+      "keys": [
+        {
+          "id": "c5fafd0f-c395-4237-bba1-083eb74e8ec5",
+          "account": "admin",
+          "domainid": "47178e2f-bd56-11f1-b573-002481560363",
+          "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+          "enabled": false
+        }
+      ]
+    }
+  },
+  {
+    "command": "listKMSKeys",
+    "params": {
+      "id": "c5fafd0f-c395-4237-bba1-083eb74e8ec5",
+      "listall": "true"
+    },
+    "method": "GET",
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "emptyEnvelope": false,
+      "keys": [
+        {
+          "id": "c5fafd0f-c395-4237-bba1-083eb74e8ec5",
+          "account": "admin",
+          "domainid": "47178e2f-bd56-11f1-b573-002481560363",
+          "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+          "enabled": false
+        }
+      ]
+    }
+  },
+  {
+    "command": "listKMSKeys",
+    "params": {
+      "id": "c5fafd0f-c395-4237-bba1-083eb74e8ec5",
+      "page": "1",
+      "pagesize": "20",
+      "listall": "true"
+    },
+    "method": "GET",
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "emptyEnvelope": false,
+      "keys": [
+        {
+          "id": "c5fafd0f-c395-4237-bba1-083eb74e8ec5",
+          "account": "admin",
+          "domainid": "47178e2f-bd56-11f1-b573-002481560363",
+          "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+          "enabled": false
+        }
+      ]
+    }
+  },
+  {
+    "command": "queryAsyncJobResult",
+    "params": {},
+    "method": "GET",
+    "httpStatus": 200,
+    "response": {
+      "emptyEnvelope": false
+    }
+  },
+  {
+    "command": "listKMSKeys",
+    "params": {
+      "listall": "true"
+    },
+    "method": "GET",
+    "httpStatus": 200,
+    "response": {
+      "emptyEnvelope": true,
+      "keys": []
+    }
+  }
+]

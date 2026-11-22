@@ -71,7 +71,6 @@ test('same-context failure retains successful rows and time but clears selection
 test('first failure does not become normal zero or redirect', async () => {
   getAPI.mockRejectedValue(new Error('offline')); await ctx.fetchData()
   expect(ctx.listLoadedScope).toBeNull(); expect(ctx.vmGroupQueryStatus).toBe('error')
-  expect(Autogen.computed.vmGroupEmptyText.call(ctx)).toBe('message.vm.group.query.error')
   expect(ctx.$router.push).not.toHaveBeenCalled()
 })
 test.each([403, 432, 531])('permission %i removes old data/actions and preserves only last successful time', async code => {
@@ -121,10 +120,9 @@ test('page sort changes preserve paging/search and are excluded from server para
   ctx.handleTableChange({}, {}, { field: 'name', order: 'descend' })
   expect(ctx.$router.push).toHaveBeenCalledWith({ query: { keyword: 'kw', q: 'kw', page: '2', pagesize: '20', sortkey: 'name', sortorder: 'desc' } })
 })
-test('VM reads still use the established generic API and snapshot empty behavior', async () => {
+test('VM reads still use the established generic API', async () => {
   ctx.$route = { name: 'vm', path: '/vm', fullPath: '/vm', params: {}, query: {}, meta: { permission: ['listVirtualMachines'], columns: ['name'] } }
   await ctx.fetchData(); expect(callAPI).toHaveBeenCalledWith('listVirtualMachines', expect.objectContaining({ page: 1, pagesize: 20, listall: true })); expect(getAPI).not.toHaveBeenCalled()
-  expect(Autogen.computed.snapshotEmptyText.call(ctx)).toBe('')
 })
 
 test('HTTP 200 permission error is not reported as a successful empty response', async () => {

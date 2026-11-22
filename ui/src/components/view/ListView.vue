@@ -16,15 +16,15 @@
 // under the License.
 
 <template>
-  <div class="list-view-table-wrapper" :class="{ 'autoscale-list': $route.name === 'autoscalevmgroup', 'snapshot-list-table': $route.name === 'snapshot', 'snapshot-policy-list-table': $route.name === 'snapshotpolicy', 'kubernetes-iso-list-table': isKubernetesIsoMainList }" :tabindex="isKubernetesIsoMainList ? 0 : undefined" :role="isKubernetesIsoMainList ? 'region' : undefined" :aria-label="isKubernetesIsoMainList ? $t('label.kubernetes.isos') : undefined" @keydown="scrollKubernetesIsoTable" @contextmenu="handleGlobalContextMenu">
+  <div class="list-view-table-wrapper" :class="{ 'kms-table': kmsTable, 'autoscale-list': $route.name === 'autoscalevmgroup', 'snapshot-list-table': $route.name === 'snapshot', 'snapshot-policy-list-table': $route.name === 'snapshotpolicy', 'kubernetes-iso-list-table': isKubernetesIsoMainList }" :tabindex="scrollRegionLabel ? 0 : undefined" :role="scrollRegionLabel ? 'region' : undefined" :aria-label="scrollRegionLabel" @keydown="scrollWideTable" @contextmenu="handleGlobalContextMenu">
     <a-table
       size="middle"
       :loading="loading"
       :locale="emptyText ? { emptyText } : undefined"
       :columns="displayColumns"
       :dataSource="items"
-      :tableLayout="isIsoMainList || isKubernetesIsoMainList ? 'fixed' : undefined"
-      :scroll="tableScroll || kubernetesIsoTableScroll || isoTableScroll || templateTableScroll || ($route.name === 'snapshot' ? { x: 1400 } : ['autoscalevmgroup', 'affinitygroup'].includes($route.name) ? { x: 980 } : undefined)"
+      :tableLayout="isIsoMainList || scrollRegionLabel ? 'fixed' : undefined"
+      :scroll="kmsTableScroll || tableScroll || kubernetesIsoTableScroll || isoTableScroll || templateTableScroll || ($route.name === 'snapshot' ? { x: 1400 } : ['autoscalevmgroup', 'affinitygroup'].includes($route.name) ? { x: 980 } : undefined)"
       :rowKey="listRowKey"
       :pagination="false"
       :rowSelection="explicitlyAllowRowSelection || enableGroupAction() || $route.name === 'event' ? {selectedRowKeys: selectedRowKeys, onChange: onSelectChange, getCheckboxProps: record => ({ disabled: selectionDisabled(record) }), columnWidth: 30} : null"
@@ -54,7 +54,7 @@
         </a-menu>
       </div>
     </template>
-    <template v-if="isIsoMainList || isKubernetesIsoMainList" #headerCell="{ column }">
+    <template v-if="isIsoMainList || isKubernetesIsoMainList || kmsTable" #headerCell="{ column }">
       <a-popover v-if="isKubernetesIsoMainList && column.key === 'filtercolumn'" :visible="columnPickerVisible" @update:visible="columnPickerVisibility" trigger="click" placement="bottomRight">
         <template #content>
           <div ref="columnPickerContent" @vue:mounted="columnPickerContentMounted" class="kubernetes-iso-column-picker" role="group" :aria-label="$t('label.select.columns')" @keydown.esc.stop.prevent="closeColumnPicker">
@@ -64,14 +64,32 @@
         <a-button ref="columnPickerTrigger" type="text" size="small" class="kubernetes-iso-columns-trigger" :aria-expanded="columnPickerVisible" :aria-label="$t('label.select.columns')" @keydown.esc.stop.prevent="closeColumnPicker"><filter-outlined /></a-button>
       </a-popover>
       <keyboard-tooltip v-else-if="isKubernetesIsoMainList && typeof column.title === 'string' && column.title" :title="column.title"><span tabindex="0" class="kubernetes-iso-header-text">{{ column.title }}</span></keyboard-tooltip>
+      <TableOverflowText v-else-if="kmsTable && column.key !== 'filtercolumn'" :text="column.title" />
       <a-tooltip v-else-if="column.sorter" :title="$t('message.iso.search.sort.page')" :trigger="['hover', 'focus']"><span tabindex="0">{{ column.title }}</span></a-tooltip>
       <span v-else>{{ column.title }}</span>
     </template>
     <template #bodyCell="{ column, text, record }">
-      <AsnListCell v-if="$route.meta?.name === 'asnumbers' && column.key !== 'filtercolumn'" :record="record" :field="column.key" />
+      <TableOverflowText v-if="kmsTable && column.key !== 'filtercolumn'" :text="kmsValue(column.key, text)" :location="kmsCellLink(column.key, record)">
+        <Status v-if="['enabled', 'state'].includes(column.key) && text != null" :text="String(text)" :display-label="kmsValue(column.key, text)" display-text />
+        <template v-else>{{ kmsValue(column.key, text) }}</template>
+      </TableOverflowText>
+      <TableOverflowText v-else-if="isProjectMainList && column.key === 'displaytext'" :text="text || '—'" />
+      <TableOverflowText
+        v-else-if="isProjectMainList && column.key === 'domain'"
+        :text="text || record.domainid || '—'"
+        :location="record.domainid && $store.getters.apis.listDomains ? { path: '/domain/' + record.domainid, query: { tab: 'details' } } : null" />
+      <VpnUserValue v-else-if="$route.meta?.name === 'vpnuser' && ['state', 'owners'].includes(column.key)" :field="column.key" :resource="record" />
+      <AsnListCell v-else-if="$route.meta?.name === 'asnumbers' && column.key !== 'filtercolumn'" :record="record" :field="column.key" />
       <IsoListCell v-else-if="isIsoMainList && ['name', 'state', 'ostypename', 'arch', 'account', 'project', 'size'].includes(column.key)" :record="record" :field="column.key" />
       <S2sGatewayValue v-else-if="$route.meta?.name === 's2svpn' && ['publicip','vpcname','account','domain','project'].includes(column.key)" :resource="record" :field="column.key" list />
       <KubernetesIsoListCell v-else-if="isKubernetesIsoMainList && ['state', 'isostate', 'zonename', 'semanticversion', 'mincpunumber', 'minmemory', 'arch'].includes(column.key)" :resource="record" :field="column.key" />
+      <AclScopeValue v-else-if="column.key === 'vpcname' && isAclListRoute($route)" :resource="record" />
+      <a-tag v-else-if="column.key === 'fordisplay' && isAclListRoute($route) && typeof text === 'boolean'">
+        {{ $t(aclDisplayLabel(text)) }}
+      </a-tag>
+      <template v-else-if="$route.meta?.name === 'zone' && ['cputotal', 'memorytotal', 'cpumaxdeviation', 'memorymaxdeviation', 'gputotal', 'gpuused'].includes(column.key)">
+        {{ ['gputotal', 'gpuused'].includes(column.key) && zoneMetricText(record.gputotal) && Number(record.gputotal) === 0 ? $t('label.zone.capacity.unsupported') : zoneMetricText(text) || $t('label.unknown') }}
+      </template>
       <template v-else>
       <VpnPsk v-if="column.key === 'ipsecpsk' || column.dataIndex === 'ipsecpsk'" :value="text" masked-only />
       <SharedFSCapacitySummary v-else-if="$route.name === 'sharedfs' && column.key === 'capacity'" :resource="record" mode="list" />
@@ -103,7 +121,7 @@
           <os-logo v-else :osId="record.ostypeid" :osName="record.osdisplayname" size="xl" />
         </span>
         <span
-          :class="{ 'template-name-cell': (isTemplateMainList || isKubernetesIsoMainList) && record.id }"
+          :class="{ 'template-name-cell': (isTemplateMainList || isKubernetesIsoMainList) && record.id, 'project-list-name-cell': isProjectMainList }"
           :style="{ minWidth: (isTemplateMainList || isKubernetesIsoMainList) && record.id ? 0 : '120px' }">
           <QuickView
             style="margin-left: 5px"
@@ -113,13 +131,14 @@
             @exec-action="$parent.execAction"
           />
           <span
-            v-if="$route.path.startsWith('/project')"
+            v-if="$route.meta?.name === 'project' && !resourcePath && record.id"
             style="margin-right: 5px"
           >
             <tooltip-button
               type="dashed"
               size="small"
               icon="LoginOutlined"
+              :tooltip="$t('label.project.enter.named', { name: record.name })"
               @onClick="changeProject(record)"
             />
           </span>
@@ -162,11 +181,37 @@
             <router-link :to="cniDetailLink($route, record)">{{ text }}</router-link>
             <router-link v-if="record.hasannotations" :to="cniDetailLink($route, record, 'comments')"><message-filled style="padding-left: 10px" size="small" /></router-link>
           </span>
+          <span v-else-if="$route.meta?.name === 'vpncustomergateway' && record.id" class="vpn-customer-gateway-name">
+            <router-link :to="{ path: '/vpncustomergateway/' + record.id, query: $route.query }">{{ text }}</router-link>
+            <router-link v-if="record.hasannotations" :aria-label="$t('label.comments')" :to="{ path: '/vpncustomergateway/' + record.id, query: { ...$route.query, tab: 'comments' } }"><message-filled /></router-link>
+            <a-tooltip v-if="record.excludedparameters || record.obsoleteparameters" :title="$t('message.vpn.customer.gateway.contains.excluded.obsolete.parameters')">
+              <warning-outlined :style="{ color: $config.theme['@warning-color'] }" />
+            </a-tooltip>
+          </span>
           <span v-else-if="$route.meta?.name === 'guestnetwork' && record.id">
             <router-link :to="networkDetailLocation($route, record)">{{ text }}</router-link>
             <router-link v-if="record.hasannotations" :to="networkDetailLocation($route, record, 'comments')"><message-filled style="padding-left: 10px" size="small" /></router-link>
           </span>
-          <span v-else-if="resourcePath && record.id" class="embedded-resource-name"><router-link :to="{ path: resourcePath === '/vm' ? createPathBasedOnVmType(record.vmtype, record.id) : resourcePath + '/' + record.id }">{{ text }}</router-link></span>
+          <router-link v-else-if="isAclListRoute($route) && !resourcePath && record.id" :to="aclListDetailLocation($route, record, $store.getters)">{{ text }}</router-link>
+          <router-link v-else-if="$route.meta?.name === 'project' && !resourcePath && record.id" class="project-list-name-link" :title="text" :to="projectDetailLocation($route, record, $store.getters, $store.state?.user?.token)">{{ text }}</router-link>
+          <router-link v-else-if="$route.meta?.name === 'account' && !resourcePath && record.id" :title="text" :to="accountDetailLocation($route, record, $store.getters, $store.state?.user?.token)">{{ text }}</router-link>
+          <router-link v-else-if="$route.meta?.name === 'role' && !resourcePath && record.id" :title="text" :to="roleDetailLocation($route, record, $store.getters, $store.state?.user?.token)">{{ text }}</router-link>
+          <router-link v-else-if="kmsListRoute($route) && !resourcePath && record.id" :to="kmsDetailLocation($route, record, $store.getters, $store.state?.user?.token)">{{ text }}</router-link>
+          <span v-else-if="$route.path === '/cluster' && !resourcePath && record.id">
+            <router-link :to="{ path: '/cluster/' + record.id, query: clusterListQuery($route.query) }">{{ text }}</router-link>
+            <router-link v-if="record.hasannotations" :aria-label="$t('label.comments')" :to="{ path: '/cluster/' + record.id, query: { ...clusterListQuery($route.query), tab: 'comments' } }"><message-filled /></router-link>
+          </span>
+          <span v-else-if="$route.path === '/host' && !resourcePath && record.id">
+            <router-link :to="{ path: '/host/' + record.id, query: hostListQuery($route.query) }">{{ text }}</router-link>
+            <router-link v-if="record.hasannotations" :aria-label="$t('label.comments')" :to="{ path: '/host/' + record.id, query: { ...hostListQuery($route.query), tab: 'comments' } }"><message-filled /></router-link>
+          </span>
+          <span v-else-if="$route.path === '/zone' && !resourcePath && record.id">
+            <router-link :to="{ path: '/zone/' + record.id, query: zoneListQuery($route.query) }">{{ text }}</router-link>
+            <router-link v-if="record.hasannotations" :aria-label="$t('label.comments')" :to="{ path: '/zone/' + record.id, query: { ...zoneListQuery($route.query), tab: 'comments' } }"><message-filled /></router-link>
+          </span>
+          <router-link v-else-if="$route.path === '/dnsserver' && !resourcePath && record.id" :to="{ path: '/dnsserver/' + record.id, query: dnsServerListQuery($route.query) }">{{ text }}</router-link>
+          <router-link v-else-if="$route.path === '/dnszone' && !resourcePath && record.id" :to="{ path: '/dnszone/' + record.id, query: dnsZoneListQuery($route.query) }">{{ text }}</router-link>
+          <span v-else-if="resourcePath && record.id" class="embedded-resource-name"><router-link :to="resourceLink ? resourceLink(record) : { path: resourcePath === '/vm' ? createPathBasedOnVmType(record.vmtype, record.id) : resourcePath + '/' + record.id }">{{ text }}</router-link></span>
           <span v-else-if="record.hasannotations">
             <span v-if="record.id">
               <router-link :to="{ path: $route.path + '/' + record.id }">{{ text }}</router-link>
@@ -237,14 +282,6 @@
                 <warning-outlined style="color: #f5222d" />
               </a-tooltip>
             </span>
-            <span v-else-if="$route.path.startsWith('/vpncustomergateway')">
-              &nbsp;
-              <a-tooltip
-                v-if="record.excludedparameters || record.obsoleteparameters"
-                :title="$t('message.vpn.customer.gateway.contains.excluded.obsolete.parameters')">
-                <warning-outlined :style="{ color: $config.theme['@warning-color'] }" />
-              </a-tooltip>
-            </span>
           </span>
           <span
             v-if="record.leaseduration !== undefined"
@@ -304,10 +341,12 @@
         <span
           v-else-if="$route.meta?.name === 'guestnetwork'"
         >{{ $t(networkTypeLabel(text)) }}</span>
+        <router-link v-else-if="$route.meta?.name === 'event' && record.id" :to="eventRowLocation(record)">{{ translateEventType(text) }}</router-link>
         <span
           v-else-if="['USER.LOGIN', 'USER.LOGOUT', 'ROUTER.HEALTH.CHECKS', 'FIREWALL.CLOSE', 'ALERT.SERVICE.DOMAINROUTER'].includes(text)"
         >{{ translateEventType(text) }}</span>
         <span v-else>{{ translateEventType(text) }}</span>
+        <a-tag v-if="record.archived && (isEventTimelineRoute($route) || isEventDetailRoute($route))" color="orange">{{ $t('label.archived') }}</a-tag>
       </template>
       <template v-if="$route.name === 'snapshot' && column.key === 'intervaltype'"><span>{{ $t(snapshotListInterval(text)) }}</span></template>
       <template v-if="column.key === 'schedule'">
@@ -383,7 +422,8 @@
           />
         </span>
         <router-link
-          :to="{ path: $route.path + '/' + record.id }"
+          :class="{ 'vpn-user-name': $route.path === '/vpnuser' }"
+          :to="$route.path === '/vpnuser' ? vpnUserDetailLocation(record) : { path: $route.path + '/' + record.id }"
           v-if="['/accountuser', '/vpnuser'].includes($route.path)"
         >{{ text }}</router-link>
         <router-link
@@ -455,9 +495,16 @@
           :to="{ path: '/publicip' + '/' + record.publicipid }"
         >{{ text }}</router-link>
         <router-link
+          v-else-if="$route.meta?.name === 's2svpnconn'"
+          :to="vpnConnectionDetailLocation($route, record, $store.getters)"
+        >{{ text || record.id }}</router-link>
+        <router-link
           v-else
           :to="$route.meta?.name === 's2svpn' ? s2sGatewayDetailLocation($route, record, $store.getters) : { path: $route.path + '/' + record.id }"
         >{{ text }}</router-link>
+        <span v-if="$route.meta?.name === 's2svpnconn' && record.fordisplay === false && vpnConnectionDisplaySupported($store.getters)" class="s2s-connection-hidden">
+          {{ $t('label.s2s.display.hidden') }}
+        </span>
       </template>
       <template v-if="column.key === 'traffictype'">
         {{ text }}
@@ -569,13 +616,18 @@
       </template>
       <template v-if="column.key === 'state'">
         <span class="list-state-with-flatten">
-          <public-ip-status v-if="$route.meta?.name === 'publicip'" :value="text" />
+          <status v-if="vpnConnectionListRoute($route)" :text="text || ''" :display-label="$t(vpnConnectionState(record))" display-text />
+          <public-ip-status v-else-if="$route.meta?.name === 'publicip'" :value="text" />
           <template-availability v-else-if="['template', 'iso'].includes($route.meta?.name)" :kind="$route.meta.name" :record="record" compact single-line />
           <status v-else-if="$route.path.startsWith('/host')" :text="getHostState(record)" displayText />
           <status v-else :text="text ? text : ''" :displayLabel="column.stateLabel ? column.stateLabel(record) : ''" displayText />
           <clone-flatten-control :record="record" @refresh="$emit('refresh')" />
         </span>
       </template>
+      <template v-if="$route.meta?.name === 'account' && column.key === 'roletype' && text">
+        {{ $t('label.account.role.' + text.toLowerCase()) }}
+      </template>
+
       <template v-if="column.key === 'status'">
         <backup-progress
           v-if="isBackupStatusColumn()"
@@ -602,6 +654,12 @@
       <template v-if="column.key === 'validationstatus'">
         <status :text="text ? text : $t('label.unknown')" displayText />
       </template>
+      <template v-if="column.key === 'taken' && $route.meta?.name === 'guestvlans'">
+        {{ text ? $toLocaleDate(text) : '—' }}
+      </template>
+      <template v-if="$route.meta.name === 'cluster' && column.key === 'clustertype'">
+        {{ $t(clusterStateLabel('clustertype', text)) }}
+      </template>
       <template v-if="column.key === 'allocationstate'">
         <status
           :text="text ? text : ''"
@@ -622,13 +680,17 @@
         />
       </template>
       <template v-if="column.key === 'resourcestate'">
+        <a-tag v-if="$route.meta.name === 'host'" :color="hostStatusColor(text)">{{ $t(hostStatusLabel(text)) }}</a-tag>
         <status
+          v-else
           :text="text ? text : ''"
           displayText
         />
       </template>
       <template v-if="column.key === 'powerstate'">
+        <a-tag v-if="$route.meta.name === 'host'" :color="hostStatusColor(text)">{{ $t(hostStatusLabel(text)) }}</a-tag>
         <status
+          v-else
           :text="text ? text : ''"
           displayText
         />
@@ -700,15 +762,15 @@
         <status :text="text ? text : ''" displayText vmState/>
       </template>
       <template v-if="column.key === 'vlan'">
-        <a href="javascript:;">
-          <router-link
-            v-if="$route.path === '/guestvlans'"
-            :to="{ path: '/guestvlans/' + record.id }"
-          >{{ text }}</router-link>
-        </a>
+        <router-link v-if="$route.path === '/guestvlans'" :to="{ path: '/guestvlans/' + record.id, query: guestVlanListQuery($route.query) }">{{ text }}</router-link>
+      </template>
+      <template v-if="column.key === 'dnsservername' && $route.meta?.name === 'dnszone'">
+        <router-link v-if="record.dnsserverid && $store.getters.apis?.listDnsServers" :to="{ path: '/dnsserver/' + record.dnsserverid }">{{ text }}</router-link>
+        <span v-else>{{ text }}</span>
       </template>
       <template v-if="column.key === 'networkname'">
-        <router-link :to="{ path: '/guestnetwork/' + record.networkid }">{{ text }}</router-link>
+        <Ipv4SubnetResourceLink v-if="$route.meta?.name === 'ipv4subnets'" :record="record" field="networkname" />
+        <router-link v-else :to="{ path: '/guestnetwork/' + record.networkid }">{{ text }}</router-link>
       </template>
       <template v-if="column.key === 'guestnetworkname'">
         <span v-if="['/router'].includes($route.path) && record.vpcid">
@@ -730,7 +792,8 @@
           v-for="(item, idx) in record.network"
           :key="idx"
         >
-          <router-link :to="{ path: '/guestnetwork/' + item.id }">{{ item.name }}</router-link>
+          <router-link v-if="guestVlanNetworkLocation(item, $store.getters.apis)" :to="guestVlanNetworkLocation(item, $store.getters.apis)">{{ item.name }}</router-link>
+          <span v-else>{{ item.name }}</span>
           <span v-if="idx < (record.network.length - 1)">, </span>
         </template>
       </template>
@@ -739,18 +802,14 @@
         <router-link v-else :to="{ path: '/guestnetwork/' + record.associatednetworkid }">{{ text }}</router-link>
       </template>
       <template v-if="column.key === 'vpcname'">
-        <a v-if="record.vpcid">
+        <Ipv4SubnetResourceLink v-if="$route.meta?.name === 'ipv4subnets'" :record="record" field="vpcname" />
+        <a v-else-if="record.vpcid">
           <router-link :to="{ path: '/vpc/' + record.vpcid }">{{ text || record.vpcid }}</router-link>
         </a>
         <span v-else>{{ text }}</span>
       </template>
-      <template v-if="column.key === 'subnet'">
-        <a href="javascript:;">
-          <router-link
-            v-if="$route.path === '/ipv4subnets'"
-            :to="{ path: '/ipv4subnets/' + record.id }"
-          >{{ text }}</router-link>
-        </a>
+      <template v-if="column.key === 'subnet' && $route.path === '/ipv4subnets'">
+        <router-link :to="{ path: '/ipv4subnets/' + record.id, query: ipv4SubnetListQuery($route.query) }">{{ text }}</router-link>
       </template>
       <template v-if="column.key === 'hostname'">
         <router-link
@@ -777,26 +836,27 @@
               v-if="record[value.disable]"
               class="alert-disable-threshold"
             >
-              {{ text }}
+              {{ $route.meta.name === 'zone' ? zoneMetricText(text) || $t('label.unknown') : text }}
             </span>
             <span
               v-else-if="record[value.notification]"
               class="alert-notification-threshold"
             >
-              {{ text }}
+              {{ $route.meta.name === 'zone' ? zoneMetricText(text) || $t('label.unknown') : text }}
             </span>
             <span
               style="padding: 10%;"
               v-else
             >
-              {{ text }}
+              {{ $route.meta.name === 'zone' ? zoneMetricText(text) || $t('label.unknown') : text }}
             </span>
           </span>
           <a-tooltip v-if="$route.meta.name === 'storagepool' && name === 'disksizeallocatedgb'" :title="$t('message.storage.allocated.meaning')"><info-circle-outlined /></a-tooltip>
         </template>
       </template>
       <template v-if="column.key === 'level'">
-        <router-link :to="{ path: '/event/' + record.id }">{{ text }}</router-link>
+        <span v-if="$route.meta?.name === 'event'">{{ text }}</span>
+        <router-link v-else :to="eventRowLocation(record)">{{ text }}</router-link>
       </template>
       <template v-if="column.key === 'usageType'">
         {{ usageTypeMap[record.usagetype] }}
@@ -1049,18 +1109,13 @@
         </span>
       </template>
       <template v-if="['cluster', 'zone'].includes($route.meta.name) && column.key === 'haenable'">
-        <status :text="record.resourcedetails?.resourceHAEnabled === 'true' ? 'enabled' : 'disabled'" displayText/>
+        <status :text="zoneFeatureState(record.resourcedetails?.resourceHAEnabled ?? false)" :display-label="$t(zoneFeatureLabel(record.resourcedetails?.resourceHAEnabled ?? false))" display-text />
       </template>
-      <template v-if="column.key === 'hastate'">
-        <!-- <a-tag>{{ record.hostha.hastate }}</a-tag> -->
-        <a-tag v-if="record.hostha.hastate === 'Available'" color="success" :styles="{ 'min-width': '250px' }">{{ record.hostha.hastate }}</a-tag>
-        <a-tag v-else-if="record.hostha.hastate === 'Suspect' || record.hostha.hastate === 'Checking'" color="processing">{{ record.hostha.hastate }}</a-tag>
-        <a-tag v-else-if="record.hostha.hastate === 'Fenced'" color="error">{{ record.hostha.hastate }}</a-tag>
-        <a-tag v-else-if="record.hostha.hastate === 'Degraded'" color="default">{{ record.hostha.hastate }}</a-tag>
-        <a-tag v-else color="warning">{{ record.hostha.hastate }}</a-tag>
+      <template v-if="$route.meta.name === 'host' && column.key === 'hastate'">
+        <a-tag :color="hostStatusColor(record.hostha?.hastate)">{{ $t(hostStatusLabel(record.hostha?.hastate)) }}</a-tag>
       </template>
       <template v-if="$route.meta.name === 'host' && column.key === 'haenable'">
-        <status :text="record.hostha.haenable ? 'enabled' : 'disabled'" displayText/>
+        <a-tag :color="hostStatusColor(record.hostha?.haenable)">{{ $t(hostStatusLabel(record.hostha?.haenable)) }}</a-tag>
       </template>
       <template v-if="['startdate', 'enddate'].includes(column.key) && ['quotasummary', 'usage'].includes($route.path.split('/')[1])">
         {{ $toLocaleDate(text.replace('\'T\'', ' ')) }}
@@ -1267,8 +1322,26 @@
 </template>
 
 <script>
+import Ipv4SubnetResourceLink from '@/components/widgets/Ipv4SubnetResourceLink'
+import { dnsServerListQuery } from '@/utils/dnsServer'
+import { hostStatusColor, hostStatusLabel } from '@/utils/hostPresentation'
+import { zoneFeatureLabel, zoneFeatureState, zoneListQuery, zoneMetricText } from '@/utils/zone'
+import { clusterListQuery, clusterStateLabel } from '@/utils/clusterSearch'
+import { hostListQuery } from '@/utils/hostSearch'
+import { dnsZoneListQuery } from '@/utils/dnsZone'
+import { ipv4SubnetListQuery } from '@/utils/ipv4Subnet'
+import AclScopeValue from '@/components/view/AclScopeValue'
+import { projectDetailLocation } from '@/utils/projectSearch'
+import { accountDetailLocation } from '@/utils/accountSearch'
+import { roleDetailLocation } from '@/utils/roleSearch'
+import { aclDisplayLabel, aclListDetailLocation, isAclListRoute } from '@/utils/vpcAclAccess'
+import { eventDetailLocation, eventTypeLabel, isEventDetailRoute, isEventTimelineRoute } from '@/utils/eventTimeline'
 import S2sGatewayValue from '@/components/view/S2sGatewayValue'
 import { networkTypeLabel } from '@/utils/networkLifecycle'
+import { kmsDetailLocation } from '@/utils/kmsNavigation'
+import { kmsListRoute } from '@/utils/kmsSearch'
+import { kmsCellLabel, kmsTableColumns } from '@/utils/kmsPresentation'
+import TableOverflowText from '@/components/view/TableOverflowText'
 import { kubernetesIsoDetailLocation } from '@/utils/kubernetesIsoSearch'
 import { templateDetailLocation } from '@/utils/templateSearch'
 import IsoListCell from '@/components/view/IsoListCell'
@@ -1285,6 +1358,7 @@ import { getAPI, postAPI } from '@/api'
 import BackupProgress from '@/components/view/BackupProgress'
 import OsLogo from '@/components/widgets/OsLogo'
 import Status from '@/components/widgets/Status'
+import { vpnConnectionDisplaySupported, vpnConnectionState } from '@/utils/s2sConnection'
 import TemplateAvailability from '@/components/widgets/TemplateAvailability'
 import KubernetesIsoListCell from '@/components/widgets/KubernetesIsoListCell'
 import KeyboardTooltip from '@/components/widgets/KeyboardTooltip'
@@ -1306,6 +1380,7 @@ import NetworkIpVmLink from '@/components/widgets/NetworkIpVmLink'
 import PublicIpStatus from '@/components/widgets/PublicIpStatus'
 import PublicIpDetailValue from '@/components/widgets/PublicIpDetailValue'
 import AsnListCell from '@/components/view/AsnListCell'
+import { guestVlanListQuery, guestVlanNetworkLocation } from '@/utils/guestVlan'
 import PublicIpNetworkLink from '@/components/widgets/PublicIpNetworkLink'
 import VpnPsk from '@/components/network/VpnPsk'
 import InternalLbRules from '@/components/network/InternalLbRules'
@@ -1317,17 +1392,23 @@ import SharedFSCapacitySummary from '@/views/storage/SharedFSCapacitySummary.vue
 import SharedFSBootRecoverySummary from '@/views/storage/SharedFSBootRecoverySummary.vue'
 
 import { vmDisplayName, isVmIdentityRoute } from '@/utils/vmIdentity'
+import VpnUserValue from '@/components/widgets/VpnUserValue'
+import { vpnUserListQuery } from '@/utils/vpnUserSearch'
 import { publicIpDetailLocation } from '@/utils/publicIpSearch'
-import { s2sGatewayDetailLocation } from '@/utils/s2sGatewaySearch'
+import { s2sGatewayDetailLocation, vpnConnectionDetailLocation, vpnConnectionListRoute } from '@/utils/s2sGatewaySearch'
 import { vnfDetailLocation } from '@/utils/vnfSearch'
 
 export default {
   name: 'ListView',
   components: {
+    Ipv4SubnetResourceLink,
+    VpnUserValue,
+    AclScopeValue,
     S2sGatewayValue,
     TemplateAvailability,
     KubernetesIsoListCell,
     KeyboardTooltip,
+    TableOverflowText,
     InternalLbRules,
     VpnPsk,
     NetworkIpVmLink,
@@ -1356,7 +1437,9 @@ export default {
   },
   props: {
     tableScroll: { type: Object, default: null },
+    kmsTable: { type: Boolean, default: false },
     resourcePath: { type: String, default: '' },
+    resourceLink: { type: Function, default: null },
     selectionDisabled: { type: Function, default: () => false },
     keyboardContextMenu: { type: Boolean, default: false },
     columns: {
@@ -1491,9 +1574,19 @@ export default {
     this.getUsageTypes()
   },
   computed: {
+    isProjectMainList () { return this.$route.meta?.name === 'project' && !this.$route.params?.id && !this.resourcePath },
+    scrollRegionLabel () {
+      if (this.isProjectMainList) return this.$t('label.projects')
+      if (this.$route.meta?.name === 'guestvlans' && !this.$route.params?.id) return this.$t('label.guest.vlan')
+      if (this.kmsTable) return this.$t(this.resourcePath === '/volume' ? 'label.volumes' : this.resourcePath === '/kmskey' ? 'label.kms.keys' : this.$route.meta.title)
+      if (this.isKubernetesIsoMainList) return this.$t('label.kubernetes.isos')
+      if (this.$route.meta?.name === 'vpnuser') return this.$t('label.vpn.users')
+      return vpnConnectionListRoute(this.$route) ? this.$t('label.site.to.site.vpn.connections') : undefined
+    },
     isKubernetesIsoMainList () { return this.$route.meta?.name === 'kubernetesiso' && !this.$route.params?.id && !this.resourcePath },
     displayColumns () {
       const columns = this.isOrderUpdatable() ? this.columns : this.columns.filter(column => column.dataIndex !== 'order')
+      if (this.kmsTable) return kmsTableColumns(columns)
       if (!this.isKubernetesIsoMainList) return columns
       const widths = { name: this.$store.getters.device === 'mobile' ? 280 : 420, state: 112, semanticversion: 144, isostate: 128, mincpunumber: 128, minmemory: 168, arch: 128, zonename: 180, filtercolumn: 36 }
       return columns.map(column => ({
@@ -1503,6 +1596,9 @@ export default {
         ...(column.key === 'filtercolumn' ? { customFilterDropdown: false } : {}),
         customHeaderCell: (...args) => ({ ...(column.customHeaderCell?.(...args) || {}), title: typeof column.title === 'string' ? column.title : undefined })
       }))
+    },
+    kmsTableScroll () {
+      return this.kmsTable ? { ...this.tableScroll, x: this.displayColumns.reduce((total, column) => total + column.width, 0) } : null
     },
     kubernetesIsoTableScroll () {
       return this.isKubernetesIsoMainList ? { x: this.displayColumns.reduce((total, column) => total + column.width, 0) } : null
@@ -1584,12 +1680,38 @@ export default {
     }
   },
   methods: {
+    dnsServerListQuery,
+    zoneListQuery,
+    hostListQuery,
+    clusterListQuery,
+    clusterStateLabel,
+    zoneFeatureState,
+    hostStatusColor,
+    hostStatusLabel,
+    zoneFeatureLabel,
+    zoneMetricText,
+    dnsZoneListQuery,
+    ipv4SubnetListQuery,
+    guestVlanNetworkLocation,
+    guestVlanListQuery,
+    isEventTimelineRoute,
+    isEventDetailRoute,
+    eventRowLocation (record) {
+      return eventDetailLocation(record, this.$route, this.$store.getters, this.$store.state?.user?.token, this.$router.options.history.state)
+    },
+    vpnConnectionListRoute,
+    vpnConnectionState,
+    vpnConnectionDisplaySupported,
     s2sGatewayDetailLocation,
+    vpnConnectionDetailLocation,
     vnfDetailLocation,
     publicIpDetailLocation,
     vmDisplayName,
     isVmIdentityRoute,
     templateDetailLocation,
+    projectDetailLocation,
+    roleDetailLocation,
+    accountDetailLocation,
     columnPickerContentMounted (vnode) {
       const input = vnode.el?.querySelector('input')
       if (this.columnPickerVisible && input) input.focus()
@@ -1610,14 +1732,19 @@ export default {
         if (trigger) trigger.focus()
       })
     },
-    scrollKubernetesIsoTable (event) {
-      if (!this.isKubernetesIsoMainList || event.target !== event.currentTarget || !['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return
-      const scroller = event.currentTarget.querySelector('.ant-table-content')
+    scrollWideTable (event) {
+      if (!this.scrollRegionLabel || event.target !== event.currentTarget || !['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return
+      const scroller = event.currentTarget.querySelector(this.kmsTable ? '.ant-table-body, .ant-table-content' : '.ant-table-content')
       if (!scroller) return
       event.preventDefault()
       scroller.scrollLeft = event.key === 'Home' ? 0 : event.key === 'End' ? scroller.scrollWidth - scroller.clientWidth : scroller.scrollLeft + (event.key === 'ArrowRight' ? 120 : -120)
     },
     kubernetesIsoDetailLocation,
+    aclDisplayLabel,
+    aclListDetailLocation,
+    isAclListRoute,
+    kmsListRoute,
+    kmsDetailLocation,
     networkTypeLabel,
     policyVolumePath,
     policyInterval,
@@ -1627,6 +1754,28 @@ export default {
     snapshotListSizeValue,
     snapshotListInterval,
     volumeVmPath,
+    kmsValue (field, value) {
+      return kmsCellLabel(field, value, this.$t, this.$te, this.$bytesToHumanReadableSize, this.$store.getters.features)
+    },
+    kmsCellLink (field, row) {
+      if (field === 'name' && row.id) {
+        if (this.resourcePath) return this.resourceLink ? this.resourceLink(row) : { path: this.resourcePath + '/' + row.id }
+        return kmsDetailLocation(this.$route, row, this.$store.getters, this.$store.state?.user?.token)
+      }
+      if (field === 'vmname') {
+        const path = volumeVmPath(row, this.$router)
+        return path ? { path } : null
+      }
+      const targets = {
+        hsmprofile: ['hsmprofile', row.hsmprofileid, 'listHSMProfiles'],
+        account: ['account', row.accountid, 'listAccounts'],
+        domainpath: ['domain', row.domainid, 'listDomains'],
+        project: ['project', row.projectid, 'listProjects'],
+        zonename: ['zone', row.zoneid, 'listZones']
+      }
+      const [path, id, api] = targets[field] || []
+      return id && api in this.$store.getters.apis ? { path: '/' + path + '/' + id } : null
+    },
     cniDetailLink,
     networkDetailLocation,
     sshKeyPairLink,
@@ -1650,12 +1799,7 @@ export default {
     },
     listRowKey (record) { return snapshotCopyList(this.$route) ? (record.copy?.id || listRowKey(record)) : listRowKey(record) },
     translateEventType (type) {
-      if (!type || typeof type !== 'string') {
-        return type
-      }
-      const translationKey = type.toLowerCase()
-      const translatedType = this.$t(translationKey)
-      return translatedType === translationKey ? type : translatedType
+      return eventTypeLabel(type, this.$t)
     },
     convertKB (val) {
       if (val < 1024) return `${Number(val).toFixed(2)} KB`
@@ -1748,6 +1892,9 @@ export default {
           '/tungstenfabric', '/oauthsetting', '/guestos', '/guestoshypervisormapping', '/webhook', 'webhookdeliveries', 'webhookfilters', '/quotatariff', '/sharedfs',
           '/ipv4subnets', '/disasterrecoverycluster', '/managementserver', '/gpucard', '/gpudevices', '/vgpuprofile', '/extension', '/snapshotpolicy', '/backupschedule', '/alertRules', '/alert', '/kmskey', '/hsmprofile', '/dnsserver', '/dnszone', ''].join('|'))
           .test(this.$route.path)
+    },
+    vpnUserDetailLocation (record) {
+      return { path: '/vpnuser/' + record.id, query: vpnUserListQuery(this.$route.query, this.pageSize, this.$store.getters) }
     },
     enableGroupAction () {
       if (this.$route.name === 'snapshotpolicy') return this.actions.some(action => action.groupAction && action.api in this.$store.getters.apis)
@@ -2341,9 +2488,17 @@ export default {
 .kubernetes-iso-columns-trigger { width:24px; min-width:24px; padding:0; color:var(--ui-text-secondary); }
 .kubernetes-iso-list-table :deep(th:last-child) { padding-left:4px; padding-right:4px; }
 .kubernetes-iso-column-picker { display:grid; gap:8px; min-width:180px; max-width:calc(100vw - 48px); }
+.kms-table { min-width: 0; max-width: 100%; }
+.kms-table:focus-visible { outline: 2px solid var(--ui-focus); outline-offset: 2px; }
+.kms-table :deep(.ant-table-cell) { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.kms-table :deep(.ant-table-column-title) { min-width: 0; }
+.kms-table :deep(a.table-overflow-text) { color: var(--ui-link); }
 .kubernetes-iso-column-picker :deep(.ant-checkbox-wrapper) { margin-left:0; }
 .kubernetes-iso-header-text { display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 .kubernetes-iso-list-table :deep(th), .kubernetes-iso-list-table :deep(td) { white-space:nowrap; }
 .kubernetes-iso-list-table :deep(.ant-table-column-title) { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 .kubernetes-iso-list-table :deep(.ant-table-cell) { overflow:hidden; }
+
+.vpn-user-name, .vpn-customer-gateway-name { overflow-wrap: anywhere; }
+.vpn-customer-gateway-name > * + * { margin-inline-start: 8px; }
 </style>
