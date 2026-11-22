@@ -74,3 +74,7 @@ export function parseZoneDnsSearchOrder (value) {
 export function validZoneDnsSuffix (suffix) {
   return suffix.length <= 190 && suffix.split('.').every(label => /^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$/i.test(label))
 }
+
+export function physicalNetworkZoneLocation (route, zoneId) {
+  return { path: '/zone/' + zoneId, query: { ...zoneListQuery(route.query), tab: 'physical.network' } }
+}

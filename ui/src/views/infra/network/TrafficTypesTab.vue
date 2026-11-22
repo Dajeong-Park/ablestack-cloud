@@ -17,69 +17,73 @@
 
 <template>
   <a-spin :spinning="fetchLoading">
-    <a-tabs :tabPosition="resourceTabPosition" :animated="false" @tabClick="onClick">
-      <a-tab-pane v-for="(item, index) in traffictypes" :tab="item.traffictype" :key="index">
-        <a-popconfirm
-          :title="$t('message.confirm.delete.traffic.type')"
-          @confirm="deleteTrafficType(item)"
-          :okText="$t('label.yes')"
-          :cancelText="$t('label.no')" >
-          <a-button
-            type="primary"
-            danger
-            style="width: 100%; margin-bottom: 10px"
-            :loading="loading"
-            :disabled="!('deleteTrafficType' in $store.getters.apis)">
-            <template #icon><delete-outlined /></template> {{ $t('label.delete.traffic.type') }}
-          </a-button>
-        </a-popconfirm>
-        <div
-          v-for="(type, idx) in ['kvmnetworklabel', 'vmwarenetworklabel', 'xennetworklabel', 'hypervnetworklabel', 'ovm3networklabel']"
-          :key="idx"
-          style="margin-bottom: 10px;">
-          <div><strong>{{ $t(type) }}</strong></div>
-          <div>{{ item[type] || $t('label.network.label.display.for.blank.value') }}</div>
+    <div v-if="traffictypes.length" class="traffic-type-filter">
+      <label for="zone-traffic-type">{{ $t('label.traffictype') }}</label>
+      <select id="zone-traffic-type" class="ant-input" :value="selectedTraffic?.traffictype" @change="selectTraffic($event.target.value)">
+        <option v-for="item in traffictypes" :key="item.id" :value="item.traffictype">{{ item.traffictype }}</option>
+      </select>
+    </div>
+    <div v-if="selectedTraffic" :key="selectedTraffic.traffictype">
+      <a-popconfirm
+        :title="$t('message.confirm.delete.traffic.type')"
+        @confirm="deleteTrafficType(selectedTraffic)"
+        :okText="$t('label.yes')"
+        :cancelText="$t('label.no')" >
+        <a-button
+          type="primary"
+          danger
+          style="width: 100%; margin-bottom: 10px"
+          :loading="loading"
+          :disabled="!('deleteTrafficType' in $store.getters.apis)">
+          <template #icon><delete-outlined /></template> {{ $t('label.delete.traffic.type') }}
+        </a-button>
+      </a-popconfirm>
+      <div
+        v-for="(type, idx) in ['kvmnetworklabel', 'vmwarenetworklabel', 'xennetworklabel', 'hypervnetworklabel', 'ovm3networklabel']"
+        :key="idx"
+        style="margin-bottom: 10px;">
+        <div><strong>{{ $t(type) }}</strong></div>
+        <div>{{ selectedTraffic[type] || $t('label.network.label.display.for.blank.value') }}</div>
+      </div>
+      <div v-if="selectedTraffic.traffictype === 'Guest' && networkType === 'Advanced'">
+        <a-divider />
+        <IpRangesTabGuest :resource="resource" :loading="loading"/>
+      </div>
+      <div v-if="selectedTraffic.traffictype === 'Guest' && networkType === 'Basic'">
+        <a-divider />
+        <IpRangesTabPublic
+          :resource="resource"
+          :loading="loading"
+          :network="guestNetwork"
+          :basicGuestNetwork="networkType === 'Basic' && selectedTraffic.traffictype === 'Guest'"/>
+      </div>
+      <div v-if="selectedTraffic.traffictype === 'Public'">
+        <div style="margin-bottom: 10px;">
+          <div><strong>{{ $t('label.traffictype') }}</strong></div>
+          <div>{{ publicNetwork.traffictype }}</div>
         </div>
-        <div v-if="item.traffictype === 'Guest' && networkType === 'Advanced'">
-          <a-divider />
-          <IpRangesTabGuest :resource="resource" :loading="loading"/>
+        <div style="margin-bottom: 10px;">
+          <div><strong>{{ $t('label.broadcastdomaintype') }}</strong></div>
+          <div>{{ publicNetwork.broadcastdomaintype }}</div>
         </div>
-        <div v-if="item.traffictype === 'Guest' && networkType === 'Basic'">
-          <a-divider />
-          <IpRangesTabPublic
-            :resource="resource"
-            :loading="loading"
-            :network="guestNetwork"
-            :basicGuestNetwork="networkType === 'Basic' && item.traffictype === 'Guest'"/>
-        </div>
-        <div v-if="item.traffictype === 'Public'">
-          <div style="margin-bottom: 10px;">
-            <div><strong>{{ $t('label.traffictype') }}</strong></div>
-            <div>{{ publicNetwork.traffictype }}</div>
-          </div>
-          <div style="margin-bottom: 10px;">
-            <div><strong>{{ $t('label.broadcastdomaintype') }}</strong></div>
-            <div>{{ publicNetwork.broadcastdomaintype }}</div>
-          </div>
-          <a-divider />
-          <IpRangesTabPublic :resource="resource" :loading="loading" :network="publicNetwork" :basicGuestNetwork="false" />
-        </div>
-        <div v-if="item.traffictype === 'Management'">
-          <a-divider />
-          <IpRangesTabManagement :resource="resource" :loading="loading" />
-        </div>
-        <div v-if="item.traffictype === 'Storage'">
-          <a-divider />
-          <IpRangesTabStorage :resource="resource" />
-        </div>
-      </a-tab-pane>
-    </a-tabs>
+        <a-divider />
+        <IpRangesTabPublic :resource="resource" :loading="loading" :network="publicNetwork" :basicGuestNetwork="false" />
+      </div>
+      <div v-if="selectedTraffic.traffictype === 'Management'">
+        <a-divider />
+        <IpRangesTabManagement :resource="resource" :loading="loading" />
+      </div>
+      <div v-if="selectedTraffic.traffictype === 'Storage'">
+        <a-divider />
+        <IpRangesTabStorage :resource="resource" />
+      </div>
+    </div>
+    <a-empty v-else-if="!fetchLoading" />
   </a-spin>
 </template>
 
 <script>
 import { getAPI, postAPI } from '@/api'
-import { mixinDevice } from '@/utils/mixin.js'
 import IpRangesTabPublic from './IpRangesTabPublic'
 import IpRangesTabManagement from './IpRangesTabManagement'
 import IpRangesTabStorage from './IpRangesTabStorage'
@@ -94,7 +98,6 @@ export default {
     IpRangesTabStorage,
     IpRangesTabGuest
   },
-  mixins: [mixinDevice],
   props: {
     resource: {
       type: Object,
@@ -114,12 +117,20 @@ export default {
       fetchLoading: false
     }
   },
+  computed: {
+    selectedTraffic () {
+      return this.traffictypes.find(item => item.traffictype === this.$route.query.traffic) || this.traffictypes[0]
+    }
+  },
   created () {
     if (this.resource.id) {
       this.fetchData()
     }
   },
   watch: {
+    selectedTraffic (traffic) {
+      trafficTypeTab.index = Math.max(0, this.traffictypes.indexOf(traffic))
+    },
     loading (newData, oldData) {
       if (!newData && this.resource.id) {
         this.fetchData()
@@ -154,7 +165,7 @@ export default {
     fetchTrafficTypes () {
       this.fetchLoading = true
       getAPI('listTrafficTypes', { physicalnetworkid: this.resource.id }).then(json => {
-        this.traffictypes = json.listtraffictypesresponse.traffictype
+        this.traffictypes = json.listtraffictypesresponse.traffictype || []
       }).catch(error => {
         this.$notifyError(error)
       }).finally(() => {
@@ -223,8 +234,8 @@ export default {
         this.fetchTrafficTypes()
       })
     },
-    onClick (trafficType) {
-      trafficTypeTab.index = trafficType
+    selectTraffic (traffic) {
+      this.$router.push({ query: { ...this.$route.query, traffic } })
     }
   }
 }
@@ -232,4 +243,9 @@ export default {
 
 <style lang="less" scoped>
 
+</style>
+
+<style scoped>
+.traffic-type-filter { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 12px; }
+.traffic-type-filter select { width: min(100%, 14rem); }
 </style>

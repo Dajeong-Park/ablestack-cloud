@@ -70,7 +70,7 @@
 
 <script>
 import { dnsServerListQuery } from '@/utils/dnsServer'
-import { zoneListQuery } from '@/utils/zone'
+import { physicalNetworkZoneLocation, zoneListQuery } from '@/utils/zone'
 import { dnsZoneListQuery } from '@/utils/dnsZone'
 import { ipv4SubnetListQuery } from '@/utils/ipv4Subnet'
 import BreadcrumbControls from '@/components/widgets/BreadcrumbControls'
@@ -178,6 +178,7 @@ export default {
       if (item.path === '/s2svpn' && this.$route.meta?.name === 's2svpn' && this.$route.params?.id) return s2sGatewayListLocation(this.$route, this.$store.getters)
       if (item.path === '/kubernetesiso' && this.$route.meta?.name === 'kubernetesiso' && this.$route.params?.id) return kubernetesIsoListLocation(this.$route, this.$store.getters, this.$store.state?.user?.token)
       if (item.path === '/vpnuser' && vpnUserRoute(this.$route) && this.$route.params?.id) return vpnUserListLocation(this.$route, this.$store.getters)
+      if (item.path === '/physicalnetwork' && this.$route.params?.id && this.resource?.zoneid) return physicalNetworkZoneLocation(this.$route, this.resource.zoneid)
       if (item.path === '/zone' && this.$route.params?.id) return { path: item.path, query: zoneListQuery(this.$route.query) }
       if (item.path === '/dnsserver' && this.$route.params?.id) return { path: item.path, query: dnsServerListQuery(this.$route.query) }
       if (item.path === '/dnszone' && this.$route.params?.id) return { path: item.path, query: dnsZoneListQuery(this.$route.query) }

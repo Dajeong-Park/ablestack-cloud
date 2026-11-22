@@ -35,7 +35,7 @@
                 {{ $t('label.name') }}
               </div>
               <div>
-                <router-link :to="{ path: '/physicalnetwork/' + network.id }">{{ network.name }}</router-link>
+                <router-link :to="{ path: '/physicalnetwork/' + network.id, query: zoneListQuery($route.query) }">{{ network.name }}</router-link>
               </div>
             </div>
             <div class="list__col">
@@ -156,6 +156,7 @@ import { listRefreshMixin } from '@/utils/listRefreshMixin'
 
 import { ref, reactive, toRaw } from 'vue'
 import { getAPI, postAPI } from '@/api'
+import { zoneListQuery } from '@/utils/zone'
 import Status from '@/components/widgets/Status'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 
@@ -208,6 +209,7 @@ export default {
     }
   },
   methods: {
+    zoneListQuery,
     fetchData () {
       const listRequest = this.listRequestToken('fetchData')
       this.fetchLoading = !listRequest.loaded

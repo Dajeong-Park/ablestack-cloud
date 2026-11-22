@@ -27,53 +27,56 @@
       </template>
     </a-alert>
     <a-spin :spinning="fetchLoading">
-      <a-tabs
-        :tabPosition="resourceTabPosition"
-        :animated="false"
-        @change="onTabChange">
-        <!-- Hardcoded NSP tabs -->
-        <a-tab-pane
-          class="custom-tab-pane"
-          v-for="item in hardcodedNsps"
-          :key="item.title">
-          <template #tab>
-            <span>
-              {{ $t(item.title) }}
-              <status v-if="nsps[item.title]?.supported !== false && nsps[item.title]?.state" :text="nsps[item.title].state" />
-              <span v-else-if="!fetchLoading && !providerLoadError" class="provider-status">{{ $t(nsps[item.title] ? 'label.zone.provider.unsupported' : 'label.not.added') }}</span>
-            </span>
-          </template>
+      <div v-if="!providerLoadError" class="provider-layout">
+        <div class="provider-list">
+          <div class="provider-filters">
+            <a-input
+              v-model:value="providerSearch"
+              allow-clear
+              :aria-label="$t('label.zone.provider.search')"
+              :placeholder="$t('label.zone.provider.search')" />
+            <label for="zone-provider-state">{{ $t('label.state') }}</label>
+            <a-select
+              id="zone-provider-state"
+              v-model:value="providerFilter"
+              :options="providerStates"
+              :virtual="false"
+              class="provider-state-filter" />
+          </div>
+          <a-table
+            size="small"
+            row-key="name"
+            :columns="providerColumns"
+            :data-source="fetchLoading ? [] : filteredProviders"
+            :pagination="false"
+            :scroll="{ x: 260, y: 300 }">
+            <template #bodyCell="{ column, record }">
+              <a-button
+                v-if="column.key === 'name'"
+                type="link"
+                :aria-current="record.name === activeProvider?.name ? 'true' : undefined"
+                @click="selectProvider(record.name)">
+                {{ record.name }}
+              </a-button>
+              <status v-else-if="record.linked && record.state !== 'unsupported'" :text="record.state" display-text />
+              <span v-else>{{ providerStateLabel(record.state) }}</span>
+            </template>
+          </a-table>
+        </div>
+        <section
+          v-if="activeProvider && !fetchLoading"
+          class="provider-details"
+          :aria-label="activeProvider.name">
+          <h3>{{ activeProvider.name }}</h3>
           <provider-item
-            v-if="tabKey === item.title && !fetchLoading && !providerLoadError"
+            :key="activeProvider.name"
             :loading="loading"
-            :itemNsp="item"
-            :nsp="nsps[item.title]"
-            :resourceId="resource.id"
-            :zoneId="resource.zoneid"
-            :tabKey="tabKey"/>
-        </a-tab-pane>
-        <!-- Dynamic extension-based provider tabs (one per registered NetworkOrchestrator extension) -->
-        <a-tab-pane
-          class="custom-tab-pane"
-          v-for="ext in registeredExtensions"
-          :key="ext.name">
-          <template #tab>
-            <span>
-              {{ ext.name }}
-              <status v-if="nsps[ext.name]?.supported !== false && nsps[ext.name]?.state" :text="nsps[ext.name].state" />
-            <span v-else-if="!fetchLoading && !providerLoadError" class="provider-status">{{ $t(nsps[ext.name] ? 'label.zone.provider.unsupported' : 'label.not.added') }}</span>
-            </span>
-          </template>
-          <provider-item
-            v-if="tabKey === ext.name && !fetchLoading && !providerLoadError"
-            :loading="loading"
-            :itemNsp="extensionNspItem(ext.name)"
-            :nsp="nsps[ext.name]"
-            :resourceId="resource.id"
-            :zoneId="resource.zoneid"
-            :tabKey="tabKey"/>
-        </a-tab-pane>
-      </a-tabs>
+            :item-nsp="activeProvider.item"
+            :nsp="nsps[activeProvider.name]"
+            :resource-id="resource.id"
+            :zone-id="resource.zoneid" />
+        </section>
+      </div>
     </a-spin>
 
     <div v-if="showFormAction">
@@ -174,7 +177,6 @@
 import { ref, reactive, toRaw, shallowRef, defineAsyncComponent } from 'vue'
 import store from '@/store'
 import { getAPI, postAPI } from '@/api'
-import { mixinDevice } from '@/utils/mixin.js'
 import Status from '@/components/widgets/Status'
 import ProviderItem from '@/views/infra/network/providers/ProviderItem'
 
@@ -184,7 +186,6 @@ export default {
     Status,
     ProviderItem
   },
-  mixins: [mixinDevice],
   props: {
     resource: {
       type: Object,
@@ -205,11 +206,43 @@ export default {
       actionLoading: false,
       showFormAction: false,
       currentAction: {},
-      tabKey: 'BaremetalDhcpProvider',
+      providerSearch: '',
+      providerFilter: 'all',
       registeredExtensions: []
     }
   },
   computed: {
+    providerColumns () {
+      return [{ key: 'name', title: this.$t('label.name') }, { key: 'state', title: this.$t('label.state') }]
+    },
+    providerRows () {
+      const known = new Map(this.hardcodedNsps.map(item => [item.title, item]))
+      this.registeredExtensions.forEach(extension => known.set(extension.name, this.extensionNspItem(extension.name)))
+      Object.keys(this.nsps).forEach(name => {
+        if (!known.has(name)) known.set(name, { title: name, details: ['name', 'state', 'id', 'physicalnetworkid', 'servicelist'], actions: [] })
+      })
+      return [...known].map(([name, item]) => {
+        const provider = this.nsps[name]
+        return {
+          name,
+          item,
+          linked: !!provider?.id,
+          state: provider?.supported === false ? 'unsupported' : provider?.state || 'unregistered'
+        }
+      }).sort((a, b) => Number(b.linked) - Number(a.linked) || a.name.localeCompare(b.name))
+    },
+    providerStates () {
+      const states = [...new Set(this.providerRows.map(provider => provider.state))]
+      return [{ value: 'all', label: this.$t('label.all') }, ...states.map(state => ({ value: state, label: this.providerStateLabel(state) }))]
+    },
+    filteredProviders () {
+      const search = this.providerSearch.trim().toLowerCase()
+      return this.providerRows.filter(provider =>
+        provider.name.toLowerCase().includes(search) && (this.providerFilter === 'all' || provider.state === this.providerFilter))
+    },
+    activeProvider () {
+      return this.filteredProviders.find(provider => provider.name === this.$route.query.provider) || this.filteredProviders[0]
+    },
     hardcodedNsps () {
       return [
         {
@@ -1257,8 +1290,17 @@ export default {
         if (sequence === this.providerLoadSequence && networkId === this.resource.id) this.fetchLoading = false
       }
     },
-    onTabChange (tabKey) {
-      this.tabKey = tabKey
+    providerStateLabel (state) {
+      return this.$t({
+        Enabled: 'label.enabled',
+        Disabled: 'label.disabled',
+        Shutdown: 'label.shutdown',
+        unsupported: 'label.zone.provider.unsupported',
+        unregistered: 'label.not.added'
+      }[state] || 'label.unknown')
+    },
+    selectProvider (provider) {
+      this.$router.push({ query: { ...this.$route.query, provider } })
     },
     setNsp (nsp) {
       this.nsp = nsp
@@ -1505,31 +1547,27 @@ export default {
 }
 </script>
 
-<style scoped lang="less">
-.provider-status {
-  margin-inline-start: 6px;
+<style scoped>
+.provider-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 16px;
 }
-
-:deep(.ant-tabs) {
-  &-left-bar {
-    .ant-tabs-tab {
-      display: flex;
-      justify-content: flex-end;
-
-      .ant-badge {
-        margin-left: 10px;
-      }
-    }
-  }
-
-  &-tab {
-    justify-content: end;
-  }
-
-  &-tab-btn {
-    span {
-      display: flex;
-    }
-  }
+.provider-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.provider-filters :deep(.ant-input-affix-wrapper) { min-width: 0; width: 100%; }
+.provider-state-filter { width: min(100%, 9rem); }
+.provider-list { overflow-x: auto; }
+.provider-list :deep(.ant-btn-link) { padding-inline: 0; white-space: normal; text-align: start; }
+.provider-list :deep([aria-current='true']) { font-weight: 600; }
+.provider-list, .provider-details { min-width: 0; }
+.provider-details { overflow-x: auto; overflow-wrap: anywhere; }
+@media (max-width: 900px) {
+  .provider-layout { grid-template-columns: minmax(0, 1fr); }
 }
 </style>

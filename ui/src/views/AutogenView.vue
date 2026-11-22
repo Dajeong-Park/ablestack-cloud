@@ -1488,6 +1488,7 @@ export default {
         if (vpnConnectionRoute(to) && to.params?.id && storageDetailRouteKey(to) === storageDetailRouteKey(from)) return
         if (kmsDetailRoute(to) && kmsDetailRoute(from) && this.listLoadedScope &&
           kmsDetailKey(to, this.$store.getters) === kmsDetailKey(from, this.$store.getters)) return
+        if (to.meta?.name === 'physicalnetwork' && to.params?.id && to.path === from.path) return
         if (networkTabRoute(to) && networkTabRoute(from) && to.params?.id && networkTabRouteKey(to) === networkTabRouteKey(from)) return
         if (storageUiRoute(to) && to.params?.id && to.path === from.path &&
           storageDetailRouteKey(to) === storageDetailRouteKey(from)) return
@@ -2060,7 +2061,9 @@ export default {
       // Keep all actual filters and the identity/session scope below.
       const objectStoreDetail = this.isObjectStorageUi && this.$route.params?.id
       let routeKey = this.$route.fullPath
-      if (networkTabRoute(this.$route) && this.$route.params?.id) {
+      if (this.$route.meta?.name === 'physicalnetwork' && this.$route.params?.id) {
+        routeKey = this.$route.path
+      } else if (networkTabRoute(this.$route) && this.$route.params?.id) {
         routeKey = networkTabRouteKey(this.$route)
       } else if (objectStoreDetail) {
         routeKey = JSON.stringify([this.$route.path, Object.entries(this.$route.query || {}).filter(([key]) => !['tab', 'browserPath'].includes(key)).sort(([a], [b]) => a.localeCompare(b))])
@@ -2926,6 +2929,7 @@ export default {
         delete params.excludeprojectresources
         if (vpnConnectionDisplaySupported(this.$store.getters)) params.displayall = true
       }
+      if (this.apiName === 'listPhysicalNetworks' && this.$route.params?.id) params = { id: this.$route.params.id }
       if (guestVlanRoute(this.$route)) params = guestVlanReadParams(params)
       if (['listZones', 'listZonesMetrics'].includes(this.apiName) && this.$route.meta?.name === 'zone') params = zoneReadParams(this.$route.query, params)
       if (this.isDnsServer) {

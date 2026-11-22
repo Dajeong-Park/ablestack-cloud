@@ -1,4 +1,5 @@
 {
+  "label.zone.provider.search": "제공자 검색",
   "label.storageaccessgroup": "스토리지 액세스 그룹",
   "label.zone.networkdomain": "네트워크 도메인",
   "label.zone.dnssearchorder": "DNS 검색 순서",

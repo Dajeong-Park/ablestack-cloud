@@ -989,7 +989,7 @@
                   <resource-icon :image="images.zone" size="1x" style="margin-right: 5px"/>
                 </span>
                 <global-outlined v-else />
-                <router-link v-if="!isStatic && $router.resolve('/zone/' + resource.zoneid).matched[0].redirect !== '/exception/404'" :to="{ path: '/zone/' + resource.zoneid }">{{ resource.zone || resource.zonename || resource.zoneid }}</router-link>
+                <router-link v-if="!isStatic && $router.resolve('/zone/' + resource.zoneid).matched[0].redirect !== '/exception/404'" :to="$route.meta.name === 'physicalnetwork' ? physicalNetworkZoneLocation($route, resource.zoneid) : { path: '/zone/' + resource.zoneid }">{{ resource.zone || resource.zonename || resource.zoneid }}</router-link>
                 <router-link v-else-if="$router.resolve('/zones/' + resource.zoneid).matched[0].redirect !== '/exception/404'" :to="{ path: '/zones/' + resource.zoneid }">{{ resource.zone || resource.zonename || resource.zoneid }}</router-link>
                 <span v-else>{{ resource.zone || resource.zonename || resource.zoneid }}</span>
               </div>
@@ -1200,6 +1200,7 @@
 </template>
 
 <script>
+import { physicalNetworkZoneLocation } from '@/utils/zone'
 import AclScopeValue from '@/components/view/AclScopeValue'
 import { aclDisplayLabel, aclDisplaySupported } from '@/utils/vpcAclAccess'
 import { eventDisplayTitle, eventTimelineQuery, isEventDetailRoute } from '@/utils/eventTimeline'
@@ -1482,6 +1483,7 @@ export default {
     }
   },
   methods: {
+    physicalNetworkZoneLocation,
     aclDisplayLabel,
     aclDisplaySupported,
     vpnConnectionState,

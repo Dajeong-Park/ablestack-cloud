@@ -1,4 +1,5 @@
 {
+  "label.zone.provider.search": "Search providers",
   "label.storageaccessgroup": "Storage access group",
   "label.zone.networkdomain": "Network domain",
   "label.zone.dnssearchorder": "DNS search order",
