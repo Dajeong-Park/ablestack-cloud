@@ -84,14 +84,14 @@ test('cancels array edits and recognizes equal ordered lists', () => {
 
 test('blocks duplicate writes and updates the baseline from the server', async () => {
   const { vm } = editor()
-  let resolve
-  postAPI.mockReturnValue(new Promise(done => { resolve = done }))
+  let resolveUpdate
+  postAPI.mockReturnValue(new Promise(resolve => { resolveUpdate = resolve }))
   vm.editableValue = 21
   const saving = vm.updateConfigurationValue(defaultRecord)
   expect(vm.valueLoading).toBe(true)
   await vm.updateConfigurationValue(defaultRecord)
   expect(postAPI).toHaveBeenCalledTimes(1)
-  resolve({ updateconfigurationresponse: { configuration: { ...defaultRecord, value: '21' } } })
+  resolveUpdate({ updateconfigurationresponse: { configuration: { ...defaultRecord, value: '21' } } })
   await saving
   expect(vm.actualValue).toBe(21)
   expect(vm.hasChanges).toBe(false)
