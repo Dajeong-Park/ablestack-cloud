@@ -124,6 +124,18 @@ export default {
       }
     },
     {
+      api: 'moveDomain',
+      icon: 'BranchesOutlined',
+      label: 'label.domain.move',
+      listView: true,
+      dataView: true,
+      show: (record, store) => record.level > 0 && store.userInfo.roletype === 'Admin',
+      args: ['domainid', 'parentdomainid'],
+      mapping: {
+        domainid: { value: record => record.id }
+      }
+    },
+    {
       api: 'updateResourceCount',
       icon: 'sync-outlined',
       label: 'label.action.update.resource.count',

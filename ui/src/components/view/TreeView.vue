@@ -52,6 +52,7 @@
           </a-tree>
           <a-empty v-else-if="!loading" :description="$t('label.no.data')" />
         </a-spin>
+        <slot name="pagination" />
       </a-card>
     </template>
     <template #right>

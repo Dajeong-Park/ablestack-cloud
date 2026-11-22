@@ -1,4 +1,12 @@
 {
+  "message.domain.move.path": "New path {path}",
+  "message.domain.move.children": "The domain and all its child domains will move together.",
+  "message.domain.filter.invalid": "Enter a valid domain UUID.",
+  "label.parentdomainid": "Parent domain",
+  "label.advanced.settings": "Advanced options",
+  "label.domain.use.selection": "Use selected domain",
+  "label.domain.include.children": "Include child domains",
+  "label.domain.move": "Move domain",
   "message.dns.zone.unmanage.keeps.provider": "The zone and its records will remain at the provider.",
   "message.dns.zone.delete.removes.provider": "The zone and all its records will be removed from the provider.",
   "message.dns.records.no.matches": "No DNS records match the search.",

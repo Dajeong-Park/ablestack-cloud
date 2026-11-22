@@ -1,4 +1,12 @@
 {
+  "message.domain.move.path": "예상 경로 {path}",
+  "message.domain.move.children": "도메인과 모든 하위 도메인이 함께 이동합니다.",
+  "message.domain.filter.invalid": "유효한 도메인 UUID를 입력하세요.",
+  "label.parentdomainid": "상위 도메인",
+  "label.advanced.settings": "고급 옵션",
+  "label.domain.use.selection": "선택한 도메인 사용",
+  "label.domain.include.children": "하위 도메인 포함",
+  "label.domain.move": "도메인 이동",
   "message.dns.zone.unmanage.keeps.provider": "제공자에 DNS 영역과 레코드가 유지됩니다.",
   "message.dns.zone.delete.removes.provider": "제공자에서 DNS 영역과 모든 레코드를 삭제합니다.",
   "message.dns.records.no.matches": "검색 조건에 맞는 DNS 레코드가 없습니다.",

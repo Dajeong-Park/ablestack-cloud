@@ -37,7 +37,13 @@
           :rules="rules"
           @finish="handleSubmit"
           layout="vertical">
-          <p v-if="action.api === 'updateDomain'">{{ resource.path || resource.name }}</p>
+          <p v-if="['createDomain', 'updateDomain', 'moveDomain'].includes(action.api)">{{ resource.path || resource.name }}</p>
+          <a-alert v-if="action.api === 'moveDomain'" type="warning" show-icon :message="$t('message.domain.move.children')" />
+          <a-button
+            v-if="action.api === 'createDomain'"
+            type="link"
+            :aria-expanded="advanced"
+            @click="advanced = !advanced">{{ $t('label.advanced.settings') }}</a-button>
           <a-alert type="warning" v-if="action.message">
             <template #message>{{ $t(action.message) }}</template>
           </a-alert>
@@ -46,7 +52,7 @@
               :ref="field.name"
               :name="field.name"
               :extra="action.api === 'updateDomain' && field.name === 'networkdomain' ? $t('message.account.networkdomain.clear') : undefined"
-              v-if="!(action.mapping && field.name in action.mapping && action.mapping[field.name].value)"
+              v-if="!(action.mapping && field.name in action.mapping && action.mapping[field.name].value) && (action.api !== 'createDomain' || field.name !== 'domainid' || advanced)"
             >
               <template #label>
                 <tooltip-label :title="$t('label.' + field.name)" :tooltip="field.description"/>
@@ -87,8 +93,8 @@
                 <a-select-option
                   v-for="(opt, optIndex) in field.opts"
                   :key="optIndex"
-                  :label="opt.name || opt.description || opt.traffictype || opt.publicip">
-                  {{ opt.name || opt.description || opt.traffictype || opt.publicip }}
+                  :label="opt.path || opt.name || opt.description || opt.traffictype || opt.publicip">
+                  {{ opt.path || opt.name || opt.description || opt.traffictype || opt.publicip }}
                 </a-select-option>
               </a-select>
               <a-select
@@ -124,9 +130,14 @@
             </a-form-item>
           </template>
 
+          <template v-if="action.api === 'moveDomain'">
+            <a-alert v-if="moveField?.loadError" type="error" show-icon :message="moveField.loadError" />
+            <a-empty v-else-if="moveField && !moveField.loading && !moveField.opts?.length" :description="$t('label.no.data')" />
+            <p v-if="moveParent">{{ $t('message.domain.move.path', { path: moveParent.path + '/' + resource.name }) }}</p>
+          </template>
           <div :span="24" class="action-button">
             <a-button :disabled="actionLoading" @click="cancelAction">{{ $t('label.cancel') }}</a-button>
-            <a-button type="primary" ref="submit" :loading="actionLoading" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
+            <a-button type="primary" ref="submit" :loading="actionLoading" :disabled="action.api === 'moveDomain' && !moveParent" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
           </div>
         </a-form>
       </a-spin>
@@ -136,12 +147,14 @@
 
 <script>
 import { postAPI } from '@/api'
+import { Empty } from 'ant-design-vue'
 import { ref, reactive, toRaw } from 'vue'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 
 export default {
   name: 'DomainActionForm',
   components: {
+    AEmpty: Empty,
     TooltipLabel
   },
   props: {
@@ -160,8 +173,13 @@ export default {
   },
   data () {
     return {
-      actionLoading: false
+      actionLoading: false,
+      advanced: false
     }
+  },
+  computed: {
+    moveField () { return this.action.paramFields.find(field => field.name === 'parentdomainid') },
+    moveParent () { return this.moveField?.opts?.[this.form.parentdomainid] }
   },
   created () {
     this.actionLoading = this.action.loading
@@ -183,14 +201,14 @@ export default {
       this.fillEditFormFieldValues()
     }
   },
-  inject: ['parentCloseAction', 'parentFetchData', 'parentForceRerender'],
+  inject: ['parentCloseAction', 'parentFetchData', 'parentForceRerender', 'parentRefreshMovedDomain'],
   methods: {
     cancelAction () {
       if (!this.actionLoading) this.parentCloseAction()
     },
     handleSubmit (event) {
       if (typeof event?.preventDefault === 'function') event.preventDefault()
-      if (this.actionLoading || this.action.loading) return
+      if (this.actionLoading || this.action.loading || (this.action.api === 'moveDomain' && !this.moveParent)) return
       this.actionLoading = true
       this.formRef.value.validate().then(() => {
         const values = toRaw(this.form)
@@ -202,6 +220,7 @@ export default {
         for (const key in values) {
           const input = values[key]
           if (edit && input === (this.resource[key] ?? '')) continue
+          if (this.action.api === 'createDomain' && key === 'domainid' && !this.advanced) continue
           for (const param of this.action.params) {
             if (param.name === key) {
               if (input === undefined) {
@@ -302,7 +321,11 @@ export default {
               key: this.action.label + resourceName,
               duration: duration
             })
-            this.parentFetchData()
+            if (this.action.api === 'moveDomain') {
+              this.parentRefreshMovedDomain(this.resource.id, this.moveParent.ancestors)
+            } else {
+              this.parentFetchData()
+            }
           }
           this.parentCloseAction()
         })

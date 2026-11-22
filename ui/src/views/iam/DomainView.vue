@@ -92,13 +92,27 @@
         :selecting="selecting"
         :error="readError"
         :actions="actions"
-        :load-children="domainStore.keyword ? undefined : loadChildren"
+        :load-children="searchMode ? undefined : loadChildren"
         @search="searchDomains"
         @refresh="fetchData()"
         @select="selectDomain"
         @expand="expanded => changeDomainStore({ expanded })"
         @tab-change="tab => changeDomainStore({ tab })"
-        @exec-action="execAction" />
+        @exec-action="execAction">
+        <template #filters>
+          <domain-tree-filters :model-value="domainStore.filters" :selection="resource.id" @change="setDomainFilters" />
+        </template>
+        <template #pagination>
+          <a-pagination
+            v-if="searchMode && resultCount > domainTreePageSize"
+            size="small"
+            :current="domainStore.page || 1"
+            :page-size="domainTreePageSize"
+            :total="resultCount"
+            :show-size-changer="false"
+            @change="changeSearchPage" />
+        </template>
+      </tree-view>
     </div>
 
     <div v-if="showAction">
@@ -122,12 +136,13 @@ import { Empty } from 'ant-design-vue'
 import { getAPI, callAPI, postAPI } from '@/api'
 import store from '@/store'
 import { mixinDevice } from '@/utils/mixin.js'
-import { domainTreeNodes, domainTreePath } from '@/utils/domainTree'
+import { domainTreeNodes, domainTreePath, domainTreePageSize, moveDomainCandidates } from '@/utils/domainTree'
 
 import Breadcrumb from '@/components/widgets/Breadcrumb'
 import ActionButton from '@/components/view/ActionButton'
 import TreeView from '@/components/view/TreeView'
 import DomainActionForm from '@/views/iam/DomainActionForm'
+import DomainTreeFilters from '@/views/iam/DomainTreeFilters'
 import ResourceView from '@/components/view/ResourceView'
 import DomainDeleteConfirm from '@/components/view/DomainDeleteConfirm'
 import eventBus from '@/config/eventBus'
@@ -140,6 +155,7 @@ export default {
     ActionButton,
     TreeView,
     DomainActionForm,
+    DomainTreeFilters,
     ResourceView,
     DomainDeleteConfirm
   },
@@ -153,6 +169,8 @@ export default {
       treeData: [],
       selecting: false,
       readError: '',
+      resultCount: 0,
+      domainTreePageSize,
       showAction: false,
       action: {},
       actionResource: {},
@@ -167,6 +185,7 @@ export default {
       domainDisposed: false,
       domainSelectionGeneration: 0,
       domainRequestAbort: null,
+      moveParentRequest: null,
       domainIconRefresh: null
     }
   },
@@ -189,6 +208,9 @@ export default {
       return (this.$route.meta?.tabs || []).filter(tab =>
         (!tab.show || tab.show(this.resource, this.$route, this.$store.getters.userInfo)) &&
         (!tab.permission?.[0] || tab.permission[0] in this.$store.getters.apis))
+    },
+    searchMode () {
+      return !!this.domainStore.keyword || Object.keys(this.domainStore.filters || {}).length > 0
     },
     treeActiveTab () {
       return this.treeTabs.some(tab => tab.name === this.domainStore.tab)
@@ -228,6 +250,7 @@ export default {
   },
   beforeUnmount () {
     this.domainDisposed = true
+    this.closeAction()
     this.invalidateDomainRead()
     eventBus.off('refresh-domain-icon', this.domainIconRefresh)
   },
@@ -248,6 +271,7 @@ export default {
     return {
       parentCloseAction: this.closeAction,
       parentFetchData: this.fetchData,
+      parentRefreshMovedDomain: this.refreshMovedDomain,
       parentForceRerender: this.forceRerender
     }
   },
@@ -280,9 +304,11 @@ export default {
       this.actionResource = target
       this.action = { ...configuredAction, params, paramFields, loading: false }
       this.showAction = true
-      for (const field of paramFields) {
+      for (const field of this.action.paramFields) {
         if (field.type === 'list' && ['tags', 'hosttags'].includes(field.name)) field.type = 'string'
-        if (['uuid', 'list'].includes(field.type) || field.name === 'account' || this.action.mapping?.[field.name]) {
+        if (action.api === 'moveDomain' && field.name === 'parentdomainid') {
+          this.loadMoveParents(field, target)
+        } else if (['uuid', 'list'].includes(field.type) || field.name === 'account' || this.action.mapping?.[field.name]) {
           this.listUuidOpts(field)
         }
       }
@@ -324,6 +350,62 @@ export default {
         if (controller === this.domainRequestAbort && scope === this.domainReadScope()) this.notifyReadError(error)
       }
     },
+    async readDomainPage (command, params, signal) {
+      const response = await this.domainRead(command, params, signal)
+      const body = response[command.toLowerCase() + 'response']
+      const rows = body?.domain || []
+      return { rows, count: body?.count ?? rows.length }
+    },
+    async readAllDomainPages (command, params, signal) {
+      const result = []
+      for (let page = 1; ; page++) {
+        const { rows, count } = await this.readDomainPage(command, { ...params, page, pagesize: 100 }, signal)
+        result.push(...rows)
+        if (!rows.length || result.length >= count) return result
+      }
+    },
+    async readDomainSearch (context, signal) {
+      const filters = context.filters || {}
+      const page = context.page || 1
+      const params = { page, pagesize: domainTreePageSize, name: filters.name, keyword: context.keyword || undefined }
+      if (!filters.parentdomainid) {
+        return this.readDomainPage('listDomains', { ...params, id: filters.id, level: filters.level }, signal)
+      }
+      const scoped = { ...params, id: filters.parentdomainid, keyword: filters.id || params.keyword, isrecursive: !!filters.recursive, listall: !filters.recursive }
+      if (!filters.name && filters.level === undefined && !(filters.id && params.keyword)) {
+        return this.readDomainPage('listDomainChildren', scoped, signal)
+      }
+      const rows = (await this.readAllDomainPages('listDomainChildren', scoped, signal)).filter(record =>
+        (!filters.name || record.name === filters.name) &&
+        (filters.level === undefined || record.level === filters.level) &&
+        (!filters.id || record.id.toLowerCase() === filters.id.toLowerCase()) &&
+        (!params.keyword || record.name.toLowerCase().includes(params.keyword.toLowerCase()) || record.id.toLowerCase().includes(params.keyword.toLowerCase())))
+      const start = (page - 1) * domainTreePageSize
+      return { rows: rows.slice(start, start + domainTreePageSize), count: rows.length }
+    },
+    async loadMoveParents (field, target) {
+      const controller = new AbortController()
+      const action = this.action
+      field.loading = true
+      field.opts = []
+      field.loadError = ''
+      this.moveParentRequest = controller
+      try {
+        const rows = await this.readAllDomainPages('listDomains', { details: 'min', showicon: false }, controller.signal)
+        if (!controller.signal.aborted && this.action === action) field.opts = moveDomainCandidates(target, rows)
+      } catch (error) {
+        if (!controller.signal.aborted && this.action === action) field.loadError = this.domainErrorText(error)
+      } finally {
+        field.loading = false
+      }
+    },
+    refreshMovedDomain (id, parentPath) {
+      if (!this.dataView || this.domainStore.selectedId === id) {
+        const expanded = [...new Set([...(this.domainStore.expanded || []), ...parentPath])]
+        this.changeDomainStore({ expanded, selectedId: id, selectedPath: [...parentPath, id] })
+      }
+      return this.fetchData()
+    },
     async fetchData (selectSingleMatch = false) {
       if (this.domainDisposed || this.domainDeleteReturning || !this.$route.path.startsWith('/domain')) return
       this.invalidateDomainRead()
@@ -342,26 +424,33 @@ export default {
       try {
         const id = this.$route.params?.id || this.$store.getters.userInfo.domainid
         const context = this.domainStore
-        const keyword = !this.dataView && context.keyword
-        const response = await this.domainRead('listDomains', keyword ? { keyword } : { id }, controller.signal)
+        const search = !this.dataView && this.searchMode
+        const { rows, count } = search
+          ? await this.readDomainSearch(context, controller.signal)
+          : await this.readDomainPage('listDomains', { id }, controller.signal)
         if (!current()) return
-        const rows = response.listdomainsresponse?.domain || []
-        const nodes = domainTreeNodes(rows, !!keyword)
+        this.resultCount = search ? count : 0
+        const lastPage = Math.max(1, Math.ceil(count / domainTreePageSize))
+        if (search && !rows.length && context.page > lastPage) {
+          this.changeDomainStore({ page: lastPage })
+          return this.fetchData(selectSingleMatch)
+        }
+        const nodes = domainTreeNodes(rows, search)
         if (this.dataView) {
           this.resource = nodes[0] || {}
           return
         }
-        if (!keyword) {
+        if (!search) {
           await this.restoreTreeBranches(nodes, new Set([...(context.expanded || []), ...(context.selectedPath || []).slice(0, -1)]), controller.signal)
         }
         if (!current()) return
         this.treeData = nodes
         const wanted = domainTreePath(nodes, context.selectedId)
-        const initial = (!keyword && !context.selectedId) || (selectSingleMatch && rows.length === 1)
+        const initial = (!search && !context.selectedId) || (selectSingleMatch && count === 1)
         const path = wanted.length ? wanted : initial && nodes.length ? [nodes[0]] : []
         const expanded = (context.expanded || []).filter(id => domainTreePath(nodes, id).length)
         this.changeDomainStore({ expanded })
-        if (path.length > 1 && !keyword) {
+        if (path.length > 1 && !search) {
           this.loading = false
           await this.selectDomain(path.at(-1).id)
         } else {
@@ -378,9 +467,17 @@ export default {
     searchDomains (value) {
       const keyword = value.trim()
       if (keyword !== (this.domainStore.keyword || '')) {
-        this.changeDomainStore({ keyword, expanded: [], tab: '' })
+        this.changeDomainStore({ keyword, expanded: [], tab: '', page: 1 })
       }
       return this.fetchData(true)
+    },
+    setDomainFilters (filters) {
+      this.changeDomainStore({ filters, page: 1, expanded: [] })
+      return this.fetchData(true)
+    },
+    changeSearchPage (page) {
+      this.changeDomainStore({ page })
+      return this.fetchData()
     },
     async selectDomain (id) {
       const path = domainTreePath(this.treeData, id)
@@ -473,6 +570,8 @@ export default {
         })
     },
     closeAction () {
+      if (this.moveParentRequest) this.moveParentRequest.abort()
+      this.moveParentRequest = null
       this.showAction = false
       this.actionResource = {}
     },
