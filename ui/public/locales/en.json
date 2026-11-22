@@ -1,4 +1,8 @@
 {
+  "message.dns.job.no.id": "The request may have been accepted without a job ID. Check the resource before retrying.",
+  "message.dns.job.unknown": "The result of job {id} is unknown. Check the job again.",
+  "label.dns.job.recheck": "Check job again",
+  "message.dns.no.enabled.servers": "No enabled DNS servers are available.",
   "label.dns.record.apex.ns.protected": "Protected zone apex NS",
   "message.dns.record.delete.rrset": "Delete the {type} record set for {name} and all {count} of its values?",
   "label.account.role.admin": "Root administrator",

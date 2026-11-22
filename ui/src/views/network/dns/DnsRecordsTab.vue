@@ -51,23 +51,38 @@
           </template>
           <template v-if="column.key === 'actions' && canDelete">
             <span v-if="isApexNs(record)">{{ $t('label.dns.record.apex.ns.protected') }}</span>
-            <a-popconfirm
+            <tooltip-button
               v-else
-              :title="$t('message.dns.record.delete.rrset', { name: record.name, type: record.type, count: record.contents?.length || 0 })"
-              @confirm="handleDeleteRecord(record)"
-              :okText="$t('label.yes')"
-              :cancelText="$t('label.no')">
-              <tooltip-button
-                tooltipPlacement="bottom"
-                :tooltip="$t('label.delete')"
-                type="primary"
-                :danger="true"
-                icon="delete-outlined" />
-            </a-popconfirm>
+              tooltipPlacement="bottom"
+              :tooltip="$t('label.delete')"
+              type="primary"
+              :danger="true"
+              icon="delete-outlined"
+              @onClick="deleteTarget = record" />
           </template>
         </template>
       </a-table>
     </a-spin>
+
+    <a-modal
+      v-if="deleteTarget && canDelete"
+      :visible="true"
+      :title="$t('label.dns.delete.record')"
+      :closable="!deleteLoading"
+      :keyboard="!deleteLoading"
+      :mask-closable="false"
+      :footer="null"
+      centered
+      @cancel="closeDeleteForm">
+      <p>{{ $t('message.dns.record.delete.rrset', { name: deleteTarget.name, type: deleteTarget.type, count: deleteTarget.contents?.length || 0 }) }}</p>
+      <a-alert v-if="jobError" :message="jobError" type="error" show-icon />
+      <div class="action-button">
+        <a-button :disabled="deleteLoading" @click="closeDeleteForm">{{ $t('label.cancel') }}</a-button>
+        <a-button type="primary" danger :loading="deleteLoading" :disabled="jobTracking === 'unconfirmed'" @click="handleDeleteRecord">
+          {{ $t(jobId ? 'label.dns.job.recheck' : 'label.delete') }}
+        </a-button>
+      </div>
+    </a-modal>
 
     <a-modal
       v-if="showAddForm && canCreate"
@@ -89,12 +104,13 @@
 <script>
 import { listRefreshMixin } from '@/utils/listRefreshMixin'
 
-import { getAPI, postAPI } from '@/api'
+import { getAPI } from '@/api'
+import { dnsJob } from './dnsJob'
 import TooltipButton from '@/components/widgets/TooltipButton'
 import CreateDnsRecord from '@/views/network/dns/CreateDnsRecord'
 
 export default {
-  mixins: [listRefreshMixin(['fetchData'])],
+  mixins: [listRefreshMixin(['fetchData']), dnsJob],
   name: 'DnsRecordsTab',
   components: {
     TooltipButton,
@@ -113,7 +129,7 @@ export default {
   data () {
     return {
       fetchLoading: false,
-      deleteLoading: false,
+      deleteTarget: null,
       showAddForm: false,
       searchText: '',
       records: [],
@@ -151,6 +167,7 @@ export default {
     }
   },
   computed: {
+    deleteLoading () { return this.jobLoading },
     canRead () { return !!this.$store.getters.apis?.listDnsRecords },
     canCreate () { return this.canRead && !!this.$store.getters.apis?.createDnsRecord },
     canDelete () { return this.canRead && !!this.$store.getters.apis?.deleteDnsRecord },
@@ -210,82 +227,24 @@ export default {
       const name = record.name?.trim().toLowerCase().replace(/\.$/, '')
       return name === '@' || name === this.resource.name?.trim().toLowerCase().replace(/\.$/, '')
     },
-    handleDeleteRecord (record) {
-      if (!this.canDelete || this.deleteLoading || this.isApexNs(record)) return
-      this.deleteLoading = true
-
-      const params = {
-        dnszoneid: this.resource.id,
-        name: record.name,
-        type: record.type
-      }
-
-      postAPI('deleteDnsRecord', params).then(response => {
-        const jobId = response?.deletednsrecordresponse?.jobid
-        if (!jobId) {
-          this.$notification.error({
-            message: this.$t('message.request.failed'),
-            description: 'Failed to get jobid for DeleteDnsRecord',
-            duration: 0
-          })
-          this.deleteLoading = false
-          return
-        }
-        this.$pollJob({
-          jobId,
-          title: this.$t('label.dns.delete.record'),
-          description: record.name,
-          successMethod: () => {
-            this.$notification.success({
-              message: this.$t('message.success.delete.dns.record'),
-              description: `${this.$t('message.success.delete.dns.record')} ${record.name}`
-            })
-            this.records = this.records.filter(r => !(r.name === record.name && r.type === record.type))
-            this.deleteLoading = false
-          },
-          errorMethod: () => {
-            this.deleteLoading = false
-          },
-          loadingMessage: `${this.$t('label.dns.delete.record')} ${record.name} ${this.$t('label.in.progress')}`,
-          catchMessage: this.$t('error.fetching.async.job.result'),
-          action: {
-            isFetchData: false
-          }
-        })
-      }).catch(error => {
-        this.$notification.error({
-          message: this.$t('message.request.failed'),
-          description: error?.response?.headers['x-description'] || error.message,
-          duration: 0
-        })
-        this.deleteLoading = false
+    closeDeleteForm () {
+      this.deleteTarget = null
+      this.jobId = ''
+      this.jobTracking = ''
+      this.jobError = ''
+    },
+    handleDeleteRecord () {
+      const record = this.deleteTarget
+      if (!record || !this.canDelete || this.jobTracking === 'unconfirmed' || this.isApexNs(record)) return
+      const params = { dnszoneid: this.resource.id, name: record.name, type: record.type }
+      return this.submitDnsJob('deleteDnsRecord', params, 'label.dns.delete.record', record.name, () => {
+        this.closeDeleteForm()
+        this.fetchData()
       })
     },
     handleCloseCreateForm (payload) {
       this.showAddForm = false
-      const jobId = payload?.jobId
-      if (!jobId) return
-      const recordName = payload?.recordName || ''
-      this.$pollJob({
-        jobId,
-        title: this.$t('label.dns.create.record'),
-        description: recordName,
-        successMethod: () => {
-          this.$notification.success({
-            message: this.$t('label.dns.create.record'),
-            description: `${this.$t('message.success.create.dns.record')} ${recordName}`
-          })
-          this.fetchData()
-        },
-        errorMethod: () => {
-          this.fetchData()
-        },
-        loadingMessage: `${this.$t('label.dns.create.record')} ${recordName} ${this.$t('label.in.progress')}`,
-        catchMessage: this.$t('error.fetching.async.job.result'),
-        action: {
-          isFetchData: false
-        }
-      })
+      if (payload?.saved) this.fetchData()
     }
   }
 }

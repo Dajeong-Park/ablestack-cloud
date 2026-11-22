@@ -17,7 +17,8 @@
 
 <template>
   <div class="form-layout" v-ctrl-enter="handleSubmit">
-    <a-spin :spinning="loading">
+    <a-alert v-if="jobError" :message="jobError" type="error" show-icon class="dns-job-error" />
+    <a-spin :spinning="jobLoading">
       <div style="margin-bottom: 20px;">
         <a-alert type="warning">
           <template #message>
@@ -37,31 +38,33 @@
         layout="vertical"
         @finish="handleSubmit">
 
-        <a-form-item name="name" ref="name">
-          <a-input
-            v-model:value="form.name"
-            :placeholder="resource.name"
-            v-focus="true" />
-        </a-form-item>
+        <fieldset class="dns-form-fields" :disabled="jobLoading || !!jobId || jobTracking === 'unconfirmed'">
+          <a-form-item name="name" ref="name">
+            <a-input
+              v-model:value="form.name"
+              :placeholder="resource.name"
+              v-focus="true" />
+          </a-form-item>
 
-        <a-form-item name="unmanage" ref="unmanage">
-          <template #label>
-            <tooltip-label :title="$t('label.dns.unmanage.zone')" :tooltip="apiParams.unmanage?.description" />
-          </template>
-          <a-switch v-model:checked="form.unmanage" />
-        </a-form-item>
+          <a-form-item name="unmanage" ref="unmanage">
+            <template #label>
+              <tooltip-label :title="$t('label.dns.unmanage.zone')" :tooltip="apiParams.unmanage?.description" />
+            </template>
+            <a-switch v-model:checked="form.unmanage" />
+          </a-form-item>
+        </fieldset>
 
         <div class="action-button">
-          <a-button @click="closeAction">
+          <a-button :disabled="jobLoading" @click="closeAction">
             {{ $t('label.cancel') }}
           </a-button>
           <a-button
             type="primary"
             danger
-            :disabled="form.name !== resource.name"
-            :loading="loading"
-            htmlType="submit">
-            {{ $t('label.delete') }}
+            :disabled="jobTracking === 'unconfirmed' || (!jobId && form.name !== resource.name)"
+            :loading="jobLoading"
+            @click="handleSubmit">
+            {{ $t(jobId ? 'label.dns.job.recheck' : 'label.delete') }}
           </a-button>
         </div>
       </a-form>
@@ -70,11 +73,12 @@
 </template>
 
 <script>
-import { postAPI } from '@/api'
+import { dnsJob } from './dnsJob'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 
 export default {
   name: 'DeleteDnsZone',
+  mixins: [dnsJob],
   components: {
     TooltipLabel
   },
@@ -86,7 +90,6 @@ export default {
   },
   data () {
     return {
-      loading: false,
       apiParams: {},
       form: {
         name: '',
@@ -102,62 +105,17 @@ export default {
   },
   methods: {
     async handleSubmit () {
-      if (this.loading || this.form.name !== this.resource.name) return
+      if (this.jobLoading || this.jobTracking === 'unconfirmed' || (!this.jobId && this.form.name !== this.resource.name)) return
 
-      this.loading = true
-
-      try {
-        const params = {
-          id: this.resource.id,
-          unmanage: this.form.unmanage
-        }
-
-        const response = await postAPI('deleteDnsZone', params)
-        const jobId = response?.deletednszoneresponse?.jobid
-        if (!jobId) {
-          this.$notification.error({
-            message: this.$t('message.request.failed'),
-            description: 'Failed to get jobid for DeleteDnsZone',
-            duration: 0
-          })
-          this.loading = false
-          return
-        }
-        const onListPage = this.$route.path === '/dnszone'
-        this.$pollJob({
-          jobId: jobId,
-          title: this.$t('label.dns.delete.zone'),
-          description: this.resource.name,
-          successMethod: () => {
-            this.loading = false
-            this.$notification.success({
-              message: this.$t('label.dns.delete.zone'),
-              description: `${this.$t('message.success.delete.dns.zone')} ${this.resource.name}`
-            })
-            if (!onListPage) {
-              this.$router.push({ path: '/dnszone' })
-            }
-          },
-          errorMethod: () => {
-            this.loading = false
-            this.$notification.error({
-              message: this.$t('label.dns.delete.zone'),
-              description: `${this.$t('message.error.delete.dns.zone')} ${this.resource.name}`
-            })
-          },
-          loadingMessage: `${this.$t('label.dns.delete.zone')} ${this.resource.name} ${this.$t('label.in.progress')}`,
-          catchMessage: this.$t('error.fetching.async.job.result'),
-          action: { isFetchData: onListPage }
-        })
+      const params = { id: this.resource.id, unmanage: this.form.unmanage }
+      return this.submitDnsJob('deleteDnsZone', params, 'label.dns.delete.zone', this.resource.name, () => {
         this.closeAction()
-      } catch (error) {
-        this.loading = false
-        this.$notification.error({
-          message: this.$t('message.request.failed'),
-          description: error?.response?.headers['x-description'] || error.message,
-          duration: 0
-        })
-      }
+        if (this.$route.params.id === params.id) {
+          this.$router.push({ path: '/dnszone' })
+        } else {
+          this.$emit('refresh-data')
+        }
+      })
     },
     closeAction () {
       this.$emit('close-action')
@@ -174,6 +132,8 @@ export default {
   }
 }
 
+.dns-form-fields { border: 0; padding: 0; min-width: 0; }
+.dns-job-error { margin-bottom: 12px; }
 .action-button {
   text-align: right;
   margin-top: 20px;

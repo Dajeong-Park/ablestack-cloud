@@ -1,4 +1,8 @@
 {
+  "message.dns.job.no.id": "작업 ID 없이 접수됐을 수 있습니다. 다시 요청하기 전에 리소스 상태를 확인하세요.",
+  "message.dns.job.unknown": "작업 {id}의 결과를 확인하지 못했습니다. 작업을 다시 조회하세요.",
+  "label.dns.job.recheck": "작업 다시 확인",
+  "message.dns.no.enabled.servers": "사용할 수 있는 활성 DNS 서버가 없습니다.",
   "label.dns.record.apex.ns.protected": "영역 최상위 NS 보호",
   "message.dns.record.delete.rrset": "{name}의 {type} 레코드 집합과 포함된 값 {count}개를 모두 삭제할까요?",
   "label.account.role.admin": "최고 관리자",

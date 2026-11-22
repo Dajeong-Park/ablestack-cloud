@@ -550,7 +550,7 @@ public class DnsProviderManagerImpl extends ManagerBase implements DnsProviderMa
         }
         DnsRecord.RecordType recordType = cmd.getType();
         String name = StringUtils.trimToEmpty(cmd.getName());
-        if (recordType == DnsRecord.RecordType.NS && ("@".equals(name) ||
+        if (recordType == DnsRecord.RecordType.NS && (name.isEmpty() || "@".equals(name) ||
                 StringUtils.equalsIgnoreCase(StringUtils.removeEnd(name, "."), StringUtils.removeEnd(dnsZone.getName(), ".")))) {
             throw new InvalidParameterValueException("The DNS zone apex NS record set cannot be deleted.");
         }
@@ -630,6 +630,9 @@ public class DnsProviderManagerImpl extends ManagerBase implements DnsProviderMa
             dnsZoneName = DnsProviderUtil.appendPublicSuffixToZone(dnsZoneName, server.getPublicDomainSuffix());
             checkDnsZoneNameConflictsAcrossAccounts(dnsZoneName, server.getId(), caller.getId());
         }
+        if (server.getState() != DnsServer.State.Enabled) {
+            throw new InvalidParameterValueException("The selected DNS server is disabled.");
+        }
         DnsZone.ZoneType type = cmd.getType();
         DnsZoneVO existing = dnsZoneDao.findByNameServerAndType(dnsZoneName, server.getId(), type);
         if (existing != null) {
@@ -673,6 +676,9 @@ public class DnsProviderManagerImpl extends ManagerBase implements DnsProviderMa
             throw new CloudRuntimeException(String.format("DNS server for zone '%s' no longer exists", dnsZone.getName()));
         }
         try {
+            if (server.getState() != DnsServer.State.Enabled) {
+                throw new CloudRuntimeException("The selected DNS server is disabled.");
+            }
             DnsProvider provider = getProviderByType(server.getProviderType());
             if (isExistingZone) {
                 if (!provider.dnsZoneExists(server, dnsZone)) {

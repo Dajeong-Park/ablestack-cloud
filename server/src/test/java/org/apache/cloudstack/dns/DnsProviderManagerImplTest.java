@@ -254,6 +254,17 @@ public class DnsProviderManagerImplTest {
     }
 
     @Test
+    public void testAllocateDnsZoneRejectsDisabledServer() {
+        CreateDnsZoneCmd cmd = mock(CreateDnsZoneCmd.class);
+        when(cmd.getName()).thenReturn("example.com");
+        when(cmd.getDnsServerId()).thenReturn(SERVER_ID);
+        when(dnsServerDao.findById(SERVER_ID)).thenReturn(serverVO);
+        when(serverVO.getState()).thenReturn(DnsServer.State.Disabled);
+        assertThrows(InvalidParameterValueException.class, () -> manager.allocateDnsZone(cmd));
+        verify(dnsZoneDao, never()).persist(any(DnsZoneVO.class));
+    }
+
+    @Test
     public void testAllocateDnsZoneOwnerSuccess() {
         CreateDnsZoneCmd cmd = mock(CreateDnsZoneCmd.class);
         when(cmd.getName()).thenReturn("example.com");

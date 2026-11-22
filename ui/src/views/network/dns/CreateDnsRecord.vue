@@ -17,7 +17,8 @@
 
 <template>
   <div class="form-layout" v-ctrl-enter="handleSubmit">
-    <a-spin :spinning="loading">
+    <a-alert v-if="jobError" :message="jobError" type="error" show-icon class="dns-job-error" />
+    <a-spin :spinning="jobLoading">
       <a-form
         ref="formRef"
         :model="form"
@@ -25,71 +26,75 @@
         layout="vertical"
         @finish="handleSubmit">
 
-        <a-form-item name="name" ref="name">
-          <template #label>
-            <tooltip-label
-              :title="$t('label.name')"
-              :tooltip="$t('label.dns.record.name.tooltip')" />
-          </template>
-          <a-input
-            v-model:value="form.name"
-            :placeholder="$t('placeholder.dns.record.name')"
-            v-focus="true" />
-        </a-form-item>
+        <fieldset class="dns-form-fields" :disabled="jobLoading || !!jobId || jobTracking === 'unconfirmed'">
+          <a-form-item name="name" ref="name">
+            <template #label>
+              <tooltip-label
+                :title="$t('label.name')"
+                :tooltip="$t('label.dns.record.name.tooltip')" />
+            </template>
+            <a-input
+              v-model:value="form.name"
+              :placeholder="$t('placeholder.dns.record.name')"
+              v-focus="true" />
+          </a-form-item>
 
-        <a-form-item name="type" ref="type">
-          <template #label>
-            <tooltip-label
-              :title="$t('label.type')"
-              :tooltip="$t('label.dns.record.type.tooltip')" />
-          </template>
-          <a-select
-            v-model:value="form.type"
-            :placeholder="$t('placeholder.dns.record.type')"
-            showSearch>
-            <a-select-option
-              v-for="rtype in recordTypes"
-              :key="rtype"
-              :value="rtype">
-              {{ rtype }}
-            </a-select-option>
-          </a-select>
-        </a-form-item>
+          <a-form-item name="type" ref="type">
+            <template #label>
+              <tooltip-label
+                :title="$t('label.type')"
+                :tooltip="$t('label.dns.record.type.tooltip')" />
+            </template>
+            <a-select
+              v-model:value="form.type"
+              :disabled="jobLoading || !!jobId"
+              :placeholder="$t('placeholder.dns.record.type')"
+              showSearch>
+              <a-select-option
+                v-for="rtype in recordTypes"
+                :key="rtype"
+                :value="rtype">
+                {{ rtype }}
+              </a-select-option>
+            </a-select>
+          </a-form-item>
 
-        <a-form-item name="contents" ref="contents">
-          <template #label>
-            <tooltip-label
-              :title="$t('label.contents')"
-              :tooltip="$t('label.dns.record.contents.tooltip')" />
-          </template>
-          <a-textarea
-            v-model:value="form.contents"
-            :placeholder="$t('message.dns.record.one.value.per.line')"
-            :auto-size="{ minRows: 2, maxRows: 6 }" />
-        </a-form-item>
+          <a-form-item name="contents" ref="contents">
+            <template #label>
+              <tooltip-label
+                :title="$t('label.contents')"
+                :tooltip="$t('label.dns.record.contents.tooltip')" />
+            </template>
+            <a-textarea
+              v-model:value="form.contents"
+              :placeholder="$t('message.dns.record.one.value.per.line')"
+              :auto-size="{ minRows: 2, maxRows: 6 }" />
+          </a-form-item>
 
-        <a-form-item name="ttl" ref="ttl">
-          <template #label>
-            <tooltip-label
-              :title="$t('label.ttl')"
-              :tooltip="$t('label.dns.record.ttl.tooltip')" />
-          </template>
-          <a-input-number
-            v-model:value="form.ttl"
-            :min="1"
-            :max="2147483647"
-            style="width: 100%" />
-        </a-form-item>
+          <a-form-item name="ttl" ref="ttl">
+            <template #label>
+              <tooltip-label
+                :title="$t('label.ttl')"
+                :tooltip="$t('label.dns.record.ttl.tooltip')" />
+            </template>
+            <a-input-number
+              v-model:value="form.ttl"
+              :min="1"
+              :max="2147483647"
+              style="width: 100%" />
+          </a-form-item>
+        </fieldset>
 
         <div class="action-button">
-          <a-button @click="$emit('close-action')">
+          <a-button :disabled="jobLoading" @click="$emit('close-action')">
             {{ $t('label.cancel') }}
           </a-button>
           <a-button
             type="primary"
-            :loading="loading"
-            htmlType="submit">
-            {{ $t('label.ok') }}
+            :loading="jobLoading"
+            :disabled="jobTracking === 'unconfirmed'"
+            @click="handleSubmit">
+            {{ $t(jobId ? 'label.dns.job.recheck' : 'label.ok') }}
           </a-button>
         </div>
       </a-form>
@@ -98,11 +103,12 @@
 </template>
 
 <script>
-import { postAPI } from '@/api'
+import { dnsJob } from './dnsJob'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 
 export default {
   name: 'CreateDnsRecord',
+  mixins: [dnsJob],
   components: {
     TooltipLabel
   },
@@ -114,7 +120,6 @@ export default {
   },
   data () {
     return {
-      loading: false,
       form: {
         name: '',
         type: 'A',
@@ -143,44 +148,25 @@ export default {
   methods: {
     async handleSubmit () {
       if (!this.$store.getters.apis?.listDnsRecords || !this.$store.getters.apis?.createDnsRecord) return
-      if (this.loading) return
+      if (this.jobLoading || this.jobTracking === 'unconfirmed') return
       try {
-        await this.$refs.formRef.validate()
+        if (!this.jobId) await this.$refs.formRef.validate()
       } catch (error) {
         if (error.errorFields && error.errorFields.length > 0) {
           this.$refs.formRef.scrollToField(error.errorFields[0].name)
         }
         return
       }
-      this.loading = true
-      try {
-        const params = {
-          dnszoneid: this.resource.id,
-          name: this.form.name,
-          type: this.form.type,
-          ...this.contentsParams(),
-          ttl: this.form.ttl
-        }
-        const response = await postAPI('createDnsRecord', params)
-        const jobId = response.creatednsrecordresponse.jobid
-        if (!jobId) {
-          this.$notification.error({
-            message: this.$t('message.request.failed'),
-            description: 'Failed to get jobid for createDnsRecord',
-            duration: 0
-          })
-          this.loading = false
-          return
-        }
-        this.$emit('close-action', { jobId, recordName: params.name })
-      } catch (error) {
-        this.$notification.error({
-          message: this.$t('message.request.failed'),
-          description: error?.response?.headers['x-description'] || error.message,
-          duration: 0
-        })
-        this.loading = false
+      const params = {
+        dnszoneid: this.resource.id,
+        name: this.form.name,
+        type: this.form.type,
+        ...this.contentsParams(),
+        ttl: this.form.ttl
       }
+      return this.submitDnsJob('createDnsRecord', params, 'label.dns.create.record', params.name, () => {
+        this.$emit('close-action', { saved: true })
+      })
     },
     contentsParams () {
       return this.supportsStructuredContents
@@ -211,6 +197,8 @@ export default {
   }
 }
 
+.dns-form-fields { border: 0; padding: 0; min-width: 0; }
+.dns-job-error { margin-bottom: 12px; }
 .action-button {
   text-align: right;
   margin-top: 20px;
