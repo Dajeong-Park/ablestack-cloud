@@ -142,6 +142,7 @@ export default {
   },
   methods: {
     async handleSubmit () {
+      if (!this.$store.getters.apis?.listDnsRecords || !this.$store.getters.apis?.createDnsRecord) return
       if (this.loading) return
       try {
         await this.$refs.formRef.validate()

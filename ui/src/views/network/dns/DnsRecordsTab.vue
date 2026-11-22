@@ -26,6 +26,7 @@
           style="width: 250px;"
           allow-clear />
         <a-button
+          v-if="canCreate"
           shape="round"
           @click="() => { showAddForm = true }">
           {{ $t('label.dns.create.record') }}
@@ -36,7 +37,7 @@
       <a-table
         size="small"
         style="overflow-y: auto; width: 100%;"
-        :columns="columns"
+        :columns="visibleColumns"
         :dataSource="filteredRecords"
         :rowKey="item => `${item.name}-${item.type}`"
         :pagination="tablePagination">
@@ -48,7 +49,7 @@
           <template v-if="column.dataIndex === 'ttl'">
             {{ record.ttl }}
           </template>
-          <template v-if="column.key === 'actions'">
+          <template v-if="column.key === 'actions' && canDelete">
             <a-popconfirm
               :title="$t('message.confirm.delete.dns.record')"
               @confirm="handleDeleteRecord(record)"
@@ -67,7 +68,7 @@
     </a-spin>
 
     <a-modal
-      v-if="showAddForm"
+      v-if="showAddForm && canCreate"
       :visible="showAddForm"
       :title="$t('label.dns.create.record')"
       :maskClosable="false"
@@ -148,6 +149,10 @@ export default {
     }
   },
   computed: {
+    canRead () { return !!this.$store.getters.apis?.listDnsRecords },
+    canCreate () { return this.canRead && !!this.$store.getters.apis?.createDnsRecord },
+    canDelete () { return this.canRead && !!this.$store.getters.apis?.deleteDnsRecord },
+    visibleColumns () { return this.canDelete ? this.columns : this.columns.filter(column => column.key !== 'actions') },
     filteredRecords () {
       const q = this.searchText.trim().toLowerCase()
       if (!q) return this.records
@@ -169,6 +174,7 @@ export default {
   },
   methods: {
     fetchData () {
+      if (!this.canRead || !this.resource.id) return
       const listRequest = this.listRequestToken('fetchData')
       if (this.fetchLoading) return
 
@@ -198,7 +204,7 @@ export default {
       })
     },
     handleDeleteRecord (record) {
-      if (this.deleteLoading) return
+      if (!this.canDelete || this.deleteLoading) return
       this.deleteLoading = true
 
       const params = {

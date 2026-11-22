@@ -194,6 +194,12 @@ export default {
     isNetworkTabs () { return networkTabRoute(this.$route) },
     networkTabsReady () { return !!this.resource.id && (!this.$route.params?.id || this.$route.params.id === this.resource.id) && !this.loading && (this.managedNetworkContext || !this.resource.associatednetworkid || this.networkService !== null) },
     s2sTabScope () { return this.$route.meta?.name === 's2svpn' ? gatewayContext(this) : '' },
+    dnsZoneTabScope () {
+      if (this.$route.meta?.name !== 'dnszone') return ''
+      const user = this.$store.getters.userInfo || {}
+      const apis = this.$store.getters.apis || {}
+      return JSON.stringify([this.resource.id, user.id, user.roleid, this.$store.getters.project?.id, !!apis.listDnsRecords, !!apis.createDnsRecord, !!apis.deleteDnsRecord])
+    },
     guestVlanTabScope () {
       const { id, allocationstate } = this.resource
       return this.$route.meta?.name === 'guestvlans' && id && String(id) === String(this.$route.params?.id) && allocationstate
@@ -201,7 +207,7 @@ export default {
         : ''
     },
     renderedTabs () {
-      if (this.$route.meta?.name === 's2svpn') return this.tabs.filter(tab => this.showTab(tab))
+      if (this.dnsZoneTabScope || this.$route.meta?.name === 's2svpn') return this.tabs.filter(tab => this.showTab(tab))
       if (!this.isNetworkTabs) return this.tabs
       return this.networkTabsReady ? uniqueTabs(this.tabs).filter(tab => this.showTab(tab)) : []
     },
@@ -216,6 +222,7 @@ export default {
     templateTabScope () { if (this.templateTabsReady) this.setActiveTab() },
     templateContext () { this.templateZoneObservation = null },
     s2sTabScope: { flush: 'sync', handler () { if (this.$route.meta?.name === 's2svpn') this.setActiveTab() } },
+    dnsZoneTabScope () { this.setActiveTab() },
     guestVlanTabScope (scope) { if (scope) this.setActiveTab() },
     renderedTabs () { if (this.isNetworkTabs || this.$route.meta?.name === 's2svpn') this.setActiveTab() },
     networkTabScope () { if (this.isNetworkTabs) this.setActiveTab() },
@@ -276,7 +283,7 @@ export default {
         })
       }
     },
-    tabInstanceKey (tab) { if (this.$route.meta?.name === 's2svpn') return this.s2sTabScope + ':' + tab.name; if (this.$route.meta?.name === 'kubernetesiso') return this.kubernetesIsoContext + ':' + tab.name; return this.isNetworkTabs ? this.networkTabScope + ':' + tab.name : tab.name },
+    tabInstanceKey (tab) { if (this.dnsZoneTabScope) return this.dnsZoneTabScope + ':' + tab.name; if (this.$route.meta?.name === 's2svpn') return this.s2sTabScope + ':' + tab.name; if (this.$route.meta?.name === 'kubernetesiso') return this.kubernetesIsoContext + ':' + tab.name; return this.isNetworkTabs ? this.networkTabScope + ':' + tab.name : tab.name },
     onTabChange (key) {
       this.conditionalTabNotice = ''
       this.activeTab = key
@@ -309,7 +316,7 @@ export default {
         this.$emit('onTabChange', key)
         return
       }
-      if (networkTabRoute(this.$route) || ['kubernetesiso', 'template', 'iso', 'ssh', 'userdata', 'cniconfiguration', 'affinitygroup', 'volume', 'computeoffering', 'diskoffering', 'vpcoffering', 'privategw', 's2svpn', 's2svpnconn', 'vpncustomergateway', 'guestvlans'].includes(this.$route.meta?.name)) {
+      if (networkTabRoute(this.$route) || ['kubernetesiso', 'template', 'iso', 'ssh', 'userdata', 'cniconfiguration', 'affinitygroup', 'volume', 'computeoffering', 'diskoffering', 'vpcoffering', 'privategw', 's2svpn', 's2svpnconn', 'vpncustomergateway', 'guestvlans', 'dnszone'].includes(this.$route.meta?.name)) {
         this.$router.push({ path: this.$route.path, query })
         this.$emit('onTabChange', key)
         return
@@ -337,6 +344,7 @@ export default {
       return tab.name
     },
     showTab (tab) {
+      if (tab.permission?.some(api => !this.$store.getters.apis?.[api])) return false
       if (networkTabRoute(this.$route)) {
         if (tab.show && !tab.show(this.resource, this.$route, this.$store.getters.userInfo)) return false
         return !tab.networkServiceFilter || !!(this.networkService?.service && tab.networkServiceFilter(this.networkService.service))
@@ -352,7 +360,7 @@ export default {
     setActiveTab () {
       const requestedTab = this.$route.query.tab || this.historyTab
       const network = networkTabRoute(this.$route)
-      const available = network ? uniqueTabs(this.tabs).filter(tab => !this.networkTabsReady || this.showTab(tab)) : kmsDetailRoute(this.$route) || ['kubernetesiso', 'template', 'ssh', 'userdata', 'cniconfiguration', 'affinitygroup', 'volume', 'computeoffering', 'diskoffering', 'vpcoffering', 'privategw', 's2svpn', 's2svpnconn', 'vpncustomergateway', 'guestvlans'].includes(this.$route.meta?.name) ? this.tabs.filter(tab => this.showTab(tab)) : this.tabs
+      const available = network ? uniqueTabs(this.tabs).filter(tab => !this.networkTabsReady || this.showTab(tab)) : kmsDetailRoute(this.$route) || ['kubernetesiso', 'template', 'ssh', 'userdata', 'cniconfiguration', 'affinitygroup', 'volume', 'computeoffering', 'diskoffering', 'vpcoffering', 'privategw', 's2svpn', 's2svpnconn', 'vpncustomergateway', 'guestvlans', 'dnszone'].includes(this.$route.meta?.name) ? this.tabs.filter(tab => this.showTab(tab)) : this.tabs
       const selected = network ? selectedNetworkTab(available, requestedTab) : available.find(tab => tab.name === requestedTab) || available[0]
       this.activeTab = selected ? selected.name : ''
       // Invalid library deep links use the visible fallback tab in the URL too.
@@ -361,7 +369,7 @@ export default {
       // canonicalize its URL.
       const routeTabs = this.$route.meta?.tabs
       const ownsRouteTabs = (this.$route.meta?.name === 'publicip' || !routeTabs) || (routeTabs.length === this.tabs.length && routeTabs.every((tab, index) => tab.name === this.tabs[index].name))
-      if (ownsRouteTabs && ((network && this.networkTabsReady) || this.templateTabsReady || this.guestVlanTabScope || kmsDetailRoute(this.$route) || ['kubernetesiso', 'userdata', 'cniconfiguration', 'volume', 'computeoffering', 'diskoffering', 'vpcoffering', 'privategw', 's2svpn', 's2svpnconn', 'vpncustomergateway'].includes(this.$route.meta?.name)) && this.$route.query.tab && selected && requestedTab !== selected.name) {
+      if (ownsRouteTabs && ((network && this.networkTabsReady) || this.templateTabsReady || this.guestVlanTabScope || this.dnsZoneTabScope || kmsDetailRoute(this.$route) || ['kubernetesiso', 'userdata', 'cniconfiguration', 'volume', 'computeoffering', 'diskoffering', 'vpcoffering', 'privategw', 's2svpn', 's2svpnconn', 'vpncustomergateway'].includes(this.$route.meta?.name)) && this.$route.query.tab && selected && requestedTab !== selected.name) {
         if (this.$route.meta?.name === 'guestnetwork' && conditionalGuestTab(requestedTab)) {
           this.conditionalTabNotice = guestFeatureStatus(requestedTab, this.resource, this.$store.getters)
         } else if (this.$route.meta?.name === 'guestnetwork' && this.resource.type === 'L2' &&

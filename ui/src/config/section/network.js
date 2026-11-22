@@ -1615,7 +1615,7 @@ export default {
       {
         name: 'dns.records',
         component: shallowRef(defineAsyncComponent(() => import('@/views/network/dns/DnsRecordsTab.vue'))),
-        show: () => true
+        permission: ['listDnsRecords']
       }],
       actions: [
         {
