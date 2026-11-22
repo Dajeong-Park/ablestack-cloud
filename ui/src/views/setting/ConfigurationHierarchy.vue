@@ -30,10 +30,10 @@
         <template v-if="column.key === 'name'">
           <div class="configuration-table-name">
             <button type="button" class="configuration-record-link" @click="$emit('show-setting', record)">
-              {{ record.displaytext || record.name }}
+              {{ localizedText(record, 'displaytext') }}
             </button>
             <div class="configuration-record-key">{{ record.name }}</div>
-            <div v-if="record.description" class="configuration-record-description">{{ record.description }}</div>
+            <div v-if="localizedText(record, 'description')" class="configuration-record-description">{{ localizedText(record, 'description') }}</div>
             <button v-if="grouped && record.parent && !record.attachedToParent" type="button" class="configuration-parent-link" @click="$emit('open-parent', record)">
               {{ $t('label.global.setting.parent') }} {{ record.parent }}
             </button>
@@ -79,6 +79,7 @@
 
 <script>
 import TooltipButton from '@/components/widgets/TooltipButton'
+import { configurationText } from './configurationLocale'
 import { formatConfigurationValue, configurationApplyLabel } from './configurationPresentation'
 
 export default {
@@ -86,6 +87,7 @@ export default {
   components: { TooltipButton },
   emits: ['change-page', 'update:expandedRowKeys', 'open-parent', 'show-setting', 'edit-setting', 'reset-setting'],
   props: {
+    koreanCatalog: { type: Object, default: null },
     config: { type: Array, default: () => [] },
     expandedRowKeys: { type: Array, default: () => [] },
     grouped: { type: Boolean, default: false },
@@ -115,6 +117,9 @@ export default {
     }
   },
   methods: {
+    localizedText (record, field) {
+      return configurationText(record, field, this.$i18n.locale, this.koreanCatalog)
+    },
     formatConfigurationValue,
     configurationApplyLabel,
     showTotal (total, [start, end]) {

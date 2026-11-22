@@ -73,13 +73,15 @@
             </a-space>
           </template>
           <a-descriptions size="small" :column="{ xs: 1, sm: 2, xl: 3 }" bordered>
-            <a-descriptions-item :label="$t('label.global.setting.key')">{{ selectedSetting.name }}</a-descriptions-item>
+            <a-descriptions-item :label="$t('label.global.setting.key')">
+              {{ localizedText(selectedSetting, 'displaytext') }}<br />{{ selectedSetting.name }}
+            </a-descriptions-item>
             <a-descriptions-item :label="$t('label.global.setting.current')">{{ formatConfigurationValue(selectedSetting) }}</a-descriptions-item>
             <a-descriptions-item :label="$t('label.global.setting.default')">{{ formatConfigurationValue(selectedSetting, 'defaultvalue') }}</a-descriptions-item>
             <a-descriptions-item :label="$t('label.global.setting.apply')">
               {{ configurationApplyLabel(selectedSetting) ? $t(configurationApplyLabel(selectedSetting)) : '—' }}
             </a-descriptions-item>
-            <a-descriptions-item :label="$t('label.description')" :span="2">{{ selectedSetting.description || '—' }}</a-descriptions-item>
+            <a-descriptions-item :label="$t('label.description')" :span="2">{{ localizedText(selectedSetting, 'description') || '—' }}</a-descriptions-item>
           </a-descriptions>
         </a-card>
         <a-spin :spinning="configLoading">
@@ -92,10 +94,11 @@
             @change="changeGroupTab" >
             <a-tab-pane
               key=''
-              tab='All Settings' >
+              :tab="localizedSection('All Settings')" >
               <ConfigurationHierarchy
                 v-if="!group"
                 :config="config"
+                :korean-catalog="koreanCatalog"
                 :count="count"
                 :page="page"
                 :pagesize="pagesize"
@@ -107,7 +110,7 @@
             <a-tab-pane
               v-for="(group) in groups"
               :key="group.name"
-              :tab="group.name" >
+              :tab="localizedSection(group.name)" >
               <a-tabs
                 :activeKey="this.subgroup || ''"
                 :animated="false"
@@ -115,11 +118,12 @@
                 <a-tab-pane
                   v-for="(subgroup) in group.subgroup"
                   :key="subgroup.name"
-                  :tab="subgroup.name" >
+                  :tab="localizedSection(subgroup.name)" >
                   <ConfigurationHierarchy
                     v-if="group.name === this.group && subgroup.name === this.subgroup"
                     grouped
                     :config="hierarchy"
+                    :korean-catalog="koreanCatalog"
                     :expanded-row-keys="expandedRows[sectionKey] || []"
                     @update:expanded-row-keys="expandedRows[sectionKey] = $event"
                     @open-parent="openParent"
@@ -141,11 +145,13 @@
       :title="$t(settingDialog.mode === 'reset' ? 'label.reset.config.value' : 'label.global.setting.edit')"
       @cancel="settingDialog = null">
       <a-descriptions size="small" layout="vertical" :column="{ xs: 1, sm: 3 }">
-        <a-descriptions-item :label="$t('label.global.setting.key')">{{ dialogRecord.name }}</a-descriptions-item>
+        <a-descriptions-item :label="$t('label.global.setting.key')">
+          {{ localizedText(dialogRecord, 'displaytext') }}<br />{{ dialogRecord.name }}
+        </a-descriptions-item>
         <a-descriptions-item :label="$t('label.global.setting.current')">{{ formatConfigurationValue(dialogRecord) }}</a-descriptions-item>
         <a-descriptions-item :label="$t('label.global.setting.default')">{{ formatConfigurationValue(dialogRecord, 'defaultvalue') }}</a-descriptions-item>
       </a-descriptions>
-      <p v-if="dialogRecord.description">{{ dialogRecord.description }}</p>
+      <p v-if="localizedText(dialogRecord, 'description')">{{ localizedText(dialogRecord, 'description') }}</p>
       <configuration-value
         :configrecord="dialogRecord"
         :dialog-mode="settingDialog.mode"
@@ -160,6 +166,7 @@
 import { listRefreshMixin } from '@/utils/listRefreshMixin'
 
 import { getAPI } from '@/api'
+import { markRaw } from 'vue'
 import { FilterOutlined } from '@ant-design/icons-vue'
 import { mixin, mixinDevice } from '@/utils/mixin.js'
 import Breadcrumb from '@/components/widgets/Breadcrumb'
@@ -167,6 +174,7 @@ import ConfigurationHierarchy from './ConfigurationHierarchy'
 import ConfigurationValue from './ConfigurationValue'
 import MoldDialog from '@/components/view/MoldDialog'
 import { formatConfigurationValue, configurationApplyLabel } from './configurationPresentation'
+import { configurationText, loadKoreanConfigurationCatalog } from './configurationLocale'
 import { buildConfigurationHierarchy } from './configurationHierarchy'
 import { readConfigurationQuery, writeConfigurationQuery, listConfigurationParams } from './configurationQuery'
 
@@ -217,6 +225,7 @@ export default {
   data () {
     return {
       groups: [],
+      koreanCatalog: null,
       groupsLoaded: false,
       config: [],
       expandedRows: {},
@@ -274,6 +283,9 @@ export default {
     }
   },
   watch: {
+    '$i18n.locale' () {
+      this.ensureKoreanCatalog()
+    },
     '$route.fullPath' () {
       if (this.groupsLoaded && this.$route.meta.name === 'globalsetting') {
         this.applyConfigurationRoute()
@@ -282,10 +294,28 @@ export default {
   },
   created () {
     this.fetchConfigurationGroups()
+    this.ensureKoreanCatalog()
   },
   methods: {
     formatConfigurationValue,
     configurationApplyLabel,
+    async ensureKoreanCatalog () {
+      if (this.$i18n.locale !== 'ko_KR' || this.koreanCatalog) return
+      const catalog = await loadKoreanConfigurationCatalog()
+      if (catalog && !this.listRefreshDisposed) {
+        this.koreanCatalog = markRaw(catalog)
+      }
+    },
+    localizedSection (name) {
+      const locale = this.$i18n.locale
+      if (locale !== 'ko_KR' && locale !== 'en') return name
+      const key = 'label.global.setting.section.' + name
+      const label = this.$t(key)
+      return label === key ? name : label
+    },
+    localizedText (record, field) {
+      return configurationText(record, field, this.$i18n.locale, this.koreanCatalog)
+    },
     openSettingDialog (record, mode) {
       this.settingDialog = { record, mode }
     },
