@@ -17,37 +17,32 @@
 
 <template>
   <div>
-    <!-- GPU Device Management Buttons (before tabs, for Host resource type only) -->
-    <div
-      v-if="resourceType === 'Host'"
-      style="margin-bottom: 16px;"
-    >
-      <a-space wrap>
-        <!-- GPU Device Discovery -->
-        <a-popconfirm
-          :title="$t('message.confirm.discover.gpu.devices')"
-          @confirm="discoverGpuDevices"
-          okText="Yes"
-          cancelText="No"
-        >
-          <a-button type="default">
-            {{ $t('label.discover.gpu.devices') }}
-          </a-button>
-        </a-popconfirm>
-
-        <!-- Add GPU Device (Admin Only) -->
-        <a-button
-          v-if="isAdmin"
-          type="primary"
-          @click="showAddGpuDeviceModal"
-        >
-          {{ $t('label.gpu.devices.add') }}
-        </a-button>
-      </a-space>
+    <div v-if="resourceType === 'Host'" class="host-gpu-layout">
+      <section :aria-label="$t('label.gpu.summary')">
+        <h3>{{ $t('label.gpu.summary') }}</h3>
+        <GPUSummaryTab ref="summaryTab" :resource="resource" :resource-type="resourceType" :loading="loading" @refresh="$emit('refresh')" />
+      </section>
+      <section :aria-label="$t('label.gpu.devices')">
+        <h3>{{ $t('label.gpu.devices') }}</h3>
+        <GPUDevicesTab ref="devicesTab" :resource="resource" :resource-type="resourceType" :loading="loading" @refresh="refresh(true)">
+          <template #actions>
+            <a-popconfirm
+              v-if="$store.getters.apis?.discoverGpuDevices"
+              :title="$t('message.confirm.discover.gpu.devices')"
+              :ok-text="$t('label.ok')"
+              :cancel-text="$t('label.cancel')"
+              @confirm="discoverGpuDevices">
+              <a-button>{{ $t('label.discover.gpu.devices') }}</a-button>
+            </a-popconfirm>
+            <a-button v-if="isAdmin && $store.getters.apis?.createGpuDevice" type="primary" @click="showAddGpuDeviceModal">
+              {{ $t('label.gpu.devices.add') }}
+            </a-button>
+          </template>
+        </GPUDevicesTab>
+      </section>
     </div>
 
-    <!-- For VMs: Show tabs only for admin, summary only for regular users -->
-    <div v-if="resourceType === 'VirtualMachine' && !isAdmin">
+    <div v-else-if="resourceType === 'VirtualMachine' && !isAdmin">
       <!-- Summary only for non-admin users viewing VMs -->
       <GPUSummaryTab
         ref="summaryTabSimple"
@@ -95,10 +90,12 @@
     </a-tabs>
 
     <!-- Add GPU Device Modal -->
-    <a-modal
+    <mold-dialog
+      size="md"
+      focus-guard
+      form-actions
       :visible="addGpuDeviceModalVisible"
       :title="$t('label.gpu.devices.add')"
-      @ok="addGpuDevice"
       @cancel="addGpuDeviceModalVisible = false"
     >
       <a-form layout="vertical">
@@ -107,10 +104,12 @@
           :key="field.key"
           :label="field.label"
           :required="field.required"
+          :html-for="'host-gpu-add-' + field.key"
         >
           <!-- Input field -->
           <a-input
             v-if="field.type === 'input'"
+            :id="'host-gpu-add-' + field.key"
             v-model:value="gpuDeviceForm[field.key]"
             :placeholder="field.placeholder"
           />
@@ -118,6 +117,7 @@
           <!-- Select field -->
           <a-select
             v-else-if="field.type === 'select'"
+            :id="'host-gpu-add-' + field.key"
             v-model:value="gpuDeviceForm[field.key]"
             :placeholder="field.placeholder"
             :loading="field.loading"
@@ -136,13 +136,19 @@
           </a-select>
         </a-form-item>
       </a-form>
-    </a-modal>
+      <mold-dialog-actions :busy="savingGpuDevice">
+        <a-button @click="addGpuDeviceModalVisible = false">{{ $t('label.cancel') }}</a-button>
+        <a-button type="primary" @click="addGpuDevice">{{ $t('label.ok') }}</a-button>
+      </mold-dialog-actions>
+    </mold-dialog>
   </div>
 </template>
 
 <script>
 import { mixinDevice } from '@/utils/mixin.js'
 import { getAPI, postAPI } from '@/api'
+import MoldDialog from '@/components/view/MoldDialog'
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import GPUSummaryTab from '@/components/view/GPUSummaryTab'
 import GPUDevicesTab from '@/components/view/GPUDevicesTab'
 
@@ -151,6 +157,8 @@ export default {
   name: 'GPUTab',
   components: {
     GPUSummaryTab,
+    MoldDialog,
+    MoldDialogActions,
     GPUDevicesTab
   },
   props: {
@@ -171,6 +179,7 @@ export default {
   data () {
     return {
       addGpuDeviceModalVisible: false,
+      savingGpuDevice: false,
       gpuDeviceForm: {},
       gpuCards: [],
       vgpuProfiles: [],
@@ -349,6 +358,7 @@ export default {
       this.addGpuDeviceModalVisible = true
     },
     addGpuDevice () {
+      if (this.savingGpuDevice || !this.$store.getters.apis?.createGpuDevice) return
       // Validate required fields
       if (!this.gpuDeviceForm.busaddress || !this.gpuDeviceForm.gpucardid || !this.gpuDeviceForm.vgpuprofileid) {
         this.$notification.warning({
@@ -376,7 +386,8 @@ export default {
         params.parentgpudeviceid = this.gpuDeviceForm.parentgpudeviceid
       }
 
-      postAPI('createGpuDevice', params).then(() => {
+      this.savingGpuDevice = true
+      postAPI('createGpuDevice', params, { preserveOnFailure: true }).then(() => {
         this.$notification.success({
           message: this.$t('label.success'),
           description: this.$t('message.success.add.gpu.device')
@@ -385,6 +396,8 @@ export default {
         this.refresh()
       }).catch(error => {
         this.$notifyError(error)
+      }).finally(() => {
+        this.savingGpuDevice = false
       })
     },
     refresh (skipDevicesTab = false) {
@@ -405,6 +418,18 @@ export default {
 </script>
 
 <style scoped>
+.host-gpu-layout {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+}
+
+.host-gpu-layout h3 {
+  color: var(--ui-text);
+  margin-bottom: 10px;
+}
+
 /* Background colors for GPU device types */
 :deep(.parent-gpu-row) {
   background-color: #fafafa;

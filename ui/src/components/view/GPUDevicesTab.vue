@@ -24,13 +24,15 @@
       style="margin-bottom: 16px;"
     >
       <a-space wrap>
+        <slot name="actions" />
         <!-- Bulk GPU Device Actions -->
         <a-popconfirm
+          v-if="gpuActionAllowed('manageGpuDevice')"
           :title="$t('message.confirm.manage.gpu.devices', { count: selectedDeviceCount })"
           @confirm="bulkManageGpuDevices"
           :disabled="!hasSelectedDevices"
-          okText="Yes"
-          cancelText="No"
+          :ok-text="$t('label.ok')"
+          :cancel-text="$t('label.cancel')"
         >
           <a-button
             type="primary"
@@ -41,11 +43,12 @@
         </a-popconfirm>
 
         <a-popconfirm
+          v-if="gpuActionAllowed('unmanageGpuDevice')"
           :title="$t('message.confirm.unmanage.gpu.devices', { count: selectedDeviceCount })"
           @confirm="bulkUnmanageGpuDevices"
           :disabled="!hasSelectedDevices"
-          okText="Yes"
-          cancelText="No"
+          :ok-text="$t('label.ok')"
+          :cancel-text="$t('label.cancel')"
         >
           <a-button
             type="primary"
@@ -57,11 +60,12 @@
         </a-popconfirm>
 
         <a-popconfirm
+          v-if="gpuActionAllowed('deleteGpuDevice')"
           :title="$t('message.confirm.delete.gpu.devices', { count: selectedDeviceCount })"
           @confirm="bulkDeleteGpuDevices"
           :disabled="!hasSelectedDevices"
-          okText="Yes"
-          cancelText="No"
+          :ok-text="$t('label.ok')"
+          :cancel-text="$t('label.cancel')"
         >
           <a-button
             v-if="isAdmin"
@@ -85,11 +89,12 @@
       :defaultExpandAllRows="true"
       :expandedRowKeys="expandedRowKeys"
       @expand="onExpand"
-      :rowSelection="resourceType === 'Host' && isAdmin ? {
+      :rowSelection="resourceType === 'Host' && isAdmin && ['manageGpuDevice', 'unmanageGpuDevice', 'deleteGpuDevice'].some(gpuActionAllowed) ? {
         selectedRowKeys: selectedGpuDeviceIds,
         onChange: onGpuDeviceSelectionChange
       } : null"
       :customRow="customRowProps"
+      :scroll="resourceType === 'Host' ? { x: 720 } : undefined"
       size="small"
     >
       <template #bodyCell="{ column, record }">
@@ -186,11 +191,11 @@
           <a-space v-if="!record.children || record.children.length === 0">
             <!-- Manage/Unmanage Action -->
             <a-popconfirm
-              v-if="record.managedstate && record.managedstate.toLowerCase() === 'unmanaged'"
+              v-if="gpuActionAllowed('manageGpuDevice') && record.managedstate && record.managedstate.toLowerCase() === 'unmanaged'"
               :title="$t('message.confirm.manage.gpu.devices')"
               @confirm="manageGpuDevice(record)"
-              okText="Yes"
-              cancelText="No"
+              :ok-text="$t('label.ok')"
+              :cancel-text="$t('label.cancel')"
             >
               <a-tooltip :title="$t('label.gpu.devices.manage')">
                 <a-button
@@ -203,11 +208,11 @@
               </a-tooltip>
             </a-popconfirm>
             <a-popconfirm
-              v-else-if="record.managedstate && record.managedstate.toLowerCase() === 'managed'"
+              v-else-if="gpuActionAllowed('unmanageGpuDevice') && record.managedstate && record.managedstate.toLowerCase() === 'managed'"
               :title="$t('message.confirm.unmanage.gpu.devices')"
               @confirm="unmanageGpuDevice(record)"
-              okText="Yes"
-              cancelText="No"
+              :ok-text="$t('label.ok')"
+              :cancel-text="$t('label.cancel')"
             >
               <a-tooltip :title="$t('label.gpu.devices.unmanage')">
                 <a-button
@@ -220,7 +225,7 @@
             </a-popconfirm>
 
             <!-- Edit Action -->
-            <a-tooltip :title="$t('label.edit')">
+            <a-tooltip v-if="gpuActionAllowed('updateGpuDevice')" :title="$t('label.edit')">
               <a-button
                 type="primary"
                 size="small"
@@ -233,10 +238,11 @@
 
             <!-- Delete Action -->
             <a-popconfirm
+              v-if="gpuActionAllowed('deleteGpuDevice')"
               :title="$t('message.confirm.delete.gpu.devices')"
               @confirm="deleteGpuDevice(record)"
-              okText="Yes"
-              cancelText="No"
+              :ok-text="$t('label.ok')"
+              :cancel-text="$t('label.cancel')"
             >
               <a-tooltip :title="$t('label.delete')">
                 <a-button
@@ -431,6 +437,9 @@ export default {
     }
   },
   methods: {
+    gpuActionAllowed (api) {
+      return this.resourceType !== 'Host' || Boolean(this.$store.getters.apis?.[api])
+    },
     fetchDevicesData () {
       const listRequest = this.listRequestToken('fetchDevicesData')
       if (!this.resource.id) {

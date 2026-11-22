@@ -16,27 +16,33 @@
 // under the License.
 
 <template>
-  <div>
-    <a-space class="host-device-tools">
-      <a-button :loading="deviceListLoading" @click="refreshDevices">{{ $t('label.refresh') }}</a-button>
-      <span v-if="deviceListFailed" role="status">{{ $t('message.host.device.read.failed') }}</span>
-    </a-space>
-    <a-tabs :tabPosition="resourceTabPosition" v-model:activeKey="activeKey" @change="handleTabChange">
-      <a-tab-pane key="1" :tab="$t('label.other.devices')">
-        <a-input-search
-          v-model:value="otherSearchQuery"
-          :placeholder="$t('label.search')"
-          style="width: 500px; margin-bottom: 15px; float: right;"
-          @search="onOtherSearch"
-          @change="onOtherSearch"
-        />
+  <div class="host-devices-content">
+    <resource-table-toolbar
+      class="host-device-tools"
+      searchable
+      :search="searchQuery"
+      :search-label="$t('label.host.device.search')"
+      :loading="deviceListLoading"
+      @update:search="searchQuery = $event"
+      @search="commitSearch"
+      @refresh="refreshDevices">
+      <a-select
+        id="host-device-kind"
+        class="host-device-kind"
+        :aria-label="$t('label.host.device.type')"
+        :value="activeKey"
+        :options="deviceOptions"
+        @change="selectDeviceType" />
+    </resource-table-toolbar>
+    <a-alert v-if="deviceListFailed" type="error" show-icon :message="$t('message.host.device.read.failed')" />
+    <section v-if="activeKey === '1'" class="host-device-list">
         <a-table
           :columns="currentColumns"
           :dataSource="filteredOtherDevices"
           :loading="deviceListLoading && !dataItems.length"
           :pagination="false"
           size="small"
-          :scroll="{ y: 1000 }">
+          :scroll="{ x: 720 }">
           <template #headerCell="{ column }">
             <template v-if="column.key === 'hostDevicesText'">
               {{ $t('label.details') }}
@@ -72,27 +78,16 @@
             </template>
           </template>
         </a-table>
-      </a-tab-pane>
+      </section>
 
-      <a-tab-pane key="2" :tab="$t('label.hba.devices')">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-          <div style="display: flex; align-items: center; gap: 10px;">
-          </div>
-          <a-input-search
-            v-model:value="hbaSearchQuery"
-            :placeholder="$t('label.search')"
-            style="width: 500px;"
-            @search="onHbaSearch"
-            @change="onHbaSearch"
-          />
-        </div>
-        <a-table
+      <section v-if="activeKey === '2'" class="host-device-list">
+          <a-table
           :columns="currentColumns"
           :dataSource="filteredHbaDevices"
           :loading="deviceListLoading && !dataItems.length"
           :pagination="false"
           size="small"
-          :scroll="{ y: 1000 }">
+          :scroll="{ x: 720 }">
           <template #headerCell="{ column }">
             <template v-if="column.key === 'hostDevicesText'">
               {{ $t('label.details') }}
@@ -217,23 +212,16 @@
             </template>
           </template>
         </a-table>
-      </a-tab-pane>
+      </section>
 
-      <a-tab-pane key="3" :tab="$t('label.usb.devices')">
-        <a-input-search
-          v-model:value="usbSearchQuery"
-          :placeholder="$t('label.search')"
-          style="width: 500px; margin-bottom: 15px; float: right;"
-          @search="onUsbSearch"
-          @change="onUsbSearch"
-        />
+      <section v-if="activeKey === '3'" class="host-device-list">
         <a-table
           :columns="currentColumns"
           :dataSource="filteredUsbDevices"
           :loading="deviceListLoading && !dataItems.length"
           :pagination="false"
           size="small"
-          :scroll="{ y: 1000 }">
+          :scroll="{ x: 720 }">
           <template #headerCell="{ column }">
             <template v-if="column.key === 'hostDevicesText'">
               {{ $t('label.details') }}
@@ -271,23 +259,16 @@
             </template>
           </template>
         </a-table>
-      </a-tab-pane>
+      </section>
 
-      <a-tab-pane key="4" :tab="$t('label.lun.devices')">
-        <a-input-search
-          v-model:value="lunSearchQuery"
-          :placeholder="$t('label.search')"
-          style="width: 500px; margin-bottom: 15px; float: right;"
-          @search="onLunSearch"
-          @change="onLunSearch"
-        />
+      <section v-if="activeKey === '4'" class="host-device-list">
         <a-table
           :columns="currentColumns"
           :dataSource="filteredLunDevices"
           :loading="deviceListLoading && !dataItems.length"
           :pagination="false"
           size="small"
-          :scroll="{ y: 1000 }">
+          :scroll="{ x: 720 }">
           <template #headerCell="{ column }">
             <template v-if="column.key === 'hostDevicesText'">
               {{ $t('label.details') }}
@@ -373,23 +354,16 @@
             </template>
           </template>
         </a-table>
-      </a-tab-pane>
+      </section>
 
-      <a-tab-pane key="5" :tab="$t('label.scsi.devices')">
-        <a-input-search
-          v-model:value="scsiSearchQuery"
-          :placeholder="$t('label.search')"
-          style="width: 500px; margin-bottom: 15px; float: right;"
-          @search="onScsiSearch"
-          @change="onScsiSearch"
-        />
+      <section v-if="activeKey === '5'" class="host-device-list">
         <a-table
           :columns="currentColumns"
           :dataSource="filteredScsiDevices"
           :loading="deviceListLoading && !dataItems.length"
           :pagination="false"
           size="small"
-          :scroll="{ y: 1000 }">
+          :scroll="{ x: 720 }">
           <template #headerCell="{ column }">
             <template v-if="column.key === 'hostDevicesText'">
               {{ $t('label.details') }}
@@ -431,8 +405,7 @@
             </template>
           </template>
         </a-table>
-      </a-tab-pane>
-    </a-tabs>
+      </section>
     <a-modal
       :visible="showAddModal"
       :title="$t('label.create.host.devices')"
@@ -557,6 +530,7 @@
 </template>
 
 <script>
+import ResourceTableToolbar from '@/components/view/ResourceTableToolbar'
 import { mixinDevice } from '@/utils/mixin.js'
 import { getAPI, postAPI } from '@/api'
 import { generatePciDeviceXml, matchesPciDeviceXml } from '@/utils/util'
@@ -569,10 +543,21 @@ import HostHbaDevicesTransfer from '@/views/storage/HostHbaDevicesTransfer'
 import HostScsiDevicesTransfer from '@/views/storage/HostScsiDevicesTransfer'
 import HostVhbaDevicesTransfer from '@/views/storage/HostVhbaDevicesTransfer'
 
+const deviceViews = [
+  { key: '1', id: 'other', label: 'label.other.devices' },
+  { key: '2', id: 'hba', label: 'label.hba.devices' },
+  { key: '3', id: 'usb', label: 'label.usb.devices' },
+  { key: '4', id: 'lun', label: 'label.lun.devices' },
+  { key: '5', id: 'scsi', label: 'label.scsi.devices' }
+]
+const deviceView = value => deviceViews.find(view => view.id === value || view.key === value) || deviceViews[0]
+const searchFromQuery = value => typeof value === 'string' ? value : ''
+
 export default {
   mixins: [mixinDevice],
   name: 'ListHostDevicesTab',
   components: {
+    ResourceTableToolbar,
     IdcardOutlined,
     PlusOutlined,
     DeleteOutlined,
@@ -601,13 +586,8 @@ export default {
       actionLoading: false,
       showAddModal: false,
       selectedResource: null,
-      searchQuery: '',
-      activeKey: '1',
-      usbSearchQuery: '',
-      lunSearchQuery: '',
-      otherSearchQuery: '',
-      hbaSearchQuery: '',
-      scsiSearchQuery: '',
+      searchQuery: searchFromQuery(this.$route.query.deviceq),
+      activeKey: deviceView(this.$route.query.device).key,
       selectedDevices: [],
       selectedPciDevices: [],
       virtualmachines: [],
@@ -638,6 +618,7 @@ export default {
     }
   },
   computed: {
+    deviceOptions () { return deviceViews.map(view => ({ value: view.key, label: this.$t(view.label) })) },
     tableSource () {
       return this.dataItems.map((item, index) => ({
         ...item,
@@ -716,7 +697,7 @@ export default {
     },
 
     filteredOtherDevices () {
-      const query = this.otherSearchQuery.toLowerCase()
+      const query = this.searchQuery.toLowerCase()
       return this.tableSource.filter(item => {
         const deviceName = String(item.hostDevicesName || '')
         const deviceText = String(item.hostDevicesText || '')
@@ -733,7 +714,7 @@ export default {
     filteredUsbDevices () {
       if (!this.dataItems) return []
 
-      const query = this.usbSearchQuery.toLowerCase()
+      const query = this.searchQuery.toLowerCase()
       return this.dataItems.filter(item => {
         if (item.hostDevicesText && item.hostDevicesText.toLowerCase().includes('hub')) {
           return false
@@ -748,7 +729,7 @@ export default {
     },
 
     filteredLunDevices () {
-      const query = this.lunSearchQuery.toLowerCase()
+      const query = this.searchQuery.toLowerCase()
       const items = this.dataItems || []
       return items.filter(item => {
         const deviceName = String(item.hostDevicesName || '')
@@ -768,7 +749,7 @@ export default {
     },
 
     filteredHbaDevices () {
-      const query = this.hbaSearchQuery.toLowerCase()
+      const query = this.searchQuery.toLowerCase()
       const allHbaDevices = this.getHbaDevicesWithVhba()
 
       return allHbaDevices.filter(item => {
@@ -781,7 +762,7 @@ export default {
     },
 
     filteredScsiDevices () {
-      const query = this.scsiSearchQuery.toLowerCase()
+      const query = this.searchQuery.toLowerCase()
       return (this.dataItems || []).filter(item => {
         const deviceName = String(item.hostDevicesName || '')
         const displayName = String(item.scsiDisplayName || '')
@@ -817,6 +798,17 @@ export default {
         this.resetDeviceList()
         this.refreshDevices()
       }
+    },
+    '$route.query.device' (value) {
+      const key = deviceView(value).key
+      if (key !== this.activeKey) {
+        this.activeKey = key
+        this.resetDeviceList()
+        this.refreshDevices()
+      }
+    },
+    '$route.query.deviceq' (value) {
+      this.searchQuery = searchFromQuery(value)
     },
     loading (loading, previous) {
       if (previous && !loading) this.refreshDevices()
@@ -1001,12 +993,6 @@ export default {
       this.selectedResource = null
       return this.refreshDevices()
     },
-    onUsbSearch (e) {
-    },
-    onLunSearch () {
-    },
-    onOtherSearch () {
-    },
     async handleDelete (record) {
       if (this.activeKey === '2') {
         this.selectedResource = { ...this.resource, hostDevicesName: record.hostDevicesName }
@@ -1053,10 +1039,19 @@ export default {
     handleDeviceAllocated () {
       return this.closeAction()
     },
-    handleTabChange (key) {
-      this.activeKey = key
-      this.resetDeviceList()
-      return this.refreshDevices()
+    selectDeviceType (key) {
+      if (key === this.activeKey) return
+      const query = { ...this.$route.query, tab: 'listhostdevices', device: deviceView(key).id }
+      delete query.deviceq
+      this.$router.push({ query })
+    },
+    commitSearch (value) {
+      const query = { ...this.$route.query }
+      const keyword = value?.trim()
+      if (keyword) query.deviceq = keyword
+      else delete query.deviceq
+      this.searchQuery = keyword || ''
+      this.$router.replace({ query })
     },
     fetchUsbDevices () {
       return this.readDeviceList('3', id => this.readNamedDevices('listHostUsbDevices', 'listhostusbdevices', id))
@@ -1852,13 +1847,7 @@ export default {
       this.showPciDeleteModal = false
       this.selectedPciDevice = null
     },
-    onHbaSearch () {
 
-    },
-
-    onScsiSearch () {
-
-    },
     fetchHbaDevices () {
       return this.readDeviceList('2', async id => {
         const response = await getAPI('listHostHbaDevices', {
@@ -3178,8 +3167,19 @@ export default {
 </script>
 
 <style lang="less" scoped>
+  .host-device-kind {
+    width: 180px;
+    max-width: 100%;
+  }
+
+  .host-devices-content,
+  .host-device-list {
+    min-width: 0;
+    max-width: 100%;
+  }
+
   .ant-table-wrapper {
-    margin: 2rem 0;
+    margin: 12px 0;
   }
 
   @media (max-width: 600px) {
