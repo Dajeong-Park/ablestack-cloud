@@ -1,4 +1,6 @@
 {
+  "message.domain.settings.inheritance": "Changes apply to this domain. Reset a setting to use its inherited value.",
+  "message.domain.settings.scope": "Settings for {path}",
   "message.domain.count.done": "Resource types recalculated: {count}",
   "message.domain.count.scope": "Recalculate resource counts for {path}",
   "message.domain.limit.values": "The fields show the effective limits for this scope. Saving an edited value sets a limit for this domain. Use 0 to allow no resources and -1 for no limit, subject to the parent scope.",

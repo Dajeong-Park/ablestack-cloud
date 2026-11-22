@@ -19,14 +19,15 @@
   <resource-layout>
     <template #left>
       <a-card :bordered="false" :aria-busy="loading">
-        <a-input-search
-          v-model:value="searchQuery"
-          :placeholder="$t('label.search')"
-          allow-clear
-          @search="$emit('search', $event)">
-          <template #prefix><search-outlined /></template>
-        </a-input-search>
-        <slot name="filters" />
+        <div class="domain-tree-toolbar">
+          <a-input-search
+            v-model:value="searchQuery"
+            :placeholder="$t('label.search')"
+            :aria-label="$t('label.search')"
+            allow-clear
+            @search="$emit('search', $event)" />
+          <slot name="filters" />
+        </div>
         <a-spin :spinning="loading">
           <a-alert
             v-if="error"
@@ -57,7 +58,7 @@
     </template>
     <template #right>
       <a-spin :spinning="loading || selecting">
-        <a-card v-if="resource.id && !loading" class="spin-content">
+        <a-card v-if="resource.id && !loading" class="spin-content resource-content-card">
           <a-tabs
             :key="resource.id"
             :tab-position="resourceTabPosition"
@@ -153,6 +154,13 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.domain-tree-toolbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 8px;
+}
+
 :deep(.ant-tree).list-tree-view {
   overflow-y: hidden;
   margin-top: 10px;

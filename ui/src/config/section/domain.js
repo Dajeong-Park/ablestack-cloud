@@ -113,14 +113,14 @@ export default {
       dataView: true,
       args: (record) => {
         var fields = ['networkdomain']
-        if (record.name !== 'ROOT') {
+        if (record.level > 0) {
           fields.unshift('name')
         }
         return fields
       },
       show: (record, store) => {
         return ['Admin'].includes(store.userInfo.roletype) ||
-          ['DomainAdmin'].includes(store.userInfo.roletype) && record.domainid !== store.userInfo.domainid
+          ['DomainAdmin'].includes(store.userInfo.roletype) && record.id !== store.userInfo.domainid
       }
     },
     {
@@ -194,8 +194,8 @@ export default {
       listView: true,
       dataView: true,
       show: (record, store) => {
-        return ['Admin'].includes(store.userInfo.roletype) && record.level !== 0 ||
-          ['DomainAdmin'].includes(store.userInfo.roletype) && record.domainid !== store.userInfo.domainid
+        return record.level > 0 && (['Admin'].includes(store.userInfo.roletype) ||
+          ['DomainAdmin'].includes(store.userInfo.roletype) && record.id !== store.userInfo.domainid)
       },
       args: ['cleanup']
     }

@@ -17,19 +17,14 @@
 
 <template>
   <div>
-    <a-modal
-      centered
+    <MoldDialog
       :visible="showAction"
-      :closable="!actionLoading"
-      :maskClosable="false"
-      :confirmLoading="action.loading"
-      :footer="null"
-      @cancel="cancelAction"
-      style="top: 20px;"
-    >
-      <template #title>
-        {{ $t(action.label) }}
-      </template>
+      :title="$t(action.label)"
+      :doc-help="action.docHelp"
+      size="sm"
+      form-actions
+      focus-guard
+      @cancel="cancelAction">
       <a-spin :spinning="actionLoading" v-ctrl-enter="handleSubmit">
         <a-form
           :ref="formRef"
@@ -138,13 +133,13 @@
             <a-empty v-else-if="moveField && !moveField.loading && !moveField.opts?.length" :description="$t('label.no.data')" />
             <p v-if="moveParent">{{ $t('message.domain.move.path', { path: moveParent.path + '/' + resource.name }) }}</p>
           </template>
-          <div :span="24" class="action-button">
+          <MoldDialogActions :busy="actionLoading">
             <a-button :disabled="actionLoading" @click="cancelAction">{{ $t('label.cancel') }}</a-button>
             <a-button type="primary" ref="submit" :loading="actionLoading" :disabled="action.api === 'moveDomain' && !moveParent" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
-          </div>
+          </MoldDialogActions>
         </a-form>
       </a-spin>
-    </a-modal>
+    </MoldDialog>
   </div>
 </template>
 
@@ -153,12 +148,16 @@ import { postAPI } from '@/api'
 import { Empty } from 'ant-design-vue'
 import { ref, reactive, toRaw } from 'vue'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
+import MoldDialog from '@/components/view/MoldDialog'
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 
 export default {
   name: 'DomainActionForm',
   components: {
     AEmpty: Empty,
-    TooltipLabel
+    TooltipLabel,
+    MoldDialog,
+    MoldDialogActions
   },
   props: {
     action: {

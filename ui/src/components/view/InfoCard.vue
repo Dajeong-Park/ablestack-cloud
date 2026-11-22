@@ -1167,6 +1167,17 @@
               :osCategoryId="osCategoryId" />
           </div>
 
+          <template v-if="$route.meta?.name === 'domain' && resource.path">
+            <div class="resource-detail-item">
+              <strong>{{ $t('label.path') }}</strong>
+              <div class="domain-card-path">{{ resource.path }}</div>
+            </div>
+            <div v-if="resource.parentdomainid" class="resource-detail-item">
+              <strong>{{ $t('label.parentdomainname') }}</strong>
+              <div>{{ resource.parentdomainname || resource.parentdomainid }}</div>
+            </div>
+          </template>
+
           <resource-tags
             v-if="!isStatic && resourceType && tagsSupportingResourceTypes.includes(resourceType) && 'listTags' in $store.getters.apis"
             :resource="resource"
@@ -1912,5 +1923,7 @@ export default {
 <style scoped src="@/style/components/view/resource-detail-fields.css"></style>
 
 <style scoped>
+.domain-card-path { overflow-wrap: anywhere; }
+
 .event-info-card .name { overflow-wrap: anywhere; }
 </style>

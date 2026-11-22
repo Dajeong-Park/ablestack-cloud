@@ -18,12 +18,12 @@
 <template>
   <div>
     <a-card class="breadcrumb-card content-breadcrumb">
-      <a-row>
-        <a-col :span="14" style="padding-left: 6px">
-          <breadcrumb :resource="resource">
+      <div class="domain-page-toolbar">
+        <div class="domain-page-location">
+          <breadcrumb :resource="breadcrumbResource" standard-layout>
             <template #end>
               <a-button
-                style="margin-top: 4px"
+                ref="domainRefresh"
                 :loading="loading"
                 shape="round"
                 size="small"
@@ -33,35 +33,44 @@
               </a-button>
             </template>
           </breadcrumb>
-        </a-col>
-        <a-col :span="10">
-          <span style="float: right">
-            <a-dropdown
-              v-if="menuActions.length > 0"
-              v-model:visible="detailActionsVisible"
-              :trigger="['click']"
-              placement="bottomRight"
-              overlayClassName="autogen-action-dropdown"
-              class="autogen-action-dropdown__trigger">
-              <template #overlay>
-                <div class="autogen-action-dropdown__content">
-                  <action-button
-                    :loading="loading"
-                    :actions="menuActions"
-                    :selectedRowKeys="selectedRowKeys"
-                    :dataView="true"
-                    :resource="resource"
-                    @exec-action="handleDropdownAction"/>
-                </div>
-              </template>
-              <a-button type="primary" class="autogen-action-dropdown__button">
-                <template #icon><down-outlined /></template>
-                {{ $t('label.actions') }}
-              </a-button>
-            </a-dropdown>
-          </span>
-        </a-col>
-      </a-row>
+          <router-link
+            v-if="!dataView && resource.id && resource.level > 0"
+            class="domain-breadcrumb-path"
+            :title="resource.path"
+            :to="domainDetailLocation">
+            {{ resource.path || resource.name }}
+          </router-link>
+        </div>
+        <div class="domain-page-actions">
+          <a-button v-if="createAction" ref="domainCreate" :aria-label="$t(createAction.label)" type="primary" shape="round" @click="execAction(createAction)">
+            <template #icon><plus-outlined /></template>
+            {{ $t(createAction.label) }}
+          </a-button>
+          <a-dropdown
+            v-if="detailActions.length"
+            v-model:visible="detailActionsVisible"
+            :trigger="['click']"
+            placement="bottomRight"
+            overlayClassName="autogen-action-dropdown"
+            class="autogen-action-dropdown__trigger">
+            <template #overlay>
+              <div class="autogen-action-dropdown__content">
+                <action-button
+                  :loading="loading"
+                  :actions="detailActions"
+                  :selected-row-keys="selectedRowKeys"
+                  :data-view="true"
+                  :resource="resource"
+                  @exec-action="handleDropdownAction" />
+              </div>
+            </template>
+            <a-button ref="domainActions" type="primary" class="autogen-action-dropdown__button">
+              <template #icon><down-outlined /></template>
+              {{ $t('label.actions') }}
+            </a-button>
+          </a-dropdown>
+        </div>
+      </div>
     </a-card>
 
     <div class="row-element">
@@ -200,7 +209,8 @@ export default {
       domainRefreshGeneration: 0,
       domainRequestAbort: null,
       moveParentRequest: null,
-      domainIconRefresh: null
+      domainIconRefresh: null,
+      actionSource: ''
     }
   },
   computed: {
@@ -242,6 +252,15 @@ export default {
         ? this.domainStore.tab
         : this.treeTabs[0]?.name
     },
+    breadcrumbResource () {
+      return this.dataView && this.resource.path ? { ...this.resource, name: this.resource.path } : this.resource
+    },
+    domainDetailLocation () {
+      const tab = this.treeActiveTab === 'domain' ? 'details' : this.treeActiveTab
+      return { path: '/domain/' + this.resource.id, query: tab ? { tab } : {} }
+    },
+    createAction () { return this.menuActions.find(action => action.api === 'createDomain') },
+    detailActions () { return this.menuActions.filter(action => action.api !== 'createDomain') },
     menuActions () {
       if (this.loading || this.selecting || !this.resource.id) {
         return []
@@ -318,6 +337,7 @@ export default {
       const configuredAction = this.menuActions.find(item => item.api === action.api)
       if (!configuredAction) return
       const target = { ...this.resource }
+      this.actionSource = action.api === 'createDomain' ? 'domainCreate' : 'domainActions'
       if (action.api === 'deleteDomain') {
         this.deleteDomainResource = target
         this.domainDeleteError = ''
@@ -631,15 +651,27 @@ export default {
           param.loading = false
         })
     },
+    restoreActionFocus () {
+      const action = this.actionSource
+      this.actionSource = ''
+      this.$nextTick(() => {
+        if (this.domainDisposed || this.showAction || this.showDeleteConfirm || document.activeElement !== document.body) return
+        const target = this.$refs[action]?.$el || this.$refs.domainRefresh?.$el
+        if (target?.isConnected) target.focus({ preventScroll: true })
+      })
+    },
     closeAction () {
+      const restoreFocus = this.showAction
       if (this.moveParentRequest) this.moveParentRequest.abort()
       this.moveParentRequest = null
       this.showAction = false
       this.actionResource = {}
+      if (restoreFocus) this.restoreActionFocus()
     },
     closeDeleteConfirm () {
       if (this.domainDeletePending) return
       this.showDeleteConfirm = false; this.deleteDomainResource = null; this.domainDeleteError = ''
+      this.restoreActionFocus()
     },
     async returnAfterDomainDeletion () {
       this.domainDeleteReturning = true
@@ -696,6 +728,27 @@ export default {
     margin-right: -24px;
     margin-top: -16px;
     margin-bottom: 12px;
+  }
+
+  .domain-page-toolbar,
+  .domain-page-location,
+  .domain-page-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .domain-page-toolbar { justify-content: space-between; }
+  .domain-page-location { min-width: 0; flex: 1 1 380px; }
+  .domain-breadcrumb-path {
+    max-width: ~"min(100%, 420px)";
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  @media (max-width: 600px) {
+    .domain-page-actions { width: 100%; }
   }
 
   .row-element {

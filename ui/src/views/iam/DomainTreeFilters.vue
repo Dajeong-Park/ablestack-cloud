@@ -47,9 +47,11 @@
         <template #icon><filter-outlined /></template>
       </a-button>
     </a-popover>
-    <a-tag v-for="(value, field) in modelValue" :key="field" closable @close.prevent="remove(field)">
-      {{ $t(labels[field]) }}<template v-if="field !== 'recursive'"> · {{ value }}</template>
-    </a-tag>
+    <div v-if="Object.keys(modelValue).length" class="domain-filter-chips">
+      <a-tag v-for="(value, field) in modelValue" :key="field" closable @close.prevent="remove(field)">
+        {{ $t(labels[field]) }}<template v-if="field !== 'recursive'"> · {{ value }}</template>
+      </a-tag>
+    </div>
   </div>
 </template>
 
@@ -102,7 +104,9 @@ export default {
 </script>
 
 <style scoped>
-.domain-filters { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 8px; }
+.domain-filters { display: contents; }
+.domain-filter-chips { display: flex; flex-wrap: wrap; gap: 6px; grid-column: 1 / -1; }
+.domain-filter-chips :deep(.ant-tag) { margin: 0; max-width: 100%; overflow-wrap: anywhere; white-space: normal; }
 .domain-filter-form { width: min(290px, calc(100vw - 66px)); }
 .domain-filter-buttons { display: flex; justify-content: flex-end; gap: 8px; margin-top: 12px; }
 </style>
