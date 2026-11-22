@@ -70,7 +70,7 @@
         </keep-alive>
         <a-tabs
           v-else
-          :class="{'s2s-gateway-tabs': $route.meta?.name === 's2svpn', 'template-main-tabs':['template','iso','kubernetesiso'].includes($route.meta?.name), 'project-tabs': isProjectDetailRoute($route)}"
+          :class="{'s2s-gateway-tabs': $route.meta?.name === 's2svpn', 'template-main-tabs':['template','iso','kubernetesiso'].includes($route.meta?.name), 'project-tabs': isProjectDetailRoute($route), 'cluster-tabs': $route.meta?.name === 'cluster'}"
           :style="{ width: '100%', marginTop: resourceTabPosition === 'top' ? '-12px' : '0' }"
           :tabPosition="resourceTabPosition"
           :animated="false"
@@ -386,6 +386,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.cluster-tabs :deep(.ant-tabs-content-holder),
+.cluster-tabs :deep(.ant-tabs-tabpane) { min-width: 0; }
 .template-resource :deep(.resource-content-card .ant-tabs-content-holder),
 .dns-zone-resource :deep(.resource-content-card .ant-tabs-content-holder),
 .event-resource :deep(.resource-content-card .ant-tabs-content-holder) { min-width: 0; }

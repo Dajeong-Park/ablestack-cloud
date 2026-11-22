@@ -55,7 +55,7 @@
     :message="$t(l2Network.configDrive ? 'message.l2.network.configdrive' : 'message.l2.network.basic')" />
   <a-list
     class="resource-details-list"
-    :class="{ 'template-details-list': ['template', 'iso'].includes($route.meta.name), 's2s-gateway-details': $route.meta.name === 's2svpn', 'vm-details-list': kmsRoute($route) || ['vm', 'vnfapp', 'publicip', 's2svpn', 'acllist', 'event', 'vpnuser', 'project', 'guestvlans', 'ipv4subnets', 'dnszone', 'dnsserver', 'zone', 'physicalnetwork', 'host'].includes($route.meta.name) }"
+    :class="{ 'template-details-list': ['template', 'iso'].includes($route.meta.name), 's2s-gateway-details': $route.meta.name === 's2svpn', 'vm-details-list': kmsRoute($route) || ['vm', 'vnfapp', 'publicip', 's2svpn', 'acllist', 'event', 'vpnuser', 'project', 'guestvlans', 'ipv4subnets', 'dnszone', 'dnsserver', 'zone', 'physicalnetwork', 'host', 'cluster'].includes($route.meta.name) }"
     size="small"
     :dataSource="(fetchDetails() || []).concat(Object.keys(allocationDetails))">
     <template #renderItem="{item}">
@@ -77,6 +77,16 @@
         <div>
           <strong>{{ $t('label.' + item) }}</strong>
           <div><a-tag :color="hostStatusColor(dataResource[item])">{{ $t(hostStatusLabel(dataResource[item])) }}</a-tag></div>
+        </div>
+      </a-list-item>
+      <a-list-item v-else-if="$route.meta.name === 'cluster' && ['allocationstate', 'managedstate', 'clustertype', 'haenable'].includes(item)">
+        <div>
+          <strong>{{ $t('label.' + item) }}</strong>
+          <div>
+            <status v-if="item === 'allocationstate'" :text="dataResource.allocationstate || ''" :display-label="$t(clusterStateLabel(item, dataResource[item]))" display-text />
+            <status v-else-if="item === 'haenable'" :text="zoneFeatureState(dataResource.resourcedetails?.resourceHAEnabled ?? false)" :display-label="$t(zoneFeatureLabel(dataResource.resourcedetails?.resourceHAEnabled ?? false))" display-text />
+            <span v-else>{{ $t(clusterStateLabel(item, dataResource[item])) }}</span>
+          </div>
         </div>
       </a-list-item>
       <a-list-item v-else-if="$route.meta.name === 'zone' && ['allocationstate', 'haenable', 'localstorageenabled', 'securitygroupsenabled'].includes(item)">
@@ -391,13 +401,6 @@ display-text />
           <div v-else>{{ dataResource[item] }}</div>
         </div>
       </a-list-item>
-      <a-list-item v-else-if="['cluster', 'zone'].includes($route.meta.name) && item === 'haenable'">
-        <div>
-          <strong>{{ $t('label.ha.enable') }}</strong>
-          <br/>
-          <div>{{ dataResource.resourcedetails?.resourceHAEnabled }}</div>
-        </div>
-      </a-list-item>
       <a-list-item v-else-if="item === 'ipsecpsk'">
         <div style="width: 100%">
           <strong>{{ $t('label.ipsecpsk') }}</strong><br/>
@@ -518,6 +521,7 @@ display-text />
 
 <script>
 import { hostStatusColor, hostStatusLabel } from '@/utils/hostPresentation'
+import { clusterStateLabel } from '@/utils/clusterSearch'
 import { zoneDnsSearchOrder, zoneFeatureLabel, zoneFeatureState } from '@/utils/zone'
 import Ipv4SubnetResourceLink from '@/components/widgets/Ipv4SubnetResourceLink'
 import AclScopeValue from '@/components/view/AclScopeValue'
@@ -725,6 +729,7 @@ export default {
   },
   methods: {
     zoneDnsSearchOrder,
+    clusterStateLabel,
     zoneFeatureState,
     hostStatusColor,
     hostStatusLabel,

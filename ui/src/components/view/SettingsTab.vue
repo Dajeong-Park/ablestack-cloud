@@ -30,7 +30,7 @@
       :description="$t('message.domain.settings.inheritance')" />
     <a-col :span="24">
       <resource-table-toolbar
-        v-if="scopeKey === 'zoneid'"
+        v-if="standardLayout"
         v-model:search="filter"
         searchable
         :loading="tabLoading"
@@ -49,8 +49,8 @@
           @search="handleSearch" />
       </div>
       <ConfigurationTable
-        :columns="scopeKey === 'zoneid' ? columns.map(column => ({ ...column, title: $t('label.' + column.title) })) : columns"
-        :standard-layout="scopeKey === 'zoneid'"
+        :columns="standardLayout ? columns.map(column => ({ ...column, title: $t('label.' + column.title) })) : columns"
+        :standard-layout="standardLayout"
         :config="items"
         :resource="resource"
         @refresh-config="handleConfigRefresh" />
@@ -80,6 +80,9 @@ export default {
       type: Boolean,
       required: true
     }
+  },
+  computed: {
+    standardLayout () { return ['zoneid', 'clusterid'].includes(this.scopeKey) }
   },
   data () {
     return {

@@ -24,14 +24,14 @@
       :rules="rules"
       layout="vertical"
       @submit="handleSubmitForm">
-      <a-form-item name="zoneid" ref="zoneid">
+      <a-form-item name="zoneid" ref="zoneid" html-for="cluster-add-zone">
         <template #label>
           <tooltip-label :title="$t('label.zoneid')" :tooltip="apiParams.zoneid.description"/>
         </template>
         <a-select
           v-model:value="form.zoneid"
           @change="fetchPods"
-          v-focus="true"
+          id="cluster-add-zone"
           :placeholder="apiParams.zoneid.description"
           showSearch
           optionFilterProp="label"

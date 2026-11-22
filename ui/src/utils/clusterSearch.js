@@ -15,6 +15,13 @@
 // specific language governing permissions and limitations
 // under the License.
 
+export const clusterStateLabel = (field, value) => {
+  if (field === 'allocationstate') {
+    return { enabled: 'state.enabled', disabled: 'state.disabled' }[String(value).toLowerCase()] || 'label.unknown'
+  }
+  return clusterFilterOptions[field]?.find(option => option.id.toLowerCase() === String(value).toLowerCase())?.name || 'label.unknown'
+}
+
 export const clusterSearchFields = ['name', 'zoneid', 'podid', 'arch', 'hypervisor', 'clustertype', 'managedstate', 'storageaccessgroup']
 
 export const clusterFilterOptions = {
