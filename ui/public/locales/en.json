@@ -23,6 +23,7 @@
   "label.account.search.name": "Name (exact match)",
   "label.account.search.isrecursive": "Include subdomains",
   "label.account.search.iscleanuprequired": "Cleanup required",
+  "message.domain.networkdomain.invalid": "Enter a network domain with valid DNS labels and at most 190 characters.",
   "message.account.networkdomain.clear": "Clear this field to remove the network domain.",
   "label.account.apikey.inherit": "Inherit from domain",
   "label.account.action.ready": "Ready",

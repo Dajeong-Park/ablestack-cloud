@@ -20,11 +20,11 @@
     <a-modal
       centered
       :visible="showAction"
-      :closable="true"
+      :closable="!actionLoading"
       :maskClosable="false"
       :confirmLoading="action.loading"
       :footer="null"
-      @cancel="parentCloseAction"
+      @cancel="cancelAction"
       style="top: 20px;"
     >
       <template #title>
@@ -37,6 +37,7 @@
           :rules="rules"
           @finish="handleSubmit"
           layout="vertical">
+          <p v-if="action.api === 'updateDomain'">{{ resource.path || resource.name }}</p>
           <a-alert type="warning" v-if="action.message">
             <template #message>{{ $t(action.message) }}</template>
           </a-alert>
@@ -44,7 +45,7 @@
             <a-form-item
               :ref="field.name"
               :name="field.name"
-              :v-bind="field.name"
+              :extra="action.api === 'updateDomain' && field.name === 'networkdomain' ? $t('message.account.networkdomain.clear') : undefined"
               v-if="!(action.mapping && field.name in action.mapping && action.mapping[field.name].value)"
             >
               <template #label>
@@ -124,8 +125,8 @@
           </template>
 
           <div :span="24" class="action-button">
-            <a-button @click="parentCloseAction">{{ $t('label.cancel') }}</a-button>
-            <a-button type="primary" ref="submit" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
+            <a-button :disabled="actionLoading" @click="cancelAction">{{ $t('label.cancel') }}</a-button>
+            <a-button type="primary" ref="submit" :loading="actionLoading" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
           </div>
         </a-form>
       </a-spin>
@@ -184,18 +185,23 @@ export default {
   },
   inject: ['parentCloseAction', 'parentFetchData', 'parentForceRerender'],
   methods: {
-    handleSubmit (e) {
-      e.preventDefault()
-      if (this.action.loading) return
+    cancelAction () {
+      if (!this.actionLoading) this.parentCloseAction()
+    },
+    handleSubmit (event) {
+      if (typeof event?.preventDefault === 'function') event.preventDefault()
+      if (this.actionLoading || this.action.loading) return
+      this.actionLoading = true
       this.formRef.value.validate().then(() => {
         const values = toRaw(this.form)
-        this.actionLoading = true
+        const edit = this.action.api === 'updateDomain'
         const params = {}
         if ('id' in this.resource && this.action.params.map(i => { return i.name }).includes('id')) {
           params.id = this.resource.id
         }
         for (const key in values) {
           const input = values[key]
+          if (edit && input === (this.resource[key] ?? '')) continue
           for (const param of this.action.params) {
             if (param.name === key) {
               if (input === undefined) {
@@ -238,11 +244,15 @@ export default {
         const resourceName = params.displayname || params.displaytext || params.name || this.resource.name
         let hasJobId = false
         Object.keys(params).forEach(key => {
-          if (params[key] === '') {
+          if (params[key] === '' && !(edit && key === 'networkdomain')) {
             delete params[key]
           }
         })
-        postAPI(this.action.api, params).then(json => {
+        if (edit && Object.keys(params).length === 1 && params.id) {
+          this.parentCloseAction()
+          return
+        }
+        return postAPI(this.action.api, params, { preserveOnFailure: true }).then(json => {
           for (const obj in json) {
             if (obj.includes('response')) {
               for (const res in json[obj]) {
@@ -295,20 +305,21 @@ export default {
             this.parentFetchData()
           }
           this.parentCloseAction()
-        }).catch(error => {
-          this.$notification.error({
-            message: this.$t('message.request.failed'),
-            description: (error.response && error.response.headers && error.response.headers['x-description']) || error.message
-          })
-        }).finally(f => {
-          this.actionLoading = false
         })
       }).catch(error => {
-        this.formRef.value.scrollToField(error.errorFields[0].name)
+        if (error.errorFields?.length) {
+          this.formRef.value.scrollToField(error.errorFields[0].name)
+          return
+        }
+        const description = Object.values(error.response?.data || {}).find(value => value?.errortext)?.errortext ||
+          error.response?.headers?.['x-description'] || error.message
+        this.$notification.error({ message: this.$t('message.request.failed'), description })
+      }).finally(() => {
+        this.actionLoading = false
       })
     },
     fillEditFormFieldValues () {
-      this.action.paramFields.map(field => {
+      for (const field of this.action.paramFields) {
         let fieldName = null
         if (field.type === 'uuid' ||
           field.type === 'list' ||
@@ -319,13 +330,15 @@ export default {
           fieldName = field.name
         }
         const fieldValue = this.resource[fieldName] ? this.resource[fieldName] : null
-        if (fieldValue) {
+        if (field.name === 'networkdomain') {
+          this.form.networkdomain = this.resource.networkdomain ?? ''
+        } else if (fieldValue) {
           this.form[field.name] = fieldValue
         }
-      })
+      }
     },
     setRules (field) {
-      let rule = {}
+      const rule = {}
 
       switch (true) {
         case (field.type === 'boolean'):
@@ -356,13 +369,23 @@ export default {
           this.rules[field.name].push(rule)
           break
         default:
-          rule.required = field.required
+          rule.required = field.required || (field.name === 'name' && this.action.api === 'updateDomain')
           rule.message = this.$t('message.error.required.input')
           this.rules[field.name].push(rule)
           break
       }
 
-      rule = {}
+      if (field.name === 'networkdomain' && this.action.api === 'updateDomain') {
+        this.rules[field.name].push({
+          validator: (_, value) => {
+            if (value === '' || (typeof value === 'string' && value.length <= 190 &&
+              value.split('.').every(label => /^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$/i.test(label)))) {
+              return Promise.resolve()
+            }
+            return Promise.reject(new Error(this.$t('message.domain.networkdomain.invalid')))
+          }
+        })
+      }
     }
   }
 }
