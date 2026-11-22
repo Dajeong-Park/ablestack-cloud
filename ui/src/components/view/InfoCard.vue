@@ -224,10 +224,11 @@
               :format="(percent, successPercent) => parseFloat(percent).toFixed(2) + '% 사용됨'" />
           </div>
         </div>
-        <div class="resource-detail-item" v-if="['cluster', 'zone'].includes($route.meta.name) && resource.resourcedetails">
+        <div class="resource-detail-item" v-if="($route.meta.name === 'zone' && resource.id) || ($route.meta.name === 'cluster' && resource.resourcedetails)">
           <div class="resource-detail-item__label">{{ $t('label.haenable') }}</div>
           <div class="resource-detail-item__details">
-            <status class="status" :text="resource.resourcedetails.resourceHAEnabled === 'true' ? 'enabled' : 'disabled'" displayText/>
+            <status v-if="$route.meta.name === 'zone'" class="status" :text="zoneFeatureState(resource.resourcedetails?.resourceHAEnabled ?? false)" :display-label="$t(zoneFeatureLabel(resource.resourcedetails?.resourceHAEnabled ?? false))" display-text />
+            <status v-else class="status" :text="resource.resourcedetails.resourceHAEnabled === 'true' ? 'enabled' : 'disabled'" display-text />
           </div>
         </div>
         <div class="resource-detail-item" v-if="$route.meta.name === 'host' && resource.outofbandmanagement">
@@ -375,7 +376,7 @@
               </a-tooltip>
             </span>
             <span v-else-if="$route.meta.name === 'kubernetes'">{{ resource.cpunumber }}</span>
-            <span v-else>{{ resource.cputotal }}</span>
+            <span v-else>{{ $route.meta.name === 'zone' ? zoneMetricText(resource.cputotal) || $t('label.unknown') : resource.cputotal }}</span>
             <a-tag v-if="resource.arch" style="margin-left: 10px">
               {{ resource.arch }}
             </a-tag>
@@ -387,7 +388,7 @@
                 {{ new Date(resource.statslastsampled).toLocaleTimeString() }}
               </a-tag>
             </a-tooltip>
-            <span v-if="resource.cpuused">
+            <span v-if="$route.meta.name === 'zone' ? zoneMetricText(resource.cpuused) : resource.cpuused">
               <a-progress
                 v-if="resource.cpuused"
                 class="progress-bar"
@@ -397,7 +398,7 @@
                 :format="(percent, successPercent) => parseFloat(percent).toFixed(2) + '% ' + $t('label.used')"
               />
             </span>
-            <span v-if="resource.cpuallocated">
+            <span v-if="$route.meta.name === 'zone' ? zoneMetricText(resource.cpuallocated) : resource.cpuallocated">
               <a-progress
                 class="progress-bar"
                 size="small"
@@ -477,11 +478,11 @@
 
             <div style="display: flex; flex-direction: column; width: 100%;">
               <div>
-                <bulb-outlined />{{ resource.memorytotal + ' ' + $t('label.memory') }}
+                <bulb-outlined />{{ ($route.meta.name === 'zone' ? zoneMetricText(resource.memorytotal) || $t('label.unknown') : resource.memorytotal) + ' ' + $t('label.memory') }}
               </div>
               <div>
                 <span
-                  v-if="resource.memoryused">
+                  v-if="$route.meta.name === 'zone' ? zoneMetricText(resource.memoryused) : resource.memoryused">
                   <a-progress
                     class="progress-bar"
                     size="small"
@@ -490,7 +491,7 @@
                     :format="(percent, successPercent) => parseFloat(percent).toFixed(2) + '% ' + $t('label.used')" />
                 </span>
                 <span
-                  v-if="resource.memoryallocated">
+                  v-if="$route.meta.name === 'zone' ? zoneMetricText(resource.memoryallocated) : resource.memoryallocated">
                   <a-progress
                     class="progress-bar"
                     size="small"
@@ -522,7 +523,11 @@
                 </span>
               </div>
             </div>
-            <div class="resource-detail-item" v-if="resource.gputotal">
+            <div v-if="$route.meta.name === 'zone' && zoneMetricText(resource.gputotal) && Number(resource.gputotal) === 0" class="resource-detail-item">
+              <div class="resource-detail-item__label">{{ $t('label.gpu') }}</div>
+              <div>{{ $t('label.zone.capacity.unsupported') }}</div>
+            </div>
+            <div class="resource-detail-item" v-else-if="resource.gputotal">
               <div class="resource-detail-item__label">{{ $t('label.gpu') }}</div>
               <div class="resource-detail-item__details">
                 <font-awesome-icon
@@ -532,7 +537,7 @@
                 {{ resource.gputotal + ' ' + $t('label.gpu') }}
               </div>
               <div>
-                <span v-if="resource.gpuused">
+                <span v-if="$route.meta.name === 'zone' ? zoneMetricText(resource.gpuused) : resource.gpuused">
                   <a-progress
                     class="progress-bar"
                     size="small"
@@ -989,7 +994,7 @@
                   <resource-icon :image="images.zone" size="1x" style="margin-right: 5px"/>
                 </span>
                 <global-outlined v-else />
-                <router-link v-if="!isStatic && $router.resolve('/zone/' + resource.zoneid).matched[0].redirect !== '/exception/404'" :to="{ path: '/zone/' + resource.zoneid }">{{ resource.zone || resource.zonename || resource.zoneid }}</router-link>
+                <router-link v-if="!isStatic && $router.resolve('/zone/' + resource.zoneid).matched[0].redirect !== '/exception/404'" :to="$route.meta.name === 'physicalnetwork' ? physicalNetworkZoneLocation($route, resource.zoneid) : { path: '/zone/' + resource.zoneid }">{{ resource.zone || resource.zonename || resource.zoneid }}</router-link>
                 <router-link v-else-if="$router.resolve('/zones/' + resource.zoneid).matched[0].redirect !== '/exception/404'" :to="{ path: '/zones/' + resource.zoneid }">{{ resource.zone || resource.zonename || resource.zoneid }}</router-link>
                 <span v-else>{{ resource.zone || resource.zonename || resource.zoneid }}</span>
               </div>
@@ -1200,6 +1205,7 @@
 </template>
 
 <script>
+import { physicalNetworkZoneLocation, zoneFeatureLabel, zoneFeatureState, zoneMetricText } from '@/utils/zone'
 import AclScopeValue from '@/components/view/AclScopeValue'
 import { aclDisplayLabel, aclDisplaySupported } from '@/utils/vpcAclAccess'
 import { eventDisplayTitle, eventTimelineQuery, isEventDetailRoute } from '@/utils/eventTimeline'
@@ -1482,6 +1488,10 @@ export default {
     }
   },
   methods: {
+    physicalNetworkZoneLocation,
+    zoneFeatureState,
+    zoneFeatureLabel,
+    zoneMetricText,
     aclDisplayLabel,
     aclDisplaySupported,
     vpnConnectionState,
