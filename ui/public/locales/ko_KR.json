@@ -1680,6 +1680,8 @@
   "label.gateway": "게이트웨이",
   "label.global": "글로벌",
   "label.global.settings": "글로벌 설정",
+  "label.global.setting.parent": "상위 설정",
+  "message.global.setting.parent.unavailable": "상위 설정을 조회할 수 없습니다.",
   "label.globo.dns": "GloboDNS",
   "label.globo.dns.configuration": "GloboDNS 구성",
   "label.glustervolume": "볼륨",

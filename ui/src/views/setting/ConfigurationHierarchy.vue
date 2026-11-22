@@ -21,6 +21,8 @@
     :showHeader="false"
     :columns="columns"
     :dataSource="config"
+    :expanded-row-keys="expandedRowKeys"
+    @update:expanded-row-keys="$emit('update:expandedRowKeys', $event)"
     :rowKey="record => record.name"
     :pagination="false"
     :rowClassName="getRowClassName"
@@ -29,9 +31,12 @@
     <template #bodyCell="{ column, record }">
       <template v-if="column.key === 'name'">
         <a-row :style="hierarchyExists ? 'padding-left: 0px;' : 'padding-left: 25px;'">
-          <b><span v-if="record.parent">└─ &nbsp;</span>{{record.displaytext }}&nbsp</b> {{ '(' + record.name + ')' }}
+          <b><span v-if="record.attachedToParent">└─ &nbsp;</span>{{record.displaytext }}&nbsp</b> {{ '(' + record.name + ')' }}
         </a-row>
-        <span :style="record.parent ? 'padding-left: 50px; display:block' : 'padding-left: 25px; display:block'">{{ record.description }}</span>
+        <span :style="record.attachedToParent ? 'padding-left: 50px; display:block' : 'padding-left: 25px; display:block'">{{ record.description }}</span>
+        <a-button v-if="record.parent && !record.attachedToParent" type="link" @click="$emit('open-parent', record)">
+          {{ $t('label.global.setting.parent') }} {{ record.parent }}
+        </a-button>
       </template>
       <template v-if="column.key === 'value'">
         <ConfigurationValue :configrecord="record" @refresh="handleConfigRefresh" />
@@ -45,6 +50,7 @@ import ConfigurationValue from './ConfigurationValue'
 
 export default {
   name: 'ConfigurationHierarchy',
+  emits: ['refresh-config', 'update:expandedRowKeys', 'open-parent'],
   components: {
     ConfigurationValue
   },
@@ -52,6 +58,10 @@ export default {
     config: {
       type: Array,
       default: () => { return [] }
+    },
+    expandedRowKeys: {
+      type: Array,
+      default: () => []
     },
     columns: {
       type: Array,
@@ -76,7 +86,7 @@ export default {
   },
   methods: {
     getRowClassName (record, index) {
-      if (record.parent) {
+      if (record.attachedToParent) {
         return 'child-row'
       }
       if (index % 2 === 0) {

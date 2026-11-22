@@ -44,7 +44,9 @@
     <a-col :span="24">
       <a-card style="margin-left: 10px;">
         <a-spin :spinning="configLoading">
+          <a-alert v-if="listRefreshFailed" type="error" show-icon :message="$t('message.error.loading.setting')" />
           <a-tabs
+            v-if="!listRefreshFailed || config.length > 0"
             tabPosition="left"
             :animated="false"
             :activeKey="this.group || ''"
@@ -74,8 +76,12 @@
                   :key="subgroup.name"
                   :tab="subgroup.name" >
                   <ConfigurationHierarchy
+                    v-if="group.name === this.group && subgroup.name === this.subgroup"
                     :columns="columns"
-                    :config="config"
+                    :config="hierarchy"
+                    :expanded-row-keys="expandedRows[sectionKey] || []"
+                    @update:expanded-row-keys="expandedRows[sectionKey] = $event"
+                    @open-parent="openParent"
                     @refresh-config="handleConfigRefresh" />
                 </a-tab-pane>
               </a-tabs>
@@ -100,6 +106,31 @@ import InfoCard from '@/components/view/InfoCard'
 import TooltipButton from '@/components/widgets/TooltipButton'
 import ConfigurationHierarchy from './ConfigurationHierarchy'
 import ConfigurationTable from './ConfigurationTable'
+import { buildConfigurationHierarchy } from './configurationHierarchy'
+
+const securitySettings = new Set([
+  'api.source.cidr.checks.enabled',
+  'password.policy.allowUseOfLastUsedPassword',
+  'password.policy.allowContinuousLettersAndNumbersInputOnKeyboard',
+  'password.policy.allowConsecutiveRepetitionsOfSameLettersAndNumbers',
+  'password.policy.allowPasswordToContainUsername',
+  'password.policy.minimum.digits',
+  'password.policy.minimum.lowercase.letters',
+  'password.policy.minimum.special.characters',
+  'password.policy.minimum.uppercase.letters',
+  'password.policy.minimum.length',
+  'password.policy.maximum.length',
+  'incorrect.login.attempts.allowed',
+  'incorrect.login.enable.time',
+  'block.exist.connection',
+  'api.allowed.source.cidr',
+  'concurrent.connect.enabled',
+  'event.delete.enabled',
+  'event.purge.delay',
+  'security.check.interval',
+  'integrity.verification.interval',
+  'license.check.interval'
+])
 
 export default {
   name: 'ConfigurationTab',
@@ -128,6 +159,8 @@ export default {
     return {
       groups: [],
       config: [],
+      expandedRows: {},
+      parentLookup: 0,
       configLoading: true,
       page: 1,
       pagesize: this.$store.getters.defaultListViewPageSize,
@@ -149,6 +182,14 @@ export default {
           width: '29%'
         }
       ]
+    }
+  },
+  computed: {
+    sectionKey () {
+      return JSON.stringify([this.group, this.subgroup])
+    },
+    hierarchy () {
+      return buildConfigurationHierarchy(this.config)
     }
   },
   watch: {
@@ -212,39 +253,9 @@ export default {
       return getAPI('listConfigurations', params).then(response => {
         if (!this.isListRequestCurrent('fetchConfigurationData', listRequest)) return
 
-        this.config = []
-        let config = response.listconfigurationsresponse.configuration || []
-        if (this.$store.getters.features.securityfeaturesenabled) {
-          const securityArr =
-          ['api.source.cidr.checks.enabled',
-            'password.policy.allowUseOfLastUsedPassword',
-            'password.policy.allowContinuousLettersAndNumbersInputOnKeyboard',
-            'password.policy.allowConsecutiveRepetitionsOfSameLettersAndNumbers',
-            'password.policy.allowPasswordToContainUsername',
-            'password.policy.minimum.digits',
-            'password.policy.minimum.lowercase.letters',
-            'password.policy.minimum.special.characters',
-            'password.policy.minimum.uppercase.letters',
-            'password.policy.minimum.length',
-            'password.policy.maximum.length',
-            'incorrect.login.attempts.allowed',
-            'incorrect.login.enable.time',
-            'block.exist.connection',
-            'api.allowed.source.cidr',
-            'concurrent.connect.enabled',
-            'event.delete.enabled',
-            'event.purge.delay',
-            'security.check.interval',
-            'integrity.verification.interval',
-            'license.check.interval']
-          config = config.filter((x) => !securityArr.includes(x.name))
-          // console.log('config :>> ', config)
-        }
+        const config = response.listconfigurationsresponse.configuration || []
         this.count = response.listconfigurationsresponse.count || 0
-        if (this.group.length > 0) {
-          config = this.convertConfigToHierarchy(config)
-        }
-        this.config = config
+        this.config = this.visibleConfigurations(config)
         if (!listRequest.loaded) window.scrollTo(0, 0)
       }).catch(error => {
         if (!this.isListRequestCurrent('fetchConfigurationData', listRequest)) return
@@ -256,31 +267,39 @@ export default {
         this.$message.error(this.$t('message.error.loading.setting'))
       }).finally(() => {
         if (!this.isListRequestCurrent('fetchConfigurationData', listRequest)) return
-
-        this.configLoading = false
-      }).finally(() => {
-        if (!this.isListRequestCurrent('fetchConfigurationData', listRequest)) return
         this.configLoading = false
       })
     },
-    convertConfigToHierarchy (config) {
-      var hierarchy = {}
-      for (var c of config) {
-        if (c.parent && c.parent.length !== 0) {
-          if (hierarchy[c.parent]) {
-            hierarchy[c.parent].push(c)
-          } else {
-            hierarchy[c.parent] = [c]
-          }
+    visibleConfigurations (configs) {
+      if (!this.$store.getters.features.securityfeaturesenabled) return configs
+      return configs.filter(record => !securitySettings.has(record.name))
+    },
+    async openParent (record) {
+      const request = ++this.parentLookup
+      const section = this.sectionKey
+      const filter = this.filter
+      const isCurrent = () => !this.listRefreshDisposed && request === this.parentLookup && section === this.sectionKey && filter === this.filter
+      try {
+        const response = await getAPI('listConfigurations', { name: record.parent, pagesize: -1 })
+        if (!isCurrent()) return
+
+        const parent = this.visibleConfigurations(response.listconfigurationsresponse.configuration || [])
+          .find(item => item.name === record.parent)
+        if (!parent) {
+          this.$message.info(this.$t('message.global.setting.parent.unavailable'))
+          return
+        }
+        const group = this.groups.find(item => item.name === parent.group)
+        const subgroup = group?.subgroup?.find(item => item.name === parent.subgroup)
+        this.group = subgroup ? group.name : ''
+        this.subgroup = subgroup?.name || ''
+        this.filter = parent.name
+        this.changePage(1, this.pagesize)
+      } catch (error) {
+        if (isCurrent()) {
+          this.$message.error(this.$t('message.error.loading.setting'))
         }
       }
-      for (c of config) {
-        if (hierarchy[c.name]) {
-          c.children = hierarchy[c.name]
-        }
-      }
-      config = config.filter(c => !c.parent)
-      return config
     },
     changePage (page, pagesize) {
       const query = {}
@@ -382,7 +401,7 @@ export default {
       if (!name || !updatedRecord) return
       const index = this.config.findIndex(item => item.name === name)
       if (index !== -1) {
-        this.config.splice(index, 1, updatedRecord)
+        this.config.splice(index, 1, { ...this.config[index], ...updatedRecord })
       }
     }
   }
