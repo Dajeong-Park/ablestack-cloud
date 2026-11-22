@@ -885,7 +885,8 @@ public class DnsProviderManagerImplTest {
         when(dnsZoneDao.searchZones(any(), anyLong(), any(), any(), any(), any())).thenReturn(searchPair);
 
         DnsZoneJoinVO joinVO = mock(DnsZoneJoinVO.class);
-        when(joinVO.getUuid()).thenReturn(zoneVO.getUuid());
+        String zoneUuid = zoneVO.getUuid();
+        when(joinVO.getUuid()).thenReturn(zoneUuid);
         when(zoneVO.getType()).thenReturn(DnsZone.ZoneType.Private);
         when(dnsZoneJoinDao.listByUuids(any())).thenReturn(Collections.singletonList(joinVO));
 
