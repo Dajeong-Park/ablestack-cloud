@@ -1023,29 +1023,10 @@ export default {
 }
 </script>
 
+<style scoped src="@/style/components/view/resource-details-list.css" />
+
 <style scoped>
 .network-ip-usage-detail p { color: var(--ui-text-secondary); margin: 4px 0 0; overflow-wrap: anywhere; }
-.resource-details-list {
-  color: var(--ui-text-secondary);
-  background: var(--ui-bg-surface);
-}
-
-:deep(.resource-details-list .ant-list-item) {
-  padding: 12px 8px;
-  color: var(--ui-text-secondary);
-  background: transparent;
-  border-color: var(--ui-border);
-}
-
-:deep(.resource-details-list .ant-list-item strong) {
-  color: var(--ui-text-primary);
-}
-
-.template-details-list :deep(.ant-list-item > div), .vm-details-list :deep(.ant-list-item > div) {
-  min-width: 0;
-  max-width: 100%;
-  overflow-wrap: anywhere;
-}
 /* Same row rhythm as the VM InstanceTab details. */
 .s2s-gateway-details :deep(.ant-list-item) { padding-top: 12px; padding-bottom: 12px; }
 .preline {

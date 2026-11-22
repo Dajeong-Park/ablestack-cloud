@@ -6478,6 +6478,7 @@
   "label.gpu.display": "GPU Display",
   "label.gpulimit": "GPU limits",
   "label.gpu.summary": "Summary",
+  "label.host.gpu.capacity.summary": "Capacity summary",
   "label.gputotal": "GPU Total",
   "label.gpuused": "GPU Used",
   "label.guest.os.category": "Guest OS Category",

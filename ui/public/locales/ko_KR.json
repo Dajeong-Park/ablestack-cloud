@@ -7060,6 +7060,7 @@
   "label.gpu.display": "GPU 디스플레이",
   "label.gpulimit": "GPU 제한",
   "label.gpu.summary": "요약",
+  "label.host.gpu.capacity.summary": "용량 요약",
   "label.gputotal": "총 GPU",
   "label.gpuused": "사용 중 GPU",
   "label.guest.os.category": "게스트 OS 카테고리",

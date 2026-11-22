@@ -18,28 +18,38 @@
 <template>
   <div>
     <div v-if="resourceType === 'Host'" class="host-gpu-layout">
-      <section :aria-label="$t('label.gpu.summary')">
-        <h3>{{ $t('label.gpu.summary') }}</h3>
-        <GPUSummaryTab ref="summaryTab" :resource="resource" :resource-type="resourceType" :loading="loading" @refresh="$emit('refresh')" />
-      </section>
-      <section :aria-label="$t('label.gpu.devices')">
-        <h3>{{ $t('label.gpu.devices') }}</h3>
-        <GPUDevicesTab ref="devicesTab" :resource="resource" :resource-type="resourceType" :loading="loading" @refresh="refresh(true)">
-          <template #actions>
-            <a-popconfirm
-              v-if="$store.getters.apis?.discoverGpuDevices"
-              :title="$t('message.confirm.discover.gpu.devices')"
-              :ok-text="$t('label.ok')"
-              :cancel-text="$t('label.cancel')"
-              @confirm="discoverGpuDevices">
-              <a-button>{{ $t('label.discover.gpu.devices') }}</a-button>
-            </a-popconfirm>
-            <a-button v-if="isAdmin && $store.getters.apis?.createGpuDevice" type="primary" @click="showAddGpuDeviceModal">
-              {{ $t('label.gpu.devices.add') }}
-            </a-button>
-          </template>
-        </GPUDevicesTab>
-      </section>
+      <GPUDevicesTab ref="devicesTab" :resource="resource" :resource-type="resourceType" :loading="loading" @refresh="refresh(true)">
+        <template #actions>
+          <a-popconfirm
+            v-if="$store.getters.apis?.discoverGpuDevices"
+            :title="$t('message.confirm.discover.gpu.devices')"
+            :ok-text="$t('label.ok')"
+            :cancel-text="$t('label.cancel')"
+            @confirm="discoverGpuDevices">
+            <a-button>{{ $t('label.discover.gpu.devices') }}</a-button>
+          </a-popconfirm>
+          <a-button v-if="isAdmin && $store.getters.apis?.createGpuDevice" type="primary" @click="showAddGpuDeviceModal">
+            {{ $t('label.gpu.devices.add') }}
+          </a-button>
+          <a-button aria-haspopup="dialog" @click="hostSummaryVisible = true">
+            {{ $t('label.host.gpu.capacity.summary') }}
+          </a-button>
+        </template>
+      </GPUDevicesTab>
+      <mold-dialog
+        size="lg"
+        focus-guard
+        :visible="hostSummaryVisible"
+        :title="$t('label.host.gpu.capacity.summary')"
+        @cancel="hostSummaryVisible = false">
+        <GPUSummaryTab
+          v-if="hostSummaryVisible"
+          ref="summaryTab"
+          :resource="resource"
+          :resource-type="resourceType"
+          :loading="loading"
+          :scroll="{ x: 520 }" />
+      </mold-dialog>
     </div>
 
     <div v-else-if="resourceType === 'VirtualMachine' && !isAdmin">
@@ -178,6 +188,7 @@ export default {
   },
   data () {
     return {
+      hostSummaryVisible: false,
       addGpuDeviceModalVisible: false,
       savingGpuDevice: false,
       gpuDeviceForm: {},
@@ -420,31 +431,6 @@ export default {
 <style scoped>
 .host-gpu-layout {
   min-width: 0;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 20px;
-}
-
-.host-gpu-layout h3 {
-  color: var(--ui-text);
-  margin-bottom: 10px;
-}
-
-/* Background colors for GPU device types */
-:deep(.parent-gpu-row) {
-  background-color: #fafafa;
-}
-
-:deep(.vgpu-row) {
-  background-color: #f0f8ff;
-}
-
-:deep(.parent-gpu-row:hover) {
-  background-color: #f5f5f5 !important;
-}
-
-:deep(.vgpu-row:hover) {
-  background-color: #e6f4ff !important;
 }
 
 /* Text truncation for long names */

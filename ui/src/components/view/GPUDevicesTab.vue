@@ -16,14 +16,9 @@
 // under the License.
 
 <template>
-  <div>
-    <p v-if="listRefreshFailed" role="status">{{ $t('message.list.refresh.stale') }}</p>
-    <!-- Toolbar for bulk actions -->
-    <div
-      v-if="resourceType === 'Host'"
-      style="margin-bottom: 16px;"
-    >
-      <a-space wrap>
+  <div :class="{ 'host-gpu-devices': resourceType === 'Host' }">
+    <resource-table-toolbar v-if="resourceType === 'Host'" :loading="listRefreshing > 0" @refresh="refresh">
+      <template #actions>
         <slot name="actions" />
         <!-- Bulk GPU Device Actions -->
         <a-popconfirm
@@ -76,8 +71,9 @@
             {{ $t('label.gpu.devices.delete') }}
           </a-button>
         </a-popconfirm>
-      </a-space>
-    </div>
+      </template>
+    </resource-table-toolbar>
+    <p v-if="listRefreshFailed" role="status">{{ $t('message.list.refresh.stale') }}</p>
 
     <a-table
       :loading="loading"
@@ -348,6 +344,7 @@
 
 <script>
 import { listRefreshMixin } from '@/utils/listRefreshMixin'
+import ResourceTableToolbar from '@/components/view/ResourceTableToolbar'
 
 import { getAPI, postAPI } from '@/api'
 import { genericCompare } from '@/utils/sort.js'
@@ -358,6 +355,7 @@ export default {
   mixins: [listRefreshMixin(['fetchDevicesData'])],
   name: 'GPUDevicesTab',
   components: {
+    ResourceTableToolbar,
     Status,
     EditOutlined,
     DeleteOutlined,
@@ -899,6 +897,18 @@ export default {
 
 :deep(.vgpu-row:hover) {
   background-color: #e6f4ff !important;
+}
+
+.host-gpu-devices :deep(.parent-gpu-row > td) {
+  background: var(--ui-bg-surface);
+}
+
+.host-gpu-devices :deep(.vgpu-row > td) {
+  background: var(--ui-bg-elevated);
+}
+
+.host-gpu-devices :deep(.ant-table-row:hover > td) {
+  background: var(--ui-bg-hover);
 }
 
 /* Text truncation for long names */
