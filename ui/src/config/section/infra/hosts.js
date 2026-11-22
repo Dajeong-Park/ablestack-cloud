@@ -17,6 +17,7 @@
 
 import { shallowRef, defineAsyncComponent } from 'vue'
 import store from '@/store'
+import { hostSearchFields } from '@/utils/hostSearch'
 
 export default {
   name: 'host',
@@ -24,7 +25,7 @@ export default {
   icon: 'database-outlined',
   docHelp: 'conceptsandterminology/concepts.html#about-hosts',
   permission: ['listHostsMetrics'],
-  searchFilters: ['name', 'zoneid', 'podid', 'clusterid', 'arch', 'hypervisor'],
+  searchFilters: hostSearchFields,
   resourceType: 'Host',
   filters: () => {
     const filters = ['enabled', 'disabled', 'maintenance', 'up', 'down', 'disconnected', 'alert']
