@@ -78,3 +78,18 @@ export function validZoneDnsSuffix (suffix) {
 export function physicalNetworkZoneLocation (route, zoneId) {
   return { path: '/zone/' + zoneId, query: { ...zoneListQuery(route.query), tab: 'physical.network' } }
 }
+
+export function zoneFeatureState (value) {
+  if (value === true || value === 'true') return 'Enabled'
+  if (value === false || value === 'false') return 'Disabled'
+  return ''
+}
+
+export function zoneMetricText (value) {
+  if (value == null || value === '' || !Number.isFinite(Number.parseFloat(value))) return ''
+  return String(value).replace(/\bghz\b/i, 'GHz').replace(/\bmhz\b/i, 'MHz')
+}
+
+export function zoneFeatureLabel (value) {
+  return { Enabled: 'label.enabled', Disabled: 'label.disabled' }[zoneFeatureState(value)] || 'label.unknown'
+}

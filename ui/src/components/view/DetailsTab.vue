@@ -73,6 +73,16 @@
           <div v-else>{{ dataResource[item] ?? $t(item === 'state' ? 'label.hsm.connection.unavailable' : 'label.unknown') }}</div>
         </div>
       </a-list-item>
+      <a-list-item v-else-if="$route.meta.name === 'zone' && ['allocationstate', 'haenable', 'localstorageenabled', 'securitygroupsenabled'].includes(item)">
+        <div>
+          <strong>{{ $t('label.' + item) }}</strong>
+          <div>
+            <status v-if="item === 'allocationstate'" :text="dataResource.allocationstate || ''" :display-label="dataResource.allocationstate ? '' : $t('label.unknown')" display-text />
+            <status v-else-if="item === 'haenable'" :text="zoneFeatureState(dataResource.resourcedetails?.resourceHAEnabled ?? false)" :display-label="$t(zoneFeatureLabel(dataResource.resourcedetails?.resourceHAEnabled ?? false))" display-text />
+            <status v-else :text="zoneFeatureState(dataResource[item])" :display-label="$t(zoneFeatureLabel(dataResource[item]))" display-text />
+          </div>
+        </div>
+      </a-list-item>
       <a-list-item v-else-if="$route.meta.name === 'zone' && ['networkdomain', 'dnssearchorder'].includes(item)">
         <div>
           <strong>{{ $t('label.zone.' + item) }}</strong>
@@ -501,7 +511,7 @@ display-text />
 </template>
 
 <script>
-import { zoneDnsSearchOrder } from '@/utils/zone'
+import { zoneDnsSearchOrder, zoneFeatureLabel, zoneFeatureState } from '@/utils/zone'
 import Ipv4SubnetResourceLink from '@/components/widgets/Ipv4SubnetResourceLink'
 import AclScopeValue from '@/components/view/AclScopeValue'
 import { aclDisplayLabel } from '@/utils/vpcAclAccess'
@@ -708,6 +718,8 @@ export default {
   },
   methods: {
     zoneDnsSearchOrder,
+    zoneFeatureState,
+    zoneFeatureLabel,
     eventTypeLabel,
     kmsRoute,
     hsmOwnerScope,
