@@ -31,7 +31,7 @@
         <strong>{{ $t('label.account') }}</strong><br/>
         <router-link :to="{ path: '/account/' + dedicatedAccountId }">{{ dedicatedAccountId }}</router-link>
       </p>
-      <a-button style="margin-top: 10px; margin-bottom: 10px;" type="primary" danger :disabled="$route.meta.name === 'zone' && !('releaseDedicatedZone' in $store.getters.apis)" @click="handleRelease">
+      <a-button style="margin-top: 10px; margin-bottom: 10px;" type="primary" danger :disabled="releaseApi && !$store.getters.apis[releaseApi]" @click="handleRelease">
         {{ releaseButtonLabel }}
       </a-button>
     </div>
@@ -51,13 +51,13 @@
       @close="modalActive = false"
       :fetchData="fetchData" />
   </a-list-item>
-  <mold-dialog v-if="releaseZoneVisible" :title="releaseButtonLabel" size="md" form-actions focus-guard @cancel="releaseZoneVisible = false">
+  <mold-dialog v-if="releaseConfirmVisible" :title="releaseButtonLabel" size="md" form-actions focus-guard @cancel="releaseConfirmVisible = false">
     <p>{{ resource.name }}</p>
-    <p>{{ $t('message.zone.release.confirm') }}</p>
+    <p>{{ $t($route.meta.name === 'host' ? 'message.host.release.confirm' : 'message.zone.release.confirm') }}</p>
     <a-alert v-if="releaseError" type="error" show-icon :message="releaseError" />
     <mold-dialog-actions :busy="releaseBusy">
-      <a-button @click="releaseZoneVisible = false">{{ $t('label.cancel') }}</a-button>
-      <a-button danger type="primary" @click="releaseDedicatedZone">{{ $t(releaseJob ? 'label.zone.update.recheck' : 'label.release.dedicated.zone') }}</a-button>
+      <a-button @click="releaseConfirmVisible = false">{{ $t('label.cancel') }}</a-button>
+      <a-button danger type="primary" @click="releaseInfrastructureDedication">{{ releaseJob ? $t($route.meta.name === 'host' ? 'label.host.operation.recheck' : 'label.zone.update.recheck') : releaseButtonLabel }}</a-button>
     </mold-dialog-actions>
   </mold-dialog>
 </template>
@@ -90,7 +90,7 @@ export default {
   data () {
     return {
       modalActive: false,
-      releaseZoneVisible: false,
+      releaseConfirmVisible: false,
       releaseBusy: false,
       releaseError: '',
       releaseJob: '',
@@ -100,6 +100,13 @@ export default {
       dedicatedModalLabel: this.$t('label.dedicate'),
       dedicatedDomainId: null,
       dedicatedAccountId: null
+    }
+  },
+  computed: {
+    releaseApi () {
+      if (this.$route.meta.name === 'host') return 'releaseDedicatedHost'
+      if (this.$route.meta.name === 'zone') return 'releaseDedicatedZone'
+      return ''
     }
   },
   watch: {
@@ -228,26 +235,31 @@ export default {
         this.$notifyError(error)
       })
     },
-    async releaseDedicatedZone () {
-      if (this.releaseBusy || !('releaseDedicatedZone' in this.$store.getters.apis)) return
+    async releaseInfrastructureDedication () {
+      const api = this.releaseApi
+      const isHost = api === 'releaseDedicatedHost'
+      if (this.releaseBusy || !api || !this.$store.getters.apis[api]) return
+      const idKey = isHost ? 'hostid' : 'zoneid'
+      const failure = isHost ? 'error.release.dedicate.host' : 'error.release.dedicate.zone'
+      const success = isHost ? 'message.host.dedication.released' : 'message.dedicated.zone.released'
       this.releaseBusy = true
       this.releaseError = ''
       try {
         const retry = !!this.releaseJob
         if (!retry) {
-          const response = await postAPI('releaseDedicatedZone', { zoneid: this.resource.id }, { preserveOnFailure: true })
-          this.releaseJob = response.releasededicatedzoneresponse?.jobid
+          const response = await postAPI(api, { [idKey]: this.resource.id }, { preserveOnFailure: true })
+          this.releaseJob = response[api.toLowerCase() + 'response']?.jobid
         }
         if (!this.releaseJob) throw new Error(this.$t('message.job.result.unknown'))
-        const result = await this.$pollJob({ jobId: this.releaseJob, retry, showLoading: false, successMessage: this.$t('message.dedicated.zone.released'), errorMessage: this.$t('error.release.dedicate.zone') })
+        const result = await this.$pollJob({ jobId: this.releaseJob, retry, showLoading: false, successMessage: this.$t(success), errorMessage: this.$t(failure) })
         if (result.jobstatus === 1) {
-          this.releaseZoneVisible = false
+          this.releaseConfirmVisible = false
           this.releaseJob = ''
           this.fetchData()
           this.parentFetchData()
         } else if (result.jobstatus === 2) {
           this.releaseJob = ''
-          this.releaseError = this.$t('error.release.dedicate.zone')
+          this.releaseError = this.$t(failure)
         } else {
           this.releaseError = this.$t('message.job.result.unknown')
         }
@@ -303,43 +315,17 @@ export default {
         this.$notifyError(error)
       })
     },
-    releaseDedidcatedHost () {
-      postAPI('releaseDedicatedHost', {
-        hostid: this.resource.id
-      }).then(response => {
-        this.$pollJob({
-          jobId: response.releasededicatedhostresponse.jobid,
-          title: this.$t('label.release.dedicated.host'),
-          description: this.resource.id,
-          successMessage: this.$t('message.host.dedication.released'),
-          successMethod: () => {
-            this.dedicatedDomainId = null
-          },
-          errorMessage: this.$t('error.release.dedicate.host'),
-          loadingMessage: this.$t('message.releasing.dedicated.host'),
-          catchMessage: this.$t('error.fetching.async.job.result'),
-          catchMethod: () => {
-            this.parentFetchData()
-          }
-        })
-      }).catch(error => {
-        this.$notifyError(error)
-      })
-    },
     handleRelease () {
       this.modalActive = false
-      if (this.$route.meta.name === 'zone') {
+      if (this.releaseApi) {
         this.releaseError = ''
-        this.releaseZoneVisible = true
+        this.releaseConfirmVisible = true
       }
       if (this.$route.meta.name === 'pod') {
         this.releaseDedidcatedPod()
       }
       if (this.$route.meta.name === 'cluster') {
         this.releaseDedidcatedCluster()
-      }
-      if (this.$route.meta.name === 'host') {
-        this.releaseDedidcatedHost()
       }
     }
   }

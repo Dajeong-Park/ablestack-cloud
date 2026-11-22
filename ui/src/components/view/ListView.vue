@@ -197,6 +197,10 @@
           <router-link v-else-if="$route.meta?.name === 'account' && !resourcePath && record.id" :title="text" :to="accountDetailLocation($route, record, $store.getters, $store.state?.user?.token)">{{ text }}</router-link>
           <router-link v-else-if="$route.meta?.name === 'role' && !resourcePath && record.id" :title="text" :to="roleDetailLocation($route, record, $store.getters, $store.state?.user?.token)">{{ text }}</router-link>
           <router-link v-else-if="kmsListRoute($route) && !resourcePath && record.id" :to="kmsDetailLocation($route, record, $store.getters, $store.state?.user?.token)">{{ text }}</router-link>
+          <span v-else-if="$route.path === '/host' && !resourcePath && record.id">
+            <router-link :to="{ path: '/host/' + record.id, query: hostListQuery($route.query) }">{{ text }}</router-link>
+            <router-link v-if="record.hasannotations" :aria-label="$t('label.comments')" :to="{ path: '/host/' + record.id, query: { ...hostListQuery($route.query), tab: 'comments' } }"><message-filled /></router-link>
+          </span>
           <span v-else-if="$route.path === '/zone' && !resourcePath && record.id">
             <router-link :to="{ path: '/zone/' + record.id, query: zoneListQuery($route.query) }">{{ text }}</router-link>
             <router-link v-if="record.hasannotations" :aria-label="$t('label.comments')" :to="{ path: '/zone/' + record.id, query: { ...zoneListQuery($route.query), tab: 'comments' } }"><message-filled /></router-link>
@@ -669,13 +673,17 @@
         />
       </template>
       <template v-if="column.key === 'resourcestate'">
+        <a-tag v-if="$route.meta.name === 'host'" :color="hostStatusColor(text)">{{ $t(hostStatusLabel(text)) }}</a-tag>
         <status
+          v-else
           :text="text ? text : ''"
           displayText
         />
       </template>
       <template v-if="column.key === 'powerstate'">
+        <a-tag v-if="$route.meta.name === 'host'" :color="hostStatusColor(text)">{{ $t(hostStatusLabel(text)) }}</a-tag>
         <status
+          v-else
           :text="text ? text : ''"
           displayText
         />
@@ -1097,16 +1105,11 @@
         <status v-if="$route.meta.name === 'zone'" :text="zoneFeatureState(record.resourcedetails?.resourceHAEnabled ?? false)" :display-label="$t(zoneFeatureLabel(record.resourcedetails?.resourceHAEnabled ?? false))" display-text />
         <status v-else :text="record.resourcedetails?.resourceHAEnabled === 'true' ? 'enabled' : 'disabled'" display-text />
       </template>
-      <template v-if="column.key === 'hastate'">
-        <!-- <a-tag>{{ record.hostha.hastate }}</a-tag> -->
-        <a-tag v-if="record.hostha.hastate === 'Available'" color="success" :styles="{ 'min-width': '250px' }">{{ record.hostha.hastate }}</a-tag>
-        <a-tag v-else-if="record.hostha.hastate === 'Suspect' || record.hostha.hastate === 'Checking'" color="processing">{{ record.hostha.hastate }}</a-tag>
-        <a-tag v-else-if="record.hostha.hastate === 'Fenced'" color="error">{{ record.hostha.hastate }}</a-tag>
-        <a-tag v-else-if="record.hostha.hastate === 'Degraded'" color="default">{{ record.hostha.hastate }}</a-tag>
-        <a-tag v-else color="warning">{{ record.hostha.hastate }}</a-tag>
+      <template v-if="$route.meta.name === 'host' && column.key === 'hastate'">
+        <a-tag :color="hostStatusColor(record.hostha?.hastate)">{{ $t(hostStatusLabel(record.hostha?.hastate)) }}</a-tag>
       </template>
       <template v-if="$route.meta.name === 'host' && column.key === 'haenable'">
-        <status :text="record.hostha.haenable ? 'enabled' : 'disabled'" displayText/>
+        <a-tag :color="hostStatusColor(record.hostha?.haenable)">{{ $t(hostStatusLabel(record.hostha?.haenable)) }}</a-tag>
       </template>
       <template v-if="['startdate', 'enddate'].includes(column.key) && ['quotasummary', 'usage'].includes($route.path.split('/')[1])">
         {{ $toLocaleDate(text.replace('\'T\'', ' ')) }}
@@ -1315,7 +1318,9 @@
 <script>
 import Ipv4SubnetResourceLink from '@/components/widgets/Ipv4SubnetResourceLink'
 import { dnsServerListQuery } from '@/utils/dnsServer'
+import { hostStatusColor, hostStatusLabel } from '@/utils/hostPresentation'
 import { zoneFeatureLabel, zoneFeatureState, zoneListQuery, zoneMetricText } from '@/utils/zone'
+import { hostListQuery } from '@/utils/hostSearch'
 import { dnsZoneListQuery } from '@/utils/dnsZone'
 import { ipv4SubnetListQuery } from '@/utils/ipv4Subnet'
 import AclScopeValue from '@/components/view/AclScopeValue'
@@ -1670,7 +1675,10 @@ export default {
   methods: {
     dnsServerListQuery,
     zoneListQuery,
+    hostListQuery,
     zoneFeatureState,
+    hostStatusColor,
+    hostStatusLabel,
     zoneFeatureLabel,
     zoneMetricText,
     dnsZoneListQuery,

@@ -17,8 +17,8 @@
 
 <template>
   <component
-    :is="zoneDialog ? 'MoldDialog' : 'a-modal'"
-    v-bind="zoneDialog ? { size: 'md', formActions: true, focusGuard: true } : { footer: null }"
+    :is="standardDialog ? 'MoldDialog' : 'a-modal'"
+    v-bind="standardDialog ? { size: 'md', formActions: true, focusGuard: true } : { footer: null }"
     :visible="dedicatedDomainModal"
     :title="label"
     :closable="true"
@@ -27,10 +27,10 @@
     <div v-ctrl-enter="handleDedicateForm">
       <a-alert v-if="zoneError" type="error" show-icon :message="zoneError" />
       <DedicateDomain
-        @domainChange="id => domainId = id"
+        @domainChange="id => { domainId = id; dedicatedAccount = null }"
         @accountChange="id => dedicatedAccount = id"
         :error="domainError" />
-      <component :is="zoneDialog ? 'MoldDialogActions' : 'div'" :class="{ 'action-button': !zoneDialog }" v-bind="zoneDialog ? { busy: isSubmitted } : {}">
+      <component :is="standardDialog ? 'MoldDialogActions' : 'div'" :class="{ 'action-button': !standardDialog }" v-bind="standardDialog ? { busy: isSubmitted } : {}">
         <a-button @click="closeModal">{{ $t('label.cancel') }}</a-button>
         <a-button type="primary" ref="submit" @click="handleDedicateForm">{{ $t(zoneJob ? 'label.zone.update.recheck' : 'label.ok') }}</a-button>
       </component>
@@ -81,12 +81,13 @@ export default {
     }
   },
   computed: {
-    zoneDialog () { return this.$route.meta.name === 'zone' }
+    zoneDialog () { return this.$route.meta.name === 'zone' },
+    standardDialog () { return this.zoneDialog || this.$route.meta.name === 'host' }
   },
   watch: {
     active () {
       this.dedicatedDomainModal = this.active
-      if (this.active && this.zoneDialog) {
+      if (this.active && this.standardDialog) {
         this.zoneError = ''
         this.zoneJob = ''
       }
@@ -220,47 +221,40 @@ export default {
         this.isSubmitted = false
       })
     },
-    dedicateHost () {
+    async dedicateHost () {
+      this.zoneError = ''
       if (!this.domainId) {
         this.domainError = true
+        this.isSubmitted = false
         return
       }
-      postAPI('dedicateHost', {
-        hostId: this.resource.id,
-        domainId: this.domainId,
-        account: this.dedicatedAccount
-      }).then(response => {
-        this.$pollJob({
-          jobId: response.dedicatehostresponse.jobid,
-          title: this.$t('label.dedicate.host'),
-          description: `${this.$t('label.domain.id')} : ${this.domainId}`,
-          successMessage: this.$t('message.host.dedicated'),
-          successMethod: () => {
-            this.fetchParentData()
-            this.dedicatedDomainId = this.domainId
-            this.dedicatedDomainModal = false
-            this.isSubmitted = false
-          },
-          errorMessage: this.$t('error.dedicate.host.failed'),
-          errorMethod: () => {
-            this.fetchParentData()
-            this.dedicatedDomainModal = false
-            this.isSubmitted = false
-          },
-          loadingMessage: this.$t('message.dedicating.host'),
-          catchMessage: this.$t('error.fetching.async.job.result'),
-          catchMethod: () => {
-            this.parentFetchData()
-            this.fetchParentData()
-            this.dedicatedDomainModal = false
-            this.isSubmitted = false
-          }
-        })
-      }).catch(error => {
-        this.$notifyError(error)
-        this.dedicatedDomainModal = false
+      try {
+        const retry = !!this.zoneJob
+        if (!retry) {
+          const response = await postAPI('dedicateHost', {
+            hostid: this.resource.id,
+            domainid: this.domainId,
+            account: this.dedicatedAccount
+          }, { preserveOnFailure: true })
+          this.zoneJob = response.dedicatehostresponse?.jobid
+        }
+        if (!this.zoneJob) throw new Error(this.$t('message.job.result.unknown'))
+        const result = await this.$pollJob({ jobId: this.zoneJob, retry, showLoading: false, successMessage: this.$t('message.host.dedicated'), errorMessage: this.$t('error.dedicate.host.failed') })
+        if (result.jobstatus === 1) {
+          this.zoneJob = ''
+          this.fetchParentData()
+          this.closeModal()
+        } else if (result.jobstatus === 2) {
+          this.zoneJob = ''
+          this.zoneError = this.$t('error.dedicate.host.failed')
+        } else {
+          this.zoneError = this.$t('message.job.result.unknown')
+        }
+      } catch (error) {
+        this.zoneError = Object.values(error.response?.data || {}).find(item => item?.errortext)?.errortext || error.message
+      } finally {
         this.isSubmitted = false
-      })
+      }
     },
     handleDedicateForm () {
       if (this.isSubmitted) {
