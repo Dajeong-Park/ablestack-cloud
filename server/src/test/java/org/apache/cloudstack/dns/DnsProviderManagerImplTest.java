@@ -521,7 +521,7 @@ public class DnsProviderManagerImplTest {
         when(dnsZoneDao.findDnsZoneIdsByServerId(SERVER_ID)).thenReturn(List.of(ZONE_ID));
         zoneVO.setState(DnsZone.State.Active);
         when(dnsZoneDao.findById(ZONE_ID)).thenReturn(zoneVO);
-        doThrow(new RuntimeException("DNS provider unavailable")).when(dnsProviderMock).deleteZone(any(), any());
+        Mockito.doThrow(new RuntimeException("DNS provider unavailable")).when(dnsProviderMock).deleteZone(any(), any());
 
         mockTransaction();
         CloudRuntimeException error = assertThrows(CloudRuntimeException.class, () -> manager.deleteDnsServer(cmd));
