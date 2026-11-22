@@ -40,6 +40,7 @@ export const dnsJob = {
         }
         const result = await this.$pollJob({
           jobId: this.jobId,
+          batchKey: this.jobId,
           title: this.$t(title),
           description,
           retry,

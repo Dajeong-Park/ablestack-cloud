@@ -201,7 +201,9 @@ export default {
   },
   methods: {
     searchRecords (value) {
-      this.keyword = value?.trim() || ''
+      const keyword = value?.trim() || ''
+      if (keyword !== this.keyword) this.total = 0
+      this.keyword = keyword
       this.page = 1
       this.fetchData()
     },
