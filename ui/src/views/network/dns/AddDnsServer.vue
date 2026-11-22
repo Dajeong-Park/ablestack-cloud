@@ -67,7 +67,12 @@
               {{ provider.description || provider.name }}
             </a-select-option>
           </a-select>
-          <a-alert v-if="providerStatus === 'error'" class="provider-status" type="error" show-icon :message="$t('message.dns.provider.load.failed')">
+          <a-alert
+            v-if="['error', 'forbidden'].includes(providerStatus)"
+            class="provider-status"
+            type="error"
+            show-icon
+            :message="$t(providerStatus === 'forbidden' ? 'label.unauthorized' : 'message.dns.provider.load.failed')">
             <template #description><a-button size="small" @click="fetchProviders">{{ $t('label.retry') }}</a-button></template>
           </a-alert>
           <a-alert v-else-if="providerStatus === 'empty'" class="provider-status" type="info" show-icon :message="$t('message.dns.provider.empty')" />
@@ -295,8 +300,8 @@ export default {
           this.form.provider = this.providers[0]?.name ?? ''
         }
         this.providerStatus = this.providers.length ? 'ready' : 'empty'
-      } catch {
-        this.providerStatus = 'error'
+      } catch (error) {
+        this.providerStatus = error?.response?.status === 403 ? 'forbidden' : 'error'
       }
     },
     validateUrl (rule, value) {
