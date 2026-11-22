@@ -19,7 +19,7 @@ export function imageAccountScope (query, filter) {
   if (filter !== 'self' || (query.account === undefined && query.domainid === undefined)) return {}
   const { account, domainid } = query
   return {
-    account: typeof account === 'string' && account.trim() ? account : '[invalid]',
+    ...(account === undefined ? {} : { account: typeof account === 'string' && account.trim() ? account : '[invalid]' }),
     domainid: typeof domainid === 'string' && /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i.test(domainid) ? domainid : '[invalid]'
   }
 }

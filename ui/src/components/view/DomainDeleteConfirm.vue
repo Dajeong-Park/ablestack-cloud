@@ -15,18 +15,12 @@
 // specific language governing permissions and limitations
 // under the License.
 <template>
-  <a-modal
-    :visible="true"
+  <MoldDialog
     :title="$t('label.action.delete.domain') + ': ' + domain.name"
-    :okText="$t('label.delete.domain')"
-    okType="danger"
-    :confirmLoading="deleting"
-    :closable="!deleting"
-    :keyboard="!deleting"
-    :maskClosable="!deleting"
-    :ok-button-props="{ disabled: !canDelete }"
-    @cancel="emitClose"
-    @ok="emitConfirm">
+    size="md"
+    form-actions
+    focus-guard
+    @cancel="emitClose">
 
     <a-alert
       type="warning"
@@ -38,7 +32,7 @@
     </a-alert>
 
     <a-alert v-if="impactError || deletionError" type="error" show-icon :message="deletionError || impactError" style="margin-bottom: 16px">
-      <template v-if="impactError" #action><a-button :disabled="deleting" @click="fetchDomainImpact">{{ $t('label.retry') }}</a-button></template>
+      <template v-if="impactError" #description><a-button :disabled="deleting" @click="fetchDomainImpact">{{ $t('label.retry') }}</a-button></template>
     </a-alert>
     <a-spin v-if="loading" />
 
@@ -59,17 +53,25 @@
       <a-input
         v-model:value="confirmText"
         :disabled="loading || deleting"
-        :placeholder="$t('label.enter.domain.name')" />
+        :placeholder="$t('label.enter.domain.name')"
+        @press-enter="emitConfirm" />
     </div>
 
-  </a-modal>
+    <MoldDialogActions :busy="deleting">
+      <a-button :disabled="deleting" @click="emitClose">{{ $t('label.cancel') }}</a-button>
+      <a-button type="primary" danger :disabled="!canDelete" :loading="deleting" @click="emitConfirm">{{ $t('label.delete.domain') }}</a-button>
+    </MoldDialogActions>
+  </MoldDialog>
 </template>
 
 <script>
 import { getAPI } from '@/api'
+import MoldDialog from '@/components/view/MoldDialog'
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 
 export default {
   name: 'DomainDeleteConfirm',
+  components: { MoldDialog, MoldDialogActions },
   props: {
     deleting: Boolean,
     deletionError: { type: String, default: '' },

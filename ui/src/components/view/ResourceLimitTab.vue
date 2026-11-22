@@ -24,6 +24,12 @@
       show-icon
       :message="$t('message.account.limit.tag.scope')" />
     <a-alert
+      v-if="$route.meta.name === 'domain'"
+      type="info"
+      show-icon
+      :message="$t('message.domain.limit.scope', { path: resource.path || resource.name })"
+      :description="$t('message.domain.limit.values')" />
+    <a-alert
       v-if="saveSummary"
       :type="saveSummary.failed.length ? 'warning' : 'success'"
       show-icon

@@ -41,7 +41,7 @@ export function isoListQuery (query = {}, pageSize = 20, getters = {}) {
   const owner = isoListOwner(getters)
   if (query.isoowner !== undefined && query.isoowner !== owner) { query = {}; pageSize = getters.defaultListViewPageSize || 20 }
   const result = {}
-  const filter = query.filter ?? query.isofilter ?? (imageAccountScope(query, 'self').account ? 'self' : isoDefaultFilter(getters))
+  const filter = query.filter ?? query.isofilter ?? (imageAccountScope(query, 'self').domainid ? 'self' : isoDefaultFilter(getters))
   Object.assign(result, imageAccountScope(query, filter))
   result.filter = result.isofilter = scalar(filter) ? String(filter) : '[invalid]'
   const keyword = query.keyword ?? query.q
@@ -73,7 +73,7 @@ export function isoSearchQuery (query, options = {}, pageSize, getters) {
   return isoListQuery({ ...next, page: '1', pagesize: pageSize }, pageSize, getters)
 }
 export function isoSearchError (query, metadata = {}, getters = {}) {
-  if (invalidImageAccountScope(query)) return 'message.image.account.scope.invalid'
+  if (invalidImageAccountScope(query)) return query.account === undefined ? 'message.image.domain.scope.invalid' : 'message.image.account.scope.invalid'
   if (!filters.includes(query.isofilter) || (query.isofilter === 'all' && !['Admin', 'DomainAdmin', 'ResourceAdmin'].includes(getters.userInfo?.roletype))) return 'message.iso.search.invalid'
   for (const key of isoSearchFields.filter(k => k !== 'tags')) {
     if (!own(query, key)) continue
@@ -93,8 +93,8 @@ export function isoSearchError (query, metadata = {}, getters = {}) {
   return ''
 }
 export function isoRequestParams (params, detail = false, getters = {}) {
-  const scopedAccount = !detail && imageAccountScope(params, params.filter ?? params.isofilter ?? 'self').account
-  const projectid = scopedAccount ? undefined : getters.listAllProjects ? '-1' : getters.project?.id
+  const ownedScope = !detail && imageAccountScope(params, params.filter ?? params.isofilter ?? 'self').domainid
+  const projectid = ownedScope ? undefined : getters.listAllProjects ? '-1' : getters.project?.id
   const showicon = isoBoolean(params.showicon)
   const context = { ignoreproject: true, ...(projectid ? { projectid } : {}), ...(showicon !== undefined ? { showicon } : {}) }
   if (detail) return { id: params.id, listall: true, ...context }
@@ -119,6 +119,7 @@ export function isoFilterMismatch (rows, params) {
 }
 export function isoFilterChips (query, getters = {}) {
   const keys = [...isoSearchFields.filter(k => k !== 'tags'), 'isofilter']
+  if (!query.account && imageAccountScope(query, query.isofilter).domainid && !invalidImageAccountScope(query)) keys.unshift('domainid')
   return [...keys.filter(k => own(query, k) && (k !== 'isofilter' || query[k] !== isoDefaultFilter(getters))).map(key => ({ key, value: query[key], isTag: false })),
     ...Object.keys(query).filter(k => /^tags\[\d+\]\.key$/.test(k)).map(k => {
       const tagIdx = k.match(/\[(\d+)\]/)[1]

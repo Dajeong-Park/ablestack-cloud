@@ -22,13 +22,25 @@
       type="info"
       show-icon
       :message="$t('message.account.settings.scope', { account: resource.name, domain: resource.domainpath || resource.domain || resource.domainid })" />
+    <a-alert
+      v-if="scopeKey === 'domainid'"
+      type="info"
+      show-icon
+      :message="$t('message.domain.settings.scope', { path: resource.path || resource.name })"
+      :description="$t('message.domain.settings.inheritance')" />
     <a-col :span="24">
-      <a-input-search
-        :class="{ 'account-settings-search': scopeKey === 'accountid' }"
-        style="width: 25vw;float: right;margin-bottom: 10px; z-index: 8;"
-        :placeholder="$t('label.search')"
-        v-model:value="filter"
-        @search="handleSearch" />
+      <div :class="{ 'domain-settings-toolbar': scopeKey === 'domainid' }">
+        <a-button v-if="scopeKey === 'domainid'" :loading="tabLoading" size="small" shape="round" @click="fetchData()">
+          <template #icon><reload-outlined /></template>
+          {{ $t('label.refresh') }}
+        </a-button>
+        <a-input-search
+          :class="{ 'account-settings-search': scopeKey === 'accountid' }"
+          :style="scopeKey === 'domainid' ? undefined : 'width: 25vw;float: right;margin-bottom: 10px; z-index: 8;'"
+          :placeholder="$t('label.search')"
+          v-model:value="filter"
+          @search="handleSearch" />
+      </div>
       <ConfigurationTable
         :columns="columns"
         :config="items"
@@ -263,4 +275,16 @@ export default {
 
   }
 
+</style>
+
+<style scoped>
+.domain-settings-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 12px 0;
+}
+.domain-settings-toolbar :deep(.ant-input-search) { width: min(100%, 280px); }
 </style>

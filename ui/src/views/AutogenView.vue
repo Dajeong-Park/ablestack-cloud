@@ -3561,6 +3561,7 @@ export default {
         delete queryParams[`tags[${filter.tagIdx}].value`]
       } else {
         delete queryParams[filter.key]
+        if ((this.isIsoList || this.isTemplateList) && filter.key === 'domainid') delete queryParams.account
         if (publicIpRoute(this.$route)) {
           const children = { zoneid: ['vpcid', 'associatednetworkid', 'networkid', 'physicalnetworkid', 'vlanid'], domainid: ['account', 'vpcid', 'associatednetworkid', 'vlanid'], account: ['vpcid', 'associatednetworkid', 'vlanid'], vpcid: ['associatednetworkid'], networkid: ['vlanid'], physicalnetworkid: ['vlanid'] }
           for (const key of children[filter.key] || []) delete queryParams[key]

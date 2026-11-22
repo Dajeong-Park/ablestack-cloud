@@ -99,7 +99,7 @@ public class DomainJoinDaoImpl extends GenericDaoBase<DomainJoinVO, Long> implem
             setResourceLimits(domain, fullView, domainResponse);
 
             //get resource limits for projects
-            long projectLimit = ApiDBUtils.findCorrectResourceLimitForDomain(domain.getProjectLimit(), ResourceType.project, domain.getId());
+            long projectLimit = domainLimit(domain, domain.getProjectLimit(), ResourceType.project);
             String projectLimitDisplay = (fullView || projectLimit == -1) ? Resource.UNLIMITED : String.valueOf(projectLimit);
             long projectTotal = (domain.getProjectTotal() == null) ? 0 : domain.getProjectTotal();
             String projectAvail = (fullView || projectLimit == -1) ? Resource.UNLIMITED : String.valueOf(projectLimit - projectTotal);
@@ -118,7 +118,7 @@ public class DomainJoinDaoImpl extends GenericDaoBase<DomainJoinVO, Long> implem
     @Override
     public void setResourceLimits(DomainJoinVO domain, boolean fullView, ResourceLimitAndCountResponse response) {
         // Get resource limits and counts
-        long vmLimit = ApiDBUtils.findCorrectResourceLimitForDomain(domain.getVmLimit(), fullView, ResourceType.user_vm, domain.getId());
+        long vmLimit = domainLimit(domain, domain.getVmLimit(), ResourceType.user_vm);
         String vmLimitDisplay = (fullView || vmLimit == -1) ? Resource.UNLIMITED : String.valueOf(vmLimit);
         long vmTotal = (domain.getVmTotal() == null) ? 0 : domain.getVmTotal();
         String vmAvail = (fullView || vmLimit == -1) ? Resource.UNLIMITED : String.valueOf(vmLimit - vmTotal);
@@ -126,7 +126,7 @@ public class DomainJoinDaoImpl extends GenericDaoBase<DomainJoinVO, Long> implem
         response.setVmTotal(vmTotal);
         response.setVmAvailable(vmAvail);
 
-        long ipLimit = ApiDBUtils.findCorrectResourceLimitForDomain(domain.getIpLimit(), ResourceType.public_ip, domain.getId());
+        long ipLimit = domainLimit(domain, domain.getIpLimit(), ResourceType.public_ip);
         String ipLimitDisplay = (fullView || ipLimit == -1) ? Resource.UNLIMITED : String.valueOf(ipLimit);
         long ipTotal = (domain.getIpTotal() == null) ? 0 : domain.getIpTotal();
         String ipAvail = (fullView || ipLimit == -1) ? Resource.UNLIMITED : String.valueOf(ipLimit - ipTotal);
@@ -134,7 +134,7 @@ public class DomainJoinDaoImpl extends GenericDaoBase<DomainJoinVO, Long> implem
         response.setIpTotal(ipTotal);
         response.setIpAvailable(ipAvail);
 
-        long volumeLimit = ApiDBUtils.findCorrectResourceLimitForDomain(domain.getVolumeLimit(), ResourceType.volume, domain.getId());
+        long volumeLimit = domainLimit(domain, domain.getVolumeLimit(), ResourceType.volume);
         String volumeLimitDisplay = (fullView || volumeLimit == -1) ? Resource.UNLIMITED : String.valueOf(volumeLimit);
         long volumeTotal = (domain.getVolumeTotal() == null) ? 0 : domain.getVolumeTotal();
         String volumeAvail = (fullView || volumeLimit == -1) ? Resource.UNLIMITED : String.valueOf(volumeLimit - volumeTotal);
@@ -142,7 +142,7 @@ public class DomainJoinDaoImpl extends GenericDaoBase<DomainJoinVO, Long> implem
         response.setVolumeTotal(volumeTotal);
         response.setVolumeAvailable(volumeAvail);
 
-        long snapshotLimit = ApiDBUtils.findCorrectResourceLimitForDomain(domain.getSnapshotLimit(), ResourceType.snapshot, domain.getId());
+        long snapshotLimit = domainLimit(domain, domain.getSnapshotLimit(), ResourceType.snapshot);
         String snapshotLimitDisplay = (fullView || snapshotLimit == -1) ? Resource.UNLIMITED : String.valueOf(snapshotLimit);
         long snapshotTotal = (domain.getSnapshotTotal() == null) ? 0 : domain.getSnapshotTotal();
         String snapshotAvail = (fullView || snapshotLimit == -1) ? Resource.UNLIMITED : String.valueOf(snapshotLimit - snapshotTotal);
@@ -150,7 +150,7 @@ public class DomainJoinDaoImpl extends GenericDaoBase<DomainJoinVO, Long> implem
         response.setSnapshotTotal(snapshotTotal);
         response.setSnapshotAvailable(snapshotAvail);
 
-        Long templateLimit = ApiDBUtils.findCorrectResourceLimitForDomain(domain.getTemplateLimit(), ResourceType.template, domain.getId());
+        Long templateLimit = domainLimit(domain, domain.getTemplateLimit(), ResourceType.template);
         String templateLimitDisplay = (fullView || templateLimit == -1) ? Resource.UNLIMITED : String.valueOf(templateLimit);
         Long templateTotal = (domain.getTemplateTotal() == null) ? 0 : domain.getTemplateTotal();
         String templateAvail = (fullView || templateLimit == -1) ? Resource.UNLIMITED : String.valueOf(templateLimit - templateTotal);
@@ -159,7 +159,7 @@ public class DomainJoinDaoImpl extends GenericDaoBase<DomainJoinVO, Long> implem
         response.setTemplateAvailable(templateAvail);
 
         //get resource limits for networks
-        long networkLimit = ApiDBUtils.findCorrectResourceLimitForDomain(domain.getNetworkLimit(), ResourceType.network, domain.getId());
+        long networkLimit = domainLimit(domain, domain.getNetworkLimit(), ResourceType.network);
         String networkLimitDisplay = (fullView || networkLimit == -1) ? Resource.UNLIMITED : String.valueOf(networkLimit);
         long networkTotal = (domain.getNetworkTotal() == null) ? 0 : domain.getNetworkTotal();
         String networkAvail = (fullView || networkLimit == -1) ? Resource.UNLIMITED : String.valueOf(networkLimit - networkTotal);
@@ -168,7 +168,7 @@ public class DomainJoinDaoImpl extends GenericDaoBase<DomainJoinVO, Long> implem
         response.setNetworkAvailable(networkAvail);
 
         //get resource limits for vpcs
-        long vpcLimit = ApiDBUtils.findCorrectResourceLimitForDomain(domain.getVpcLimit(), ResourceType.vpc, domain.getId());
+        long vpcLimit = domainLimit(domain, domain.getVpcLimit(), ResourceType.vpc);
         String vpcLimitDisplay = (fullView || vpcLimit == -1) ? Resource.UNLIMITED : String.valueOf(vpcLimit);
         long vpcTotal = (domain.getVpcTotal() == null) ? 0 : domain.getVpcTotal();
         String vpcAvail = (fullView || vpcLimit == -1) ? Resource.UNLIMITED : String.valueOf(vpcLimit - vpcTotal);
@@ -177,7 +177,7 @@ public class DomainJoinDaoImpl extends GenericDaoBase<DomainJoinVO, Long> implem
         response.setVpcAvailable(vpcAvail);
 
         //get resource limits for cpu cores
-        long cpuLimit = ApiDBUtils.findCorrectResourceLimitForDomain(domain.getCpuLimit(), ResourceType.cpu, domain.getId());
+        long cpuLimit = domainLimit(domain, domain.getCpuLimit(), ResourceType.cpu);
         String cpuLimitDisplay = (fullView || cpuLimit == -1) ? Resource.UNLIMITED : String.valueOf(cpuLimit);
         long cpuTotal = (domain.getCpuTotal() == null) ? 0 : domain.getCpuTotal();
         String cpuAvail = (fullView || cpuLimit == -1) ? Resource.UNLIMITED : String.valueOf(cpuLimit - cpuTotal);
@@ -186,7 +186,7 @@ public class DomainJoinDaoImpl extends GenericDaoBase<DomainJoinVO, Long> implem
         response.setCpuAvailable(cpuAvail);
 
         //get resource limits for memory
-        long memoryLimit = ApiDBUtils.findCorrectResourceLimitForDomain(domain.getMemoryLimit(), ResourceType.memory, domain.getId());
+        long memoryLimit = domainLimit(domain, domain.getMemoryLimit(), ResourceType.memory);
         String memoryLimitDisplay = (fullView || memoryLimit == -1) ? Resource.UNLIMITED : String.valueOf(memoryLimit);
         long memoryTotal = (domain.getMemoryTotal() == null) ? 0 : domain.getMemoryTotal();
         String memoryAvail = (fullView || memoryLimit == -1) ? Resource.UNLIMITED : String.valueOf(memoryLimit - memoryTotal);
@@ -198,7 +198,7 @@ public class DomainJoinDaoImpl extends GenericDaoBase<DomainJoinVO, Long> implem
         setGpuResourceLimits(domain, fullView, response);
 
       //get resource limits for primary storage space and convert it from Bytes to GiB
-        long primaryStorageLimit = ApiDBUtils.findCorrectResourceLimitForDomain(domain.getPrimaryStorageLimit(), ResourceType.primary_storage, domain.getId());
+        long primaryStorageLimit = domainLimit(domain, domain.getPrimaryStorageLimit(), ResourceType.primary_storage);
         String primaryStorageLimitDisplay = (fullView || primaryStorageLimit == -1) ? Resource.UNLIMITED : String.valueOf(primaryStorageLimit / ResourceType.bytesToGiB);
         long primaryStorageTotal = (domain.getPrimaryStorageTotal() == null) ? 0 : (domain.getPrimaryStorageTotal() / ResourceType.bytesToGiB);
         String primaryStorageAvail = (fullView || primaryStorageLimit == -1) ? Resource.UNLIMITED : String.valueOf((primaryStorageLimit / ResourceType.bytesToGiB) - primaryStorageTotal);
@@ -207,7 +207,7 @@ public class DomainJoinDaoImpl extends GenericDaoBase<DomainJoinVO, Long> implem
         response.setPrimaryStorageAvailable(primaryStorageAvail);
 
         //get resource limits for secondary storage space and convert it from Bytes to GiB
-        long secondaryStorageLimit = ApiDBUtils.findCorrectResourceLimitForDomain(domain.getSecondaryStorageLimit(), ResourceType.secondary_storage, domain.getId());
+        long secondaryStorageLimit = domainLimit(domain, domain.getSecondaryStorageLimit(), ResourceType.secondary_storage);
         String secondaryStorageLimitDisplay = (fullView || secondaryStorageLimit == -1) ? Resource.UNLIMITED : String.valueOf(secondaryStorageLimit / ResourceType.bytesToGiB);
         float secondaryStorageTotal = (domain.getSecondaryStorageTotal() == null) ? 0 : (domain.getSecondaryStorageTotal() / (ResourceType.bytesToGiB * 1f));
         String secondaryStorageAvail = (fullView || secondaryStorageLimit == -1) ? Resource.UNLIMITED : String.valueOf(( (double)secondaryStorageLimit / ResourceType.bytesToGiB) - secondaryStorageTotal);
@@ -216,7 +216,7 @@ public class DomainJoinDaoImpl extends GenericDaoBase<DomainJoinVO, Long> implem
         response.setSecondaryStorageAvailable(secondaryStorageAvail);
 
         //get resource limits for backups
-        long backupLimit = ApiDBUtils.findCorrectResourceLimitForDomain(domain.getBackupLimit(), ResourceType.backup, domain.getId());
+        long backupLimit = domainLimit(domain, domain.getBackupLimit(), ResourceType.backup);
         String backupLimitDisplay = (fullView || snapshotLimit == -1) ? Resource.UNLIMITED : String.valueOf(backupLimit);
         long backupTotal = (domain.getBackupTotal() == null) ? 0 : domain.getBackupTotal();
         String backupAvail = (fullView || snapshotLimit == -1) ? Resource.UNLIMITED : String.valueOf(backupLimit - backupTotal);
@@ -225,7 +225,7 @@ public class DomainJoinDaoImpl extends GenericDaoBase<DomainJoinVO, Long> implem
         response.setBackupAvailable(backupAvail);
 
         //get resource limits for backup storage space and convert it from Bytes to GiB
-        long backupStorageLimit = ApiDBUtils.findCorrectResourceLimitForDomain(domain.getBackupStorageLimit(), ResourceType.backup_storage, domain.getId());
+        long backupStorageLimit = domainLimit(domain, domain.getBackupStorageLimit(), ResourceType.backup_storage);
         String backupStorageLimitDisplay = (fullView || backupLimit == -1) ? Resource.UNLIMITED : String.valueOf(backupStorageLimit / ResourceType.bytesToGiB);
         long backupStorageTotal = (domain.getBackupStorageTotal() == null) ? 0 : (domain.getBackupStorageTotal() / ResourceType.bytesToGiB);
         String backupStorageAvail = (fullView || backupStorageLimit == -1) ? Resource.UNLIMITED : String.valueOf((backupStorageLimit / ResourceType.bytesToGiB) - backupStorageTotal);
@@ -234,7 +234,7 @@ public class DomainJoinDaoImpl extends GenericDaoBase<DomainJoinVO, Long> implem
         response.setBackupStorageAvailable(backupStorageAvail);
 
         //get resource limits for buckets
-        long bucketLimit = ApiDBUtils.findCorrectResourceLimit(domain.getBucketLimit(), domain.getId(), ResourceType.bucket);
+        long bucketLimit = domainLimit(domain, domain.getBucketLimit(), ResourceType.bucket);
         String bucketLimitDisplay = (fullView || bucketLimit == -1) ? Resource.UNLIMITED : String.valueOf(bucketLimit);
         long bucketTotal = (domain.getBucketTotal() == null) ? 0 : domain.getBucketTotal();
         String bucketAvail = (fullView || bucketLimit == -1) ? Resource.UNLIMITED : String.valueOf(bucketLimit - bucketTotal);
@@ -243,7 +243,7 @@ public class DomainJoinDaoImpl extends GenericDaoBase<DomainJoinVO, Long> implem
         response.setBucketAvailable(bucketAvail);
 
         //get resource limits for object storage space and convert it from Bytes to GiB
-        long objectStorageLimit = ApiDBUtils.findCorrectResourceLimit(domain.getObjectStorageLimit(), domain.getId(), ResourceType.object_storage);
+        long objectStorageLimit = domainLimit(domain, domain.getObjectStorageLimit(), ResourceType.object_storage);
         String objectStorageLimitDisplay = (fullView || objectStorageLimit == -1) ? Resource.UNLIMITED : String.valueOf(objectStorageLimit / ResourceType.bytesToGiB);
         long objectStorageTotal = (domain.getObjectStorageTotal() == null) ? 0 : (domain.getObjectStorageTotal() / ResourceType.bytesToGiB);
         String objectStorageAvail = (fullView || objectStorageLimit == -1) ? Resource.UNLIMITED : String.valueOf((objectStorageLimit / ResourceType.bytesToGiB) - objectStorageTotal);
@@ -252,8 +252,13 @@ public class DomainJoinDaoImpl extends GenericDaoBase<DomainJoinVO, Long> implem
         response.setObjectStorageAvailable(objectStorageAvail);
     }
 
+    private long domainLimit(DomainJoinVO domain, Long storedLimit, ResourceType type) {
+        return ApiDBUtils.findCorrectResourceLimitForDomain(storedLimit,
+                domain.getId() == Domain.ROOT_DOMAIN, type, domain.getId());
+    }
+
     private void setGpuResourceLimits(DomainJoinVO domain, boolean fullView, ResourceLimitAndCountResponse response) {
-        long gpuLimit = ApiDBUtils.findCorrectResourceLimitForDomain(domain.getGpuLimit(), ResourceType.gpu, domain.getId());
+        long gpuLimit = domainLimit(domain, domain.getGpuLimit(), ResourceType.gpu);
         String gpuLimitDisplay = (fullView || gpuLimit == -1) ? Resource.UNLIMITED : String.valueOf(gpuLimit);
         long gpuTotal = (domain.getGpuTotal() == null) ? 0 : domain.getGpuTotal();
         String gpuAvail = (fullView || gpuLimit == -1) ? Resource.UNLIMITED : String.valueOf(gpuLimit - gpuTotal);
