@@ -20,14 +20,13 @@
     <div v-if="resourceType === 'Host'" class="host-gpu-layout">
       <GPUDevicesTab ref="devicesTab" :resource="resource" :resource-type="resourceType" :loading="loading" @refresh="refresh(true)">
         <template #actions>
-          <a-popconfirm
+          <a-button
             v-if="$store.getters.apis?.discoverGpuDevices"
-            :title="$t('message.confirm.discover.gpu.devices')"
-            :ok-text="$t('label.ok')"
-            :cancel-text="$t('label.cancel')"
-            @confirm="discoverGpuDevices">
-            <a-button>{{ $t('label.discover.gpu.devices') }}</a-button>
-          </a-popconfirm>
+            :loading="discoveringGpuDevices"
+            :disabled="discoveringGpuDevices"
+            @click="discoverGpuDevices">
+            {{ $t('label.discover.gpu.devices') }}
+          </a-button>
           <a-button v-if="isAdmin && $store.getters.apis?.createGpuDevice" type="primary" @click="showAddGpuDeviceModal">
             {{ $t('label.gpu.devices.add') }}
           </a-button>
@@ -189,6 +188,7 @@ export default {
   data () {
     return {
       hostSummaryVisible: false,
+      discoveringGpuDevices: false,
       addGpuDeviceModalVisible: false,
       savingGpuDevice: false,
       gpuDeviceForm: {},
@@ -211,22 +211,24 @@ export default {
     this.fetchApiParams()
   },
   methods: {
-    discoverGpuDevices () {
-      if (!this.resource.id) {
-        return
-      }
+    async discoverGpuDevices () {
+      const id = this.resource.id
+      if (!id || this.discoveringGpuDevices || !this.$store.getters.apis?.discoverGpuDevices) return
 
-      getAPI('discoverGpuDevices', {
-        id: this.resource.id
-      }).then(() => {
+      this.discoveringGpuDevices = true
+      try {
+        await getAPI('discoverGpuDevices', { id }, { preserveOnFailure: true })
+        if (this.resource.id !== id) return
         this.$notification.success({
           message: this.$t('label.success'),
           description: this.$t('message.success.discover.gpu.devices')
         })
         this.refresh()
-      }).catch(error => {
+      } catch (error) {
         this.$notifyError(error)
-      })
+      } finally {
+        this.discoveringGpuDevices = false
+      }
     },
     fetchApiParams () {
       this.createApiParams = this.$getApiParams('createGpuDevice') || {}
