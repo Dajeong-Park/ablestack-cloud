@@ -80,6 +80,7 @@ export default {
       docHelp: 'installguide/configuration.html#adding-a-cluster',
       listView: true,
       popup: true,
+      standardDialogSize: 'md',
       component: shallowRef(defineAsyncComponent(() => import('@/views/infra/ClusterAdd.vue')))
     },
     {
@@ -88,6 +89,7 @@ export default {
       label: 'label.edit',
       dataView: true,
       popup: true,
+      standardDialogSize: 'md',
       component: shallowRef(defineAsyncComponent(() => import('@/views/infra/ClusterUpdate.vue')))
     },
     {
