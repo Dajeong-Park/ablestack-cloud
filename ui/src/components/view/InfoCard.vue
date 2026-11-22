@@ -1383,7 +1383,7 @@ export default {
       return ['UserVm', 'Template', 'ISO', 'Volume', 'RbdImages', 'Snapshot', 'Backup', 'Network',
         'LoadBalancer', 'PortForwardingRule', 'FirewallRule', 'SecurityGroup', 'SecurityGroupRule',
         'PublicIpAddress', 'Project', 'Account', 'Vpc', 'NetworkACL', 'StaticRoute', 'VMSnapshot',
-        'RemoteAccessVpn', 'User', 'SnapshotPolicy', 'VpcOffering', 'Domain']
+        'RemoteAccessVpn', 'User', 'SnapshotPolicy', 'VpcOffering']
     },
     name () {
       if (isEventDetailRoute(this.$route)) return eventDisplayTitle(this.resource, this.$t, date => this.$toLocaleDate(date))

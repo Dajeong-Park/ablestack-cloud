@@ -74,8 +74,11 @@
                 :filterOption="(input, option) => {
                   return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
                 }" >
-                <a-select-option v-for="(opt, optIndex) in action.mapping[field.name].options" :key="optIndex" :label="opt">
-                  {{ opt }}
+                <a-select-option
+                  v-for="(opt, optIndex) in action.mapping[field.name].options"
+                  :key="optIndex"
+                  :label="mappedOptionLabel(field.name, opt, optIndex)">
+                  {{ mappedOptionLabel(field.name, opt, optIndex) }}
                 </a-select-option>
               </a-select>
               <a-select
@@ -203,6 +206,10 @@ export default {
   },
   inject: ['parentCloseAction', 'parentFetchData', 'parentForceRerender', 'parentRefreshMovedDomain'],
   methods: {
+    mappedOptionLabel (name, value, index) {
+      const label = this.action.mapping[name].labels?.[index]
+      return label ? this.$t(label) : value
+    },
     cancelAction () {
       if (!this.actionLoading) this.parentCloseAction()
     },

@@ -65,6 +65,9 @@
     </a-card>
 
     <div class="row-element">
+      <p v-if="resource.id && ldapVisible" class="domain-ldap-status" role="status">
+        <a-tag>{{ $t('label.domain.ldap.' + ldapState) }}</a-tag>
+      </p>
       <template v-if="dataView">
         <a-alert v-if="readError" type="error" show-icon :message="readError">
           <template #description><a-button size="small" @click="fetchData()">{{ $t('label.retry') }}</a-button></template>
@@ -209,6 +212,17 @@ export default {
         (!tab.show || tab.show(this.resource, this.$route, this.$store.getters.userInfo)) &&
         (!tab.permission?.[0] || tab.permission[0] in this.$store.getters.apis))
     },
+    ldapVisible () {
+      return 'getDomainLdapStatus' in (this.$store.getters.apis || {})
+    },
+    ldapTargetId () { return this.ldapVisible ? this.resource.id : null },
+    ldapState () {
+      const status = this.resource.domainLdap
+      if (!status) return 'loading'
+      if (status.failed) return 'unavailable'
+      if (status.linked) return status.configured ? 'linked' : 'linked.unconfigured'
+      return status.configured ? 'unlinked' : 'unconfigured'
+    },
     searchMode () {
       return !!this.domainStore.keyword || Object.keys(this.domainStore.filters || {}).length > 0
     },
@@ -255,6 +269,9 @@ export default {
     eventBus.off('refresh-domain-icon', this.domainIconRefresh)
   },
   watch: {
+    ldapTargetId (id) {
+      if (id) this.readLdapState(id)
+    },
     domainOwner () {
       this.restoreDomainStore()
       this.fetchData()
@@ -348,6 +365,22 @@ export default {
         }
       } catch (error) {
         if (controller === this.domainRequestAbort && scope === this.domainReadScope()) this.notifyReadError(error)
+      }
+    },
+    async readLdapState (id) {
+      const controller = this.domainRequestAbort
+      const scope = this.domainReadScope()
+      const current = () => !this.domainDisposed && this.resource.id === id &&
+        this.domainRequestAbort === controller && scope === this.domainReadScope()
+      try {
+        const response = await getAPI('getDomainLdapStatus', { domainid: id }, {
+          preserveOnFailure: true, timeout: 20000, signal: controller?.signal
+        })
+        if (!current()) return
+        const status = response.getdomainldapstatusresponse?.domainldapstatus
+        this.resource = { ...this.resource, domainLdap: status?.domainid === id ? status : { failed: true } }
+      } catch (error) {
+        if (current()) this.resource = { ...this.resource, domainLdap: { failed: true } }
       }
     },
     async readDomainPage (command, params, signal) {

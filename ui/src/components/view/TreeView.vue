@@ -137,7 +137,7 @@ export default {
   methods: {
     handleContextMenu ({ event, node }) {
       if (this.loading || this.selecting) return
-      this.contextRecord = node.dataRef
+      this.contextRecord = node.dataRef.id === this.resource.id ? this.resource : node.dataRef
       if (!this.contextMenuActions.length) return
       event.preventDefault()
       event.stopPropagation()

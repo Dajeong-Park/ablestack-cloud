@@ -1,4 +1,13 @@
 {
+  "label.domain.ldap.domainadmin": "Domain administrator",
+  "label.domain.ldap.ou": "Organizational unit",
+  "label.domain.ldap.group": "Group",
+  "label.domain.ldap.unconfigured": "LDAP configuration unavailable",
+  "label.domain.ldap.unlinked": "LDAP configured, domain unlinked",
+  "label.domain.ldap.linked.unconfigured": "LDAP linked with missing configuration",
+  "label.domain.ldap.linked": "LDAP linked",
+  "label.domain.ldap.unavailable": "LDAP status unavailable",
+  "label.domain.ldap.loading": "Checking LDAP status",
   "message.domain.move.path": "New path {path}",
   "message.domain.move.children": "The domain and all its child domains will move together.",
   "message.domain.filter.invalid": "Enter a valid domain UUID.",

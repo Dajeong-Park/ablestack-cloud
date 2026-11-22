@@ -1,4 +1,13 @@
 {
+  "label.domain.ldap.domainadmin": "도메인 관리자",
+  "label.domain.ldap.ou": "조직 단위",
+  "label.domain.ldap.group": "그룹",
+  "label.domain.ldap.unconfigured": "LDAP 미구성",
+  "label.domain.ldap.unlinked": "LDAP 구성됨 · 도메인 미연결",
+  "label.domain.ldap.linked.unconfigured": "LDAP 연결 정보 있음 · 구성 필요",
+  "label.domain.ldap.linked": "LDAP 연결됨",
+  "label.domain.ldap.unavailable": "LDAP 상태를 확인할 수 없음",
+  "label.domain.ldap.loading": "LDAP 상태 확인 중",
   "message.domain.move.path": "예상 경로 {path}",
   "message.domain.move.children": "도메인과 모든 하위 도메인이 함께 이동합니다.",
   "message.domain.filter.invalid": "유효한 도메인 UUID를 입력하세요.",
