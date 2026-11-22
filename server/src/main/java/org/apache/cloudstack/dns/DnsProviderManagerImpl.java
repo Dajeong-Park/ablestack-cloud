@@ -551,6 +551,11 @@ public class DnsProviderManagerImpl extends ManagerBase implements DnsProviderMa
             throw new CloudRuntimeException("The underlying DNS server for this DNS Record is missing.");
         }
         DnsRecord.RecordType recordType = cmd.getType();
+        String name = StringUtils.trimToEmpty(cmd.getName());
+        if (recordType == DnsRecord.RecordType.NS && ("@".equals(name) ||
+                StringUtils.equalsIgnoreCase(StringUtils.removeEnd(name, "."), StringUtils.removeEnd(dnsZone.getName(), ".")))) {
+            throw new InvalidParameterValueException("The DNS zone apex NS record set cannot be deleted.");
+        }
         try {
             DnsRecord record = new DnsRecord();
             record.setName(cmd.getName());

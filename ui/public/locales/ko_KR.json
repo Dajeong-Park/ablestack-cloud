@@ -1,4 +1,6 @@
 {
+  "label.dns.record.apex.ns.protected": "영역 최상위 NS 보호",
+  "message.dns.record.delete.rrset": "{name}의 {type} 레코드 집합과 포함된 값 {count}개를 모두 삭제할까요?",
   "label.account.role.admin": "최고 관리자",
   "label.account.role.resourceadmin": "리소스 관리자",
   "label.account.role.domainadmin": "도메인 관리자",

@@ -758,13 +758,28 @@ public class DnsProviderManagerImplTest {
     }
 
     @Test
+    public void testDeleteDnsRecordProtectsApexNs() throws Exception {
+        DeleteDnsRecordCmd cmd = mock(DeleteDnsRecordCmd.class);
+        when(cmd.getDnsZoneId()).thenReturn(ZONE_ID);
+        when(cmd.getType()).thenReturn(DnsRecord.RecordType.NS);
+        when(dnsZoneDao.findById(ZONE_ID)).thenReturn(zoneVO);
+        when(dnsServerDao.findById(SERVER_ID)).thenReturn(serverVO);
+        for (String apex : List.of("@", "EXAMPLE.COM.")) {
+            when(cmd.getName()).thenReturn(apex);
+            assertThrows(InvalidParameterValueException.class, () -> manager.deleteDnsRecord(cmd));
+        }
+        verify(dnsProviderMock, never()).deleteRecord(any(), any(), any());
+    }
+
+    @Test
     public void testDeleteDnsRecordSuccess() throws Exception {
         DeleteDnsRecordCmd cmd = mock(DeleteDnsRecordCmd.class);
         when(cmd.getDnsZoneId()).thenReturn(ZONE_ID);
-        when(cmd.getName()).thenReturn("www");
+        when(cmd.getName()).thenReturn("delegated.example.com.");
+        when(cmd.getType()).thenReturn(DnsRecord.RecordType.NS);
         when(dnsZoneDao.findById(ZONE_ID)).thenReturn(zoneVO);
         when(dnsServerDao.findById(anyLong())).thenReturn(serverVO);
-        when(dnsProviderMock.deleteRecord(any(), any(), any())).thenReturn("www.example.com");
+        when(dnsProviderMock.deleteRecord(any(), any(), any())).thenReturn("delegated.example.com.");
 
         boolean res = manager.deleteDnsRecord(cmd);
         assertTrue(res);

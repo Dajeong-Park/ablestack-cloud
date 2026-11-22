@@ -50,8 +50,10 @@
             {{ record.ttl }}
           </template>
           <template v-if="column.key === 'actions' && canDelete">
+            <span v-if="isApexNs(record)">{{ $t('label.dns.record.apex.ns.protected') }}</span>
             <a-popconfirm
-              :title="$t('message.confirm.delete.dns.record')"
+              v-else
+              :title="$t('message.dns.record.delete.rrset', { name: record.name, type: record.type, count: record.contents?.length || 0 })"
               @confirm="handleDeleteRecord(record)"
               :okText="$t('label.yes')"
               :cancelText="$t('label.no')">
@@ -203,8 +205,13 @@ export default {
         this.fetchLoading = false
       })
     },
+    isApexNs (record) {
+      if (record.type !== 'NS') return false
+      const name = record.name?.trim().toLowerCase().replace(/\.$/, '')
+      return name === '@' || name === this.resource.name?.trim().toLowerCase().replace(/\.$/, '')
+    },
     handleDeleteRecord (record) {
-      if (!this.canDelete || this.deleteLoading) return
+      if (!this.canDelete || this.deleteLoading || this.isApexNs(record)) return
       this.deleteLoading = true
 
       const params = {

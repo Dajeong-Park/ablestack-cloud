@@ -1,4 +1,6 @@
 {
+  "label.dns.record.apex.ns.protected": "Protected zone apex NS",
+  "message.dns.record.delete.rrset": "Delete the {type} record set for {name} and all {count} of its values?",
   "label.account.role.admin": "Root administrator",
   "label.account.role.resourceadmin": "Resource administrator",
   "label.account.role.domainadmin": "Domain administrator",
