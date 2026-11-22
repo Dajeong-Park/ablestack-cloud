@@ -17,7 +17,11 @@
 
 <template>
   <div class="dns-records-tab">
-    <a-alert v-if="listRefreshFailed" class="dns-records-notice" :type="loadError ? 'error' : 'warning'" show-icon
+    <a-alert
+      v-if="listRefreshFailed"
+      class="dns-records-notice"
+      :type="loadError ? 'error' : 'warning'"
+      show-icon
       :message="$t(loadError ? 'error.fetching.data' : 'message.list.refresh.stale')">
       <template #action><a-button size="small" @click="fetchData">{{ $t('label.retry') }}</a-button></template>
     </a-alert>
@@ -29,8 +33,12 @@
         <a-button :aria-label="$t('label.refresh')" :title="$t('label.refresh')" @click="fetchData">
           <template #icon><reload-outlined /></template>
         </a-button>
-        <a-input-search v-model:value="searchText" :aria-label="$t('label.search')"
-          :placeholder="$t('label.search')" allow-clear @search="searchRecords" />
+        <a-input-search
+          v-model:value="searchText"
+          :aria-label="$t('label.search')"
+          :placeholder="$t('label.search')"
+          allow-clear
+          @search="searchRecords" />
       </div>
 
       <a-table
@@ -63,13 +71,24 @@
         </template>
       </a-table>
     </a-spin>
-    <a-pagination v-if="total > 0" class="dns-records-pagination" :current="page" :page-size="pageSize" :total="total"
+    <a-pagination
+      v-if="total > 0"
+      class="dns-records-pagination"
+      :current="page"
+      :page-size="pageSize"
+      :total="total"
       :show-total="count => `${$t('label.total')} ${count} ${$t('label.items')}`"
       :page-size-options="['10', '20', '40', '80', '100']"
-      show-size-changer @change="changePage" />
+      show-size-changer
+      @change="changePage" />
 
-    <MoldDialog v-if="deleteTarget && canDelete" size="sm" form-actions focus-guard
-      :title="$t('label.dns.delete.record')" @cancel="closeDeleteForm">
+    <MoldDialog
+      v-if="deleteTarget && canDelete"
+      size="sm"
+      form-actions
+      focus-guard
+      :title="$t('label.dns.delete.record')"
+      @cancel="closeDeleteForm">
       <p>{{ $t('message.dns.record.delete.rrset', { name: deleteTarget.name, type: deleteTarget.type, count: deleteTarget.contents?.length || 0 }) }}</p>
       <a-alert v-if="jobError" :message="jobError" type="error" show-icon />
       <MoldDialogActions :busy="deleteLoading">
@@ -80,8 +99,13 @@
       </MoldDialogActions>
     </MoldDialog>
 
-    <MoldDialog v-if="showAddForm && canCreate" size="md" form-actions focus-guard
-      :title="$t('label.dns.create.record')" @cancel="handleCloseCreateForm">
+    <MoldDialog
+      v-if="showAddForm && canCreate"
+      size="md"
+      form-actions
+      focus-guard
+      :title="$t('label.dns.create.record')"
+      @cancel="handleCloseCreateForm">
       <CreateDnsRecord
         :resource="resource"
         @close-action="handleCloseCreateForm" />
