@@ -29,6 +29,7 @@
           v-model:value="maxMigrations"
           :addonBefore="$t('label.max.migrations')"
           :min="1"
+          :disabled="configLoading || planning || executing"
           :step="1"
         />
         &nbsp;&nbsp;
@@ -37,12 +38,13 @@
       <a-button
         type="primary"
         @click="generateDrsPlan"
-        :loading="loading"
-        :disabled="!('generateClusterDrsPlan' in $store.getters.apis)">
+        :loading="planning"
+        :disabled="!canGenerate || configLoading || planning || executing">
         {{ $t('label.drs.generate.plan') }}
       </a-button>
     </a-col>
   </a-row>
+  <a-alert v-if="generationError" type="error" show-icon :message="$t(generationError)" />
   <br/>
   <a-table
     size="small"
@@ -107,12 +109,16 @@
     :visible="showModal"
     :title="$t('label.drs.plan')"
     :maskClosable="false"
-    :closable="true"
-    :okButtonProps="{ style: { display: generatedMigrations.length === 0 ? 'none' : null } }"
+    :closable="!executing"
+    :keyboard="!executing"
+    :confirmLoading="executing"
+    :cancelButtonProps="{ disabled: executing }"
+    :okButtonProps="{ disabled: executing, style: { display: canExecute && generatedMigrations.length ? undefined : 'none' } }"
     :okText="$t('label.execute')"
     :cancelText="$t('label.cancel')"
     @ok="executeDrsPlan"
     @cancel="closeModal">
+    <a-alert v-if="executionError" type="error" show-icon :message="$t(executionError)" />
     <a-table
       v-if="generatedMigrations.length > 0"
       size="small"
@@ -142,9 +148,9 @@
         </template>
       </template>
     </a-table>
-    <a-p v-else>
+    <p v-else>
       {{ $t('label.drs.no.plan.generated') }}
-    </a-p>
+    </p>
 
   </a-modal>
 
@@ -153,7 +159,6 @@
 <script>
 import { listRefreshMixin } from '@/utils/listRefreshMixin'
 
-import { reactive } from 'vue'
 import { getAPI, postAPI } from '@/api'
 
 export default {
@@ -222,91 +227,147 @@ export default {
           dataIndex: 'jobstatus'
         }
       ]),
-      loading: false,
+      configLoading: false,
+      planning: false,
+      executing: false,
+      generationError: '',
+      executionError: '',
+      viewVersion: 0,
+      planClusterId: '',
       drsPlans: [],
       algorithm: '',
-      maxMigrations: 0,
-      generatedMigrations: reactive([]),
+      maxMigrations: undefined,
+      generatedMigrations: [],
       showModal: false
     }
   },
+  computed: {
+    canGenerate () { return Boolean(this.$store.getters.apis?.generateClusterDrsPlan) },
+    canExecute () { return Boolean(this.$store.getters.apis?.executeClusterDrsPlan) }
+  },
   watch: {
-    resource: {
-      deep: true,
-      handler (newItem, oldItem) {
-        if (newItem && (!oldItem || (newItem.id !== oldItem.id))) {
-          this.fetchDRSPlans()
-        }
-      }
+    'resource.id' (id, previous) {
+      if (id === previous) return
+      this.viewVersion++
+      this.planning = false
+      this.executing = false
+      this.configLoading = false
+      this.generationError = ''
+      this.algorithm = ''
+      this.maxMigrations = undefined
+      this.drsPlans = []
+      this.closeModal()
+      this.fetchDRSPlans()
+      this.fetchDrsConfig()
     }
   },
   created () {
     this.fetchDRSPlans()
     this.fetchDrsConfig()
   },
+  beforeUnmount () {
+    this.viewVersion++
+  },
   methods: {
-    fetchDRSPlans () {
+    isCurrentCluster (id, version) {
+      const routeId = this.$route.params?.id
+      return this.viewVersion === version && this.resource.id === id && (!routeId || routeId === id)
+    },
+    async fetchDRSPlans () {
       const listRequest = this.listRequestToken('fetchDRSPlans')
-      if (!this.resource || !this.resource.id) return
-      getAPI('listClusterDrsPlan', { page: 1, pageSize: 500, clusterid: this.resource.id }).then(json => {
+      const clusterid = this.resource.id
+      if (!clusterid || !this.$store.getters.apis?.listClusterDrsPlan) return
+      try {
+        const response = await getAPI('listClusterDrsPlan', { page: 1, pagesize: 500, clusterid }, { preserveOnFailure: true })
         if (!this.isListRequestCurrent('fetchDRSPlans', listRequest)) return
-
-        this.drsPlans = json.listclusterdrsplanresponse.drsPlan
-      }).catch(error => {
+        this.drsPlans = response.listclusterdrsplanresponse?.drsPlan || []
+      } catch (error) {
         if (!this.isListRequestCurrent('fetchDRSPlans', listRequest)) return
         listRequest.failed = true
         this.listRefreshFailed = true
         if (!listRequest.loaded) this.$notifyError(error)
-      })
-    },
-    executeDrsPlan () {
-      if (this.generatedMigrations.length === 0) return
-
-      var params = { id: this.resource.id }
-
-      for (var i = 0; i < this.generatedMigrations.length; i++) {
-        const mapping = this.generatedMigrations[i]
-        params['migrateto[' + i + '].vm'] = mapping.virtualmachineid
-        params['migrateto[' + i + '].host'] = mapping.destinationhostid
       }
+    },
+    async executeDrsPlan () {
+      const id = this.resource.id
+      const version = this.viewVersion
+      if (this.executing || !this.canExecute || !this.generatedMigrations.length || this.planClusterId !== id || !this.isCurrentCluster(id, version)) return
 
-      postAPI('executeClusterDrsPlan', params).then(json => {
+      this.executing = true
+      this.executionError = ''
+      const params = { id }
+      this.generatedMigrations.forEach((mapping, index) => {
+        params['migrateto[' + index + '].vm'] = mapping.virtualmachineid
+        params['migrateto[' + index + '].host'] = mapping.destinationhostid
+      })
+
+      try {
+        await postAPI('executeClusterDrsPlan', params, { preserveOnFailure: true })
+        if (!this.isCurrentCluster(id, version)) return
         this.$message.success(this.$t('message.drs.plan.executed'))
-      }).catch(error => {
-        console.error(error)
-        this.$message.error(this.$t('message.drs.plan.execution.failed'))
-      }).finally(() => {
-        this.fetchDRSPlans()
+        this.executing = false
         this.closeModal()
-      })
+        await this.fetchDRSPlans()
+      } catch {
+        if (this.isCurrentCluster(id, version)) this.executionError = 'message.drs.plan.execution.failed'
+      } finally {
+        if (this.isCurrentCluster(id, version)) this.executing = false
+      }
     },
-    generateDrsPlan () {
-      this.loading = true
-      postAPI('generateClusterDrsPlan', { id: this.resource.id, migrations: this.maxMigrations }).then(json => {
-        this.generatedMigrations = json?.generateclusterdrsplanresponse?.generateclusterdrsplanresponse?.migrations || []
-        this.loading = false
+    async generateDrsPlan () {
+      const id = this.resource.id
+      const version = this.viewVersion
+      if (!id || this.planning || this.executing || this.configLoading || !this.canGenerate || !this.isCurrentCluster(id, version)) return
+
+      this.generationError = ''
+      const migrations = this.maxMigrations == null ? undefined : Number(this.maxMigrations)
+      if (migrations !== undefined && (!Number.isInteger(migrations) || migrations < 1)) {
+        this.generationError = 'message.drs.plan.invalid.limit'
+        return
+      }
+      this.planning = true
+      try {
+        const response = await postAPI('generateClusterDrsPlan', { id, migrations }, { preserveOnFailure: true })
+        if (!this.isCurrentCluster(id, version)) return
+        const envelope = response.generateclusterdrsplanresponse || {}
+        const entries = (envelope.generateclusterdrsplanresponse || envelope).migrations
+        this.generatedMigrations = Array.isArray(entries) ? entries : []
+        this.planClusterId = id
+        this.executionError = ''
         this.showModal = true
-      })
+      } catch {
+        if (this.isCurrentCluster(id, version)) this.generationError = 'message.drs.plan.generation.failed'
+      } finally {
+        if (this.isCurrentCluster(id, version)) this.planning = false
+      }
     },
-    fetchDrsConfig () {
-      this.loading = true
-      getAPI('listConfigurations', { clusterid: this.resource.id, name: 'drs.algorithm' }).then(json => {
-        this.algorithm = json.listconfigurationsresponse.configuration[0].value
-        getAPI('listConfigurations', { clusterid: this.resource.id, name: 'drs.max.migrations' }).then(json => {
-          this.maxMigrations = json.listconfigurationsresponse.configuration[0].value
-          this.loading = false
-        }).catch((err) => {
-          console.error(err)
-          this.loading = false
-        })
-      }).catch((err) => {
-        console.error(err)
-        this.loading = false
-      })
+    async fetchDrsConfig () {
+      const clusterid = this.resource.id
+      const version = this.viewVersion
+      if (!clusterid || !this.$store.getters.apis?.listConfigurations) return
+      this.configLoading = true
+      try {
+        const [algorithm, limit] = await Promise.all(
+          ['drs.algorithm', 'drs.max.migrations'].map(name =>
+            getAPI('listConfigurations', { clusterid, name }, { preserveOnFailure: true })
+              .then(response => response.listconfigurationsresponse?.configuration?.[0]?.value))
+        )
+        if (!this.isCurrentCluster(clusterid, version)) return
+        this.algorithm = algorithm || ''
+        const max = Number(limit)
+        this.maxMigrations = Number.isInteger(max) && max > 0 ? max : undefined
+      } catch (error) {
+        if (this.isCurrentCluster(clusterid, version)) this.$notifyError(error)
+      } finally {
+        if (this.isCurrentCluster(clusterid, version)) this.configLoading = false
+      }
     },
     closeModal () {
+      if (this.executing) return
       this.showModal = false
-      this.generatedMigrations = reactive([])
+      this.generatedMigrations = []
+      this.planClusterId = ''
+      this.executionError = ''
     },
     resizeColumn (w, col) {
       col.width = w
