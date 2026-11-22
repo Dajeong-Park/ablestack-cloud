@@ -16,178 +16,190 @@
 // under the License.
 
 <template>
-  <a-list :data-list-editing="editableValueKey ? 'true' : null">
+  <a-list :class="{ 'configuration-value-editor--dialog': dialogMode }" :data-list-editing="(hasChanges || valueLoading) ? 'true' : null">
     <a-list-item>
-      <span v-if="configrecord.type ==='Boolean'">
-        <a-tooltip :title="editableValue?'true':'false'">
-          <a-switch
-            :disabled="(!('updateConfiguration' in $store.getters.apis) || configDisabled)"
-            v-model:checked="editableValue"
-            @keydown.esc="editableValueKey = null"
-            @pressEnter="updateConfigurationValue(configrecord)"
-            @change="value => setConfigurationEditable(configrecord, value)"
-          />
-         </a-tooltip>
-      </span>
-      <span v-else-if="configrecord.type ==='Number'">
-        <a-tooltip :title="editableValue">
-          <a-input-number
-            style="width: 20vw;"
-            :defaultValue="actualValue"
-            :disabled="(!('updateConfiguration' in $store.getters.apis) || configDisabled)"
+      <template v-if="dialogMode !== 'reset'">
+        <span v-if="configrecord.type ==='Boolean'">
+          <a-tooltip :title="editableValue?'true':'false'">
+            <a-switch
+              :disabled="!canUpdate"
+              v-model:checked="editableValue"
+              @keydown.esc="cancelEditConfigurationValue"
+              @pressEnter="updateConfigurationValue(configrecord)"
+            />
+           </a-tooltip>
+        </span>
+        <span v-else-if="configrecord.type ==='Number'">
+          <a-tooltip :title="editableValue">
+            <a-input-number
+              style="width: var(--configuration-value-width, 20vw);"
+              :disabled="!canUpdate"
+              v-model:value="editableValue"
+              @keydown.esc="cancelEditConfigurationValue"
+              @pressEnter="updateConfigurationValue(configrecord)"
+              @keydown="e => handleInputNumberKeyDown(e, false)"
+            />
+          </a-tooltip>
+        </span>
+        <span v-else-if="configrecord.type ==='Decimal'">
+          <a-tooltip :title="editableValue">
+            <a-input-number
+              style="width: var(--configuration-value-width, 20vw)"
+              :disabled="!canUpdate"
+              v-model:value="editableValue"
+              @keydown.esc="cancelEditConfigurationValue"
+              @pressEnter="updateConfigurationValue(configrecord)"
+              @keydown="e => handleInputNumberKeyDown(e, true)"
+            />
+          </a-tooltip>
+        </span>
+        <span v-else-if="configrecord.type ==='Range'">
+          <a-row>
+            <a-col>
+              <a-tooltip :title="editableValue">
+                <a-slider
+                  style="width: var(--configuration-slider-width, 13vw)"
+                  class="config-slider-value"
+                  :min="0"
+                  :max="100"
+                  :disabled="!canUpdate"
+                  v-model:value="editableValue"
+                  @keydown.esc="cancelEditConfigurationValue"
+                  @pressEnter="updateConfigurationValue(configrecord)"
+                />
+              </a-tooltip>
+            </a-col>
+            <a-col>
+              <a-tooltip :title="editableValue">
+                <a-input-number
+                  style="width: var(--configuration-slider-input-width, 5vw); margin-left: 10px; float: right"
+                  class="config-slider-text"
+                  :min="0"
+                  :max="100"
+                  :disabled="!canUpdate"
+                  :formatter="(value) => `${value}%`"
+                  v-model:value="editableValue"
+                  @keydown.esc="cancelEditConfigurationValue"
+                  @pressEnter="updateConfigurationValue(configrecord)"
+                  @keydown="e => handleInputNumberKeyDown(e, true)"
+                />
+              </a-tooltip>
+            </a-col>
+          </a-row>
+        </span>
+        <span v-else-if="configrecord.type === 'Select'">
+          <a-tooltip :title="editableValue">
+            <a-select
+              style="width: var(--configuration-value-width, 20vw)"
+              :disabled="!canUpdate"
+              v-model:value="editableValue"
+              @keydown.esc="cancelEditConfigurationValue"
+              @pressEnter="updateConfigurationValue(configrecord)">
+              <a-select-option
+                v-for="value of configrecord.options.split(',')"
+                :key="value">
+                {{ value }}
+              </a-select-option>
+            </a-select>
+          </a-tooltip>
+        </span>
+        <span v-else-if="configrecord.type === 'Order' || configrecord.type === 'WhitespaceSeparatedListWithOptions'">
+          <a-tooltip :title="editableValue.join(', ')">
+            <b v-if="configrecord.type === 'Order'">
+              {{ $t('message.select.deselect.to.sort') }}
+            </b>
+            <b v-else>
+              {{ $t('message.select.deselect.desired.options') }}
+            </b>
+            <br />
+            <a-select
+              style="width: var(--configuration-value-width, 20vw)"
+              mode="multiple"
+              :disabled="!canUpdate"
+              v-model:value="editableValue"
+              @keydown.esc="cancelEditConfigurationValue"
+              @pressEnter="updateConfigurationValue(configrecord)">
+              <a-select-option
+                v-for="value of configrecord.options.split(',')"
+                :key="value">
+                {{ value }}
+              </a-select-option>
+            </a-select>
+          </a-tooltip>
+        </span>
+        <span v-else-if="configrecord.type === 'CSV'">
+          <a-tooltip :title="editableValue.join(', ')">
+            <b>{{ $t('message.type.values.to.add') }}</b>
+            <br />
+            <a-select
+              style="width: var(--configuration-value-width, 20vw)"
+              mode="tags"
+              :disabled="!canUpdate"
+              v-model:value="editableValue"
+              @keydown.esc="cancelEditConfigurationValue"
+              @pressEnter="updateConfigurationValue(configrecord)">
+            </a-select>
+          </a-tooltip>
+        </span>
+        <span v-else-if="dialogMode && isSensitiveConfiguration(configrecord)">
+          <a-input-password
             v-model:value="editableValue"
-            @keydown.esc="editableValueKey = null"
-            @pressEnter="updateConfigurationValue(configrecord)"
-            @change="value => setConfigurationEditable(configrecord, value)"
-            @keydown="e => handleInputNumberKeyDown(e, false)"
-          />
-        </a-tooltip>
-      </span>
-      <span v-else-if="configrecord.type ==='Decimal'">
-        <a-tooltip :title="editableValue">
-          <a-input-number
-            style="width: 20vw"
-            :defaultValue="actualValue"
-            :disabled="(!('updateConfiguration' in $store.getters.apis) || configDisabled)"
-            v-model:value="editableValue"
-            @keydown.esc="editableValueKey = null"
-            @pressEnter="updateConfigurationValue(configrecord)"
-            @change="value => setConfigurationEditable(configrecord, value)"
-            @keydown="e => handleInputNumberKeyDown(e, true)"
-          />
-        </a-tooltip>
-      </span>
-      <span v-else-if="configrecord.type ==='Range'">
-        <a-row>
-          <a-col>
-            <a-tooltip :title="editableValue">
-              <a-slider
-                style="width: 13vw"
-                class="config-slider-value"
-                :defaultValue="configrecord.value * 100"
-                :min="0"
-                :max="100"
-                :disabled="(!('updateConfiguration' in $store.getters.apis) || configDisabled)"
-                v-model:value="editableValue"
-                @keydown.esc="editableValueKey = null"
-                @pressEnter="updateConfigurationValue(configrecord)"
-                @change="value => setConfigurationEditable(configrecord, value)"
-              />
-            </a-tooltip>
-          </a-col>
-          <a-col>
-            <a-tooltip :title="editableValue">
-              <a-input-number
-                style="width: 5vw; margin-left: 10px; float: right"
-                class="config-slider-text"
-                :defaultValue="configrecord.value * 100"
-                :min="0"
-                :max="100"
-                :disabled="(!('updateConfiguration' in $store.getters.apis) || configDisabled)"
-                :formatter="(value) => `${value}%`"
-                v-model:value="editableValue"
-                @keydown.esc="editableValueKey = null"
-                @pressEnter="updateConfigurationValue(configrecord)"
-                @change="value => setConfigurationEditable(configrecord, value)"
-                @keydown="e => handleInputNumberKeyDown(e, true)"
-              />
-            </a-tooltip>
-          </a-col>
-        </a-row>
-      </span>
-      <span v-else-if="configrecord.type === 'Select'">
-        <a-tooltip :title="editableValue">
-          <a-select
-            style="width: 20vw"
-            :defaultValue="actualValue"
-            :disabled="(!('updateConfiguration' in $store.getters.apis) || configDisabled)"
-            v-model:value="editableValue"
-            @keydown.esc="editableValueKey = null"
-            @pressEnter="updateConfigurationValue(configrecord)"
-            @change="value => setConfigurationEditable(configrecord, value)">
-            <a-select-option
-              v-for="value of configrecord.options.split(',')"
-              :key="value">
-              {{ value }}
-            </a-select-option>
-          </a-select>
-        </a-tooltip>
-      </span>
-      <span v-else-if="configrecord.type === 'Order' || configrecord.type === 'WhitespaceSeparatedListWithOptions'">
-        <a-tooltip :title="editableValue.join(', ')">
-          <b v-if="configrecord.type === 'Order'">
-            {{ $t('message.select.deselect.to.sort') }}
-          </b>
-          <b v-else>
-            {{ $t('message.select.deselect.desired.options') }}
-          </b>
-          <br />
-          <a-select
-            style="width: 20vw"
-            mode="multiple"
-            :defaultValue="actualValue"
-            :disabled="(!('updateConfiguration' in $store.getters.apis) || configDisabled)"
-            v-model:value="editableValue"
-            @keydown.esc="editableValueKey = null"
-            @pressEnter="updateConfigurationValue(configrecord)"
-            @change="value => setConfigurationEditable(configrecord, value)">
-            <a-select-option
-              v-for="value of configrecord.options.split(',')"
-              :key="value">
-              {{ value }}
-            </a-select-option>
-          </a-select>
-        </a-tooltip>
-      </span>
-      <span v-else-if="configrecord.type === 'CSV'">
-        <a-tooltip :title="editableValue.join(', ')">
-          <b>{{ $t('message.type.values.to.add') }}</b>
-          <br />
-          <a-select
-            style="width: 20vw"
-            mode="tags"
-            :disabled="(!('updateConfiguration' in $store.getters.apis) || configDisabled)"
-            v-model:value="editableValue"
-            @keydown.esc="editableValueKey = null"
-            @pressEnter="updateConfigurationValue(configrecord)"
-            @change="value => setConfigurationEditable(configrecord, value)">
-          </a-select>
-        </a-tooltip>
-      </span>
-      <span v-else>
-        <a-tooltip :title="editableValue">
-          <a-textarea
-            style="width: 20vw; word-break: break-all"
-            :defaultValue="actualValue"
-            :disabled="(!('updateConfiguration' in $store.getters.apis) || configDisabled)"
-            v-model:value="editableValue"
-            @keydown.esc="editableValueKey = null"
-            @pressEnter="updateConfigurationValue(configrecord)"
-            @change="value => setConfigurationEditable(configrecord, value)"
-          />
-        </a-tooltip>
-      </span>
-      <span class="actions">
+            :visibility-toggle="false"
+            :disabled="!canUpdate"
+            :aria-label="$t('label.global.setting.current')"
+            @keydown.esc="cancelEditConfigurationValue"
+            @press-enter="updateConfigurationValue(configrecord)" />
+        </span>
+        <span v-else>
+          <a-tooltip :title="editableValue">
+            <a-textarea
+              style="width: var(--configuration-value-width, 20vw); word-break: break-all"
+              :disabled="!canUpdate"
+              v-model:value="editableValue"
+              @keydown.esc="cancelEditConfigurationValue"
+              @pressEnter="updateConfigurationValue(configrecord)"
+            />
+          </a-tooltip>
+        </span>
+      </template>
+      <mold-dialog-actions v-if="dialogMode" :busy="valueLoading">
+        <a-button @click="$emit('cancel')">{{ $t('label.cancel') }}</a-button>
+        <a-button
+          v-if="dialogMode === 'reset'"
+          type="primary"
+          :disabled="!canReset"
+          @click="resetConfigurationValue(configrecord)">
+          {{ $t('label.ok') }}
+        </a-button>
+        <a-button
+          v-else
+          type="primary"
+          :disabled="!canUpdate || !hasChanges"
+          @click="updateConfigurationValue(configrecord)">
+          {{ $t('label.ok') }}
+        </a-button>
+      </mold-dialog-actions>
+      <span v-else class="actions">
         <tooltip-button
           :tooltip="$t('label.cancel')"
-          @onClick="cancelEditConfigurationValue(configrecord)"
-          v-if="editableValueKey !== null"
+          @onClick="cancelEditConfigurationValue"
+          v-if="hasChanges"
           iconType="CloseCircleTwoTone"
           iconTwoToneColor="#f5222d"
           :disabled="valueLoading" />
         <tooltip-button
           :tooltip="$t('label.ok')"
           @onClick="updateConfigurationValue(configrecord)"
-          v-if="editableValueKey !== null"
+          v-if="hasChanges"
           iconType="CheckCircleTwoTone"
           iconTwoToneColor="#52c41a"
-          :disabled="valueLoading" />
+          :disabled="!canUpdate" />
         <tooltip-button
           :tooltip="$t('label.reset.config.value')"
           @onClick="$resetConfigurationValueConfirm(configrecord, resetConfigurationValue)"
-          v-if="editableValueKey === null"
+          v-else
           icon="reload-outlined"
-          :disabled="(!('resetConfiguration' in $store.getters.apis) || configDisabled || valueLoading || configrecord.value === configrecord.defaultvalue)" />
+          :disabled="!canReset" />
       </span>
     </a-list-item>
   </a-list>
@@ -195,13 +207,22 @@
 <script>
 import { postAPI } from '@/api'
 import TooltipButton from '@/components/widgets/TooltipButton'
+import MoldDialogActions from '@/components/view/MoldDialogActions'
+import { isSensitiveConfiguration } from './configurationPresentation'
 
 export default {
   name: 'ConfigurationValue',
   components: {
-    TooltipButton
+    TooltipButton,
+    MoldDialogActions
   },
+  emits: ['change-config', 'refresh', 'saved', 'cancel'],
   props: {
+    dialogMode: {
+      type: String,
+      default: '',
+      validator: mode => ['', 'edit', 'reset'].includes(mode)
+    },
     configrecord: {
       type: Object,
       required: true
@@ -228,8 +249,23 @@ export default {
       valueLoading: this.loading,
       scopeKey: '',
       actualValue: null,
-      editableValue: null,
-      editableValueKey: null
+      editableValue: null
+    }
+  },
+  computed: {
+    hasChanges () {
+      if (Array.isArray(this.actualValue) && Array.isArray(this.editableValue)) {
+        return this.actualValue.length !== this.editableValue.length ||
+          this.actualValue.some((value, index) => value !== this.editableValue[index])
+      }
+      return !Object.is(this.actualValue, this.editableValue)
+    },
+    canUpdate () {
+      return 'updateConfiguration' in this.$store.getters.apis && !this.configDisabled && !this.valueLoading
+    },
+    canReset () {
+      return 'resetConfiguration' in this.$store.getters.apis && !this.configDisabled && !this.valueLoading &&
+        !this.hasChanges && this.configrecord.value !== this.configrecord.defaultvalue
     }
   },
   created () {
@@ -259,23 +295,31 @@ export default {
   },
   watch: {
     configrecord: {
-      handler () {
-        this.setConfigData()
+      handler (record, previous) {
+        if (!this.valueLoading) {
+          const keepDraft = this.hasChanges && record.name === previous?.name && record.type === previous?.type
+          this.setConfigData(record, keepDraft)
+        }
       },
       deep: true
     }
   },
   methods: {
-    setConfigData () {
-      this.valueLoading = false
-      this.editableValue = this.getEditableValue(this.configrecord)
-      this.actualValue = this.editableValue
-      this.editableValueKey = null
+    isSensitiveConfiguration,
+    setConfigData (record = this.configrecord, keepDraft = false) {
+      this.actualValue = this.getEditableValue(record)
+      if (!keepDraft) {
+        this.restoreValue()
+      }
+    },
+    restoreValue () {
+      this.editableValue = Array.isArray(this.actualValue) ? [...this.actualValue] : this.actualValue
     },
     updateConfigurationValue (configrecord) {
+      if (!this.canUpdate || !this.hasChanges) return
       let configRecordEntry = this.configrecord
+      let saved = false
       this.valueLoading = true
-      this.editableValueKey = null
       var newValue = this.editableValue
       if (configrecord.type === 'Range') {
         newValue = newValue / 100
@@ -294,20 +338,20 @@ export default {
       if (this.scopeKey === 'domainid' && !params[this.scopeKey]) {
         params[this.scopeKey] = this.resource?.id
       }
-      postAPI('updateConfiguration', params).then(json => {
+      return postAPI('updateConfiguration', params).then(json => {
         // The updateConfiguration response can return a stale value for
         // non-global scopes (server-side issue). Trust the value the user
         // just submitted — the API returned success, so we know it was persisted.
         const apiRecord = json.updateconfigurationresponse.configuration
-        configRecordEntry = { ...apiRecord, value: String(newValue) }
-        this.editableValue = this.getEditableValue(configRecordEntry)
-        this.actualValue = this.editableValue
+        configRecordEntry = this.scopeKey ? { ...apiRecord, value: String(newValue) } : apiRecord
+        this.setConfigData(configRecordEntry)
+        saved = true
         this.$emit('change-config', { value: newValue })
         this.$store.dispatch('RefreshFeatures')
         this.$messageConfigSuccess(`${this.$t('message.setting.updated')} ${configrecord.name}`, configrecord)
         this.$notifyConfigurationValueChange(configRecordEntry)
       }).catch(error => {
-        this.editableValue = this.actualValue
+        this.restoreValue()
         console.error(error)
         this.$message.error(this.$t('message.error.save.setting'))
         this.$notification.error({
@@ -317,12 +361,14 @@ export default {
       }).finally(() => {
         this.valueLoading = false
         this.$emit('refresh', configrecord.name, configRecordEntry)
+        if (saved) this.$emit('saved')
       })
     },
     resetConfigurationValue (configrecord) {
+      if (!this.canReset) return
       let configRecordEntry = this.configrecord
+      let saved = false
       this.valueLoading = true
-      this.editableValueKey = null
       const params = {
         [this.scopeKey]: this.$route.params?.id,
         name: configrecord.name
@@ -330,10 +376,10 @@ export default {
       if (this.scopeKey === 'domainid' && !params[this.scopeKey]) {
         params[this.scopeKey] = this.resource?.id
       }
-      postAPI('resetConfiguration', params).then(json => {
+      return postAPI('resetConfiguration', params).then(json => {
         configRecordEntry = json.resetconfigurationresponse.configuration
-        this.editableValue = this.getEditableValue(configRecordEntry)
-        this.actualValue = this.editableValue
+        this.setConfigData(configRecordEntry)
+        saved = true
         var newValue = this.editableValue
         if (configrecord.type === 'Range') {
           newValue = newValue / 100
@@ -343,7 +389,7 @@ export default {
         this.$messageConfigSuccess(`${this.$t('label.setting')} ${configrecord.name} ${this.$t('label.reset.config.value')}`, configrecord)
         this.$notifyConfigurationValueChange(json?.resetconfigurationresponse?.configuration || null)
       }).catch(error => {
-        this.editableValue = this.actualValue
+        this.restoreValue()
         console.error(error)
         this.$message.error(this.$t('message.error.reset.config'))
         this.$notification.error({
@@ -353,6 +399,7 @@ export default {
       }).finally(() => {
         this.valueLoading = false
         this.$emit('refresh', configrecord.name, configRecordEntry)
+        if (saved) this.$emit('saved')
       })
     },
     getEditableValue (configrecord) {
@@ -392,34 +439,16 @@ export default {
       }
       return ''
     },
-    cancelEditConfigurationValue (configrecord) {
-      this.editableValueKey = null
-      this.editableValue = this.getEditableValue(configrecord)
-    },
-    setConfigurationEditable (configrecord, value) {
-      if (this.actualValue !== this.editableValue) {
-        this.editableValueKey = 'edit'
-      } else {
-        this.editableValueKey = null
+    cancelEditConfigurationValue () {
+      if (!this.valueLoading) {
+        this.restoreValue()
       }
     },
     handleInputNumberKeyDown (event, isDecimal) {
-      const allowedCodes = ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Minus']
+      if (event.isComposing || event.ctrlKey || event.metaKey || event.altKey || event.key.length !== 1) return
 
-      if (isDecimal) {
-        allowedCodes.push('Period')
-      }
-
-      if (
-        event.getModifierState('Control') ||
-        event.getModifierState('Meta') ||
-        event.getModifierState('Alt')
-      ) {
-        return
-      }
-
-      const isValid = allowedCodes.includes(event.code) || !isNaN(event.key)
-      if (!isValid) {
+      const allowed = isDecimal ? /^[0-9.-]$/ : /^[0-9-]$/
+      if (!allowed.test(event.key)) {
         event.preventDefault()
       }
     }
