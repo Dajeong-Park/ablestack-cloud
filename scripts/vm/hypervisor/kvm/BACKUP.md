@@ -25,6 +25,7 @@ under the License.
 ## 목차
 
 - [운영자용 백업 구성 요약](#운영자용-백업-구성-요약)
+- [설정 범위와 상속](#설정-범위와-상속)
 - [공유 볼륨 백업 제한](#공유-볼륨-백업-제한)
 - [GFS2 RAW 정지 상태 FULL 백업](#gfs2-raw-정지-상태-full-백업)
 - [배포 정책을 보존하는 백업·복원](#배포-정책을-보존하는-백업복원)
@@ -181,6 +182,32 @@ Provider는 Mold가 사용할 백업 연동 종류이며, 아래의 `ablestack-*
 백업 오퍼링은 VM에 연결하는 백업 정책이다. 스테이징은 외부 백업 솔루션으로 보내기 전에
 백업 파일을 잠시 두는 저장 공간이며, 장기 보관용 백업 저장소와 역할이 다르다.
 
+### 설정 범위와 상속
+
+공통값은 Global에서 설정한다. Zone·Cluster에 별도 값이 없으면 Global을 상속하며,
+별도 값이 있으면 그 범위의 값이 우선한다. 같은 값을 두 범위에 중복 입력할 필요는 없다.
+다만 백업 프레임워크는 Global 활성화도 필수이므로 Zone만 `true`로 바꿔서는 전체 기능을 활성화할 수 없다.
+
+| 설정 | 범위 | 적용 기준 |
+| --- | --- | --- |
+| `backup.framework.enabled` | Global 기본 · Zone 재정의 | 기본 `false`. Global을 `true`로 설정하고 Zone의 유효값도 확인. 변경 후 관리 서버 재시작 |
+| `backup.framework.provider.plugin` | Global 기본 · Zone 재정의 | 기본 `ablestack-nas`. 기존 목록에 사용할 `ablestack-*` 연동 추가. Zone에 별도 목록이 있으면 그 목록이 우선 |
+| `backup.plugin.netbackup.url`, `backup.plugin.netbackup.apikey` | Global 기본 · Zone 재정의 | NetBackup Primary 주소·키. Zone마다 서버·키가 다를 때만 별도 설정 |
+| `backup.plugin.netbackup.request.timeout`, `backup.plugin.netbackup.recovery.job.timeout` | Global 기본 · Zone 재정의 | 각각 REST 요청 대기와 구형 동기 복구 대기. 현재 볼륨 데이터 단계 제한과 구분 |
+| `backup.plugin.netbackup.vm.schedule.enabled` | Global | 기본 `true`. 모든 Zone의 NetBackup 정책에 공통 적용. 모드 변경 전 유휴·정책 비활성 조건 확인 |
+| `backup.plugin.netbackup.hook.timeout` | Global | 기본 `86400`초. 새 PRE·POST 호출 및 관리 대상 Client의 notify/read 설정 동기화에 사용 |
+| `kvm.incremental.backup` | Global 기본 · Cluster 재정의 | 기본 `true`. VM의 ROOT 볼륨이 속한 Cluster의 유효값 사용. 변경 후 관리 서버 재시작 |
+| `kvm.backup.chain.size` | Global | 기본 `8`: Full 1개와 후속 증분 최대 7개로 구성된 체인 |
+| `backup.thirdparty.staging.*` | Global | Commvault·NetBackup·ABLESTACK Veeam 공통. 이름에 Host·Cluster가 포함된 동시 실행 설정도 Global에 저장 |
+| `backup.data.operation.timeout`, `backup.qos.bandwidth.limit.mbps` | Global | 공통 데이터 처리 제한과 지원되는 복사의 대역폭 제한. 솔루션·단계별 적용은 아래 설명 참고 |
+| `netbackup.prepared.restore.path.ready.timeout` | Global | 준비된 복원 경로·필수 파일의 가시성 확인 대기. 볼륨 복원 전체 제한이 아님 |
+| `backup.enable.attach.detach.of.volumes` | Global | 기본 `false`. 백업 오퍼링이 할당된 VM의 일반 볼륨 연결·분리 허용 여부 |
+
+Zone 화면에 Global과 같은 값이 보인다는 이유만으로 Zone에 별도 값이 저장됐다고 판단하지 않는다.
+Host 백업 연동 UI의 **현재 값의 출처**와 그 출처의 적용값을 함께 확인한다.
+NetBackup UI·비상용 `--host-only`는 공통 설정을 읽고 유지하며 Zone·Cluster 값을 자동으로 추가하지 않는다.
+`--host-only` 없는 NetBackup 기존 CLI와 Veeam 구성 CLI는 설정을 변경할 수 있으므로 해당 절차와 구분한다.
+
 ### VM 스토리지와 스테이징 스토리지 구분
 
 | 구분 | 종류 | 운영자가 확인할 내용 |
@@ -241,7 +268,11 @@ NetBackup·Commvault·Veeam의 공통 볼륨 백업은 다음 기준을 사용�
 
 1. 백업에 사용할 Host에 해당 솔루션의 백업 에이전트 또는 클라이언트를 설치하고 외부 서버와 통신을 확인한다.
    VM 이동이나 정지 VM 백업에 대비하여 백업을 수행할 수 있는 Host 모두에 준비한다.
-2. Mold의 Zone 설정에서 `backup.framework.enabled=true`와 사용할 `backup.framework.provider.plugin`을 설정한다.
+2. Mold의 Global 설정에서 `backup.framework.enabled=true`로 활성화하고, `backup.framework.provider.plugin`의 기존 목록에 사용할 연동을 추가한다.
+   Zone에 별도 값이 없으면 Global을 상속하므로 같은 값을 중복 설정하지 않는다.
+   기존 Zone 재정의가 있으면 해당 값도 확인한다. 프레임워크는 Global과 해당 Zone의 유효값이 모두 `true`여야 한다.
+   NetBackup 주소·API 키도 Global을 기본으로 사용하고, Zone마다 달라야 할 때만 해당 Zone에 별도 값을 설정한다.
+   비동적 설정을 바꿨다면 Host 사전구성 전에 관리 서버를 재시작한다.
 3. 글로벌 설정에서 공통 스테이징 종류와 경로를 입력한다.
 
    | 글로벌 설정 | 입력 내용 |
@@ -400,13 +431,13 @@ SelectedFiles는 사전구성이 출력하는 해당 Host·Job의 bootstrap 디�
 CloudStack 기본 `nas`, `kboss`와 VM 스냅샷의 동결 정책은 변경하지 않는다.
 `quiescevm`은 VM의 CPU를 정지하거나 백업 전송이 끝날 때까지 VM을 멈추는 기능이 아니다.
 QEMU Guest Agent로 게스트 파일시스템 쓰기를 잠시 동결하여 원본 볼륨의 복원 시점을 확보할 때 사용한다.
-볼륨별 스테이징으로 변경한 뒤에도 세 솔루션은 같은 원본 준비 엔진을 사용하므로 이 옵션은 유효하다.
+볼륨별 스테이징에서도 네 솔루션 모두 원본 복원 시점을 확보하는 구간에 같은 동결·해제 기준을 적용한다.
 
 | 원본 저장 방식 | 동결을 시도하는 구간 | 해제 이후 작업 |
 | --- | --- | --- |
 | RBD | 전체 대상 볼륨의 RBD 스냅샷을 순서대로 생성하는 구간 | 고정된 스냅샷에서 볼륨 하나씩 export/export-diff 후 외부 전송 |
 | 실행 중인 QCOW2 | 전체 대상 디스크를 포함한 libvirt `backup-begin` 구간 | pull 백업에서 볼륨 하나씩 추출 후 외부 전송 |
-| 정지한 RBD·QCOW2 또는 GFS2 RAW | 게스트 동결을 적용하지 않음 | 정지 상태의 원본 복원 시점을 확보한 뒤 백업 |
+| 정지한 RBD·QCOW2·GFS2 RAW | 게스트 동결을 적용하지 않음 | 정지 상태의 원본 복원 시점을 확보한 뒤 백업 |
 
 순서는 `스테이징 입장·외부 부모 Job 종료 대기 → 동결 시도 → 전체 볼륨 복원 시점 확보 → 해제 → 볼륨별 추출·전송 → 메타데이터 전송`이다.
 볼륨마다 그 시점의 원본을 새로 캡처하는 방식이 아니며, 대기열이나 긴 외부 전송 동안 파일시스템을 계속 동결하지 않는다.
@@ -421,14 +452,17 @@ RBD도 옵션을 따르며, 전체 디스크의 접근·부모 스냅샷 검사�
 
 동결 요청 전에 작업 디렉터리에 소유 기록을 영속화한다. 명령 응답이 유실돼 실제 동결 여부가 불명확해도,
 자신이 요청한 동결의 상태를 확인하고 해제를 시도한다. 해제 명령의 종료 코드만으로 완료를 판정하지 않고
-`guest-fsfreeze-status=thawed`를 확인하며, 최대 세 번 재시도한다. 정상 종료·취소·오류 처리와 Agent의 작업 정리에도 같은 기준을 적용한다.
+`guest-fsfreeze-status=thawed`를 확인한다. 한 번의 해제 처리에서 해제 명령은 최대 3회 시도하며,
+각 시도 후 상태를 재확인한다. 정상 종료·취소·오류 처리와 Agent의 작업 정리에도 같은 기준을 적용한다.
 해제가 확인되지 않으면 백업 전송·성공 처리·소유 기록 삭제를 허용하지 않는다. 이후 작업 정리에서 재시도하며,
 VM이 실제 종료됐거나 존재하지 않음이 확인된 경우에도 해제 기록을 정리할 수 있다.
 셸 작업은 Agent가 제공하는 `ABLESTACK_BACKUP_JOB_DIR`가 없거나 소유 기록을 영속화할 수 없으면 동결 전에 실패한다.
 강제 종료나 Host 장애는 `trap`만으로 처리할 수 없으므로 `guest-freeze.pending` 또는 `volume-engine.json`의
 `freezePending` 기록을 보존한다. 기록을 수동 삭제하지 않는다.
 
-전체 복원 시점을 확보한 뒤에도 해제 전에 동결 상태를 다시 확인한다. Windows VSS의 동결은 최대 10초로 제한되므로,
+전체 복원 시점을 확보한 뒤에도 해제 전에 동결 상태를 다시 확인한다.
+[QEMU Guest Agent 공식 안내](https://www.qemu.org/docs/master/interop/qemu-ga-ref.html#command-guest-fsfreeze-freeze)에 따르면
+Windows VSS의 동결은 최대 10초로 제한되므로,
 RBD의 순차 스냅샷 도중 자동 해제가 감지되면 실패 처리하고 해당 복원 시점을 전송하지 않는다. 실제 Windows Guest Agent/VSS 조합에서 별도 복원 검증이 필요하다.
 공통 볼륨 엔진은 매니페스트의 `guestQuiesce`에 요청 여부와 `VERIFIED`, `NOT_REQUESTED`, `NOT_APPLICABLE`을 기록한다.
 NAS 완료 마커와 디렉터리 방식 RBD 메타데이터에는 `quiesce_requested`, `quiesce_state`를 기록한다.
@@ -683,7 +717,8 @@ NetBackup은 UI 또는 `--host-only`로 현재 공통 설정을 유지하여 구
 구성 도구가 비동적 설정 변경으로 Mold 재기동을 요구하면 안내에 따라 재기동하고 같은 명령을 재실행한다.
 `backup.framework.enabled`와 `kvm.incremental.backup`의 대상 범위 유효값이 모두 요청값과 같으면
 관리 서버 재기동 안내 없이 오퍼링·Host 구성을 계속한다.
-NetBackup·Veeam은 상속한 유효값이 요청값과 같아도 Cluster 값을 명시적으로 저장하며 Global 증분값은 변경하지 않는다.
+위의 기존 설정 변경 CLI는 상속한 유효값이 요청값과 같아도 Cluster 값을 명시적으로 저장하며 Global 증분값은 변경하지 않는다.
+NetBackup UI·`--host-only`에는 이 설정 저장을 적용하지 않는다.
 대상 Zone·Cluster의 유효값이 달라 실제 동작을 변경하면 재기동 안내가 나올 수 있다.
 NetBackup은 `bp.conf`를 갱신하면서 Client를 재시작할 수 있고,
 Veeam은 Agent 설정이 바뀌면 Agent 서비스를 재시작할 수 있다.
@@ -757,45 +792,32 @@ NetBackup은 두 스케줄 모드 모두 오퍼링이 할당된 VM을 기준으�
    재구성의 필터 기본값은 해당 정책/Job conf의 기존 값이며, 최초 기본값은 `*`와 빈 값이다.
    비대화형 재구성에서도 생략한 필터는 기존 값을 유지한다. 저장된 제외 필터를 비우려면 `--vm-exclude ''`를 명시한다.
 
-`--vm-include`·`--vm-exclude`는 `--vm-schedule-backup false`일 때만 지정한다.
+Veeam의 `--vm-include`·`--vm-exclude`는 `--vm-schedule-backup false`일 때만 지정한다.
 VM 스케줄 사용 여부와 `--incremental-backup`의 Full/증분 선택은 서로 독립적인 설정이다.
 
 | 판단 항목 | 운영 중 기준 | 사전 구성의 역할 |
 | --- | --- | --- |
-| VM별 스케줄 사용 여부 | 해당 솔루션의 Mold 글로벌 `vm.schedule.enabled` | 입력값으로 글로벌 설정 갱신, 생략 시 현재 Mold 값 유지 |
-| Full/증분 선택 | Mold의 `kvm.incremental.backup` 유효값 | `--incremental-backup`으로 대상 Cluster 값만 명시적으로 저장하며 전역값 유지 |
-| 증분 체인 길이 상한 | Mold의 `kvm.backup.chain.size` | 증분 사용 시 명시한 값으로 Mold 설정 갱신 |
+| VM별 스케줄 사용 여부 | 해당 솔루션의 Mold 글로벌 `vm.schedule.enabled` | NetBackup UI·`--host-only`는 현재 값 사용. 기존 CLI는 명시한 값으로 갱신하고 생략 시 현재 값 유지 |
+| Full/증분 선택 | Mold의 `kvm.incremental.backup` 유효값 | NetBackup UI·`--host-only`는 현재 값 사용. 기존 설정 변경 CLI의 `--incremental-backup`은 대상 Cluster 값만 저장하며 전역값 유지 |
+| 증분 체인 길이 상한 | Mold의 `kvm.backup.chain.size` | NetBackup UI·`--host-only`는 현재 값 사용. 기존 설정 변경 CLI는 증분 사용 시 명시한 값으로 갱신 |
 
 실행 중 호스트 구성 파일의 모드·증분·체인 값으로 Mold 글로벌 설정을 다시 덮어쓰지 않는다.
 Hook은 글로벌 설정을 별도 조회하거나 `vmschedulebackup` 파라미터를 전송하지 않는다.
 `listExternalBackupCandidates`가 반환한 `selectionmode`와 대상 목록을 그대로 사용한다.
 Mold는 백업 실행 직전에도 현재 글로벌 값을 다시 확인하므로 조회 후 모드가 변경되면 실행을 중단한다.
 
-호스트 필터 구성 예시:
+Veeam의 호스트 필터 구성 예시:
 
 ```bash
 VM_INCLUDE="i-2-218-VM,i-2-285-VM"
 VM_EXCLUDE="i-2-285-VM"
 ```
 
-해당 솔루션의 글로벌 값이 `false`이면 위 예시에서 `i-2-218-VM`만 백업한다.
+Veeam의 글로벌 값이 `false`이면 위 예시에서 `i-2-218-VM`만 백업한다.
 `true`이면 호스트 필터와 관계없이 실행 시각이 된 Mold 스케줄의 VM만 백업한다.
 스케줄이 없거나 지금 실행할 VM이 없으면 **백업하지 않는다**. 호스트 필터 방식으로 전환하지 않는다.
-두 솔루션 모두 호스트 필터 모드에서 exclude를 include보다 우선 적용하며, `include="*"`, `exclude="*"`이면 대상은 0개다.
-
-NetBackup 호스트 필터에는 V2K로 가져온 VM처럼 공백이 있는 내부 이름도 지정할 수 있다.
-표시 이름이 아니라 Mold의 실제 내부 이름(`instancename`)을 입력한다.
-쉼표로 항목을 구분하고 각 항목 앞뒤의 공백만 무시한다. 이름 내부의 공백과 연속 공백은 그대로 비교한다.
-
-```bash
-VM_INCLUDE="ERP Server, Finance  DB"
-VM_EXCLUDE="ERP Server"
-```
-
-위 NetBackup 호스트 필터 예시에서는 내부 이름이 `Finance  DB`인 VM만 선택한다.
-`Finance DB`처럼 중간 공백 개수가 다른 이름은 일치하지 않는다.
-큰따옴표는 필터 전체를 감싸며, 각 VM 이름에 별도의 따옴표를 덧붙이지 않는다.
-VM별 스케줄 모드에서는 이 필터 대신 Mold 스케줄의 대상 목록을 사용한다.
+Veeam 필터 모드에서는 exclude가 include보다 우선하며, `include="*"`, `exclude="*"`이면 대상은 0개다.
+NetBackup에는 이 필터를 적용하지 않는다. 두 모드 모두 해당 정책과 일치하는 NetBackup 오퍼링이 할당된 VM만 선택한다.
 
 VM별 스케줄 방식에서 외부 호스트 정책은 실행 계기이며, 실제 VM별 일정은 Mold가 판단한다.
 예를 들어 VM 일정이 01:30이고 호스트 정책이 02:00에 실행되면 백업은 02:00에 시작하므로,
@@ -803,10 +825,11 @@ VM별 스케줄 방식에서 외부 호스트 정책은 실행 계기이며, 실
 
 | 유효 모드 및 조회 결과 | 백업 대상 | 오퍼링 처리 |
 | --- | --- | --- |
-| 스케줄 모드, 실행할 Mold 스케줄 있음 | 실행 시점이 된 스케줄의 실행 중·정지 VM | 기존 연결 유지, 자동 할당하지 않음 |
-| 스케줄 모드, 스케줄 없음 또는 실행 대상 없음 | 백업하지 않음 | 호스트 필터 방식으로 전환하지 않음 |
-| 호스트 필터 모드 | 구성 파일의 포함·제외 조건과 일치하는 실행 중·정지 VM | 미할당이면 기본 오퍼링 자동 할당 후 백업 |
-| 조회 실패·잘못된 응답 | 작업 중단 | 호스트 필터 방식으로 전환하지 않음 |
+| NetBackup·Veeam `true`, 실행할 Mold 스케줄 있음 | 일치하는 오퍼링이 할당되고 예약 시각이 도래한 실행 중·정지 VM | 기존 연결 유지, 자동 할당하지 않음 |
+| NetBackup·Veeam `true`, 스케줄 없음 또는 실행 대상 없음 | 백업하지 않음 | 다른 선택 방식으로 전환하지 않음 |
+| NetBackup `false` | 일치하는 NetBackup 오퍼링이 할당된 해당 Host의 실행 중·정지 VM | 자동 할당하지 않음. Mold VM 스케줄의 시각은 사용하지 않음 |
+| Veeam `false` | 구성 파일의 포함·제외 조건과 일치하는 해당 Host의 실행 중·정지 VM | 미할당이면 호환되는 기본 오퍼링 자동 할당 후 백업 |
+| 조회 실패·잘못된 응답 | 작업 중단 | 다른 선택 방식으로 전환하지 않음 |
 
 다른 백업 솔루션의 오퍼링이 연결된 VM은 제외하며, 같은 솔루션의 기존 오퍼링도 덮어쓰지 않는다.
 사전 구성으로 생성한 `externalid=netbackup` 또는 `veeam` 오퍼링은 공용 기본 오퍼링이다.
@@ -814,16 +837,17 @@ VM별 스케줄 방식에서 외부 호스트 정책은 실행 계기이며, 실
 
 조회 자체는 스케줄을 소비하지 않으며, Mold는 백업 시작 직전에 호스트·상태·오퍼링·스케줄을 다시 확인한다.
 대상이 이동했거나 오퍼링이 변경/제거되었거나 스케줄이 삭제/소비되었으면 실행하지 않는다.
-호스트 필터 모드는 Mold VM 스케줄을 조회하거나 소비하지 않는다.
+`false` 모드는 Mold VM 스케줄의 시각을 사용하거나 소비하지 않는다.
 백업 시작이 수락된 뒤에만 다음 스케줄 시각을 갱신하고 VM별 중복 요청은 백업 잠금으로 직렬화한다.
-호스트 필터 방식에서 백업을 중단하려면 VM 목록에서도 제외해야 한다. 오퍼링만 해제하면 다음 실행에 다시 자동 할당된다.
+NetBackup은 오퍼링을 해제한 VM을 두 모드 모두 대상에서 제외한다.
+Veeam 필터 방식에서 백업을 중단하려면 호스트 필터에서도 제외해야 한다. 오퍼링만 해제하면 다음 실행에 다시 자동 할당될 수 있다.
 
 **기존 Host 전환:** 외부 정책/Job 실행을 중지한 상태에서 관리 서버와 Host 스크립트를 함께 갱신하고,
 NetBackup은 Mold에서 모드를 선택한 뒤 UI 또는 `--host-only`로 구성한다.
 Veeam 기존 CLI는 원하는 `--vm-schedule-backup true|false`를 명시해 재실행한다.
 각 솔루션의 모든 Host가 같은 글로벌 모드를 사용하므로 예전에 호스트별로 다른 모드를 사용했다면 공통 모드를 먼저 정한다.
 기존 conf의 `VM_SCHEDULE_BACKUP`은 런타임에서 무시하며, 재구성하면 파일에서 제거한다.
-기존 스케줄 모드가 자동 저장한 `VM_INCLUDE=*`, `VM_EXCLUDE=*` 조합은 재구성 시 제외 sentinel을 제거한다.
+Veeam에서 기존 스케줄 모드가 자동 저장한 `VM_INCLUDE=*`, `VM_EXCLUDE=*` 조합은 재구성 시 제외 sentinel을 제거한다.
 Veeam에서 의도적으로 모든 VM을 제외하려면 `--vm-schedule-backup false --vm-exclude '*'`를 명시한다.
 Veeam 필터 모드로 전환하기 전에는 각 Host conf에 저장된 include/exclude를 확인한다.
 새 API나 글로벌 설정을 제공하지 않는 서버에서는 조회/사전 구성 실패로 중단한다.
@@ -845,8 +869,9 @@ Veeam 필터 모드로 전환하기 전에는 각 Host conf에 저장된 include
 숨김 VM 상세 `backup.host.policy.<provider>`에 VM UUID·공급자·오퍼링 ID·Host ID·정책명을 저장한다.
 `last_host_id`는 변경하지 않는다. 다른 Host가 동시에 요청하면 저장된 배정을 확인해 제외하며,
 잠금을 얻지 못하면 그 VM을 이번 조회에서 보류한다. 실행 요청은 배정과 진행 중인 백업을 다시 검사한다.
-`false` 모드는 호스트의 포함·제외 필터를 Mold에 전달해 **필터 적용 후** 최초 배정을 수행한다.
-필터를 전달하지 않는 이전 Hook은 새 CONFIG 배정을 만들지 않는다.
+NetBackup `false` 모드는 일치하는 오퍼링이 할당된 VM을 기준으로 최초 배정을 수행한다.
+Veeam `false` 모드는 호스트의 포함·제외 필터를 Mold에 전달해 **필터 적용 후** 최초 배정을 수행하며,
+필터를 전달하지 않는 이전 Veeam Hook은 새 CONFIG 배정을 만들지 않는다.
 `true` 모드는 필터 대신 VM 스케줄을 적용하며, 최초 배정 자체는 예약을 소비하지 않는다.
 
 두 조회에 같은 VM이 나오거나 스케줄이 여러 개 있어도 한 번만 선택한다.
@@ -873,36 +898,41 @@ VM 시작과 백업 등록은 같은 VM별 DB 잠금으로 조율하고, Agent�
 새 보호 계획이 기록된 작업부터 적용하며, 갱신 전에 시작된 작업의 보호 상태를 소급 생성하지 않는다.
 GFS2 RAW는 기존 보호 절차를 거쳐 항상 독립 FULL로 백업하며, 공유 볼륨 제한과 스토리지 검사는 그대로 적용한다.
 
-| 예시 VM | 상태 / Mold 일정 | `false` 정책 실행 | `true` 정책이 02:05에 실행 |
-| --- | --- | --- | --- |
-| VM-A | 실행 중 / 매일 02:00 | 포함·제외 조건에 맞으면 선택 | 02:00 예약이 아직 접수되지 않았다면 선택 |
-| VM-B | 정지 / 매일 02:00 | 마지막 Host의 포함·제외 조건에 맞으면 선택 | 마지막 Host에서 02:00 예약이 아직 접수되지 않았다면 선택 |
-| VM-C | 정지 / 매일 03:00 | 마지막 Host의 포함·제외 조건에 맞으면 선택 | 예약 시각 전이므로 제외 |
-| VM-D | 정지 / 스케줄 없음 | 마지막 Host의 포함·제외 조건에 맞으면 선택 | 스케줄이 없으므로 제외 |
+다음은 네 VM 모두 해당 Host의 정책과 일치하는 NetBackup 오퍼링이 할당되어 있는 예시다.
 
-`true` 예시는 해당 NetBackup/Veeam 오퍼링을 미리 연결한 경우다.
+| 예시 VM | 상태 / Mold 일정 | NetBackup `false` 정책 실행 | NetBackup `true` 정책이 02:05에 실행 |
+| --- | --- | --- | --- |
+| VM-A | 실행 중 / 매일 02:00 | 현재 Host에서 선택 | 02:00 예약이 아직 접수되지 않았다면 선택 |
+| VM-B | 정지 / 매일 02:00 | 마지막 Host에서 선택 | 마지막 Host에서 02:00 예약이 아직 접수되지 않았다면 선택 |
+| VM-C | 정지 / 매일 03:00 | 마지막 Host에서 선택 | 예약 시각 전이므로 제외 |
+| VM-D | 정지 / 스케줄 없음 | 마지막 Host에서 선택 | 스케줄이 없으므로 제외 |
+
+Veeam `true`도 오퍼링·도래한 예약을 기준으로 하며, Veeam `false`는 별도의 호스트 필터 조건을 적용한다.
 관리 서버·공통 API·해당 백업 플러그인·KVM Agent와 호스트 스크립트(`thirdparty_volume_backup.py` 포함)를 함께 갱신한다.
 이전 Agent가 새 증분 검사 명령을 지원하지 않으면 정지 VM 증분을 시작하지 않는다.
 운영 검증에서는 정지 VM의 RBD·QCOW2·GFS2 RAW 백업·복원과 GFS2 RAW 백업 중 VM 시작 차단을 각각 확인한다.
 
-NetBackup의 무인 구성 예시는 기존 명령에 다음 중 하나를 추가한다.
+NetBackup은 Mold Global에서 모드를 먼저 선택하고 UI 또는 아래 명령으로 Host를 구성한다.
+두 모드 모두 VM에 NetBackup 오퍼링을 직접 할당해야 한다.
 
 ```bash
-# VM별 Mold 스케줄만 사용
---vm-schedule-backup true
-
-# 기존 호스트 필터 사용
---vm-schedule-backup false --vm-include 'i-2-218-VM,i-2-285-VM' --vm-exclude 'i-2-285-VM'
+python3 netbackup-host-config.py \
+  --host-only --policy-name '<실제 NetBackup 정책명>' \
+  --credentials-file /root/netbackup-host-credentials.json
 ```
 
-Veeam의 `veeam-host-config.py`도 같은 VM 대상 선택 옵션을 받는다.
+`--host-only`는 현재 Global 모드를 사용한다. `true`이면 VM별 Mold 백업 스케줄도 등록하고,
+`false`이면 NetBackup 정책 실행 시 오퍼링이 할당된 대상 VM을 일괄 백업한다.
+자격증명 파일은 [비상용 수동 실행](#비상용-수동-실행)을 참고한다.
+`--vm-include`·`--vm-exclude`는 Veeam의 필터 모드에만 사용한다.
 
 ### NAS: `ablestack-nas`
 
 **사전 준비**
 
 1. NAS 공유와 백업 Host의 접근 권한을 준비하고 Mold에 백업 저장소를 등록한다.
-2. Zone의 백업 프레임워크와 `ablestack-nas`를 설정한다.
+2. Global의 백업 프레임워크를 활성화하고 연동 목록에 `ablestack-nas`를 포함한다.
+   Zone은 기본적으로 Global을 상속한다. Zone에 별도 값이 있으면 해당 유효값도 확인한다.
 3. NAS 백업 오퍼링을 등록하여 VM에 연결한다. 주기 백업을 사용할 때는 Mold에 백업 스케줄을 설정한다.
 
 백업 저장소의 추가 여유율은 글로벌 설정 `backup.nas.repository.capacity.buffer.percent`로 지정한다.
@@ -1042,7 +1072,7 @@ Commvault 복원은 Mold에서 시작하며, NetBackup·Veeam의 외부 UI 메�
 
 Mold에서 VM별 백업 스케줄을 사용하는 경우에는 아래의
 [NetBackup VM별 스케줄 구성 시나리오](#netbackup-vm별-스케줄-구성-시나리오)를 순서대로 따른다.
-공통 사전구성과 호스트 필터 방식의 옵션은 다음 사전 구성 흐름을 참고한다.
+공통 설정과 두 VM 스케줄 모드의 구성은 다음 사전 구성 흐름을 참고한다.
 
 **사전 구성 흐름**
 
@@ -1074,7 +1104,7 @@ Mold에서 VM별 백업 스케줄을 사용하는 경우에는 아래의
    신규 백업은 Host의 `bpbackup`으로 실행하며 별도 정책을 생성하지 않는다.
 4. Mold의 Global에서 공통 설정과 스테이징을 준비한다. Zone·Cluster에 별도 값이 있으면 그 범위의 유효값을 확인한다.
 5. Host 상세의 NetBackup 백업 연동 UI에서 정책명을 입력하고 사전 점검 후 구성을 적용한다.
-   UI를 사용할 수 없을 때는 아래 **PoC 비상용 수동 실행**의 `--host-only` 옵션을 사용한다.
+   UI를 사용할 수 없을 때는 아래 [비상용 수동 실행](#비상용-수동-실행)의 `--host-only` 옵션을 사용한다.
 6. UI와 `--host-only`는 현재 Global·Zone·Cluster 설정을 읽고 유지한다. VM 스케줄 모드·증분 여부·체인 길이는 Mold에서 먼저 설정한다.
    `--host-only` 없이 실행하는 기존 CLI는 공통 설정을 변경하는 이전 방식이므로 비상용으로 사용하지 않는다.
 7. 사전·사후 백업 스크립트, 암호화된 Mold 인증정보와 복원 감시 서비스를 Host에 구성한다.
@@ -1090,7 +1120,7 @@ Mold에서 VM별 백업 스케줄을 사용하는 경우에는 아래의
 (기본 `86400`초)으로 설정한 후 NetBackup 서비스를 재시작한다.
 진행 중인 NetBackup 작업이 없는 시간에 구성한다. NetBackup Client 자체를 설치하는 스크립트는 아니다.
 
-### PoC 비상용 수동 실행
+### 비상용 수동 실행
 
 대상 KVM Host에 root로 접속하여 실행한다. 해당 Host의 NetBackup 정책은 비활성화하고 백업·복원·정리 작업이 끝난 뒤 적용한다.
 Mold와 NetBackup 접속 정보, 활성화된 공통 스테이징 등 공통 설정은 이미 준비되어 있어야 한다.
@@ -1200,8 +1230,9 @@ Mold의 Full·Incremental은 원본 볼륨에서 전체 데이터 또는 변경�
 #### NetBackup VM별 스케줄 구성 시나리오
 
 **Mold에서 가상머신마다 백업 스케줄을 설정하는 경우**의 예시다.
-Host 사전구성은 `--vm-schedule-backup true`로 실행하고, VM에 NetBackup 오퍼링과 백업 스케줄을 연결한다.
-호스트 필터 방식은 [NetBackup·Veeam 호스트 정책의 VM 대상 선택](#netbackupveeam-호스트-정책의-vm-대상-선택)을 참고한다.
+Global의 `backup.plugin.netbackup.vm.schedule.enabled`를 `true`로 설정한 뒤
+UI 또는 `--host-only`로 Host를 사전구성하고, VM에 NetBackup 오퍼링과 백업 스케줄을 연결한다.
+`false` 모드의 오퍼링 기준 일괄 백업은 [NetBackup·Veeam 호스트 정책의 VM 대상 선택](#netbackupveeam-호스트-정책의-vm-대상-선택)을 참고한다.
 
 예시 환경은 다음과 같다. 서버 주소·정책명·백업 시각은 실제 환경에 맞춰 바꾼다.
 
@@ -1236,8 +1267,11 @@ Mold 공통 준비 절차에 따라 다음 값을 설정한다. provider 목록�
 
 | 설정 | 값 |
 | --- | --- |
-| Zone의 `backup.framework.enabled` | `true` |
-| Zone의 `backup.framework.provider.plugin` | 기존 목록에 `ablestack-netbackup` 포함 |
+| Global의 `backup.framework.enabled` | `true`. Zone은 상속하며 기존 별도 값이 있으면 함께 확인 |
+| Global의 `backup.framework.provider.plugin` | 기존 목록에 `ablestack-netbackup` 포함. Zone은 상속하며 기존 별도 목록이 있으면 함께 확인 |
+| Global의 `backup.plugin.netbackup.url` | 실제 NetBackup Primary API 주소. Zone마다 다를 때만 별도 재정의 |
+| Global의 `backup.plugin.netbackup.apikey` | 필요한 권한을 가진 NetBackup API 키. Zone마다 다를 때만 별도 재정의 |
+| Global의 `backup.plugin.netbackup.vm.schedule.enabled` | 이 시나리오에서는 `true` |
 | 글로벌 `backup.thirdparty.staging.storage.type` | `GFS2` |
 | 글로벌 `backup.thirdparty.staging.mount.path` | `/mnt/glue-gfs` |
 | 글로벌 `backup.thirdparty.staging.root.path` | `/mnt/glue-gfs` |
@@ -1282,22 +1316,22 @@ NetBackup은 Mold가 만든 Full·증분 파일 간 연결을 알지 못하므�
 먼저 생성된 Full이 후속 증분보다 먼저 만료되는 것을 막을 수 없다.
 
 1. 증분의 원본 작업을 시작하기 전에 필요한 Full·중간 증분·메타데이터 이미지의 복사본별 만료일을 조회한다.
-   현재 만료일이 작업 보호 기한보다 빠르면 이미지 만료일 변경 API로 먼저 연장하고 재조회로 반영을 확인한다.
-   작업 제한시간은 볼륨 내보내기와 외부 전송 단계마다 적용되므로 VM 전체의 제한시간으로 간주하지 않는다.
-   초기 보호 기간은 `(볼륨 수 × 2 + 3) × max(300초, backup.data.operation.timeout)`으로 계산한다.
-   볼륨별 내보내기·전송과 메타데이터·준비·시작 대기 여유를 포함하며, 설정 기본값은 단계당 `43200`초(12시간)다.
-   처음 준비할 때 이 기간을 더한 절대 기한을 기록하고 같은 준비 작업의 재시도마다 뒤로 미루지 않는다.
+   현재 시각에서 30분 뒤까지의 짧은 임시 보호를 설정하고, 남은 시간이 10분 이하이면 다시 30분으로 갱신한다.
+   현재 만료일이 그보다 길면 유지하고, 짧으면 이미지 만료일 변경 API로 연장한 뒤 재조회로 반영을 확인한다.
+   볼륨 수나 `backup.data.operation.timeout`을 곱한 시간을 처음부터 보관기간에 더하지 않는다.
 2. 새 볼륨·메타데이터 이미지가 저장되면 실제 이미지 만료일을 조회하여 부모 이미지들을 그 기한까지 연장한다.
    여러 파일·복사본의 만료일이 다르면 새 복구 지점에서 가장 늦은 만료일을 기준으로 필요한 이미지들을 보호한다.
 3. 최종 카탈로그 재조회에서 보존을 확인한 뒤 스테이징 정리와 Mold의 `BackedUp` 완료 처리를 진행한다.
    기존 완료 백업 중 보존이 아직 확인되지 않았거나 대기 중인 백업은 정기 동기화에서 재확인한다.
-   보존 확인을 마친 이미지의 절대 만료일을 매번 다시 연장하지 않는다. 새 증분은 관련 체인 전체를 다시 검증한다.
+   완료 백업의 필요 기한은 원래 보관기간과 유효한 후속 백업의 의존 관계로 계산한다.
+   새 증분은 관련 체인 전체를 다시 검증하고, 작업 중 임시 보호는 실제 reader 종료 확인 후 해제한다.
    이미 만료·누락된 이미지의 데이터는 복구하지 못한다.
 
 예를 들어 11월 1일 Full과 11월 10일 증분을 각각 14일 보존하면 기본 만료일은 서로 다르다.
 11월 10일 증분의 실제 만료일이 11월 24일이면 필요한 Full·중간 증분·메타데이터도 최소 그 시각까지 보존한다.
 따라서 부모 이미지가 기본 Retention보다 오래 남을 수 있으며 저장소 용량 산정에 이 기간을 포함한다.
-더 늦은 기존 만료일은 단축하지 않고, 공유 정책이나 관련 없는 bootstrap 이미지는 변경하지 않는다.
+보호를 위한 연장은 더 늦은 기존 만료일을 단축하지 않으며, 공유 정책이나 관련 없는 bootstrap 이미지는 변경하지 않는다.
+Mold가 추가한 임시 연장의 해제·복귀 조건은 [복원 중 만료 시각의 임시 보호와 해제](#복원-중-만료-시각의-임시-보호와-해제)를 따른다.
 
 이미지 조회와 연장에는 `|MANAGE|IMAGES|`의 `|OPERATIONS|VIEW|` 및
 `|OPERATIONS|MANAGE|IMAGES|CHANGE-EXPIRATION|` 권한이 필요하다.
@@ -1388,7 +1422,11 @@ Mold는 `/mnt/glue-gfs` 아래에 `ablestack-netbackup`을 붙이므로 root 설
 
 UI로 사전구성을 시험할 때는 관리 서버의 API·Core·Server·NetBackup 플러그인, KVM Agent 모듈,
 Host 공용 스크립트와 UI를 같은 소스 기준으로 반영한다. `ablestack_backup_progress.py`와
-`thirdparty_volume_backup.py`를 함께 포함한다. Host 상세의 백업 연동 화면에서 정책과 API 주소를 지정하고
+`thirdparty_volume_backup.py`를 함께 포함한다. 비동적 공통 설정을 바꿨다면
+Host 구성 전에 **Mold 관리 서버에서** `systemctl restart mold.service`로 재시작한다.
+
+Host 상세의 백업 연동 화면에서 실제 NetBackup 정책명과 Mold API 접속 정보를 지정한다.
+NetBackup 주소·API 키는 공통 설정의 Global 또는 해당 Zone 유효값을 사용한다.
 사전 점검을 통과한 뒤 구성을 적용한다. VM 오퍼링 할당·스케줄 등록 여부는 화면에 조회된 실제 상태로 확인한다.
 
 새 구성의 첫 시험은 작은 VM 한 대로 백업 접수부터 `BackedUp`, 스테이징 정리 완료와 예약 `RELEASED`까지
@@ -1397,10 +1435,20 @@ Host 공용 스크립트와 UI를 같은 소스 기준으로 반영한다. `able
 기준 정책의 실행 창을 닫아도 이미 실행 중인 Hook의 VM 순회가 자동으로 끝나는 것은 아니다.
 종료가 확인되지 않은 작업의 잠금·예약·원본 보호 기록을 삭제하여 다음 시험을 시작하지 않는다.
 
-아래는 `ablecube1`에서 실행하는 예시다. 나머지 Host에서는 `--policy-name`을 해당 Host를 Client로 등록한 실제 NetBackup 정책명으로 바꿔 순서대로 실행한다.
-Mold의 VM 스케줄 모드를 먼저 `true`로 설정한다. 자격증명 파일은 위의 **PoC 비상용 수동 실행**을 참고한다.
+UI 대신 비상용 수동 실행을 시험하려면 아래 명령을 사용한다. 예시는 `ablecube1`에서 실행하며,
+나머지 Host에서는 `--policy-name`을 해당 Host를 Client로 등록한 실제 NetBackup 정책명으로 바꾼다.
+Mold의 VM 스케줄 모드를 먼저 `true`로 설정한다. 자격증명 파일은 [비상용 수동 실행](#비상용-수동-실행)을 참고한다.
 
 ```bash
+python3 /usr/share/cloudstack-common/scripts/vm/hypervisor/kvm/netbackup-host-config.py \
+  --host-only --check-only \
+  --policy-name 'ablecube1' \
+  --credentials-file /root/netbackup-host-credentials.json
+
+# 점검 결과를 확인한다. CHECKED는 점검 완료이며 구성이 적용된 상태는 아니다.
+python3 /usr/share/cloudstack-common/scripts/vm/hypervisor/kvm/netbackup_host_configuration.py --status
+
+# CHECKED와 점검 항목 통과를 확인한 뒤 구성을 적용한다.
 python3 /usr/share/cloudstack-common/scripts/vm/hypervisor/kvm/netbackup-host-config.py \
   --host-only \
   --policy-name 'ablecube1' \
@@ -1408,15 +1456,11 @@ python3 /usr/share/cloudstack-common/scripts/vm/hypervisor/kvm/netbackup-host-co
 ```
 
 `--host-only`는 현재 Mold 설정을 유지하고 해당 Zone의 NetBackup 오퍼링을 등록하거나 기존 오퍼링을 사용한다.
-비동적 공통 설정을 변경했다면 Host 구성 전에 **Mold 관리 서버에서** 재시작한다.
-
-```bash
-systemctl restart mold.service
-```
-
-최종적으로 Host UI 또는 `netbackup_host_configuration.py --status`에서 `COMPLETED`와 `policypathmatched: true`를 확인한다.
+CLI의 `RUNNING` 응답은 작업 접수이며 완료를 뜻하지 않는다. 같은 `--status` 명령 또는 Host UI에서
+진행 결과를 확인한다. 최종적으로 `COMPLETED`, `policypathmatched: true`와 bootstrap 경로 존재를 확인한다.
 스크립트가 해당 Host의 bootstrap 디렉터리를 생성하므로 이 단계까지 완료한 뒤 정책을 실행한다.
-예를 들어 `ablecube4`에서는 다음 항목을 확인한다.
+예를 들어 이 시나리오의 root가 `/mnt/glue-gfs`이고 정책명이 `ablecube4`이면 다음 항목을 확인한다.
+실제 환경에서는 상태 응답의 `bootstrappath`를 기준으로 경로를 바꾼다.
 
 ```bash
 ls -ld /mnt/glue-gfs/ablestack-netbackup/bootstrap/ablecube4
@@ -1425,7 +1469,7 @@ test -x /usr/openv/netbackup/bin/bpend_notify.ablecube4
 systemctl is-active netbackup-host-restore-watcher.timer
 ```
 
-bootstrap 디렉터리에 JSON 파일이 없는 시점도 정상이다. 마커는 대상 VM의 백업 요청 때 생성되고 이후 정리된다.
+bootstrap 디렉터리에 JSON 파일이 없는 시점도 정상이다. 마커는 대상 VM의 백업 접수·준비 과정에서 생성되고 이후 정리된다.
 디렉터리 자체는 유지하며, 경로가 없다면 마운트와 사전구성 완료 여부를 확인한다.
 
 **4. Mold에서 각 VM에 오퍼링과 매시 50분 스케줄을 연결한다.**
@@ -1825,7 +1869,8 @@ Mold는 최초 확인한 원래 만료 시각(`original`)과 Mold가 적용한 �
 
 #### 복원 중 만료 시각의 임시 보호와 해제
 
-복원 소요 시간은 사전에 확정할 수 없으므로, 복원을 시작한 날짜까지만 만료 기한을 맞추지 않는다.
+백업·복원 소요 시간은 사전에 확정할 수 없으므로, 작업을 시작한 날짜까지만 만료 기한을 맞추지 않는다.
+진행 중인 백업과 복원에는 같은 짧은 임시 보호·갱신 기준을 적용한다.
 Mold에 복원 계획·진행 기록이 등록되면 실행 슬롯을 기다리는 동안부터 필요한 체인을 보호한다.
 이 설명은 Mold가 관리하는 복원과 NetBackup UI에서 `MOLD-RESTORE.json`을 통해 Mold에 접수된 복원에 적용한다.
 Mold에 접수되지 않은 별도 수동 파일 복원 전체를 감시한다는 뜻은 아니다.
@@ -2510,30 +2555,36 @@ Veeam Client 재설치는 필요하지 않다.
 
 ## NetBackup·Veeam 사전 구성 파라미터 비교
 
-두 솔루션 모두 각 KVM Host에서 Python 구성 도구를 한 번 실행한다.
+NetBackup은 Host 상세의 백업 연동 UI를 사용하며, 비상용 수동 실행에는 `netbackup-host-config.py --host-only`를 사용한다.
+Veeam은 각 KVM Host에서 Python 구성 도구를 실행한다.
 Veeam의 기존 환경 생성·설치·설정용 셸 스크립트는 `veeam-host-config.py`로 통합했다.
 실제 백업 시 호출되는 Pre/Post Hook과 복원 감시 스크립트는 별도 런타임 파일로 유지한다.
 
-| 공통 옵션 | 의미와 기본 동작 |
+| 옵션 | 적용 대상과 기본 동작 |
 | --- | --- |
-| `--admin-apikey`, `--admin-secretkey` | Mold Admin API 인증정보. Veeam은 `--api-key`, `--api-secret` 별칭도 지원 |
-| `--mold-url URL` | Mold API 주소. NetBackup 필수, Veeam 생략 시 Agent의 `agent.properties`에서 조회 |
-| `--vm-schedule-backup true\|false` | 해당 솔루션의 Mold 글로벌 스케줄 모드 갱신. 생략 시 현재 Mold 값 유지(최초 NetBackup `true`, Veeam `false`), Host conf에 모드 저장하지 않음 |
-| `--vm-include LIST`, `--vm-exclude LIST` | `false`일 때 대상/제외 필터. 기본 `*`/빈 값. 터미널에서 생략 시 입력받음 |
-| `--incremental-backup true\|false` | 최초 구성할 Full/증분 정책. 기본 `true`. 두 도구 모두 해당 Cluster 값만 명시적으로 저장하며 Global 유지 |
-| `--backup-chain-size N` | 증분일 때만 지정. 생략하면 기존 `kvm.backup.chain.size` 유지, 제품 기본값 `8` |
+| `--credentials-file FILE` | NetBackup 비상용 접속 정보 JSON. root 소유·권한 `600`인 일반 파일. 키와 예시는 [비상용 수동 실행](#비상용-수동-실행) 참고 |
+| `--host-only` | NetBackup의 현재 Global·Zone·Cluster 설정을 유지하고 UI와 같은 Host 구성 작업 실행 |
+| `--check-only` | NetBackup `--host-only`와 함께 사용. 구성 적용 없이 사전 점검만 수행하며 최종 상태는 `CHECKED` |
+| `--admin-apikey`, `--admin-secretkey` | Mold Admin API 인증정보. NetBackup은 위 JSON 파일로 전달할 수 있음. Veeam은 `--api-key`, `--api-secret` 별칭도 지원 |
+| `--mold-url URL` | Mold API 주소. NetBackup은 옵션 또는 자격증명 파일로 전달. Veeam은 생략 시 Agent의 `agent.properties`에서 조회 |
+| `--vm-schedule-backup true\|false` | 기존 설정 변경 CLI용. 해당 솔루션의 Global 모드 갱신, 생략 시 현재 값 유지(제품 기본값 NetBackup `true`, Veeam `false`). NetBackup `--host-only`에서는 모드를 Mold에서 먼저 설정 |
+| `--vm-include LIST`, `--vm-exclude LIST` | Veeam `false` 모드 전용 대상/제외 필터. 기본 `*`/빈 값. NetBackup에서는 지원하지 않음 |
+| `--incremental-backup true\|false` | 기존 설정 변경 CLI용. 대상 Cluster 값만 명시적으로 저장하며 Global 유지. NetBackup `--host-only`는 현재 유효값 사용 |
+| `--backup-chain-size N` | 기존 설정 변경 CLI에서 증분 사용 시 체인 길이 설정. 생략하면 기존 값 유지, 제품 기본값 `8`. NetBackup `--host-only`는 현재 값 사용 |
 
-`--vm-schedule-backup true`는 필터를 묻지 않고 기존 필터를 보존한다(최초 `VM_INCLUDE=*`, `VM_EXCLUDE=`).
-Mold에서 오퍼링을 연결하고 VM별 스케줄을 설정한다. 스케줄 조회 실패 시 백업을 중단하며 호스트 필터로 대체하지 않는다.
-`false`는 호스트 필터를 사용하고, 다른 공급자 오퍼링이 연결된 VM은 제외한다.
-호환되는 오퍼링이 없는 대상 VM에는 해당 공급자 오퍼링을 자동 할당한 뒤 백업한다.
+NetBackup은 두 모드 모두 일치하는 오퍼링을 VM에 직접 할당한다.
+`true`이면 VM별 Mold 스케줄을 추가하고, `false`이면 정책 실행 시 해당 Host의 적격 VM을 일괄 백업한다.
+Veeam `true`도 오퍼링·VM별 스케줄을 사용하며, 필터를 묻지 않고 기존 필터를 보존한다.
+Veeam `false`는 호스트 필터를 사용하고 다른 연동의 오퍼링이 연결된 VM은 제외한다.
+Veeam 필터 대상에 오퍼링이 없으면 호환되는 기본 Veeam 오퍼링을 자동 할당한 뒤 백업한다.
+두 솔루션 모두 스케줄 모드의 조회 실패를 다른 선택 방식으로 대체하지 않는다.
 Full/증분 정책과 VM 선택 방식은 별개이다.
 
 | 항목 | NetBackup `netbackup-host-config.py` | Veeam `veeam-host-config.py` |
 | --- | --- | --- |
 | 외부 정책/Job 이름 | `--policy-name` 필수. NetBackup UI의 실제 기준 정책 이름이며 Host명과 독립 | `--job-name`, 기본 현재 호스트 이름. Veeam UI의 실제 기준 Job 이름이며 Host명과 독립 |
 | 솔루션 서버 인증 | `--netbackup-url`, `--netbackup-apikey` | `--veeam-host`, `--veeam-password`, `--veeam-user`(기본 `administrator`) |
-| Host 자동 식별 | 현재 호스트 이름으로 정확히 조회. 필요할 때만 `--kvm-hostname` 또는 `--kvm-ip` 지정 | 동일. 외부 정책/Job 이름을 Host 조회 키로 사용하지 않음 |
+| Host 자동 식별 | 정책의 단일 Client DNS/IP와 로컬 인터페이스가 일치하고, 같은 IP의 Mold KVM Host가 정확히 하나인지 검증. `--kvm-hostname`·`--kvm-ip`는 지정 시 추가 일치 검증 | 현재 호스트 이름으로 조회. 필요할 때 `--kvm-hostname` 또는 `--kvm-ip` 지정. Job 이름을 Host 조회 키로 사용하지 않음 |
 | Zone | 조회한 Host의 Zone | 조회한 Host의 Zone, `--zone-id` 지정 시 일치 검증 |
 | 복원 감시 접속 | NetBackup API | KVM → VBR SSH. `--veeam-ssh-user` 기본 Veeam 사용자, `--veeam-ssh-key` 선택 |
 | 서버에 Hook 전송 | 해당 없음 | `--veeam-script-dir` 지정 시 VBR 디렉터리를 생성하고 Pre/Post 래퍼만 전송·검증. 생략 시 수동 복사 |
@@ -2594,11 +2645,12 @@ NetBackup·Veeam은 실행 시 VM의 ROOT 볼륨에서 확인한 Cluster의 `kvm
 Cluster별 값이 있으면 전역값보다 우선하며, Cluster별 값이 없으면 전역값을 사용한다.
 따라서 전역값만 `false`로 바꾸더라도 Cluster에 `true`가 지정되어 있으면 증분이 계속 활성화된다.
 운영 중 증분을 끄려면 대상 Cluster의 유효값도 `false`인지 확인한다.
-현재 이 설정은 비동적으로 선언되어 있으므로, 특히 전역값 변경은 Mold 관리 서버 재기동 절차를 따른다.
+이 설정은 동적 변경을 지원하지 않으므로 Global·Cluster 변경 후 Mold 관리 서버 재기동 절차를 따른다.
 변경값이 반영된 이후 새 백업은 독립 Full로 생성하며, 기존 Full·증분 백업은 기존 보관 정책에 따라 유지한다.
 이미 시작된 백업의 처리 방식을 중간에 바꾸는 용도로 사용하지 않는다.
-사전 구성 도구를 다시 실행하면 지정한 `--incremental-backup` 값으로 Mold 설정을 다시 갱신하므로,
-운영 중 변경한 값을 유지하려면 같은 값을 명시한다. 이 옵션의 기본값은 `true`다.
+NetBackup UI·`--host-only`는 현재 증분 유효값을 유지한다.
+기존 설정 변경 CLI를 다시 실행하면 지정한 `--incremental-backup` 값으로 해당 Cluster 설정을 갱신하므로,
+운영 중 변경한 값을 유지하려면 같은 값을 명시한다. 기존 CLI의 옵션 기본값은 `true`다.
 
 Mold가 이전 성공 백업과 설정을 확인하여 Full 또는 증분을 선택한다.
 증분 기능을 켰다고 모든 요청이 증분이 되는 것은 아니며,
@@ -2622,8 +2674,8 @@ Mold의 백업 유형과 외부 작업의 유형을 각각 확인한다.
 
 | Mold VM 백업 유형 | 스테이징에 생성하는 데이터 | Commvault 요청 | NetBackup 요청 |
 | --- | --- | --- | --- |
-| `FULL` | 볼륨 전체 데이터 | `backupLevel=FULL`, `runIncrementalBackup=false`, `forceFullBackup=true` | `Full Backup` 스케줄로 실행 |
-| `INCREMENTAL` | RBD 변경분 또는 QCOW2 변경 블록으로 만든 증분 파일 | `backupLevel=FULL`, `runIncrementalBackup=false`, `forceFullBackup=true` | `Full Backup` 스케줄로 실행 |
+| `FULL` | 볼륨 전체 데이터 | `backupLevel=FULL`, `runIncrementalBackup=false`, `forceFullBackup=true` | `mold-transfer` / `User Backup`으로 이번 파일 전체 저장 |
+| `INCREMENTAL` | RBD 변경분 또는 QCOW2 변경 블록으로 만든 증분 파일 | `backupLevel=FULL`, `runIncrementalBackup=false`, `forceFullBackup=true` | `mold-transfer` / `User Backup`으로 이번 증분 파일 전체 저장 |
 
 Mold가 부모 백업 관계와 복원 체인을 관리하고, 외부 솔루션은 이번에 생성된 파일 전체를 보관한다.
 현재 방식의 비동기 작업은 관리 서버 재시작 후에도 저장된 볼륨 계획과 외부 Job 참조로 이어서 처리한다.
@@ -3124,7 +3176,8 @@ Hook의 요청 응답·초기 준비 확인 제한은 요청과 bootstrap 준비
 
 ##### Host·NetBackup 서버의 외부 제한 함께 확인
 
-Mold의 Global 값을 변경해도 Host의 NetBackup `bp.conf`와 Primary·Media 서버의 제한이 함께 변경되지는 않는다.
+`backup.plugin.netbackup.hook.timeout`을 변경하면 관리 대상 KVM Client의 세 notify/read 값은 아래 동기화 절차로 갱신한다.
+NetBackup Primary·Media 서버의 제한은 자동 변경하지 않으므로 별도로 확인한다.
 Linux Client의 파일은 `/usr/openv/netbackup/bp.conf`이며 `nb.conf`와 구분한다.
 호스트 구성 적용 시 Client의 세 notify/read 값을 Global `backup.plugin.netbackup.hook.timeout`
 (기본 `86400`초), 두 connect 값을 각각 `1800`초로 설정하지만,
@@ -3384,6 +3437,7 @@ RBD export/export-diff의 실시간 대역폭 조정은 제공하지 않으며, 
 | `PREPARING` 또는 `START_CONFIRMATION`에서 멈춤 | **백업 체인 보존 상태**, 상세 오류, 부모 백업 UUID | `NETBACKUP_RETENTION_UNCONFIRMED`라면 NetBackup에서 해당 이미지의 존재 여부·만료일을 확인한다. 인증 오류나 승인 대기라면 먼저 해당 원인을 해소한다. | 필요한 체인의 보존이 확인되어 준비 단계에서 다음 단계로 진행한다. 만료·누락된 체인을 이어갈 수 없는 경우에는 기존 작업의 종료·정리 확인 후 독립 Full 백업으로 새 체인을 시작한다. |
 | 호스트는 `FAILED`인데 Mold는 `BackingUp` | 스테이징 관리의 호스트 상태와 Mold 상태, 관리서버 로그 | **작업 상태 다시 확인**을 실행한다. 계속 다르면 상태 반영 장애로 판단하고 로그와 적용 버전을 확인한다. | Mold에 실제 실패·취소 결과가 반영되고, 필요한 정리와 예약 해제 후 후속 백업이 진행된다. |
 | NetBackup Job은 완료됐는데 Mold가 끝나지 않음 | 볼륨별 Job, 메타데이터 전송, 호스트 최종 처리·정리 상태 | 모든 전송과 호스트 처리가 끝났는지 확인한 뒤 재조회한다. 외부 Job 완료만으로 Mold 백업 전체가 완료된 것은 아니다. | Mold가 `BackedUp`으로 바뀌고 최종 처리·필수 정리와 예약 해제가 완료된다. |
+| 데이터 생성 후 전송이 시작되지 않고 관리 서버에 `NoSuchMethodError`가 반복됨 | 관리 서버의 API·Core·Server·플러그인 클래스 버전과 로그의 누락 메서드 | 같은 소스로 빌드한 관리 서버 패키지를 일관되게 적용하고 재시작한다. 예: `ThirdPartyBackupManifest.getGuestQuiesce()` 누락. 기존 백업·파일·예약을 보존하고 같은 작업의 재조정을 확인한다. | 누락 메서드 오류가 사라지고 기존 백업 UUID의 전송·최종화·정리가 진행된다. |
 | NetBackup의 메타데이터 복원은 성공했는데 Mold 복원이 시작되지 않음 | 수신 호스트의 복원 감시 timer, `/var/log/netbackup-mold-restore-watcher.log`, `/var/log/netbackup-mold-restore.log`, 해당 Job의 `file-lists` 응답과 Mold API 오류 | 실제 선택은 `data.attributes.fileList`에서 확인한다. API 링크를 파일로 오인한 `UNKNOWN_FILES`라면 호스트 감시 프로그램을 갱신한다. `validation`·`proof`의 255자 제한 오류는 관리서버 API 수정본을 적용한다. 보류된 Job은 다음 감시 주기에 재검증되므로 중복 복원 요청 전에 접수 기록을 확인한다. 실제 파일 선택이 잘못된 경우에는 올바른 메타데이터를 새 복원 Job으로 요청한다. | 감시 로그에 Mold 복원 접수가 기록되고, Mold의 `RESTORE` 작업이 실행된다. 최종적으로 VM 복원 결과 `COMMITTED`, 필수 정리 완료와 예약 `RELEASED`를 확인한다. |
 | 보관기간이 지났는데 백업이 목록에 남음 | NetBackup 이미지 만료일, 이미지 정리 주기·대기 시간, Mold 카탈로그 상태 | 실제 이미지 정리와 Mold 동기화를 기다린다. 후속 증분 백업이 사용하는 체인인지도 확인한다. | 후속 작업에 필요한 체인은 유지된다. 더 이상 필요하지 않은 백업은 외부 이미지 정리 후 Mold에 만료 상태가 반영되고 정리 조건을 충족하면 목록에서 제거된다. |
 | 용량 부족·마운트 오류로 대기 | 스테이징 저장소와 기본 스토리지의 여유 공간, 작업 호스트의 NFS 마운트 | 용량·마운트 문제를 해소하고 작업 상태를 다시 확인한다. | 용량·마운트 오류가 해소되고 실행 조건을 충족한 작업이 대기에서 실행 단계로 넘어간다. |
@@ -3407,6 +3461,27 @@ NetBackup Job이 아직 생성되지 않은 준비 단계라면 Job ID는 미생
 백업 종료 사유와 스테이징 정리 상태, 예약 `RELEASED` 여부를 함께 확인한다.
 
 ## NetBackup 실패 시나리오 검증 기록
+
+### 2026-11-23 접수 대기와 관리 서버 갱신 후 복구 검증
+
+Host 1의 20 GiB QCOW2 시험 VM `poc-nb-h1-ubuntu-small`에서 확인했다.
+시험용 잠금·예약만 사용했으며, 아래 접수 시험의 통과와 데이터 백업 전체의 완료는 따로 판정했다.
+
+| 시험 | 확인 결과 |
+| --- | --- |
+| 호출자 준비 기한 만료·0·음수 | 요청 실패, 새 백업 미생성, 기존 예약 시각 유지 |
+| 이전 정리 잠금이 유지된 상태에서 호출자 기한 초과 | 약 15.6초 뒤 `BACKUP_PREPARATION_TIMEOUT`. 새 백업 미생성·예약 시각 유지 |
+| 정리 잠금 대기 중 VM 볼륨·스냅샷 잠금 | 두 잠금의 미점유를 확인. 대기를 위해 해당 잠금을 계속 잡고 있지 않음 |
+| 정리 잠금 해제와 같은 예약의 중복 요청 | 백업 1건만 생성. 성공 응답의 UUID가 실제 생성한 백업과 일치하고 예약은 접수 후 한 번 갱신 |
+| 데이터 생성 뒤 전송 정체 | 관리 서버의 새 Server 코드와 구형 공통 API 클래스 불일치로 `getGuestQuiesce()`의 `NoSuchMethodError` 재현. 전송·정리 통과로 판정하지 않고 원인 확인 |
+| 관리 서버 클래스 갱신·실제 재시작 후 기존 작업 복구 | 같은 백업 UUID로 볼륨·메타데이터 전송 성공. Mold `BackedUp`, 정리·Host 작업 기록 정리 `COMPLETED`, 예약 `RELEASED` 확인 |
+| 실제 잔여 파일 확인 | 해당 백업의 스테이징 디렉터리, Host 작업 디렉터리·properties, 시작 JSON과 용량 예약 JSON이 제거되고 공통 종료 색인이 남아 있음 |
+| 마지막 스케줄 보존 수정의 실제 재시작 검증 | 수정본 빌드·반영 후 검증 대기. 위 기존 작업 복구와 구분하며 아직 통과로 판정하지 않음 |
+
+복구한 백업은 `f48000d1-88d6-4782-9f27-a79e4080bd9c`이며, 실제 백업 크기는 `3,159,687,168`바이트다.
+NetBackup 볼륨 Job `9158`과 메타데이터 Job `9160`이 모두 `DONE / status 0`으로 끝났다.
+종료 후 진행 중인 해당 정책 Job이 없음을 확인하고 시험용 정책 활성화를 원래 비활성 상태로 돌렸다.
+이 결과는 소형 QCOW2 백업 한 건의 복구·정리 검증이며, 대용량·주말 반복이나 RBD 복원 검증으로 확대하지 않는다.
 
 ### 2026-11-20 야간 반복 결과
 
@@ -4725,8 +4800,9 @@ python3 /usr/share/cloudstack-common/scripts/vm/hypervisor/kvm/veeam-host-config
 
 `--kvm-hostname`·`--kvm-ip`는 자동 조회가 맞지 않을 때만 지정한다.
 오퍼링은 기본 이름 `VeeamBackup`으로 자동 생성·재사용하고 신규 오퍼링 이름을 지정할 때만 `--offering-name`을 사용한다.
-NetBackup과 Veeam은 각각 `ablestack-netbackup`, `ablestack-veeam`을
-`backup.framework.provider.plugin`의 Global 및 대상 Zone 값에 추가하며 기존 다른 공급자는 보존한다.
+Veeam 구성 CLI는 `ablestack-veeam`을 `backup.framework.provider.plugin`의 Global 및 대상 Zone 목록에
+필요한 경우 추가하며 기존 연동은 보존한다. NetBackup UI·`--host-only`는 이 목록을 변경하지 않으므로
+Mold의 현재 유효 목록에 `ablestack-netbackup`을 먼저 포함한다.
 증분 체인은 `kvm.backup.chain.size`를 사용하고 제품 기본값은 8이다.
 체인 값을 생략하면 기존 Mold 설정을 보존한다. 실행 시 증분 여부와 체인 길이는 Mold 설정을 따른다.
 
