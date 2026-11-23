@@ -63,7 +63,7 @@ export default {
     component: shallowRef(defineAsyncComponent(() => import('@/components/view/DetailsTab.vue')))
   }, {
     name: 'settings',
-    component: shallowRef(defineAsyncComponent(() => import('@/views/setting/InfrastructureSettingsTab.vue')))
+    component: shallowRef(defineAsyncComponent(() => import('@/views/setting/ScopedSettingsTab.vue')))
   }, {
     name: 'browser',
     resourceType: 'ImageStore',

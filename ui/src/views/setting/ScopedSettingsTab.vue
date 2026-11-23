@@ -16,13 +16,24 @@
 // under the License.
 
 <template>
-  <section class="infrastructure-settings">
+  <section class="scoped-settings">
     <resource-table-toolbar
       v-model:search="search"
       searchable
       :loading="loading"
       @refresh="refresh" />
     <a-alert v-if="loadFailed" type="error" show-icon :message="$t('message.error.loading.setting')" />
+    <a-alert
+      v-if="scope.id && scope.type === 'account'"
+      type="info"
+      show-icon
+      :message="$t('message.account.settings.scope', { account: resource.name, domain: resource.domainpath || resource.domain || resource.domainid })" />
+    <a-alert
+      v-if="scope.id && scope.type === 'domain'"
+      type="info"
+      show-icon
+      :message="$t('message.domain.settings.scope', { path: resource.path || resource.name })"
+      :description="$t('message.domain.settings.inheritance')" />
     <configuration-hierarchy
       :config="pageRows"
       :korean-catalog="koreanCatalog"
@@ -102,11 +113,12 @@ import { formatConfigurationValue, isSensitiveConfiguration } from './configurat
 import { configurationScopeParams } from './configurationScope'
 
 export default {
-  name: 'InfrastructureSettingsTab',
+  name: 'ScopedSettingsTab',
   components: { ConfigurationHierarchy, ConfigurationValue, DownOutlined, MoldDialog, ResourceTableToolbar },
   props: { resource: { type: Object, required: true } },
   data () {
     return {
+      scopeType: this.$route.meta.name,
       items: [],
       koreanCatalog: null,
       search: '',
@@ -121,7 +133,12 @@ export default {
   computed: {
     scope () {
       const { id } = this.resource
-      return { type: this.$route.meta.name, id: id === this.$route.params?.id ? id : null }
+      const type = this.scopeType
+      if (type !== this.$route.meta.name) return { type, id: null }
+      const routeId = this.$route.params?.id
+      // On the domain tree, the selected record identifies the scope.
+      const isDomainTree = type === 'domain' && !routeId
+      return { type, id: id && (id === routeId || isDomainTree) ? id : null }
     },
     canUpdate () {
       return 'updateConfiguration' in this.$store.getters.apis
@@ -158,7 +175,8 @@ export default {
   watch: {
     scope: {
       immediate: true,
-      handler () {
+      handler (scope, previousScope) {
+        if (scope.type === previousScope?.type && scope.id === previousScope?.id) return
         this.items = []
         this.search = ''
         this.page = 1
@@ -224,8 +242,8 @@ export default {
 </script>
 
 <style scoped>
-.infrastructure-settings { min-width: 0; }
-.infrastructure-settings > .ant-alert { margin-bottom: 12px; }
-.infrastructure-settings :deep(.ant-table-thead > tr > th.ant-table-cell) { background: var(--ui-bg-elevated); }
+.scoped-settings { min-width: 0; }
+.scoped-settings > .ant-alert { margin-bottom: 12px; }
+.scoped-settings :deep(.ant-table-thead > tr > th.ant-table-cell) { background: var(--ui-bg-elevated); }
 .configuration-description { margin: 12px 0; color: var(--ui-text-secondary); overflow-wrap: anywhere; }
 </style>

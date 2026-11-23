@@ -58,7 +58,7 @@ export default {
     component: shallowRef(defineAsyncComponent(() => import('@/views/infra/Resources.vue')))
   }, {
     name: 'settings',
-    component: shallowRef(defineAsyncComponent(() => import('@/views/setting/InfrastructureSettingsTab.vue')))
+    component: shallowRef(defineAsyncComponent(() => import('@/views/setting/ScopedSettingsTab.vue')))
   }, {
     name: 'drs',
     component: shallowRef(defineAsyncComponent(() => import('@/views/infra/ClusterDRSTab.vue'))),
