@@ -15,7 +15,7 @@
 // specific language governing permissions and limitations
 // under the License.
 
-import { ldapDomainPaths, ldapListQuery, ldapReadParams, ldapSearchQuery } from '@/utils/ldapConfiguration'
+import { ldapDomainPaths, ldapListQuery, ldapReadParams, ldapRemovedListQuery, ldapSearchQuery } from '@/utils/ldapConfiguration'
 
 describe('LDAP configuration list query', () => {
   const paging = { page: 1, pagesize: 20 }
@@ -39,6 +39,13 @@ describe('LDAP configuration list query', () => {
       .toEqual({ domainid: 'domain', port: '389', page: '1', pagesize: '50', keyword: 'ldap.' })
     expect(ldapSearchQuery({ scope: 'global', keyword: 'key' }, { domainid: 'domain' }))
       .toEqual({ domainid: 'domain', keyword: 'key', page: '1' })
+  })
+
+  it('keeps list filters after deletion and clears only the vanished exact lookup', () => {
+    expect(ldapRemovedListQuery({ domainid: 'domain', port: '389', page: '2' }, 'removed'))
+      .toEqual({ domainid: 'domain', port: '389', page: '2' })
+    expect(ldapRemovedListQuery({ id: 'removed' }, 'removed')).toEqual({})
+    expect(ldapRemovedListQuery({ id: 'other' }, 'removed')).toEqual({ id: 'other' })
   })
 
   it('resolves unique domain IDs and preserves the UUID on a failed lookup', async () => {

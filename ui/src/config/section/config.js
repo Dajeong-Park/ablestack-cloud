@@ -57,20 +57,11 @@ export default {
           api: 'deleteLdapConfiguration',
           icon: 'delete-outlined',
           label: 'label.remove.ldap',
-          message: 'message.remove.ldap',
           dataView: true,
-          args: ['hostname', 'port', 'domainid'],
-          mapping: {
-            hostname: {
-              value: (record) => { return record.hostname }
-            },
-            port: {
-              value: (record) => { return record.port }
-            },
-            domainid: {
-              value: (record) => { return record.domainid }
-            }
-          }
+          popup: true,
+          standardDialogSize: 'sm',
+          standardDialogInitialFocus: '#ldap-delete-cancel',
+          component: shallowRef(defineAsyncComponent(() => import('@/views/setting/DeleteLdapConfiguration.vue')))
         }
       ]
     },

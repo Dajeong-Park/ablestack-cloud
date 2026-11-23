@@ -36,6 +36,16 @@ export function ldapListQuery (raw = {}) {
   return query
 }
 
+export function ldapRemovedListQuery (raw, removedId) {
+  const query = ldapListQuery(raw)
+  if (query.id === removedId) delete query.id
+  return query
+}
+
+export function ldapEndpointLabel (resource) {
+  return resource.hostname && resource.port ? resource.hostname + ':' + resource.port : resource.hostname || resource.id
+}
+
 export function ldapSearchQuery (raw, selection) {
   const current = ldapListQuery(raw)
   if (Object.prototype.hasOwnProperty.call(selection, 'searchQuery')) {
