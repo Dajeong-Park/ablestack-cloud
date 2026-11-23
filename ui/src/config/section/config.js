@@ -122,9 +122,12 @@ export default {
           api: 'deleteOauthProvider',
           icon: 'delete-outlined',
           label: 'label.action.delete.oauth.provider',
-          message: 'message.action.delete.guest.os',
           dataView: true,
-          popup: true
+          popup: true,
+          oauthRemoval: true,
+          standardDialogSize: 'sm',
+          standardDialogInitialFocus: '#oauth-delete-cancel',
+          component: shallowRef(defineAsyncComponent(() => import('@/views/setting/DeleteOAuthProvider.vue')))
         }
       ]
     },

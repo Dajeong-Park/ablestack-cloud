@@ -3541,6 +3541,8 @@ export default {
       return this.fetchData({ irefresh: true })
     },
     closeAction (result) {
+      const oauthRemoved = result?.oauthRemoved
+      if (oauthRemoved && (this.currentAction.oauthTarget?.id !== oauthRemoved || !this.currentAction.oauthCurrent?.())) return
       const ldapRemoved = result?.ldapRemoved
       if (ldapRemoved && (this.currentAction.ldapTarget?.id !== ldapRemoved || !this.currentAction.ldapCurrent?.())) return
       const refreshAccountList = this.currentAction?.accountTargets && result?.refreshAccountList && this.$route.meta?.name === 'account'
@@ -3637,6 +3639,21 @@ export default {
       this.showAction = false
       this.currentAction = {}
       this.actionConfirmText = ''
+      if (oauthRemoved) {
+        const location = oauthListLocation(this.$route)
+        if (location.query.id === oauthRemoved) delete location.query.id
+        this.listRequestVersion++
+        this.listRequestPending = false
+        this.listLoadedScope = null
+        this.resource = {}
+        this.items = []
+        this.itemCount = 0
+        this.resetSelection()
+        return this.$router.replace(location).then(() => this.$nextTick(() => {
+          const scope = this.$el?.querySelector('#oauth-scope-filter')
+          if (scope) scope.focus({ preventScroll: true })
+        }))
+      }
       if (ldapRemoved) {
         const query = ldapRemovedListQuery(this.$route.query, ldapRemoved)
         this.listRequestVersion++
@@ -4225,7 +4242,7 @@ export default {
         this.rejectActionSchema(action.api, missingArgs)
         return
       }
-      if (action.oauthForm) {
+      if (action.oauthForm || action.oauthRemoval) {
         const target = action.dataView ? action.resource : {}
         const scope = this.listScope()
         const generation = this.storageActionGeneration
