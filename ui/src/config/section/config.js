@@ -39,37 +39,29 @@ export default {
       icon: 'team-outlined',
       docHelp: 'adminguide/accounts.html#using-an-ldap-server-for-user-authentication',
       permission: ['listLdapConfigurations'],
-      searchFilters: ['domainid', 'hostname', 'port'],
-      columns: ['hostname', 'port', 'domainid'],
-      details: ['id', 'hostname', 'port', 'domainid'],
+      searchFilters: ['domainid', 'hostname', 'port', 'id'],
+      columns: ['hostname', 'port', 'domainpath'],
+      details: ['id', 'domainpath'],
       actions: [
         {
           api: 'addLdapConfiguration',
           icon: 'plus-outlined',
-          label: 'label.configure.ldap',
+          label: 'label.ldap.add.server',
           listView: true,
-          args: [
-            'hostname', 'port', 'domainid'
-          ]
+          popup: true,
+          standardDialogSize: 'md',
+          standardDialogInitialFocus: '#ldap-server-hostname',
+          component: shallowRef(defineAsyncComponent(() => import('@/views/setting/AddLdapConfiguration.vue')))
         },
         {
           api: 'deleteLdapConfiguration',
           icon: 'delete-outlined',
           label: 'label.remove.ldap',
-          message: 'message.remove.ldap',
           dataView: true,
-          args: ['hostname', 'port', 'domainid'],
-          mapping: {
-            hostname: {
-              value: (record) => { return record.hostname }
-            },
-            port: {
-              value: (record) => { return record.port }
-            },
-            domainid: {
-              value: (record) => { return record.domainid }
-            }
-          }
+          popup: true,
+          standardDialogSize: 'sm',
+          standardDialogInitialFocus: '#ldap-delete-cancel',
+          component: shallowRef(defineAsyncComponent(() => import('@/views/setting/DeleteLdapConfiguration.vue')))
         }
       ]
     },

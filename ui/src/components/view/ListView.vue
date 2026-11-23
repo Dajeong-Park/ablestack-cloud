@@ -20,10 +20,9 @@
     <a-table
       size="middle"
       :loading="loading"
-      :locale="emptyText ? { emptyText } : undefined"
       :columns="displayColumns"
       :dataSource="items"
-      :tableLayout="isIsoMainList || scrollRegionLabel ? 'fixed' : undefined"
+      :tableLayout="isIsoMainList || $route.meta?.name === 'ldapsetting' || scrollRegionLabel ? 'fixed' : undefined"
       :scroll="kmsTableScroll || tableScroll || kubernetesIsoTableScroll || isoTableScroll || templateTableScroll || ($route.name === 'snapshot' ? { x: 1400 } : ['autoscalevmgroup', 'affinitygroup'].includes($route.name) ? { x: 980 } : undefined)"
       :rowKey="listRowKey"
       :pagination="false"
@@ -34,6 +33,9 @@
       @resizeColumn="handleResizeColumn"
       :style="{ 'overflow-y': this.$route.name === 'usage' ? 'hidden' : 'auto' }"
     >
+    <template v-if="emptyText" #emptyText>
+      <Empty :description="emptyText" :image="emptyTableImage" />
+    </template>
     <template #customFilterDropdown>
       <div
         style="padding: 8px"
@@ -812,8 +814,13 @@
         <router-link :to="{ path: '/ipv4subnets/' + record.id, query: ipv4SubnetListQuery($route.query) }">{{ text }}</router-link>
       </template>
       <template v-if="column.key === 'hostname'">
+        <TableOverflowText
+          v-if="$route.meta?.name === 'ldapsetting' && record.id"
+          :text="text"
+          :location="{ path: '/ldapsetting/' + record.id, query: ldapListQuery($route.query) }"
+        />
         <router-link
-          v-if="record.hostid"
+          v-else-if="record.hostid"
           :to="{ path: '/host/' + record.hostid }"
         >{{ text }}</router-link>
         <router-link
@@ -936,8 +943,13 @@
         <span v-else>{{ text }}</span>
       </template>
       <template v-if="column.key === 'domainpath'">
+        <TableOverflowText
+          v-if="$route.meta?.name === 'ldapsetting'"
+          :text="text"
+          :location="record.domainid && 'listDomains' in $store.getters.apis ? { path: '/domain/' + record.domainid, query: { tab: 'details' } } : null"
+        />
         <router-link
-          v-if="record.domainid && !record.domainid.includes(',') && $router.resolve('/domain/' + record.domainid).matched[0].redirect !== '/exception/404'"
+          v-else-if="record.domainid && !record.domainid.includes(',') && $router.resolve('/domain/' + record.domainid).matched[0].redirect !== '/exception/404'"
           :to="{ path: '/domain/' + record.domainid, query: { tab: 'details' } }"
         >{{ text }}</router-link>
         <span v-else>{{ text }}</span>
@@ -1329,6 +1341,7 @@ import { zoneFeatureLabel, zoneFeatureState, zoneListQuery, zoneMetricText } fro
 import { clusterListQuery, clusterStateLabel } from '@/utils/clusterSearch'
 import { hostListQuery } from '@/utils/hostSearch'
 import { dnsZoneListQuery } from '@/utils/dnsZone'
+import { ldapListQuery } from '@/utils/ldapConfiguration'
 import { ipv4SubnetListQuery } from '@/utils/ipv4Subnet'
 import AclScopeValue from '@/components/view/AclScopeValue'
 import { projectDetailLocation } from '@/utils/projectSearch'
@@ -1388,6 +1401,7 @@ import cronstrue from 'cronstrue/i18n'
 import moment from 'moment-timezone'
 import { timeZoneName } from '@/utils/timezone'
 import { FileTextOutlined } from '@ant-design/icons-vue'
+import { Empty } from 'ant-design-vue'
 import SharedFSCapacitySummary from '@/views/storage/SharedFSCapacitySummary.vue'
 import SharedFSBootRecoverySummary from '@/views/storage/SharedFSBootRecoverySummary.vue'
 
@@ -1401,6 +1415,7 @@ import { vnfDetailLocation } from '@/utils/vnfSearch'
 export default {
   name: 'ListView',
   components: {
+    Empty,
     Ipv4SubnetResourceLink,
     VpnUserValue,
     AclScopeValue,
@@ -1574,6 +1589,7 @@ export default {
     this.getUsageTypes()
   },
   computed: {
+    emptyTableImage () { return Empty.PRESENTED_IMAGE_SIMPLE },
     isProjectMainList () { return this.$route.meta?.name === 'project' && !this.$route.params?.id && !this.resourcePath },
     scrollRegionLabel () {
       if (this.isProjectMainList) return this.$t('label.projects')
@@ -1691,6 +1707,7 @@ export default {
     zoneFeatureLabel,
     zoneMetricText,
     dnsZoneListQuery,
+    ldapListQuery,
     ipv4SubnetListQuery,
     guestVlanNetworkLocation,
     guestVlanListQuery,

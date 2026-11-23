@@ -231,7 +231,9 @@ export default {
       const resolved = await Promise.all(cloned.map(async filter => {
         if (filter.key === 'tags') return { ...filter, isTag: true }
         try {
-          const value = await this.getSearchFilters(filter.key, filter.value)
+          const value = this.apiName === 'listLdapConfigurations' && filter.key === 'scope'
+            ? this.$t('label.ldap.scope.global')
+            : await this.getSearchFilters(filter.key, filter.value)
           return { ...filter, value: value !== undefined && value !== null && value !== '' ? value : filter.value }
         } catch (_) { return filter }
       }))
@@ -244,6 +246,11 @@ export default {
       return (text.length <= length) ? text : (text.substring(0, length - 3) + '...')
     },
     retrieveFieldLabel (fieldName) {
+      if (this.apiName === 'listLdapConfigurations') {
+        if (fieldName === 'id') return this.$t('label.ldap.configuration.uuid')
+        if (fieldName === 'domainid') return this.$t('label.domain')
+        if (fieldName === 'scope') return this.$t('label.scope')
+      }
       if (this.apiName === 'listBackups' && fieldName === 'virtualmachineid') return this.$t('label.virtualmachinename')
       if (this.apiName === 'listVpnUsers' && fieldName === 'username') return this.$t('label.vpn.user.search.exact')
       if (this.apiName === 'listVpnUsers' && fieldName === 'domainid') return this.$t('label.domain')
