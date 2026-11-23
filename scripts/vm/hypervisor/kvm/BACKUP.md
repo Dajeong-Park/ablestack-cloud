@@ -1107,10 +1107,10 @@ vi /root/netbackup-host-credentials.json
 
 ```json
 {
-  "moldurl": "http://192.168.1.30:8080/client/api",
+  "moldurl": "http://<Mold IP>:8080/client/api",
   "adminapikey": "<Mold 관리자 API key>",
   "adminsecretkey": "<Mold 관리자 secret key>",
-  "netbackupurl": "https://netbackup2:1556/netbackup",
+  "netbackupurl": "https://<NetBackup IP>:1556/netbackup",
   "netbackupapikey": "<NetBackup API key>"
 }
 ```
