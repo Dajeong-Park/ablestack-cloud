@@ -87,6 +87,8 @@ export default {
       label: 'label.add.secondary.storage',
       listView: true,
       popup: true,
+      standardDialogSize: 'md',
+      standardDialogInitialFocus: '#secondary-storage-name',
       component: shallowRef(defineAsyncComponent(() => import('@/views/infra/AddSecondaryStorage.vue')))
     },
     {
@@ -96,6 +98,8 @@ export default {
       showLabel: true,
       listView: true,
       popup: true,
+      standardDialogSize: 'md',
+      standardDialogInitialFocus: '#secondary-staging-refresh',
       component: shallowRef(defineAsyncComponent(() => import('@/views/infra/SecondaryStagingStores.vue')))
     },
     {
@@ -104,6 +108,8 @@ export default {
       label: 'label.migrate.data.from.image.store',
       listView: true,
       popup: true,
+      standardDialogSize: 'md',
+      standardDialogInitialFocus: '#secondary-migration-source',
       component: shallowRef(defineAsyncComponent(() => import('@/views/infra/MigrateData.vue')))
     },
     {
@@ -112,6 +118,8 @@ export default {
       label: 'label.edit',
       dataView: true,
       popup: true,
+      standardDialogSize: 'md',
+      standardDialogInitialFocus: '#secondary-storage-edit-name',
       component: shallowRef(defineAsyncComponent(() => import('@/views/infra/UpdateSecondaryStorage.vue')))
     },
     {

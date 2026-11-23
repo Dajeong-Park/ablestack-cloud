@@ -16,11 +16,11 @@
 // under the License.
 
 <template>
-  <a-form layout="vertical" :model="form" @finish="submit">
+  <a-form v-ctrl-enter="submit" layout="vertical" :model="form" @finish="submit">
     <a-form-item :label="$t('label.id')">
       <span>{{ resource.id }}</span>
     </a-form-item>
-    <a-form-item name="name" :label="$t('label.name')">
+    <a-form-item name="name" html-for="secondary-storage-edit-name" :label="$t('label.name')">
       <a-input id="secondary-storage-edit-name" v-model:value="form.name" :disabled="saving" />
     </a-form-item>
     <a-form-item v-if="supports('readonly')" name="readonly" :label="$t('label.readonly')">
@@ -35,18 +35,20 @@
       <template #extra>{{ $t('message.secondary.storage.capacity.hint') }}</template>
     </a-form-item>
     <a-alert v-if="invalidCapacity" type="error" show-icon :message="$t('message.secondary.storage.capacity.invalid')" />
-    <div class="action-button">
+    <mold-dialog-actions :busy="saving">
       <a-button :disabled="saving" @click="$emit('close-action')">{{ $t('label.cancel') }}</a-button>
-      <a-button html-type="submit" type="primary" :loading="saving" :disabled="invalidCapacity">{{ $t('label.ok') }}</a-button>
-    </div>
+      <a-button @click="submit" type="primary" :loading="saving" :disabled="invalidCapacity">{{ $t('label.ok') }}</a-button>
+    </mold-dialog-actions>
   </a-form>
 </template>
 
 <script>
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import { postAPI } from '@/api'
 
 export default {
   props: { resource: { type: Object, required: true } },
+  components: { MoldDialogActions },
   emits: ['close-action', 'refresh-data'],
   data () {
     return { form: { name: this.resource.name || '', readonly: String(this.resource.readonly) === 'true', capacitybytes: '' }, saving: false }
@@ -61,7 +63,8 @@ export default {
     supports (name) {
       return !!this.$store.getters.apis.updateImageStore?.params?.some(param => param.name === name)
     },
-    async submit () {
+    async submit (event) {
+      if (event?.preventDefault) event.preventDefault()
       if (this.saving || this.invalidCapacity || !this.resource.id || !this.$store.getters.apis.updateImageStore) return
       const params = { id: this.resource.id }
       if (this.form.name.trim()) params.name = this.form.name.trim()

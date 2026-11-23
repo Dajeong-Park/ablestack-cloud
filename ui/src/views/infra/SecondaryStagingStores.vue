@@ -18,7 +18,7 @@
 <template>
   <div class="staging-storage-dialog">
     <div class="staging-storage-toolbar">
-      <a-button :loading="loading" :disabled="!!deleting" @click="fetchStores">
+      <a-button id="secondary-staging-refresh" :loading="loading" :disabled="!!deleting" @click="fetchStores">
         <template #icon><reload-outlined /></template>
         {{ $t('label.refresh') }}
       </a-button>
@@ -51,16 +51,18 @@
         </a-popconfirm>
       </template>
     </a-table>
-    <div class="action-button">
+    <mold-dialog-actions :busy="!!deleting">
       <a-button :disabled="!!deleting" @click="$emit('close-action')">{{ $t('label.close') }}</a-button>
-    </div>
+    </mold-dialog-actions>
   </div>
 </template>
 
 <script>
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import { getAPI, postAPI } from '@/api'
 
 export default {
+  components: { MoldDialogActions },
   emits: ['close-action'],
   data () {
     return { rows: [], total: 0, page: 1, pageSize: 10, loading: false, failed: false, deleting: null }
@@ -117,6 +119,5 @@ export default {
 </script>
 
 <style scoped>
-.staging-storage-dialog { width: min(640px, calc(100vw - 72px)); }
 .staging-storage-toolbar { margin-bottom: 8px; }
 </style>

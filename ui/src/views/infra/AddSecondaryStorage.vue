@@ -32,8 +32,8 @@
         :rules="rules"
         layout="vertical"
         @finish="handleSubmit">
-        <a-form-item name="name" ref="name" :label="$t('label.name')">
-          <a-input v-model:value="form.name" v-focus="true" />
+        <a-form-item name="name" ref="name" html-for="secondary-storage-name" :label="$t('label.name')">
+          <a-input id="secondary-storage-name" v-model:value="form.name" />
         </a-form-item>
         <a-form-item name="provider" ref="provider" :label="$t('label.providername')">
           <a-select
@@ -180,16 +180,17 @@
           </a-form-item>
         </div>
       </a-form>
-      <div class="action-button">
+      <mold-dialog-actions :busy="loading">
         <a-button :disabled="loading" @click="closeModal">{{ $t('label.cancel') }}</a-button>
         <a-button type="primary" ref="submit" :loading="loading" @click="handleSubmit">
           {{ $t(pendingStaging ? 'label.retry' : 'label.ok') }}
         </a-button>
-      </div>
+      </mold-dialog-actions>
     </a-spin>
   </div>
 </template>
 <script>
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import { ref, reactive } from 'vue'
 import { getAPI, postAPI } from '@/api'
 import ResourceIcon from '@/components/view/ResourceIcon'
@@ -203,6 +204,7 @@ export default {
     }
   },
   components: {
+    MoldDialogActions,
     ResourceIcon
   },
   inject: ['parentFetchData'],
@@ -393,12 +395,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .form-layout {
-  width: 85vw;
-
   .ant-alert { margin-bottom: 12px; }
 
-  @media (min-width: 1000px) {
-    width: 35vw;
-  }
 }
 </style>

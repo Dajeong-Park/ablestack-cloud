@@ -1614,6 +1614,7 @@ export default {
     scrollRegionLabel () {
       if (this.$route.meta?.name === 'oauthsetting') return this.$t('label.oauth.configuration')
       if (this.isProjectMainList) return this.$t('label.projects')
+      if (this.$route.path === '/imagestore' && !this.resourcePath) return this.$t('label.secondary.storage')
       if (this.$route.meta?.name === 'guestvlans' && !this.$route.params?.id) return this.$t('label.guest.vlan')
       if (this.kmsTable) return this.$t(this.resourcePath === '/volume' ? 'label.volumes' : this.resourcePath === '/kmskey' ? 'label.kms.keys' : this.$route.meta.title)
       if (this.isKubernetesIsoMainList) return this.$t('label.kubernetes.isos')

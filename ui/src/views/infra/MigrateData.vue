@@ -49,22 +49,24 @@
           <a-select-option value="Balance">{{ $t('label.balance') }}</a-select-option>
         </a-select>
       </a-form-item>
-      <div class="action-button">
+      <mold-dialog-actions :busy="migrating">
         <a-button :disabled="migrating" @click="$emit('close-action')">{{ $t('label.cancel') }}</a-button>
-        <a-button type="primary" html-type="submit" :loading="migrating" :disabled="!canSubmit">
+        <a-button type="primary" @click="submit" :loading="migrating" :disabled="!canSubmit">
           {{ $t(migrationJobId ? 'label.retry' : 'label.ok') }}
         </a-button>
-      </div>
+      </mold-dialog-actions>
     </a-form>
   </div>
 </template>
 
 <script>
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import { isNfsImageStore, listMigrationStores, migrationDestinations, secondaryStorageMigrationJob } from '@/utils/secondaryStorageMigration'
 
 export default {
   name: 'MigrateData',
   mixins: [secondaryStorageMigrationJob],
+  components: { MoldDialogActions },
   emits: ['close-action', 'refresh-data'],
   data () {
     return {
@@ -120,8 +122,6 @@ export default {
 
 <style lang="scss" scoped>
 .form-layout {
-  width: 85vw;
   .ant-alert { margin-bottom: 12px; }
-  @media (min-width: 1000px) { width: 40vw; }
 }
 </style>
