@@ -2051,6 +2051,9 @@ export default {
     vmDisplayName,
     isVmIdentityRoute,
     actionFieldDescription (field) {
+      if (this.$route.meta?.name === 'oauthsetting' && this.currentAction.api === 'updateOauthProvider' && field.name === 'secretkey') {
+        return this.$t('message.oauth.secret.replace')
+      }
       if (this.aclStandardDialog && this.currentAction.api === 'createNetworkACLList' && field.name === 'vpcid') {
         return this.$t('label.acl.scope.pick')
       }
@@ -4831,7 +4834,8 @@ export default {
         var hasJobId = false
         const actionScope = this.listScope()
         this.actionLoading = true
-        const request = roleEditId ? postAPI(action.api, params, { preserveOnFailure: true }) : this.postSnapshotAwareAction(action, params)
+        const oauthCredentials = ['registerOauthProvider', 'updateOauthProvider'].includes(action.api)
+        const request = roleEditId || oauthCredentials ? postAPI(action.api, params, { preserveOnFailure: true }) : this.postSnapshotAwareAction(action, params)
         request.then(json => {
           if (roleEditId && (action !== this.currentAction || roleEditId !== this.resource.id)) return
           if (vmScope && (action !== this.currentAction || vmScope !== vmEditScope(this.resource, this.$route, this.$store))) return
@@ -4872,6 +4876,12 @@ export default {
             return
           }
 
+          if (oauthCredentials) {
+            if (action === this.currentAction && actionScope === this.listScope()) {
+              this.$notification.error({ message: this.$t('message.request.failed') })
+            }
+            return
+          }
           if (!isVmGroupAction(action.api)) console.log(error)
           if (projectScope && this.currentAction === action && projectScope === this.listScope()) {
             this.projectActionError = Object.values(error.response?.data || {}).find(value => value?.errortext)?.errortext || this.$t('message.request.failed')

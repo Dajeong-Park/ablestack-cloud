@@ -142,8 +142,7 @@ public class ListOAuthProviderConfigurationsCmd extends BaseListCmd {
 
     private OauthProviderResponse toResponse(OauthProviderVO row, Set<String> available) {
         final Domain domain = row.getDomainId() == null ? null : domainService.getDomain(row.getDomainId());
-        final OauthProviderResponse response = new OauthProviderResponse(row.getUuid(), row.getProvider(), row.getDescription(),
-                row.getClientId(), null, row.getRedirectUri(), row.getAuthorizeUrl(), row.getTokenUrl(), domain);
+        final OauthProviderResponse response = OauthProviderResponse.forManagement(row, domain);
         response.setEnabled(row.isEnabled() && available.contains(row.getProvider()) && OAuth2AuthManager.isPluginEnabledForDomain(row.getDomainId()));
         response.setObjectName(ApiConstants.OAUTH_PROVIDER);
         return response;

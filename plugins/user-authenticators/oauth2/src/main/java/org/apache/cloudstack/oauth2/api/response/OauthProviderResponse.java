@@ -51,8 +51,12 @@ public class OauthProviderResponse extends BaseResponse {
     private String clientId;
 
     @SerializedName(ApiConstants.OAUTH_SECRET_KEY)
-    @Param(description = "Secret key registered in the OAuth provider")
+    @Param(description = "Secret key registered in the OAuth provider", isSensitive = true)
     private String secretKey;
+
+    @SerializedName("secretkeyconfigured")
+    @Param(description = "Whether a client secret is configured")
+    private Boolean secretKeyConfigured;
 
     @SerializedName(ApiConstants.REDIRECT_URI)
     @Param(description = "Redirect URI registered in the OAuth provider")
@@ -97,6 +101,14 @@ public class OauthProviderResponse extends BaseResponse {
             this.domainName = domain.getName();
             this.domainPath = prettifyDomainPath(domain.getPath());
         }
+    }
+
+    public static OauthProviderResponse forManagement(OauthProviderVO provider, Domain domain) {
+        OauthProviderResponse response = new OauthProviderResponse(provider.getUuid(), provider.getProvider(),
+                provider.getDescription(), provider.getClientId(), null, provider.getRedirectUri(),
+                provider.getAuthorizeUrl(), provider.getTokenUrl(), domain);
+        response.secretKeyConfigured = provider.getSecretKey() != null && !provider.getSecretKey().isBlank();
+        return response;
     }
 
     private static String prettifyDomainPath(String path) {

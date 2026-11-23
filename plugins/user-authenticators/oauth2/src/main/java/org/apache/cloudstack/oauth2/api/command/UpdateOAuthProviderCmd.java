@@ -39,7 +39,7 @@ import com.cloud.api.ApiDBUtils;
 import com.cloud.domain.Domain;
 
 @APICommand(name = "updateOauthProvider", description = "Updates the registered OAuth provider details", responseObject = OauthProviderResponse.class,
-        requestHasSensitiveInfo = false, responseHasSensitiveInfo = false, since = "4.19.0")
+        requestHasSensitiveInfo = true, responseHasSensitiveInfo = false, since = "4.19.0")
 public final class UpdateOAuthProviderCmd extends BaseCmd {
 
 
@@ -149,9 +149,7 @@ public final class UpdateOAuthProviderCmd extends BaseCmd {
         OauthProviderVO result = _oauthMgr.updateOauthProvider(this);
         if (result != null) {
             Domain domain = result.getDomainId() != null ? ApiDBUtils.findDomainById(result.getDomainId()) : null;
-            OauthProviderResponse r = new OauthProviderResponse(result.getUuid(), result.getProvider(),
-                    result.getDescription(), result.getClientId(), result.getSecretKey(), result.getRedirectUri(),
-                    result.getAuthorizeUrl(), result.getTokenUrl(), domain);
+            OauthProviderResponse r = OauthProviderResponse.forManagement(result, domain);
 
             List<UserOAuth2Authenticator> userOAuth2AuthenticatorPlugins = _oauthMgr.listUserOAuth2AuthenticationProviders();
             List<String> authenticatorPluginNames = new ArrayList<>();

@@ -2964,6 +2964,8 @@
   "label.secondaryips": "Secondary IPs",
   "label.secondarystoragelimit": "Secondary storage limits (GiB)",
   "label.secretkey": "Secret key",
+  "label.secretkeyconfigured": "Client secret configured",
+  "message.oauth.secret.replace": "Enter a new client secret to replace it. Leave it blank to keep the existing value.",
   "label.secured": "Secured",
   "label.security.groups": "Security groups",
   "label.securitygroup": "Security group",

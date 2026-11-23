@@ -2930,6 +2930,8 @@
   "label.secondaryips": "보조 IP",
   "label.secondarystoragelimit": "2차 스토리지 제한(GiB)",
   "label.secretkey": "비밀 키",
+  "label.secretkeyconfigured": "클라이언트 비밀 키 설정 여부",
+  "message.oauth.secret.replace": "비밀 키를 교체하려면 새 값을 입력하세요. 비워 두면 기존 값이 유지됩니다.",
   "label.secured": "보안됨",
   "label.security.groups": "보안그룹",
   "label.securitygroup": "보안그룹",
