@@ -72,7 +72,7 @@ export default {
       docHelp: 'adminguide/accounts.html#using-an-ldap-server-for-user-authentication',
       permission: ['listOauthProviderConfigurations'],
       columns: ['provider', 'enabled', 'description', 'clientid', 'redirecturi', 'domainpath'],
-      details: ['provider', 'description', 'enabled', 'clientid', 'secretkeyconfigured', 'redirecturi', 'authorizeurl', 'tokenurl', 'domainpath'],
+      details: ['provider', 'description', 'enabled', 'configuredenabled', 'clientid', 'secretkeyconfigured', 'redirecturi', 'authorizeurl', 'tokenurl', 'domainpath'],
       actions: [
         {
           api: 'registerOauthProvider',
@@ -95,6 +95,10 @@ export default {
           label: 'label.edit',
           dataView: true,
           popup: true,
+          oauthForm: true,
+          standardDialogSize: 'md',
+          standardDialogInitialFocus: '#oauth-form-description',
+          component: shallowRef(defineAsyncComponent(() => import('@/views/setting/OAuthProviderForm.vue'))),
           args: ['description', 'clientid', 'redirecturi', 'secretkey', 'authorizeurl', 'tokenurl', 'domainid']
         },
         {
@@ -104,7 +108,7 @@ export default {
           message: 'message.confirm.enable.provider',
           dataView: true,
           defaultArgs: { enabled: true },
-          show: (record) => { return record.enabled === false }
+          show: (record) => record.configuredenabled === false && record.scopeenabled === true && record.pluginavailable === true
         },
         {
           api: 'updateOauthProvider',
@@ -113,7 +117,7 @@ export default {
           message: 'message.confirm.disable.provider',
           dataView: true,
           defaultArgs: { enabled: false },
-          show: (record) => { return record.enabled === true }
+          show: (record) => record.configuredenabled === true
         },
         {
           api: 'deleteOauthProvider',

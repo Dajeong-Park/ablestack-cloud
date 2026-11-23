@@ -171,7 +171,12 @@
           <div v-else-if="$route.meta.name === 'event' && item === 'type'">{{ eventTypeLabel(dataResource.type, $t) }}</div>
           <status v-else-if="['vm', 'vnfapp'].includes($route.meta.name) && ['state', 'hostcontrolstate'].includes(item)" :text="String(dataResource[item] || '')" :display-label="dataResource[item] ? '' : $t('label.unknown')" display-text />
           <div v-else-if="['vm', 'vnfapp'].includes($route.meta.name) && ['ostypename', 'osdisplayname'].includes(item)">{{ creationVmOsName(dataResource, $t) || $t('label.unknown') }}</div>
-          <div v-else-if="item === 'secretkeyconfigured' && $route.meta.name === 'oauthsetting'">{{ $t(dataResource[item] ? 'label.yes' : 'label.no') }}</div>
+          <div v-else-if="$route.meta.name === 'oauthsetting' && item === 'enabled'">
+            <status :text="String(dataResource.enabled)" :display-label="$t(dataResource.enabled ? 'label.enabled' : 'label.disabled')" display-text />
+            <div v-if="dataResource.scopeenabled === false">{{ $t('message.oauth.scope.disabled') }}</div>
+            <div v-if="dataResource.pluginavailable === false">{{ $t('message.oauth.plugin.unavailable') }}</div>
+          </div>
+          <div v-else-if="$route.meta.name === 'oauthsetting' && ['secretkeyconfigured', 'configuredenabled'].includes(item)">{{ $t(dataResource[item] ? 'label.yes' : 'label.no') }}</div>
           <div v-else-if="['vm', 'vnfapp'].includes($route.meta.name) && item !== 'deleteprotection' && (vmBooleanFields.has(item) || typeof dataResource[item] === 'boolean')">{{ $t(vmBooleanLabel(dataResource[item])) }}</div>
           <div v-else-if="['vm', 'vnfapp'].includes($route.meta.name) && item === 'deleteprotection'">
             <a-tag :color="dataResource.deleteprotection === true ? 'warning' : dataResource.deleteprotection === false ? 'success' : 'default'">{{ $t('label.vm.protection.' + (resourceReadFailed() ? 'failed' : dataResource.deleteprotection === true ? 'protected' : dataResource.deleteprotection === false ? 'unprotected' : 'unknown')) }}</a-tag>

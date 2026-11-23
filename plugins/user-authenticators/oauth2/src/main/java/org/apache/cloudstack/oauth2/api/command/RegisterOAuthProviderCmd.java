@@ -146,7 +146,9 @@ public class RegisterOAuthProviderCmd extends BaseCmd {
         OauthProviderVO provider = _oauth2mgr.registerOauthProvider(this);
 
         Domain domain = provider.getDomainId() != null ? ApiDBUtils.findDomainById(provider.getDomainId()) : null;
-        OauthProviderResponse response = OauthProviderResponse.forManagement(provider, domain);
+        boolean available = _oauth2mgr.listUserOAuth2AuthenticationProviders().stream()
+                .anyMatch(authenticator -> provider.getProvider().equals(authenticator.getName()));
+        OauthProviderResponse response = OauthProviderResponse.forManagement(provider, domain, available);
         response.setResponseName(getCommandName());
         response.setObjectName(ApiConstants.OAUTH_PROVIDER);
         setResponseObject(response);
