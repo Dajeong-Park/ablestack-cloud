@@ -46,11 +46,12 @@ export default {
         {
           api: 'addLdapConfiguration',
           icon: 'plus-outlined',
-          label: 'label.configure.ldap',
+          label: 'label.ldap.add.server',
           listView: true,
-          args: [
-            'hostname', 'port', 'domainid'
-          ]
+          popup: true,
+          standardDialogSize: 'md',
+          standardDialogInitialFocus: '#ldap-server-hostname',
+          component: shallowRef(defineAsyncComponent(() => import('@/views/setting/AddLdapConfiguration.vue')))
         },
         {
           api: 'deleteLdapConfiguration',

@@ -185,7 +185,7 @@ public class LdapManagerImpl extends ComponentLifecycleBase implements LdapManag
                 return createLdapConfigurationResponse(configuration);
             } catch (NamingException | IOException e) {
                 logger.debug("NamingException while doing an LDAP bind", e);
-                throw new InvalidParameterValueException("Unable to bind to the given LDAP server");
+                throw new LdapRegistrationException(LdapRegistrationException.BIND_FAILED, "Unable to bind to the given LDAP server");
             } catch (RuntimeException e) {
                 if (e.getMessage().contains("Invalid truststore")) {
                     throw new InvalidParameterValueException("Invalid truststore or truststore password");
@@ -195,7 +195,7 @@ public class LdapManagerImpl extends ComponentLifecycleBase implements LdapManag
                 closeContext(context);
             }
         } else {
-            throw new InvalidParameterValueException("Duplicate configuration");
+            throw new LdapRegistrationException(LdapRegistrationException.DUPLICATE, "Duplicate configuration");
         }
     }
 
