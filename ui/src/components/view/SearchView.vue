@@ -408,7 +408,8 @@ export default {
     isHostSearch () { return this.$route.meta?.name === 'host' && ['listHosts', 'listHostsMetrics'].includes(this.apiName) },
     isClusterSearch () { return this.$route.meta?.name === 'cluster' && ['listClusters', 'listClustersMetrics'].includes(this.apiName) },
     isPrimaryStorageSearch () { return this.$route.meta?.name === 'storagepool' && ['listStoragePools', 'listStoragePoolsMetrics'].includes(this.apiName) },
-    isInfrastructureSearch () { return this.isHostSearch || this.isClusterSearch || this.isPrimaryStorageSearch },
+    isSecondaryStorageSearch () { return this.$route.meta?.name === 'imagestore' && this.apiName === 'listImageStores' },
+    isInfrastructureSearch () { return this.isHostSearch || this.isClusterSearch || this.isPrimaryStorageSearch || this.isSecondaryStorageSearch },
     isZoneSearch () { return this.$route.meta?.name === 'zone' && ['listZones', 'listZonesMetrics'].includes(this.apiName) },
     isDnsServerSearch () { return this.apiName === 'listDnsServers' },
     isDnsZoneSearch () { return this.apiName === 'listDnsZones' },
@@ -542,6 +543,7 @@ export default {
       this.initFormFieldData()
     },
     infrastructureFilterId (key) {
+      if (this.isSecondaryStorageSearch) return 'secondary-storage-filter-' + key
       return (this.isPrimaryStorageSearch ? 'primary-storage-filter-' : this.isClusterSearch ? 'cluster-filter-' : 'host-filter-') + key
     },
     retrieveFieldLabel (fieldName) {
@@ -675,6 +677,7 @@ export default {
           if (this.isPrimaryStorageSearch && item === 'hostid') type = apis.listHosts ? 'list' : 'input'
           if (item === 'managementserverid' && !apis.listManagementServers) type = 'input'
         }
+        if (this.isSecondaryStorageSearch && item === 'readonly') type = 'list'
         if (this.isZoneSearch && item === 'networktype') type = 'list'
         if (this.isDnsZoneSearch && item === 'dnsserverid' || this.isDnsServerSearch && item === 'providertype') type = 'list'
         if (this.isEventSearch && item === 'type') type = 'autocomplete'
@@ -784,6 +787,12 @@ export default {
         this.fields[scopeIndex].loading = false
       }
 
+      if (this.isSecondaryStorageSearch && arrayField.includes('readonly')) {
+        this.fields.find(field => field.name === 'readonly').opts = [
+          { id: 'true', name: this.$t('label.yes') },
+          { id: 'false', name: this.$t('label.no') }
+        ]
+      }
       if (arrayField.includes('provider')) {
         const providerIndex = this.fields.findIndex(item => item.name === 'provider')
         this.fields[providerIndex].loading = true
@@ -2309,7 +2318,8 @@ export default {
       if (this.isInfrastructureSearch) {
         this.visibleFilter = false
         this.searchQuery = ''
-        this.$emit('search', this.isPrimaryStorageSearch ? { primaryStorageReset: true } : this.isClusterSearch ? { clusterReset: true } : { hostReset: true })
+        const reset = this.isSecondaryStorageSearch ? 'secondaryStorageReset' : this.isPrimaryStorageSearch ? 'primaryStorageReset' : this.isClusterSearch ? 'clusterReset' : 'hostReset'
+        this.$emit('search', { [reset]: true })
         return
       }
       if (this.isZoneSearch) {

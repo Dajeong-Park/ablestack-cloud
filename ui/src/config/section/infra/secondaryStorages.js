@@ -17,6 +17,7 @@
 
 import { shallowRef, defineAsyncComponent } from 'vue'
 import store from '@/store'
+import { secondaryStorageSearchFields } from '@/utils/secondaryStorageSearch'
 
 export default {
   name: 'imagestore',
@@ -24,9 +25,9 @@ export default {
   icon: 'picture-outlined',
   docHelp: 'adminguide/storage.html#secondary-storage',
   permission: ['listImageStores'],
-  searchFilters: ['name', 'zoneid', 'provider'],
+  searchFilters: secondaryStorageSearchFields,
   columns: () => {
-    var fields = ['name', 'url', 'disksizetotal', 'disksizeused', 'protocol', 'scope', 'zonename']
+    var fields = ['name', 'url', 'disksizetotal', 'disksizeused', 'protocol', 'providername', 'scope', 'zonename']
     if (store.getters.apis.listImageStores.params.filter(x => x.name === 'readonly').length > 0) {
       fields.push({
         field: 'readonly',
@@ -36,7 +37,7 @@ export default {
     return fields
   },
   details: () => {
-    var fields = ['name', 'id', 'url', 'disksizetotal', 'disksizeused', 'protocol', 'provider', 'scope', 'zonename']
+    var fields = ['name', 'id', 'url', 'disksizetotal', 'disksizeused', 'protocol', 'providername', 'scope', 'zonename']
     if (store.getters.apis.listImageStores.params.filter(x => x.name === 'readonly').length > 0) {
       fields.push('readonly')
     }

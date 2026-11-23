@@ -2939,6 +2939,8 @@
   "message.secondary.storage.migration.unknown": "마이그레이션 결과를 확인하지 못했습니다. 기존 작업 결과를 다시 조회하세요.",
   "message.secondary.storage.browser.load.failed": "2차 스토리지 경로를 조회하지 못했습니다.",
   "message.secondary.storage.browser.download.failed": "2차 스토리지 파일을 다운로드하지 못했습니다.",
+  "message.secondary.storage.list.failed": "2차 스토리지 목록을 조회하지 못했습니다.",
+  "message.secondary.storage.detail.failed": "선택한 2차 스토리지를 조회하지 못했습니다.",
   "label.secondary.storage.vm": "2차 스토리지 VM",
   "label.secondaryips": "보조 IP",
   "label.secondarystoragelimit": "2차 스토리지 제한(GiB)",

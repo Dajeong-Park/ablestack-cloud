@@ -2973,6 +2973,8 @@
   "message.secondary.storage.migration.unknown": "The migration result is unknown. Retry checking the existing job.",
   "message.secondary.storage.browser.load.failed": "Could not load this secondary storage path.",
   "message.secondary.storage.browser.download.failed": "Could not download the secondary storage file.",
+  "message.secondary.storage.list.failed": "Could not load secondary storage.",
+  "message.secondary.storage.detail.failed": "Could not load the selected secondary storage.",
   "label.secondary.storage.vm": "Secondary storage VM",
   "label.secondaryips": "Secondary IPs",
   "label.secondarystoragelimit": "Secondary storage limits (GiB)",
