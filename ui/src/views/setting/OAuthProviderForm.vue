@@ -10,17 +10,29 @@ for the specific language governing permissions and limitations. -->
 <template>
   <a-form layout="vertical" :model="form">
     <a-form-item
+      v-if="registering"
+      :label="$t('label.provider')"
+      html-for="oauth-form-provider"
+      :validate-status="errors.provider ? 'error' : undefined"
+      :help="fieldError('provider')"
+      required>
+      <a-select id="oauth-form-provider" v-model:value="form.provider" :options="providers" :disabled="busy" />
+    </a-form-item>
+    <a-form-item
       v-for="field in fields"
       :key="field"
       :label="$t('label.' + field)"
-      :html-for="'oauth-form-' + field">
+      :html-for="'oauth-form-' + field"
+      :required="registering"
+      :validate-status="errors[field] ? 'error' : undefined"
+      :help="fieldError(field)">
       <a-input-password
         v-if="field === 'secretkey'"
         id="oauth-form-secretkey"
         v-model:value="form.secretkey"
         autocomplete="new-password"
         :disabled="busy"
-        :placeholder="$t('message.oauth.secret.replace')"
+        :placeholder="registering ? undefined : $t('message.oauth.secret.replace')"
         @keydown.enter.prevent="submit" />
       <a-input
         v-else
@@ -50,6 +62,12 @@ for the specific language governing permissions and limitations. -->
         show-search
         @search="loadDomains" />
     </a-form-item>
+    <a-alert v-if="registering && policy === 'disabled'" type="warning" show-icon :message="$t('message.oauth.scope.disabled')" />
+    <a-alert v-if="registering && policy === 'error'" type="error" show-icon :message="$t('message.oauth.scope.read.failed')">
+      <template #description>
+        <a-button v-if="canReadPolicy" size="small" @click="loadScopePolicy">{{ $t('label.retry') }}</a-button>
+      </template>
+    </a-alert>
     <a-alert v-if="message" type="error" role="alert" show-icon :message="$t(message)" />
     <mold-dialog-actions :busy="busy">
       <a-button @click="$emit('close-action')">{{ $t('label.cancel') }}</a-button>
@@ -71,17 +89,28 @@ export default {
   emits: ['close-action', 'refresh-data'],
   data () {
     const target = this.currentAction.oauthTarget
+    const registering = this.currentAction.api === 'registerOauthProvider'
+    const domainid = registering && 'listDomains' in this.$store.getters.apis ? this.$route.query.domainid : target.domainid
     return {
       form: {
+        provider: target.provider,
         description: target.description || '',
         clientid: target.clientid || '',
         redirecturi: target.redirecturi || '',
         secretkey: '',
         authorizeurl: target.authorizeurl || '',
         tokenurl: target.tokenurl || '',
-        scope: 'keep',
-        domainid: target.domainid
+        scope: registering ? domainid ? 'domain' : 'global' : 'keep',
+        domainid
       },
+      providers: [
+        { value: 'google', label: 'Google' },
+        { value: 'github', label: 'GitHub' },
+        { value: 'keycloak', label: 'Keycloak' }
+      ],
+      errors: {},
+      policy: '',
+      policyVersion: 0,
       domains: [],
       domainsPending: false,
       domainVersion: 0,
@@ -91,22 +120,40 @@ export default {
     }
   },
   computed: {
+    registering () { return this.currentAction.api === 'registerOauthProvider' },
     fields () {
       const fields = ['description', 'clientid', 'redirecturi', 'secretkey']
-      if (this.currentAction.oauthTarget.provider === 'keycloak') fields.push('authorizeurl', 'tokenurl')
+      if (this.form.provider === 'keycloak') fields.push('authorizeurl', 'tokenurl')
       return fields
     },
     canReadDomains () { return 'listDomains' in this.$store.getters.apis },
-    canSubmit () { return this.currentAction.api in this.$store.getters.apis },
+    canReadPolicy () { return 'listConfigurations' in this.$store.getters.apis },
+    canSubmit () {
+      return this.currentAction.api in this.$store.getters.apis && (!this.registering || this.policy === 'enabled')
+    },
+    policyScope () {
+      if (!this.registering) return undefined
+      return this.form.scope === 'global' ? 'global' : this.form.domainid || ''
+    },
     scopes () {
-      return [
-        { value: 'keep', label: this.$t('label.oauth.scope.keep') },
-        { value: 'global', label: this.$t('label.global'), disabled: !this.canReadDomains },
+      const options = [
+        { value: 'global', label: this.$t('label.global'), disabled: !this.registering && !this.canReadDomains },
         { value: 'domain', label: this.$t('label.domain'), disabled: !this.canReadDomains }
       ]
+      if (!this.registering) options.unshift({ value: 'keep', label: this.$t('label.oauth.scope.keep') })
+      return options
     }
   },
   watch: {
+    policyScope: { handler: 'loadScopePolicy', immediate: true },
+    'form.provider' (provider) {
+      this.errors = {}
+      this.message = ''
+      if (provider !== 'keycloak') {
+        this.form.authorizeurl = ''
+        this.form.tokenurl = ''
+      }
+    },
     'form.scope' (scope) {
       this.domainError = ''
       this.message = ''
@@ -118,8 +165,47 @@ export default {
     },
     'form.domainid' () { this.domainError = ''; this.message = '' }
   },
-  beforeUnmount () { this.domainVersion++ },
+  mounted () {
+    if (this.form.scope === 'domain') this.loadDomains()
+  },
+  beforeUnmount () { this.domainVersion++; this.policyVersion++ },
   methods: {
+    fieldError (field) {
+      return this.errors[field] ? this.$t(this.errors[field], { field: this.$t('label.' + field) }) : undefined
+    },
+    async loadScopePolicy () {
+      const scope = this.policyScope
+      const version = ++this.policyVersion
+      this.policy = ''
+      if (!scope) return
+      if (!this.canReadPolicy) { this.policy = 'error'; return }
+      this.policy = 'pending'
+      try {
+        const result = await getAPI('listConfigurations', { name: 'oauth2.enabled', ...(scope === 'global' ? {} : { domainid: scope }) }, readOptions)
+        const setting = result.listconfigurationsresponse?.configuration?.find(row => row.name === 'oauth2.enabled')
+        if (version !== this.policyVersion) return
+        this.policy = setting ? (String(setting.value).toLowerCase() === 'true' ? 'enabled' : 'disabled') : 'error'
+      } catch {
+        if (version === this.policyVersion) this.policy = 'error'
+      }
+    },
+    checkInputs () {
+      const errors = {}
+      for (const field of this.registering ? ['provider', ...this.fields] : this.fields) {
+        const value = this.form[field]?.trim()
+        if (!value && this.registering) errors[field] = 'message.oauth.field.required'
+        if (this.registering && value && ['redirecturi', 'authorizeurl', 'tokenurl'].includes(field)) {
+          try {
+            const url = new URL(value)
+            if (!['http:', 'https:'].includes(url.protocol)) errors[field] = 'message.oauth.url.invalid'
+          } catch {
+            errors[field] = 'message.oauth.url.invalid'
+          }
+        }
+      }
+      this.errors = errors
+      return Object.keys(errors).length === 0
+    },
     async loadDomains (keyword) {
       const version = ++this.domainVersion
       this.domainsPending = true
@@ -145,10 +231,11 @@ export default {
         this.domainError = 'message.oauth.domain.required'
         return
       }
+      if (!this.checkInputs()) return
       this.message = ''
       this.busy = true
       try {
-        const params = { id: oauthTarget.id }
+        const params = this.registering ? { provider: this.form.provider } : { id: oauthTarget.id }
         for (const field of this.fields) {
           const value = this.form[field].trim()
           if (value) params[field] = value
@@ -166,13 +253,15 @@ export default {
         if (!oauthCurrent() || !this.canSubmit) return
         await postAPI(api, params, { preserveOnFailure: true, timeout: 25000 })
         if (!oauthCurrent()) return
-        this.$message.success(this.$t('message.oauth.saved'))
+        this.$message.success(this.$t(this.registering ? 'message.oauth.registered' : 'message.oauth.saved'))
         this.$emit('close-action')
         this.$emit('refresh-data', { irefresh: true })
       } catch (error) {
         if (!oauthCurrent()) return
         const message = Object.values(error.response?.data || {}).find(row => row?.errortext)?.errortext || ''
-        this.message = /already registered/i.test(message) ? 'message.oauth.scope.duplicate' : 'message.oauth.save.failed'
+        if (/already registered/i.test(message)) this.message = 'message.oauth.scope.duplicate'
+        else if (this.registering && /oauth.*not enabled/i.test(message)) this.policy = 'disabled'
+        else this.message = 'message.oauth.save.failed'
       } finally {
         this.busy = false
       }

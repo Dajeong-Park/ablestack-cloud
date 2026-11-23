@@ -4226,10 +4226,10 @@ export default {
         return
       }
       if (action.oauthForm) {
-        const target = action.resource
+        const target = action.dataView ? action.resource : {}
         const scope = this.listScope()
         const generation = this.storageActionGeneration
-        if (!target?.id || target.id !== this.$route.params?.id) return
+        if (action.dataView && (!target?.id || target.id !== this.$route.params?.id)) return
         this.currentAction.oauthTarget = Object.freeze({ ...target })
         this.currentAction.oauthCurrent = () => this.showAction && generation === this.storageActionGeneration && scope === this.listScope()
         this.actionLoading = false

@@ -81,14 +81,12 @@ export default {
           label: 'label.register.oauth',
           listView: true,
           dataView: false,
-          args: [
-            'provider', 'description', 'clientid', 'redirecturi', 'secretkey', 'authorizeurl', 'tokenurl', 'domainid'
-          ],
-          mapping: {
-            provider: {
-              options: ['google', 'github', 'keycloak']
-            }
-          }
+          popup: true,
+          oauthForm: true,
+          standardDialogSize: 'md',
+          standardDialogInitialFocus: '#oauth-form-provider',
+          component: shallowRef(defineAsyncComponent(() => import('@/views/setting/OAuthProviderForm.vue'))),
+          args: ['provider', 'description', 'clientid', 'redirecturi', 'secretkey', 'authorizeurl', 'tokenurl', 'domainid']
         },
         {
           api: 'updateOauthProvider',
