@@ -67,6 +67,7 @@ export default {
   }, {
     name: 'browser',
     resourceType: 'ImageStore',
+    show: () => 'listImageStoreObjects' in store.getters.apis,
     component: shallowRef(defineAsyncComponent(() => import('@/views/infra/StorageBrowser.vue')))
   }, {
     name: 'events',

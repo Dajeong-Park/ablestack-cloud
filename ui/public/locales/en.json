@@ -2971,6 +2971,8 @@
   "message.secondary.storage.migration.no.targets": "There are no eligible destination stores.",
   "message.secondary.storage.migration.jobid": "Migration did not return a job ID. Check the job list before submitting again.",
   "message.secondary.storage.migration.unknown": "The migration result is unknown. Retry checking the existing job.",
+  "message.secondary.storage.browser.load.failed": "Could not load this secondary storage path.",
+  "message.secondary.storage.browser.download.failed": "Could not download the secondary storage file.",
   "label.secondary.storage.vm": "Secondary storage VM",
   "label.secondaryips": "Secondary IPs",
   "label.secondarystoragelimit": "Secondary storage limits (GiB)",
