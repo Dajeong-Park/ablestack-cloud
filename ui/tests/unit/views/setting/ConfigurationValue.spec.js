@@ -27,9 +27,9 @@ jest.mock('@/api', () => ({ postAPI: jest.fn() }))
 const defaultRecord = { name: 'default.ui.page.size', type: 'Number', value: '20', defaultvalue: '20' }
 const wrappers = []
 
-function editor (record = defaultRecord, route = { meta: { name: 'globalsetting' } }, resource) {
+function editor (record = defaultRecord, route = { meta: { name: 'globalsetting' } }, resource, scope) {
   const wrapper = shallowMount(ConfigurationValue, {
-    props: { configrecord: record, resource },
+    props: { configrecord: record, resource, scope },
     global: {
       mocks: {
         $t: key => key,
@@ -275,4 +275,40 @@ test('ordinary reset dialogs submit without opening another confirmation', async
   expect(mocks.$resetConfigurationValueConfirm).not.toHaveBeenCalled()
   expect(vm.actualValue).toBe(true)
   wrapper.unmount()
+})
+
+test.each([
+  ['zone', 'zoneid', 'zoneid'],
+  ['cluster', 'clusterid', 'clusterid'],
+  ['storagepool', 'storageid', 'storageid'],
+  ['imagestore', 'imagestoreuuid', 'imagestoreid'],
+  ['managementserver', 'managementserverid', 'managementserverid']
+])('writes and resets only the selected %s scope', async (type, updateKey, resetKey) => {
+  const route = { meta: { name: type }, params: { id: 'other-id' } }
+  const { vm } = editor(defaultRecord, route, { id: 'other-id' }, { type, id: 'selected-id' })
+  postAPI.mockResolvedValueOnce({ updateconfigurationresponse: { configuration: defaultRecord } })
+  postAPI.mockResolvedValueOnce({ resetconfigurationresponse: { configuration: defaultRecord } })
+  vm.editableValue = 21
+  await vm.updateConfigurationValue(defaultRecord)
+  expect(postAPI).toHaveBeenNthCalledWith(1, 'updateConfiguration', { [updateKey]: 'selected-id', name: defaultRecord.name, value: 21 })
+  await vm.resetConfigurationValue(defaultRecord)
+  expect(postAPI).toHaveBeenNthCalledWith(2, 'resetConfiguration', { [resetKey]: 'selected-id', name: defaultRecord.name })
+})
+
+test('allows removing a scoped override equal to the default', async () => {
+  const route = { meta: { name: 'zone' } }
+  const { vm } = editor(defaultRecord, route, undefined, { type: 'zone', id: 'zone-id' })
+  postAPI.mockResolvedValue({ resetconfigurationresponse: { configuration: defaultRecord } })
+  expect(vm.canReset).toBe(true)
+  await vm.resetConfigurationValue(defaultRecord)
+  expect(postAPI).toHaveBeenCalledWith('resetConfiguration', { zoneid: 'zone-id', name: defaultRecord.name })
+})
+
+test('blocks both writes if the selected resource has no ID', async () => {
+  const route = { meta: { name: 'managementserver' }, params: { id: 'other-id' } }
+  const { vm } = editor(defaultRecord, route, { id: 'other-id' }, { type: 'managementserver' })
+  await vm.resetConfigurationValue(defaultRecord)
+  vm.editableValue = 21
+  await vm.updateConfigurationValue(defaultRecord)
+  expect(postAPI).not.toHaveBeenCalled()
 })

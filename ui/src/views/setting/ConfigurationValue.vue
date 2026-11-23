@@ -210,6 +210,7 @@ import TooltipButton from '@/components/widgets/TooltipButton'
 import { netBackupScheduleModeKey, netBackupHookTimeoutKey, netBackupScheduleModeError } from '@/utils/netbackupScheduleMode'
 import MoldDialogActions from '@/components/view/MoldDialogActions'
 import { isSensitiveConfiguration } from './configurationPresentation'
+import { configurationScopeParams } from './configurationScope'
 
 export default {
   name: 'ConfigurationValue',
@@ -223,6 +224,10 @@ export default {
       type: String,
       default: '',
       validator: mode => ['', 'edit', 'reset'].includes(mode)
+    },
+    scope: {
+      type: Object,
+      default: null
     },
     configrecord: {
       type: Object,
@@ -248,7 +253,6 @@ export default {
   data () {
     return {
       valueLoading: this.loading,
-      scopeKey: '',
       actualValue: null,
       editableValue: null
     }
@@ -262,38 +266,18 @@ export default {
       return !Object.is(this.actualValue, this.editableValue)
     },
     canUpdate () {
-      return 'updateConfiguration' in this.$store.getters.apis && !this.configDisabled && !this.valueLoading
+      return 'updateConfiguration' in this.$store.getters.apis && !this.configDisabled && !this.valueLoading &&
+        this.requestScope('updateConfiguration') !== null
     },
     canReset () {
       return 'resetConfiguration' in this.$store.getters.apis && !this.configDisabled && !this.valueLoading &&
-        !this.hasChanges && this.configrecord.value !== this.configrecord.defaultvalue
+        this.requestScope('resetConfiguration') !== null && !this.hasChanges &&
+        (this.scope !== null || this.configrecord.value !== this.configrecord.defaultvalue)
     },
     isNetBackupScheduleMode () { return this.configrecord.name === netBackupScheduleModeKey },
     isNetBackupHookTimeout () { return this.configrecord.name === netBackupHookTimeoutKey }
   },
   created () {
-    switch (this.$route.meta.name) {
-      case 'account':
-        this.scopeKey = 'accountid'
-        break
-      case 'domain':
-        this.scopeKey = 'domainid'
-        break
-      case 'zone':
-        this.scopeKey = 'zoneid'
-        break
-      case 'cluster':
-        this.scopeKey = 'clusterid'
-        break
-      case 'storagepool':
-        this.scopeKey = 'storageid'
-        break
-      case 'imagestore':
-        this.scopeKey = 'imagestoreuuid'
-        break
-      default:
-        this.scopeKey = ''
-    }
     this.setConfigData()
   },
   watch: {
@@ -309,6 +293,13 @@ export default {
   },
   methods: {
     isSensitiveConfiguration,
+    requestScope (command) {
+      const { type, id } = this.scope || {
+        type: this.$route.meta.name,
+        id: this.$route.params?.id || this.resource?.id
+      }
+      return configurationScopeParams(type, id, command)
+    },
     setConfigData (record = this.configrecord, keepDraft = false) {
       this.actualValue = this.getEditableValue(record)
       if (!keepDraft) {
@@ -353,20 +344,14 @@ export default {
       if (configrecord.type === 'WhitespaceSeparatedListWithOptions') {
         newValue = newValue.join(' ')
       }
-      const params = {
-        [this.scopeKey]: this.$route.params?.id,
-        name: configrecord.name,
-        value: newValue
-      }
-      if (this.scopeKey === 'domainid' && !params[this.scopeKey]) {
-        params[this.scopeKey] = this.resource?.id
-      }
+      const scope = this.requestScope('updateConfiguration')
+      const params = { ...scope, name: configrecord.name, value: newValue }
       return postAPI('updateConfiguration', params).then(json => {
         // The updateConfiguration response can return a stale value for
         // non-global scopes (server-side issue). Trust the value the user
         // just submitted — the API returned success, so we know it was persisted.
         const apiRecord = json.updateconfigurationresponse.configuration
-        configRecordEntry = this.scopeKey ? { ...apiRecord, value: String(newValue) } : apiRecord
+        configRecordEntry = Object.keys(scope).length ? { ...apiRecord, value: String(newValue) } : apiRecord
         this.setConfigData(configRecordEntry)
         saved = true
         this.$emit('change-config', { value: newValue })
@@ -392,13 +377,7 @@ export default {
       let configRecordEntry = this.configrecord
       let saved = false
       this.valueLoading = true
-      const params = {
-        [this.scopeKey]: this.$route.params?.id,
-        name: configrecord.name
-      }
-      if (this.scopeKey === 'domainid' && !params[this.scopeKey]) {
-        params[this.scopeKey] = this.resource?.id
-      }
+      const params = { ...this.requestScope('resetConfiguration'), name: configrecord.name }
       return postAPI('resetConfiguration', params).then(json => {
         configRecordEntry = json.resetconfigurationresponse.configuration
         this.setConfigData(configRecordEntry)
