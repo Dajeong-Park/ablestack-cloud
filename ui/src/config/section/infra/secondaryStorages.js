@@ -88,6 +88,15 @@ export default {
       component: shallowRef(defineAsyncComponent(() => import('@/views/infra/AddSecondaryStorage.vue')))
     },
     {
+      api: 'listSecondaryStagingStores',
+      icon: 'database-outlined',
+      label: 'label.secondary.staging.stores',
+      showLabel: true,
+      listView: true,
+      popup: true,
+      component: shallowRef(defineAsyncComponent(() => import('@/views/infra/SecondaryStagingStores.vue')))
+    },
+    {
       api: 'migrateSecondaryStorageData',
       icon: 'drag-outlined',
       label: 'label.migrate.data.from.image.store',
@@ -100,13 +109,15 @@ export default {
       icon: 'edit-outlined',
       label: 'label.edit',
       dataView: true,
-      args: ['name', 'readonly', 'capacitybytes']
+      popup: true,
+      component: shallowRef(defineAsyncComponent(() => import('@/views/infra/UpdateSecondaryStorage.vue')))
     },
     {
       api: 'deleteImageStore',
       icon: 'delete-outlined',
       label: 'label.action.delete.secondary.storage',
       message: 'message.action.delete.secondary.storage',
+      danger: true,
       dataView: true,
       displayName: (record) => { return record.name || record.displayName || record.id }
     }
