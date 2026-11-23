@@ -5438,6 +5438,7 @@
   "sg.remove": "SG.REMOVE",
   "sg.update": "SG.UPDATE",
   "host.agent.install": "HOST.AGENT.INSTALL",
+  "host.backup.configure": "HOST.BACKUP.CONFIGURE",
   "backup.agent.install": "BACKUP.AGENT.INSTALL",
   "host.reconnect": "HOST.RECONNECT",
   "host.declare.degraded": "HOST.DECLARE.DEGRADED",
