@@ -23,7 +23,7 @@ Mold의 **인프라스트럭처 > 기본 스토리지** 등록·편집, 목록�
 
 ## 작업 기준과 순서
 
-기준 브랜치는 \`ablecloud-team/ablestack-cloud:ablestack-europa\`의 \`c16cee4d2680c5d2b5fbe29a3ad1fa3a96152a76\`이고, 작업 브랜치는 \`dhslove:dhslove/epic-1899-primary-storage\`다.
+기준 브랜치는 `ablecloud-team/ablestack-cloud:ablestack-europa`의 `c16cee4d2680c5d2b5fbe29a3ad1fa3a96152a76`이고, 작업 브랜치는 `dhslove:dhslove/epic-1899-primary-storage`다.
 
 | 순서 | 우선순위 | 하위 이슈 | 선행 이슈 | 13번 클러스터 검증 |
 | --- | --- | --- | --- | --- |
