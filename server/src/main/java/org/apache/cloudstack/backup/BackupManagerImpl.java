@@ -5194,9 +5194,7 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
         startConfiguredCommvaultBackupAgentInstallTask();
 
         currentTimestamp = new Date();
-        for (final BackupScheduleVO backupSchedule : backupScheduleDao.listAll()) {
-            scheduleNextBackupJob(backupSchedule);
-        }
+        initializeBackupSchedulesOnStartup();
         final TimerTask backupPollTask = new ManagedContextTimerTask() {
             @Override
             protected void runInContext() {
@@ -5211,6 +5209,23 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
         backupTimer = new Timer("BackupPollTask");
         backupTimer.schedule(backupPollTask, BackupSyncPollingInterval.value() * 1000L, BackupSyncPollingInterval.value() * 1000L);
         return true;
+    }
+
+    void initializeBackupSchedulesOnStartup() {
+        for (final BackupScheduleVO backupSchedule : backupScheduleDao.listAll()) {
+            final VMInstanceVO vm = vmInstanceDao.findById(backupSchedule.getVmId());
+            final BackupOffering offering = vm == null || vm.getBackupOfferingId() == null ? null
+                    : backupOfferingDao.findById(vm.getBackupOfferingId());
+            if (offering != null && isExternalPolicyScheduledProvider(offering.getProvider())
+                    && backupSchedule.getScheduledTimestamp() != null) {
+                // Provider hooks advance a schedule only after admission. Recomputing a due timestamp
+                // during restart silently consumes a backup which was never accepted.
+                logger.debug("Preserving provider-driven backup schedule [{}] at [{}] during management startup",
+                        backupSchedule.getUuid(), backupSchedule.getScheduledTimestamp());
+                continue;
+            }
+            scheduleNextBackupJob(backupSchedule);
+        }
     }
 
     private void startConfiguredCommvaultBackupAgentInstallTask() {

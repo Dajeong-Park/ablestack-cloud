@@ -1174,6 +1174,10 @@ python3 /usr/share/cloudstack-common/scripts/vm/hypervisor/kvm/netbackup-host-co
 이 대기는 슬롯 대기(`backup.thirdparty.staging.queue.timeout`) 및 데이터 처리(`backup.data.operation.timeout`)와 별개다.
 새 Global 설정은 추가하지 않는다. Management와 Host 스크립트를 함께 반영해야 호출자 기한 전달도 적용된다.
 
+관리 서버를 재시작해도 NetBackup·ABLESTACK Veeam의 기존 VM 스케줄 시각을 유지한다.
+아직 접수되지 않은 도래 스케줄을 다음 시간으로 넘기지 않으며, 백업이 접수된 뒤에 다음 예약 시각을 갱신한다.
+VM 스케줄 모드를 끈 상태에서도 저장된 스케줄 시각은 유지한다.
+
 **백업 순서**
 
 1. NetBackup UI 또는 정책 스케줄에서 기준 정책을 실행한다.
