@@ -1170,8 +1170,8 @@
     ],
     "description": [
       {
-        "enSource": "Maximum execution time in seconds for host-side KVM backup and restore data operations, external staging, and backup data cleanup.",
-        "ko": "KVM 호스트에서 수행하는 백업·복원 데이터 작업, 외부 스테이징, 백업 데이터 정리의 최대 실행 시간(초)입니다."
+        "enSource": "Execution timeout in seconds for each host-side KVM backup/restore data operation, external staging transfer, and backup data cleanup. Separate from staging queue wait and detached start/control response timeouts.",
+        "ko": "KVM 호스트에서 수행하는 백업·복원 데이터 처리, 외부 스테이징 전송 및 백업 데이터 정리의 각 작업에 적용하는 최대 실행 시간(초)입니다. 스테이징 슬롯 대기와 비동기 작업의 시작·제어 명령 응답 대기 제한 시간은 별도로 적용합니다."
       }
     ]
   },
@@ -1679,6 +1679,20 @@
       }
     ]
   },
+  "backup.plugin.netbackup.hook.timeout": {
+    "description": [
+      {
+        "enSource": "Execution timeout in seconds for each ABLESTACK NetBackup PRE or POST hook invocation. Must be positive. Each new invocation reads this Global value; running hooks retain their original limit. Separate from VM staging queue and data-operation timeouts. Host setup and Global changes apply this value to managed Client notify/read timeouts. Changes require idle configured Hosts and inactive policies; resaving reconciles incomplete Host updates. Also verify notify/read timeouts on the NetBackup Primary and Media servers.",
+        "ko": "ABLESTACK NetBackup의 사전(PRE)·사후(POST) Hook을 한 번 실행할 때 허용하는 최대 시간(초)입니다. 0보다 큰 값을 입력하세요. 새로 시작하는 Hook부터 Global 값을 적용하며, 실행 중인 Hook은 기존 제한을 유지합니다. VM의 스테이징 슬롯 대기·데이터 처리 제한 시간과는 별개입니다. 호스트 사전 구성과 Global 값 변경 시 Mold가 관리하는 Client의 백업 시작·종료 알림 및 읽기 제한 시간에도 같은 값을 적용합니다. 변경 전 구성된 호스트의 작업을 모두 마치고 정책을 비활성화하세요. 호스트 반영이 완료되지 않았다면 같은 값을 다시 저장해 동기화할 수 있습니다. NetBackup Primary·Media 서버의 알림 및 읽기 제한 시간도 함께 확인하세요."
+      }
+    ],
+    "displaytext": [
+      {
+        "enSource": "Backup plugin netbackup hook timeout",
+        "ko": "NetBackup Hook 제한 시간"
+      }
+    ]
+  },
   "backup.plugin.netbackup.recovery.job.timeout": {
     "displaytext": [
       {
@@ -1738,8 +1752,8 @@
   "backup.plugin.netbackup.vm.schedule.enabled": {
     "description": [
       {
-        "enSource": "Use Mold per-VM schedules for all ABLESTACK NetBackup host policies. When false, use each host policy's VM include/exclude filters. When true, an empty due schedule list skips backup without falling back to host filters.",
-        "ko": "true이면 모든 ABLESTACK NetBackup 호스트 정책에서 Mold의 가상머신별 백업 일정을 사용합니다. 실행할 일정이 없으면 호스트 정책의 필터를 사용하지 않고 백업을 건너뜁니다. false이면 각 호스트 정책에 설정된 가상머신 포함·제외 필터를 사용합니다."
+        "enSource": "Use Mold per-VM schedules for all ABLESTACK NetBackup host policies. Only VMs explicitly assigned a matching NetBackup backup offering are eligible in either mode. When false, back up all eligible assigned VMs when the NetBackup policy runs. When true, require a due Mold VM schedule; an empty due list skips backup. Changing modes requires idle NetBackup work and inactive configured host policies; existing VM schedules are preserved.",
+        "ko": "모든 ABLESTACK NetBackup 호스트 정책에 적용하는 VM 스케줄 모드입니다. 활성화 여부와 관계없이 일치하는 NetBackup 백업 오퍼링을 직접 할당한 VM만 백업 대상입니다. true이면 Mold에서 VM별로 설정한 백업 예약 시간이 도래한 VM을 백업하며, 대상이 없으면 백업을 건너뜁니다. false이면 NetBackup 정책 실행 시 해당 호스트의 백업 대상 VM을 일괄 백업합니다. 모드를 변경하려면 NetBackup 관련 백업·복원·정리 및 호스트 구성 작업을 완료하고, 구성된 호스트 정책을 비활성화해야 합니다. 기존 VM 백업 스케줄은 유지됩니다."
       }
     ],
     "displaytext": [

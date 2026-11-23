@@ -168,7 +168,7 @@
           v-if="dialogMode === 'reset'"
           type="primary"
           :disabled="!canReset"
-          @click="resetConfigurationValue(configrecord)">
+          @click="confirmResetConfiguration(configrecord)">
           {{ $t('label.ok') }}
         </a-button>
         <a-button
@@ -196,7 +196,7 @@
           :disabled="!canUpdate" />
         <tooltip-button
           :tooltip="$t('label.reset.config.value')"
-          @onClick="$resetConfigurationValueConfirm(configrecord, resetConfigurationValue)"
+          @onClick="confirmResetConfiguration(configrecord)"
           v-else
           icon="reload-outlined"
           :disabled="!canReset" />
@@ -207,6 +207,7 @@
 <script>
 import { postAPI } from '@/api'
 import TooltipButton from '@/components/widgets/TooltipButton'
+import { netBackupScheduleModeKey, netBackupHookTimeoutKey, netBackupScheduleModeError } from '@/utils/netbackupScheduleMode'
 import MoldDialogActions from '@/components/view/MoldDialogActions'
 import { isSensitiveConfiguration } from './configurationPresentation'
 import { configurationScopeParams } from './configurationScope'
@@ -272,7 +273,9 @@ export default {
       return 'resetConfiguration' in this.$store.getters.apis && !this.configDisabled && !this.valueLoading &&
         this.requestScope('resetConfiguration') !== null && !this.hasChanges &&
         (this.scope !== null || this.configrecord.value !== this.configrecord.defaultvalue)
-    }
+    },
+    isNetBackupScheduleMode () { return this.configrecord.name === netBackupScheduleModeKey },
+    isNetBackupHookTimeout () { return this.configrecord.name === netBackupHookTimeoutKey }
   },
   created () {
     this.setConfigData()
@@ -306,8 +309,28 @@ export default {
     restoreValue () {
       this.editableValue = Array.isArray(this.actualValue) ? [...this.actualValue] : this.actualValue
     },
-    updateConfigurationValue (configrecord) {
+    confirmScheduleMode (enabled, action, cancel) {
+      return this.$confirm({
+        title: this.$t('message.netbackup.schedule.mode.confirm'),
+        content: this.$t(enabled ? 'message.netbackup.schedule.mode.enable' : 'message.netbackup.schedule.mode.disable'),
+        okText: this.$t('label.ok'),
+        cancelText: this.$t('label.cancel'),
+        onOk: action,
+        onCancel: cancel
+      })
+    },
+    confirmResetConfiguration (configrecord) {
+      if (this.isNetBackupScheduleMode) {
+        return this.confirmScheduleMode(configrecord.defaultvalue === 'true', () => this.resetConfigurationValue(configrecord))
+      }
+      if (this.dialogMode === 'reset') return this.resetConfigurationValue(configrecord)
+      return this.$resetConfigurationValueConfirm(configrecord, this.resetConfigurationValue)
+    },
+    updateConfigurationValue (configrecord, confirmed = false) {
       if (!this.canUpdate || !this.hasChanges) return
+      if (this.isNetBackupScheduleMode && !confirmed && this.editableValue !== this.actualValue) {
+        return this.confirmScheduleMode(this.editableValue, () => this.updateConfigurationValue(configrecord, true), () => this.cancelEditConfigurationValue(configrecord))
+      }
       let configRecordEntry = this.configrecord
       let saved = false
       this.valueLoading = true
@@ -341,7 +364,7 @@ export default {
         this.$message.error(this.$t('message.error.save.setting'))
         this.$notification.error({
           message: this.$t('label.error'),
-          description: error?.response?.data?.updateconfigurationresponse?.errortext || this.$t('message.error.save.setting')
+          description: netBackupScheduleModeError(error, (key, params) => this.$t(key, params), this.$t('message.error.save.setting'))
         })
       }).finally(() => {
         this.valueLoading = false
@@ -373,7 +396,7 @@ export default {
         this.$message.error(this.$t('message.error.reset.config'))
         this.$notification.error({
           message: this.$t('label.error'),
-          description: this.$t('message.error.reset.config')
+          description: netBackupScheduleModeError(error, (key, params) => this.$t(key, params), this.$t('message.error.reset.config'))
         })
       }).finally(() => {
         this.valueLoading = false

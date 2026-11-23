@@ -120,7 +120,7 @@
                     @popupScroll="moreVmOptions($event, field)"
                     :loading="field.loading"
                     :disabled="isHostOrClusterSearch && field.loading || isVpnUserSearch && (field.loading || field.error || field.name === 'account' && !form.domainid) || isKmsSearch && (field.loading || field.name === 'account' && (!form.domainid || !!form.projectid) || ['domainid', 'account'].includes(field.name) && !!form.projectid) || apiName === 'listAffinityGroups' && (field.loading || !!field.error || (field.name === 'account' && !form.domainid))"
-                    :placeholder="isVpnUserSearch && field.name === 'account' && !form.domainid ? $t('message.vpn.user.search.account.domain') : isKmsSearch && kmsBooleans.includes(field.name) ? $t('label.all') : isGuestNetworkSearch && field.name === 'forvpc' ? $t('label.all') : apiName === 'listAffinityGroups' && field.name === 'account' && !form.domainid ? $t('message.affinity.search.account.domain') : undefined"
+                    :placeholder="isVpnUserSearch && field.name === 'account' && !form.domainid ? $t('message.vpn.user.search.account.domain') : isKmsSearch && kmsBooleans.includes(field.name) ? $t('label.all') : (isGuestNetworkSearch && field.name === 'forvpc') || (apiName === 'listBackupSchedule' && ['quiescevm', 'intervaltype'].includes(field.name)) ? $t('label.all') : apiName === 'listAffinityGroups' && field.name === 'account' && !form.domainid ? $t('message.affinity.search.account.domain') : undefined"
                     @input="isHostOrClusterSearch ? null : field.name === 'virtualmachineid' && $route.name === 'vmsnapshot' ? null : onchange($event, field.name)"
                     @change="onSelectFieldChange(field.name)">
                     <a-select-option
@@ -370,6 +370,7 @@ export default {
       this.updateIsFiltered()
       if (this.isAclSearch || this.isVpnUserSearch || this.isVpnCustomerGatewaySearch || this.isGuestVlanSearch || this.isIpv4SubnetSearch) this.visibleFilter = false
       if (this.apiName === 'listIsos' && to?.meta?.name === 'iso' && this.visibleFilter) this.fillFormFieldValues()
+      if (['listBackups', 'listBackupSchedule'].includes(this.apiName) && this.visibleFilter) this.fillFormFieldValues()
       if (this.apiName === 'listAffinityGroups' && to?.meta?.name === 'affinitygroup' && this.visibleFilter) {
         this.fillFormFieldValues()
         this.fetchAffinityFilters(this.fields.map(field => field.name))
@@ -536,6 +537,7 @@ export default {
       return (this.isClusterSearch ? 'cluster-filter-' : 'host-filter-') + key
     },
     retrieveFieldLabel (fieldName) {
+      if (this.apiName === 'listBackups' && fieldName === 'virtualmachineid') return this.$t('label.virtualmachinename')
       if (this.isClusterSearch && fieldName === 'storageaccessgroup') return this.$t('label.storageaccessgroups')
       if (this.isHostSearch && hostSearchLabels[fieldName]) return this.$t(hostSearchLabels[fieldName])
       if ((this.isRoleSearch || this.isAccountSearch) && fieldName === 'id') return 'UUID'
@@ -648,6 +650,7 @@ export default {
           type = 'list'
         }
         if ((this.apiName === 'listTemplates' && ['isready', 'forcks'].includes(item)) || (this.apiName === 'listIsos' && ['bootable', 'isready', 'ispublic'].includes(item))) type = 'list'
+        if (this.apiName === 'listBackupSchedule' && ['quiescevm', 'intervaltype'].includes(item)) type = 'list'
         if (this.isAccountSearch && ['isrecursive', 'iscleanuprequired'].includes(item)) type = 'list'
         if (this.isKmsSearch && [...kmsBooleans, 'projectid'].includes(item)) type = 'list'
         if (this.isKmsSearch && item === 'protocol') type = 'autocomplete'
@@ -672,6 +675,10 @@ export default {
       return arrayField
     },
     fetchStaticFieldData (arrayField) {
+      if (this.apiName === 'listBackupSchedule') {
+        this.fields.filter(field => field.name === 'quiescevm').forEach(field => { field.opts = [{ id: 'true', name: 'label.yes' }, { id: 'false', name: 'label.no' }] })
+        this.fields.filter(field => field.name === 'intervaltype').forEach(field => { field.opts = ['HOURLY', 'DAILY', 'WEEKLY', 'MONTHLY'].map(id => ({ id, name: 'label.' + id.toLowerCase() })) })
+      }
       if (this.isZoneSearch) {
         const field = this.fields.find(field => field.name === 'networktype')
         if (field) field.opts = ['Basic', 'Advanced'].map(id => ({ id, name: id }))
@@ -1401,7 +1408,7 @@ export default {
           }
         }]
       }
-      if (this.isZoneSearch || this.isGuestVlanSearch || this.isGuestNetworkSearch || this.isVnfSearch || ['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups'].includes(this.apiName) || arrayField.includes('volumeid')) this.fillFormFieldValues()
+      if (this.isZoneSearch || this.isGuestVlanSearch || this.isGuestNetworkSearch || this.isVnfSearch || ['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups', 'listBackups', 'listBackupSchedule'].includes(this.apiName) || arrayField.includes('volumeid')) this.fillFormFieldValues()
 
       this.fetchStaticFieldData(arrayField)
 
