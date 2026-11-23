@@ -11,21 +11,21 @@ for the specific language governing permissions and limitations. -->
   <a-form layout="vertical" :model="form">
     <a-form-item
       v-if="registering"
-      :label="$t('label.provider')"
       html-for="oauth-form-provider"
       :validate-status="errors.provider ? 'error' : undefined"
       :help="fieldError('provider')"
       required>
+      <template #label><tooltip-label :title="$t('label.provider')" :tooltip="fieldHelp('provider')" focusable /></template>
       <a-select id="oauth-form-provider" v-model:value="form.provider" :options="providers" :disabled="busy" />
     </a-form-item>
     <a-form-item
       v-for="field in fields"
       :key="field"
-      :label="$t('label.' + field)"
       :html-for="'oauth-form-' + field"
       :required="registering"
       :validate-status="errors[field] ? 'error' : undefined"
       :help="fieldError(field)">
+      <template #label><tooltip-label :title="$t('label.' + field)" :tooltip="fieldHelp(field)" focusable /></template>
       <a-input-password
         v-if="field === 'secretkey'"
         id="oauth-form-secretkey"
@@ -41,7 +41,8 @@ for the specific language governing permissions and limitations. -->
         :disabled="busy"
         @keydown.enter.prevent="submit" />
     </a-form-item>
-    <a-form-item :label="$t('label.scope')" html-for="oauth-form-scope">
+    <a-form-item html-for="oauth-form-scope">
+      <template #label><tooltip-label :title="$t('label.scope')" :tooltip="fieldHelp('scope')" focusable /></template>
       <a-select id="oauth-form-scope" v-model:value="form.scope" :disabled="busy" :options="scopes" />
     </a-form-item>
     <a-form-item
@@ -58,7 +59,7 @@ for the specific language governing permissions and limitations. -->
         :loading="domainsPending"
         :disabled="busy"
         :filter-option="false"
-        :placeholder="$t('label.ldap.domain.placeholder')"
+        :placeholder="$t('label.oauth.domain.select')"
         show-search
         @search="loadDomains" />
     </a-form-item>
@@ -79,12 +80,13 @@ for the specific language governing permissions and limitations. -->
 <script>
 import { getAPI, postAPI } from '@/api'
 import MoldDialogActions from '@/components/view/MoldDialogActions'
+import TooltipLabel from '@/components/widgets/TooltipLabel'
 
 const readOptions = { preserveOnFailure: true, timeout: 10000 }
 
 export default {
   name: 'OAuthProviderForm',
-  components: { MoldDialogActions },
+  components: { MoldDialogActions, TooltipLabel },
   props: { currentAction: { type: Object, required: true } },
   emits: ['close-action', 'refresh-data'],
   data () {
@@ -137,7 +139,7 @@ export default {
     },
     scopes () {
       const options = [
-        { value: 'global', label: this.$t('label.global'), disabled: !this.registering && !this.canReadDomains },
+        { value: 'global', label: this.$t('label.oauth.scope.global'), disabled: !this.registering && !this.canReadDomains },
         { value: 'domain', label: this.$t('label.domain'), disabled: !this.canReadDomains }
       ]
       if (!this.registering) options.unshift({ value: 'keep', label: this.$t('label.oauth.scope.keep') })
@@ -170,6 +172,10 @@ export default {
   },
   beforeUnmount () { this.domainVersion++; this.policyVersion++ },
   methods: {
+    fieldHelp (field) {
+      if (field === 'secretkey' && !this.registering) return this.$t('message.oauth.secret.replace')
+      return this.$t('message.oauth.field.help.' + field)
+    },
     fieldError (field) {
       return this.errors[field] ? this.$t(this.errors[field], { field: this.$t('label.' + field) }) : undefined
     },
@@ -218,7 +224,7 @@ export default {
         }
         if (version === this.domainVersion) this.domains = domains.map(row => ({ value: row.id, label: row.path || row.name || row.id }))
       } catch {
-        if (version === this.domainVersion) this.message = 'message.ldap.domain.failed'
+        if (version === this.domainVersion) this.message = 'message.oauth.domain.read.failed'
       } finally {
         if (version === this.domainVersion) this.domainsPending = false
       }
@@ -245,7 +251,7 @@ export default {
           const result = await getAPI('listDomains', { name: 'ROOT', details: 'min' }, readOptions)
           const root = result.listdomainsresponse?.domain?.find(row => row.name === 'ROOT')
           if (!root?.id) {
-            if (oauthCurrent()) this.message = 'message.ldap.domain.failed'
+            if (oauthCurrent()) this.message = 'message.oauth.domain.read.failed'
             return
           }
           params.domainid = root.id
@@ -258,8 +264,11 @@ export default {
         this.$emit('refresh-data', { irefresh: true })
       } catch (error) {
         if (!oauthCurrent()) return
-        const message = Object.values(error.response?.data || {}).find(row => row?.errortext)?.errortext || ''
-        if (/already registered/i.test(message)) this.message = 'message.oauth.scope.duplicate'
+        const result = Object.values(error.response?.data || {}).find(row => row?.errorcode || row?.errortext)
+        const status = Number(error.response?.status || result?.errorcode)
+        const message = result?.errortext || ''
+        if ([401, 403].includes(status)) this.message = 'message.oauth.action.denied'
+        else if (/already registered/i.test(message)) this.message = 'message.oauth.scope.duplicate'
         else if (this.registering && /oauth.*not enabled/i.test(message)) this.policy = 'disabled'
         else this.message = 'message.oauth.save.failed'
       } finally {

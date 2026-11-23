@@ -77,7 +77,7 @@ export default {
         if (!this.currentAction.oauthCurrent?.()) return
         const status = error.response?.status
         if (!status || status >= 500 || [404, 431].includes(status)) await this.reconcile()
-        else this.message = 'message.oauth.delete.failed'
+        else this.message = [401, 403].includes(status) ? 'message.oauth.action.denied' : 'message.oauth.delete.failed'
       } finally {
         this.busy = false
       }

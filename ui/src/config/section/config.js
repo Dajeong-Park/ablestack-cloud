@@ -69,7 +69,7 @@ export default {
       name: 'oauthsetting',
       title: 'label.oauth.configuration',
       icon: 'login-outlined',
-      docHelp: 'adminguide/accounts.html#using-an-ldap-server-for-user-authentication',
+      docHelp: 'adminguide/accounts.html#using-oauth2-authentication-for-users',
       permission: ['listOauthProviderConfigurations'],
       searchFilters: ['provider', 'domainid', 'id'],
       columns: ['provider', 'enabled', 'description', 'clientid', 'redirecturi', 'domainpath'],
