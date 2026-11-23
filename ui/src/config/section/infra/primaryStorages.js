@@ -66,7 +66,8 @@ export default {
   }, {
     name: 'browser',
     resourceType: 'PrimaryStorage',
-    component: shallowRef(defineAsyncComponent(() => import('@/views/infra/StorageBrowser.vue')))
+    component: shallowRef(defineAsyncComponent(() => import('@/views/infra/StorageBrowser.vue'))),
+    show: () => 'listStoragePoolObjects' in store.getters.apis
   }, {
     name: 'events',
     resourceType: 'StoragePool',

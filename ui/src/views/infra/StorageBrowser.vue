@@ -17,7 +17,9 @@
 
 <template>
   <div>
-    <p v-if="listRefreshFailed" role="status">{{ $t('message.list.refresh.stale') }}</p>
+    <p v-if="listRefreshFailed" :role="isPrimaryStorage && !hasPrimaryData ? 'alert' : 'status'">
+      {{ $t(isPrimaryStorage && !hasPrimaryData ? 'message.primary.storage.browser.load.failed' : 'message.list.refresh.stale') }}
+    </p>
     <a-card class="breadcrumb-card">
       <a-row>
         <a-col :span="24" style="padding-left: 12px">
@@ -43,12 +45,12 @@
               class="storage-browser-search"
               allowClear
               size="medium"
-              v-model:value="keyword"
+              v-model:value="keywordDraft"
               :placeholder="$t('label.objectstore.search')"
               :loading="loading"
-              @search="fetchData()"
+              @search="searchPrimaryStore"
               :enter-button="$t('label.search')"/>
-            <a-button v-if="resourceType === 'PrimaryStorage' && resource.hypervisor === 'KVM' && ['SharedMountPoint', 'RBD', 'NetworkFilesystem'].includes(resource.type) && 'importVolume' in $store.getters.apis" class="storage-browser-action" type="primary" @click="openVolumeImport('')">{{ $t('label.creation.source.import') }}</a-button>
+            <a-button v-if="canImportVolume" class="storage-browser-action" type="primary" @click="openVolumeImport('')">{{ $t('label.creation.source.import') }}</a-button>
             <a-tooltip placement="bottom">
               <template #title>{{ $t('label.refresh') }}</template>
               <a-button
@@ -62,32 +64,31 @@
                 {{ $t('label.refresh') }}
               </a-button>
             </a-tooltip>
-            <template v-if="resource.type === 'RBD'">
+            <template v-if="canCreateRbdImage">
               <a-button
                 type="primary"
                 class="storage-browser-action"
                 shape="round"
                 @click="showAddVolModal"
-                :loading="loading"
-                :disabled="('CreateRbdImage' in $store.getters.apis)">
+                :loading="loading">
                 <template #icon><plus-outlined /></template> {{ $t('label.create.rbd.image') }}
               </a-button>
             </template>
           </a-col>
       </a-row>
       <a-modal
+        v-if="canCreateRbdImage"
         :visible="showAddVolumeModal"
         :title="$t('label.create.rbd.image')"
         :maskClosable="false"
         :closable="true"
         :footer="null"
-        @click="fetchData()"
         @cancel="closeModals">
           <CreateRbdImage :resource="resource" @close-action="closeModals" />
       </a-modal>
     </a-card>
 
-    <a-modal :visible="showImportVolumeModal" :title="$t('label.creation.source.import')" :footer="null" :mask-closable="false" @cancel="showImportVolumeModal = false">
+    <a-modal v-if="canImportVolume" :visible="showImportVolumeModal" :title="$t('label.creation.source.import')" :footer="null" :mask-closable="false" @cancel="showImportVolumeModal = false">
       <import-storage-volume v-if="showImportVolumeModal" :key="importVolumePath" :resource="resource" :initial-path="importVolumePath" @close-action="showImportVolumeModal = false" />
     </a-modal>
 
@@ -111,9 +112,9 @@
       </div>
     </a-modal>
 
-    <div>
+    <div v-if="!isPrimaryStorage || !listRefreshFailed || hasPrimaryData">
       <a-table
-        :columns="columns"
+        :columns="visibleColumns"
         :row-key="record => record.name"
         :data-source="dataSource"
         :pagination="false" >
@@ -192,22 +193,24 @@
               :copyResource="String(resource.id)"
               @onClick="openMigrationModal(record)" />
             </template>
-            <template v-else-if="column.key == 'deleteactions' && (record.templateid || record.volumeid) == null && !['MOLD-DR', 'MOLD-AC', 'MOLD-HB','ccvm'].some(forbiddenName => record.name.includes(forbiddenName))">
+            <template v-else-if="column.key === 'deleteactions' && eligibleRbdObject(record)">
               <a-col flex="auto">
               <a-tooltip
+              v-if="canImportVolume"
               :title="$t('label.action.create.volume')">
                 <a-button
                   type="primary"
                   size="medium"
                   shape="circle"
-                  @click="openVolumeImport(`${browserPath}${record.name}`)"
+                  @click="openVolumeImport(browserPath + record.name)"
                   :loading="loading">
                 <template #icon><plus-outlined /></template>
               </a-button>
             </a-tooltip>
                 <a-popconfirm
+                  v-if="canDeleteRbdImage"
                   :title="`${$t('label.delete.rbd.image')}?`"
-                  @confirm="deleteRbdImage(record.name)"
+                  @confirm="deleteRbdImage(record)"
                   :okText="$t('label.yes')"
                   :cancelText="$t('label.no')"
                   placement="left">
@@ -217,6 +220,7 @@
                   type="primary"
                   size="medium"
                   shape="circle"
+                  :loading="deletingRbd"
                   danger="true">
                     <template #icon><delete-outlined /></template>
                   </a-button>
@@ -272,6 +276,20 @@ import TooltipButton from '@/components/widgets/TooltipButton'
 import MigrateImageStoreResource from '@/views/storage/MigrateImageStoreResource'
 import CreateRbdImage from '@/views/storage/CreateRbdImage'
 import ImportStorageVolume from '@/views/storage/ImportStorageVolume'
+
+function positiveInteger (value, fallback) {
+  const number = Number(value)
+  return Number.isSafeInteger(number) && number > 0 ? number : fallback
+}
+
+function primaryBrowserQuery (query) {
+  return {
+    browserPath: typeof query.browserPath === 'string' ? query.browserPath : '',
+    page: positiveInteger(query.browserPage, 1),
+    pageSize: positiveInteger(query.browserPageSize, 10),
+    keyword: typeof query.browserKeyword === 'string' ? query.browserKeyword.trim() : ''
+  }
+}
 
 export default {
   mixins: [listRefreshMixin(['fetchImageStoreObjects', 'fetchPrimaryStoreObjects'], {
@@ -331,12 +349,20 @@ export default {
         title: this.$t('label.actions')
       })
     }
+    const query = this.$route.query
+    const browser = this.resourceType === 'PrimaryStorage' ? primaryBrowserQuery(query) : {
+      browserPath: query.browserPath || '',
+      page: parseInt(query.browserPage) || 1,
+      pageSize: parseInt(query.browserPageSize) || 10,
+      keyword: ''
+    }
     return {
       loading: false,
       dataSource: [],
-      browserPath: this.$route.query.browserPath || '',
-      page: parseInt(this.$route.query.browserPage) || 1,
-      pageSize: parseInt(this.$route.query.browserPageSize) || 10,
+      ...browser,
+      keywordDraft: browser.keyword,
+      hasPrimaryData: false,
+      deletingRbd: false,
       total: 0,
       columns: columns,
       migrateModalLoading: false,
@@ -350,12 +376,30 @@ export default {
       rootSwitch: true,
       dataDiskSwitch: false,
       volumetype: 'ROOT',
-      keyword: '',
       targetName: '',
       targetSize: ''
     }
   },
   computed: {
+    isPrimaryStorage () {
+      return this.resourceType === 'PrimaryStorage'
+    },
+    isRbdPool () {
+      return this.isPrimaryStorage && this.resource.type === 'RBD'
+    },
+    canImportVolume () {
+      return this.isPrimaryStorage && this.resource.state === 'Up' && this.resource.hypervisor === 'KVM' &&
+        ['SharedMountPoint', 'RBD', 'NetworkFilesystem'].includes(this.resource.type) && !!this.$store.getters.apis.importVolume
+    },
+    canCreateRbdImage () {
+      return this.isRbdPool && this.resource.state === 'Up' && !!this.$store.getters.apis.createRbdImage
+    },
+    canDeleteRbdImage () {
+      return this.isRbdPool && this.resource.state === 'Up' && !!this.$store.getters.apis.deleteRbdImage
+    },
+    visibleColumns () {
+      return this.columns.filter(column => column.key !== 'deleteactions' || this.canImportVolume || this.canDeleteRbdImage)
+    },
     pageSizeOptions () {
       var sizes = [20, 50, 100, 200, this.$store.getters.defaultListViewPageSize]
       if (this.device !== 'desktop') {
@@ -366,12 +410,47 @@ export default {
       }).map(String)
     }
   },
+  watch: {
+    '$route.query' (query) {
+      if (!this.isPrimaryStorage || this.$route.params.id !== this.resource.id || query.tab !== 'browser') return
+      const next = primaryBrowserQuery(query)
+      if (Object.keys(next).every(key => this[key] === next[key])) return
+      Object.assign(this, next, { keywordDraft: next.keyword })
+      this.fetchPrimaryStoreObjects()
+    }
+  },
   created () {
     this.initForm()
     this.fetchData()
   },
   methods: {
-    openVolumeImport (path) { this.importVolumePath = path; this.showImportVolumeModal = true },
+    eligibleRbdObject (record) {
+      return this.isRbdPool && !!record.name && !record.isdirectory && !record.templateid &&
+        !record.volumeid && !record.snapshotid && !/MOLD-DR|MOLD-AC|MOLD-HB|ccvm/i.test(record.name)
+    },
+    openVolumeImport (path) {
+      if (!this.canImportVolume) return
+      this.importVolumePath = path
+      this.showImportVolumeModal = true
+    },
+    navigatePrimaryBrowser (changes) {
+      const state = { browserPath: this.browserPath, page: this.page, pageSize: this.pageSize, keyword: this.keyword, ...changes }
+      if (Object.keys(state).every(key => this[key] === state[key])) return this.fetchPrimaryStoreObjects()
+      return this.$router.push({
+        query: {
+          ...this.$route.query,
+          tab: 'browser',
+          browserPath: state.browserPath || undefined,
+          browserPage: String(state.page),
+          browserPageSize: String(state.pageSize),
+          browserKeyword: state.keyword || undefined
+        }
+      })
+    },
+    searchPrimaryStore (keyword) {
+      this.keywordDraft = (keyword || '').trim()
+      return this.navigatePrimaryBrowser({ keyword: this.keywordDraft, page: 1 })
+    },
     initForm () {
       this.formRef = ref()
       this.form = reactive({
@@ -387,11 +466,16 @@ export default {
       this.showMigrateModal = true
     },
     changePage (page, pageSize) {
+      if (this.isPrimaryStorage) {
+        const size = positiveInteger(pageSize, this.pageSize)
+        return this.navigatePrimaryBrowser({ page: size === this.pageSize ? positiveInteger(page, this.page) : 1, pageSize: size })
+      }
       this.page = page
       this.pageSize = pageSize
       this.fetchData()
     },
     handleTableChange (pagination, filters, sorter) {
+      if (this.isPrimaryStorage) return
       this.page = pagination.current
       this.pageSize = pagination.pageSize
       this.fetchData()
@@ -439,17 +523,18 @@ export default {
         this.$notifyError(error)
       })
     },
-    deleteRbdImage (name) {
-      getAPI('deleteRbdImage', {
-        name: name,
-        id: this.resource.id
-      }).then(json => {
-        this.dataSource = json.liststoragepoolobjectsresponse.datastoreobject
-        this.total = json.liststoragepoolobjectsresponse.count
-      }).finally(() => {
-        this.fetchData()
-        this.loading = false
-      })
+    async deleteRbdImage (record) {
+      if (!this.canDeleteRbdImage || !this.eligibleRbdObject(record) || this.deletingRbd) return
+      const id = this.resource.id
+      this.deletingRbd = true
+      try {
+        await postAPI('deleteRbdImage', { name: record.name, id }, { preserveOnFailure: true })
+        if (this.resource.id === id) await this.fetchPrimaryStoreObjects()
+      } catch (error) {
+        this.$notifyError(error)
+      } finally {
+        this.deletingRbd = false
+      }
     },
     fetchImageStoreObjects () {
       const listRequest = this.listRequestToken('fetchImageStoreObjects')
@@ -478,40 +563,42 @@ export default {
         this.loading = false
       })
     },
-    fetchPrimaryStoreObjects () {
+    async fetchPrimaryStoreObjects () {
+      if (!this.$store.getters.apis.listStoragePoolObjects || !this.resource.id) return
       const listRequest = this.listRequestToken('fetchPrimaryStoreObjects')
       this.loading = !listRequest.loaded
-      return getAPI('listStoragePoolObjects', {
-        path: this.browserPath,
-        id: this.resource.id,
-        page: this.page,
-        pagesize: this.pageSize,
-        keyword: this.keyword
-      }).then(json => {
+      if (!listRequest.loaded) {
+        this.hasPrimaryData = false
+        this.dataSource = []
+        this.total = 0
+        this.listRefreshFailed = false
+      }
+      try {
+        const json = await getAPI('listStoragePoolObjects', {
+          path: this.browserPath,
+          id: this.resource.id,
+          page: this.page,
+          pagesize: this.pageSize,
+          keyword: this.keyword
+        }, { preserveOnFailure: true })
         if (!this.isListRequestCurrent('fetchPrimaryStoreObjects', listRequest)) return
-
         this.dataSource = json.liststoragepoolobjectsresponse.datastoreobject || []
         this.total = json.liststoragepoolobjectsresponse.count || 0
-      }).finally(() => {
-        if (!this.isListRequestCurrent('fetchPrimaryStoreObjects', listRequest)) return
-
-        this.loading = false
-      }).catch(error => {
+        this.hasPrimaryData = true
+      } catch {
         if (!this.isListRequestCurrent('fetchPrimaryStoreObjects', listRequest)) return
         listRequest.failed = true
         this.listRefreshFailed = true
-        if (!listRequest.loaded) this.$notifyError(error)
-      }).finally(() => {
-        if (!this.isListRequestCurrent('fetchPrimaryStoreObjects', listRequest)) return
-        this.loading = false
-      })
+      } finally {
+        if (this.isListRequestCurrent('fetchPrimaryStoreObjects', listRequest)) this.loading = false
+      }
     },
     deleteDetail (index) {
       this.details.splice(index, 1)
       this.runApi()
     },
     showAddVolModal () {
-      this.showAddVolumeModal = true
+      if (this.canCreateRbdImage) this.showAddVolumeModal = true
     },
     showAddTyModal (name, size) {
       this.showAddTypeModal = true
@@ -524,6 +611,7 @@ export default {
       this.fetchData()
     },
     fetchData () {
+      if (this.isPrimaryStorage) return this.fetchPrimaryStoreObjects()
       this.$router.replace(
         {
           path: this.$route.path,
@@ -537,8 +625,6 @@ export default {
       )
       if (this.resourceType === 'ImageStore') {
         this.fetchImageStoreObjects()
-      } else if (this.resourceType === 'PrimaryStorage') {
-        this.fetchPrimaryStoreObjects()
       }
     },
     getRoutes () {
@@ -566,6 +652,7 @@ export default {
       return val
     },
     openDir (name) {
+      if (this.isPrimaryStorage) return this.navigatePrimaryBrowser({ browserPath: name, page: 1 })
       this.browserPath = name
       this.page = 1
       this.pageSize = 10
