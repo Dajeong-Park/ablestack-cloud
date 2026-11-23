@@ -776,7 +776,7 @@
       <a-alert v-if="dataView && $route.meta?.name === 'kubernetesiso' && kubernetesIsoReadError" type="error" show-icon :message="$t((kubernetesIsoReadError === 'unsupported' ? 'message.kubernetes.iso.search.unsupported' : kubernetesIsoReadError === 'searchInvalid' ? 'message.kubernetes.iso.search.invalid' : 'message.kubernetes.iso.read.' + kubernetesIsoReadError))">
         <template #description><a-button size="small" :disabled="listRequestPending" @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button></template>
       </a-alert>
-      <a-alert v-if="isLdapUi && listRefreshError" type="error" show-icon :message="$t('error.fetching.data')">
+      <a-alert v-if="isLdapUi && listRefreshError" type="error" show-icon :message="$t('message.ldap.list.failed')">
         <template #description><a-button size="small" :disabled="listRequestPending" @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button></template>
       </a-alert>
       <a-alert v-if="isVpnUser && listRefreshError" class="vpn-user-read-error" type="error" show-icon :message="$t('message.vpn.user.search.failed')">
@@ -851,6 +851,7 @@
           :columns="presentedColumns"
           :kms-table="kmsListRoute($route)"
           :items="items"
+          :empty-text="isLdapUi ? $t('message.ldap.list.empty') : undefined"
           :actions="(asnSearchAuth && asnSearchFailure) || isSnapshotCopyList || snapshotSearchFailure || policySearchFailure || ((isSnapshotList || isPolicyList || isObjectStorageUi || $route.meta?.name === 'vnfapp') && !storageActionReady) || ($route.meta?.name === 'vmgroup' && !vmGroupQueryReady) ? [] : actions"
           :selectionDisabled="record => ((isProjectList || isVpnUser || isVpnCustomerGateway) && !storageActionReady) || (asnSearchAuth && !asnListReady) || (isSnapshotList || isPolicyList || isObjectStorageUi || $route.meta?.name === 'vnfapp') && !storageActionReady"
           :explicitlyAllowRowSelection="policySelectionAvailable || !!asnSearchAuth"

@@ -10,27 +10,28 @@ for the specific language governing permissions and limitations. -->
 <template>
   <a-form layout="vertical" :model="form">
     <a-form-item
-      :label="$t('label.host')"
       html-for="ldap-server-hostname"
       required
       :validate-status="errors.hostname ? 'error' : undefined"
       :help="errors.hostname ? $t(errors.hostname) : undefined">
+      <template #label><tooltip-label :title="$t('label.hostname')" :tooltip="$t('message.ldap.host.help')" /></template>
       <a-input
         id="ldap-server-hostname"
         v-model:value="form.hostname"
         :disabled="busy"
-        :placeholder="$t('label.hostname')"
+        :placeholder="$t('label.ldap.host.placeholder')"
         @keydown.enter.prevent="submit" />
     </a-form-item>
     <a-form-item
-      :label="$t('label.port')"
       html-for="ldap-server-port"
       required
       :validate-status="errors.port ? 'error' : undefined"
       :help="errors.port ? $t(errors.port) : undefined">
+      <template #label><tooltip-label :title="$t('label.port')" :tooltip="$t('message.ldap.port.help')" /></template>
       <a-input id="ldap-server-port" v-model:value="form.port" inputmode="numeric" :disabled="busy" @keydown.enter.prevent="submit" />
     </a-form-item>
-    <a-form-item :label="$t('label.scope')" html-for="ldap-server-scope" required>
+    <a-form-item html-for="ldap-server-scope" required>
+      <template #label><tooltip-label :title="$t('label.scope')" :tooltip="$t('message.ldap.scope.help')" /></template>
       <a-select id="ldap-server-scope" v-model:value="form.scope" :disabled="busy" :options="scopes" />
     </a-form-item>
     <a-form-item
@@ -48,7 +49,7 @@ for the specific language governing permissions and limitations. -->
         :disabled="busy"
         show-search
         :filter-option="false"
-        :placeholder="$t('label.domain')"
+        :placeholder="$t('label.ldap.domain.placeholder')"
         @search="loadDomains" />
     </a-form-item>
     <a-alert v-if="message" :type="uncertain ? 'warning' : 'error'" show-icon :message="$t(message)" />
@@ -62,13 +63,14 @@ for the specific language governing permissions and limitations. -->
 <script>
 import { getAPI, postAPI } from '@/api'
 import MoldDialogActions from '@/components/view/MoldDialogActions'
+import TooltipLabel from '@/components/widgets/TooltipLabel'
 import { ldapEndpointExists, ldapRegistration, ldapRegistrationFailure } from '@/utils/ldapRegistration'
 
 const readOptions = { preserveOnFailure: true, timeout: 10000 }
 
 export default {
   name: 'AddLdapConfiguration',
-  components: { MoldDialogActions },
+  components: { MoldDialogActions, TooltipLabel },
   emits: ['close-action', 'refresh-data'],
   data () {
     const domainid = 'listDomains' in this.$store.getters.apis ? this.$route.query.domainid : undefined
@@ -117,14 +119,14 @@ export default {
       } catch {
         if (version === this.domainVersion) {
           this.domains = []
-          this.message = 'error.fetching.data'
+          this.message = 'message.ldap.domain.failed'
         }
       } finally {
         if (version === this.domainVersion) this.domainsPending = false
       }
     },
     complete () {
-      this.$message.success(this.$t('label.ldap.add.server'))
+      this.$message.success(this.$t('message.ldap.add.created'))
       this.$store.dispatch('UpdateConfiguration')
       this.$emit('refresh-data', { irefresh: true })
       this.$emit('close-action')

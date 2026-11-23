@@ -13,7 +13,7 @@ for the specific language governing permissions and limitations. -->
       <a-descriptions-item :label="$t('label.host')">{{ endpoint }}</a-descriptions-item>
       <a-descriptions-item :label="$t('label.scope')">{{ scope }}</a-descriptions-item>
     </a-descriptions>
-    <a-alert show-icon type="warning" :message="$t('message.remove.ldap')" />
+    <a-alert show-icon type="warning" :message="$t('message.ldap.delete.confirm')" />
     <a-alert v-if="message" show-icon :type="unknown ? 'warning' : 'error'" :message="$t(message)" />
     <mold-dialog-actions :busy="busy">
       <a-button id="ldap-delete-cancel" :disabled="busy" @click="$emit('close-action')">{{ $t('label.cancel') }}</a-button>
