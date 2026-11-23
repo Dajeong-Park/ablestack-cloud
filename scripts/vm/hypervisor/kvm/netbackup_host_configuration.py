@@ -314,7 +314,9 @@ def main():
             if request['action'].startswith('HOOK_TIMEOUT_'):
                 from netbackup_hook_timeout import execute
                 try:
-                    result = execute(request, sys.modules[__name__])
+                    # Agent merges stdout and stderr and expects one JSON receipt.
+                    with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+                        result = execute(request, sys.modules[__name__])
                 finally:
                     Path(args.request).unlink(missing_ok=True)
             else:

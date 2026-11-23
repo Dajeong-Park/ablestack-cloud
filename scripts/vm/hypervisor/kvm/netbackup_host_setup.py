@@ -996,12 +996,15 @@ def apply_permissions() -> None:
 
 
 def restart_netbackup_service() -> None:
+    # Do not let init-script output bypass the Agent entry point's JSON-only response.
     if shutil.which("systemctl"):
-        subprocess.run(["systemctl", "restart", NETBACKUP_SERVICE_NAME], check=True, timeout=120)
+        subprocess.run(["systemctl", "restart", NETBACKUP_SERVICE_NAME], check=True, timeout=120,
+                       capture_output=True, text=True)
         print(f"Restarted NetBackup service via systemctl: {NETBACKUP_SERVICE_NAME}")
         return
     if shutil.which("service"):
-        subprocess.run(["service", NETBACKUP_SERVICE_NAME, "restart"], check=True, timeout=120)
+        subprocess.run(["service", NETBACKUP_SERVICE_NAME, "restart"], check=True, timeout=120,
+                       capture_output=True, text=True)
         print(f"Restarted NetBackup service via service: {NETBACKUP_SERVICE_NAME}")
         return
     print(f"NetBackup service restart command not found. Please restart manually: {NETBACKUP_SERVICE_NAME}")
