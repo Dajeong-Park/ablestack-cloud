@@ -3529,6 +3529,7 @@
   "message.cluster.dedicate.confirm": "Restrict workload placement to the selected domain or account.",
   "message.cluster.release.confirm": "Other eligible workloads can use this cluster after the dedication is released.",
   "message.cluster.capacity.load.failed": "Cluster capacity could not be loaded.",
+  "message.primary.storage.list.failed": "Primary storage list could not be loaded.",
   "message.cluster.list.failed": "Could not load clusters. Try again.",
   "label.host.operation.recheck": "Check status again",
   "message.host.add.creating": "Registering host…",

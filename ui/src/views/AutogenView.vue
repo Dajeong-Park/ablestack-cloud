@@ -245,10 +245,10 @@
       </a-card>
     </div>
 
-    <a-alert v-if="(isHostList || isClusterList) && listRefreshError" class="image-list-query-error" type="error" show-icon>
+    <a-alert v-if="(isPrimaryStorageList || isHostList || isClusterList) && listRefreshError" class="image-list-query-error" type="error" show-icon>
       <template #message>
         <a-space wrap>
-          <span>{{ $t(isClusterList ? 'message.cluster.list.failed' : 'message.host.list.failed') }}</span>
+          <span>{{ $t(isPrimaryStorageList ? 'message.primary.storage.list.failed' : isClusterList ? 'message.cluster.list.failed' : 'message.host.list.failed') }}</span>
           <a-button size="small" @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button>
         </a-space>
       </template>
@@ -853,7 +853,7 @@
         />
         <p v-if="isVmList && listRefreshError" role="status">{{ $t('message.list.refresh.stale') }}</p>
         <list-view
-          v-if="!(isVpnUser || isLdapUi) || !listRefreshError"
+          v-if="(!(isVpnUser || isLdapUi) || !listRefreshError) && (!isPrimaryStorageList || !listRefreshError || items.length)"
           :loading="sharedFSContentLoading || isVpnUser && vpnUserProjectSwitching || isLdapUi && listRequestPending"
           :columns="presentedColumns"
           :kms-table="kmsListRoute($route)"
@@ -968,6 +968,7 @@ import HostActionContext from '@/views/infra/HostActionContext.vue'
 import ClusterActionContext from '@/views/infra/ClusterActionContext.vue'
 import { dnsServerListQuery, dnsServerSearchQuery } from '@/utils/dnsServer'
 import { clusterListQuery, clusterReadParams, clusterSearchQuery, clusterStatusQuery } from '@/utils/clusterSearch'
+import { primaryStorageListQuery, primaryStorageReadParams, primaryStorageSearchQuery, primaryStorageStatusQuery } from '@/utils/primaryStorageSearch'
 import { hostListQuery, hostReadParams, hostSearchQuery, hostStatusQuery } from '@/utils/hostSearch'
 import { zoneListQuery, zoneReadParams, zoneSearchQuery } from '@/utils/zone'
 import { dnsZoneSearchQuery } from '@/utils/dnsZone'
@@ -1679,6 +1680,8 @@ export default {
     isGuestVlan () { return guestVlanRoute(this.$route) },
     isClusterUi () { return this.$route.meta?.name === 'cluster' },
     isClusterList () { return this.isClusterUi && !this.$route.params?.id },
+    isPrimaryStorageUi () { return this.$route.meta?.name === 'storagepool' },
+    isPrimaryStorageList () { return this.isPrimaryStorageUi && !this.$route.params?.id },
     isHostUi () { return this.$route.meta?.name === 'host' },
     isHostList () { return this.isHostUi && !this.$route.params?.id },
     isZoneUi () { return this.$route.meta?.name === 'zone' },
@@ -1741,8 +1744,8 @@ export default {
     publicIpAuth () { return publicIpRoute(this.$route) ? publicIpReadAuth(this.$store) : '' },
     presentedColumns () {
       const columns = this.localizePublicIpColumns(this.columns)
-      if (this.isHostList || this.isClusterList) {
-        const query = this.isClusterList ? clusterListQuery : hostListQuery
+      if (this.isPrimaryStorageList || this.isHostList || this.isClusterList) {
+        const query = this.isPrimaryStorageList ? primaryStorageListQuery : this.isClusterList ? clusterListQuery : hostListQuery
         const { sortkey, sortorder } = query(this.$route.query)
         return columns.map(column => {
           if (column.key !== sortkey || !column.sorter || !['asc', 'desc'].includes(sortorder)) return column
@@ -1942,6 +1945,7 @@ export default {
         const value = String(this.$route.query.filter || this.$route.query.state || this.$route.meta.defaultFilter).toLowerCase()
         return this.filters.includes(value) ? value : this.$route.meta.defaultFilter
       }
+      if (this.isPrimaryStorageList) return String(this.$route.query.status || this.$route.query.filter || 'all').toLowerCase()
       if (this.isAccountList) return this.$route.query.state || 'all'
       if (this.$route.query.filter) {
         return this.$route.query.filter
@@ -3020,6 +3024,7 @@ export default {
       }
       if (this.apiName === 'listPhysicalNetworks' && this.$route.params?.id) params = { id: this.$route.params.id }
       if (guestVlanRoute(this.$route)) params = guestVlanReadParams(params)
+      if (this.isPrimaryStorageUi) params = primaryStorageReadParams(this.$route.query, params, this.$getApiParams(this.apiName))
       if (this.isClusterUi) params = clusterReadParams(this.$route.query, params, this.$getApiParams(this.apiName))
       if (this.isHostUi) params = hostReadParams(this.$route.query, params, this.$getApiParams(this.apiName))
       if (['listZones', 'listZonesMetrics'].includes(this.apiName) && this.$route.meta?.name === 'zone') params = zoneReadParams(this.$route.query, params)
@@ -3101,7 +3106,7 @@ export default {
         ? readVpnUsers(getAPI, this.$route.query, this.$route.params?.id)
         : isAclListRoute(this.$route)
           ? readAclList(getAPI, params, aclDisplaySupported(this.$store.getters), this.$route.params.id, readCurrentScope)
-          : kmsDetail ? readKmsDetail(getAPI, this.$route, this.$store.getters) : kmsList ? readKmsPage(getAPI, requestApi, params, readCurrentScope) : s2sGatewayRoute(this.$route) && this.dataView ? readGatewayDetail(getAPI, this.$route, this.$store.getters, readCurrentScope, this.$getApiParams('listVpnGateways')) : this.isVpnConnectionDetail || this.isS2sSearchList ? (vpnConnectionRoute(this.$route) ? readVpnConnectionQuery : readS2sGatewayQuery)(getAPI, params, this.$store.getters, readCurrentScope) : asnRoute(this.$route) ? readAsnQuery(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : isoQuery && this.dataView ? readIsoResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : this.publicIpDetail ? readPublicIpDetail(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : templateQuery && this.dataView ? readTemplateResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : policyDetail ? Promise.resolve().then(() => readPolicyDetail(getAPI, this.$route, this.$store.getters.project, () => version === this.listRequestVersion && scope === this.listScope())) : snapshotDetail ? Promise.resolve().then(() => readSnapshotDetail(getAPI, snapshotDetailParams(this.$route, this.$store.getters.project), this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope())) : this.isLdapUi || this.isClusterUi || this.isHostUi || this.isEventList || publicIpList || isoQuery || kubernetesIsoQuery || vmGroups || sshDetail || templateQuery || cniQuery || ['vm', 'vnfapp'].includes(this.$route.meta?.name) || this.publicIpDetail || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) ? getAPI(requestApi, params, { preserveOnFailure: true, timeout: 20000, ...(kubernetesIsoQuery ? { readScope: JSON.stringify([this.$store.state?.user?.token, this.$store.getters.userInfo?.id, this.$store.getters.project?.id]) } : {}) }) : callAPI(requestApi, params)
+          : kmsDetail ? readKmsDetail(getAPI, this.$route, this.$store.getters) : kmsList ? readKmsPage(getAPI, requestApi, params, readCurrentScope) : s2sGatewayRoute(this.$route) && this.dataView ? readGatewayDetail(getAPI, this.$route, this.$store.getters, readCurrentScope, this.$getApiParams('listVpnGateways')) : this.isVpnConnectionDetail || this.isS2sSearchList ? (vpnConnectionRoute(this.$route) ? readVpnConnectionQuery : readS2sGatewayQuery)(getAPI, params, this.$store.getters, readCurrentScope) : asnRoute(this.$route) ? readAsnQuery(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : isoQuery && this.dataView ? readIsoResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : this.publicIpDetail ? readPublicIpDetail(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : templateQuery && this.dataView ? readTemplateResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : policyDetail ? Promise.resolve().then(() => readPolicyDetail(getAPI, this.$route, this.$store.getters.project, () => version === this.listRequestVersion && scope === this.listScope())) : snapshotDetail ? Promise.resolve().then(() => readSnapshotDetail(getAPI, snapshotDetailParams(this.$route, this.$store.getters.project), this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope())) : this.isLdapUi || this.isPrimaryStorageUi || this.isClusterUi || this.isHostUi || this.isEventList || publicIpList || isoQuery || kubernetesIsoQuery || vmGroups || sshDetail || templateQuery || cniQuery || ['vm', 'vnfapp'].includes(this.$route.meta?.name) || this.publicIpDetail || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) ? getAPI(requestApi, params, { preserveOnFailure: true, timeout: 20000, ...(kubernetesIsoQuery ? { readScope: JSON.stringify([this.$store.state?.user?.token, this.$store.getters.userInfo?.id, this.$store.getters.project?.id]) } : {}) }) : callAPI(requestApi, params)
       const request = response.then(async json => {
         if (templateOperationHeld()) return
         if (version !== this.listRequestVersion || scope !== this.listScope()) return
@@ -3374,7 +3379,7 @@ export default {
           this.listRefreshError = true
           return
         }
-        if (this.isHostList || this.isClusterList) {
+        if (this.isPrimaryStorageList || this.isHostList || this.isClusterList) {
           this.listRefreshError = true
           if (!sameList || [401, 403].includes(error?.response?.status)) {
             this.items = []
@@ -3685,6 +3690,18 @@ export default {
         const query = { ...this.$route.query, page: '1' }
         delete query[filter.key]
         return this.$router.push({ query: ldapListQuery(query) })
+      }
+      if (this.isPrimaryStorageList) {
+        const query = { ...primaryStorageListQuery(this.$route.query), page: '1' }
+        delete query[filter.key]
+        if (filter.key === 'zoneid') delete query.podid
+        if (['zoneid', 'podid'].includes(filter.key)) delete query.clusterid
+        if (['zoneid', 'podid', 'clusterid'].includes(filter.key)) delete query.hostid
+        if (['status', 'filter'].includes(filter.key)) {
+          delete query.status
+          delete query.filter
+        }
+        return this.$router.push({ query })
       }
       if (this.isHostList || this.isClusterList) {
         const listQuery = this.isClusterList ? clusterListQuery : hostListQuery
@@ -4932,6 +4949,7 @@ export default {
       this.$router.push({ query })
     },
     changeFilter (filter) {
+      if (this.isPrimaryStorageList) return this.$router.push({ query: primaryStorageStatusQuery(this.$route.query, filter) })
       if (this.isClusterList) return this.$router.push({ query: clusterStatusQuery(this.$route.query, filter) })
       if (this.isHostList) return this.$router.push({ query: hostStatusQuery(this.$route.query, filter) })
       if (this.isAccountList) {
@@ -4990,12 +5008,6 @@ export default {
       } else if (['account', 'publicip', 'systemvm', 'router', 'runtimebundle'].includes(this.$route.name)) {
         if (filter !== 'all') {
           query.state = filter
-        }
-      } else if (this.$route.name === 'storagepool') {
-        if (filter === 'all') {
-          delete query.status
-        } else {
-          query.status = filter
         }
       } else if (['pod', 'cluster'].includes(this.$route.name)) {
         if (filter === 'all') {
@@ -5099,8 +5111,8 @@ export default {
         if (JSON.stringify(query) === JSON.stringify(this.$route.query)) return this.fetchData({ irefresh: true })
         return this.$router.push({ query })
       }
-      if (this.isHostList || this.isClusterList) {
-        const searchQuery = this.isClusterList ? clusterSearchQuery : hostSearchQuery
+      if (this.isPrimaryStorageList || this.isHostList || this.isClusterList) {
+        const searchQuery = this.isPrimaryStorageList ? primaryStorageSearchQuery : this.isClusterList ? clusterSearchQuery : hostSearchQuery
         const query = searchQuery(this.$route.query, opts || {}, this.pageSize)
         if (JSON.stringify(query) === JSON.stringify(this.$route.query)) return this.fetchData({ irefresh: true })
         return this.$router.push({ query })
@@ -5292,14 +5304,14 @@ export default {
     },
     changePage (page, pageSize) {
       const query = Object.assign({}, this.$route.query)
-      query.page = (this.isHostList || this.isClusterList || this.isZoneList || this.isRoleList || this.isProjectList || ['template', 'iso', 'cniconfiguration', 'guestnetwork', 'vnfapp', 'asnumbers', 'kubernetesiso', 'acllist', 'vpnuser', 'guestvlans', 'ipv4subnets', 'dnszone', 'dnsserver'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route) || vpnConnectionListRoute(this.$route)) && Number(pageSize) !== this.pageSize ? 1 : page
+      query.page = (this.isPrimaryStorageList || this.isHostList || this.isClusterList || this.isZoneList || this.isRoleList || this.isProjectList || ['template', 'iso', 'cniconfiguration', 'guestnetwork', 'vnfapp', 'asnumbers', 'kubernetesiso', 'acllist', 'vpnuser', 'guestvlans', 'ipv4subnets', 'dnszone', 'dnsserver'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route) || vpnConnectionListRoute(this.$route)) && Number(pageSize) !== this.pageSize ? 1 : page
       query.pagesize = pageSize
       if (this.isLdapUi) return this.$router.push({ query: ldapListQuery({ ...query, page: Number(pageSize) === this.pageSize ? page : 1 }) })
       this.$router.push({ query: this.isRoleList ? roleSearchQuery(query) : this.isAccountList ? accountQuery(query) : query })
     },
     handleTableChange (pagination, filters, sorter) {
-      if (this.isHostList || this.isClusterList) {
-        const listQuery = this.isClusterList ? clusterListQuery : hostListQuery
+      if (this.isPrimaryStorageList || this.isHostList || this.isClusterList) {
+        const listQuery = this.isPrimaryStorageList ? primaryStorageListQuery : this.isClusterList ? clusterListQuery : hostListQuery
         const sortorder = sorter?.order === 'ascend' ? 'asc' : sorter?.order === 'descend' ? 'desc' : undefined
         return this.$router.push({ query: listQuery({ ...this.$route.query, sortkey: sortorder && (sorter.columnKey || sorter.field), sortorder }) })
       }
@@ -5357,7 +5369,7 @@ export default {
     },
     changePageSize (currentPage, pageSize) {
       const query = Object.assign({}, this.$route.query)
-      query.page = (this.isHostList || this.isClusterList || this.isZoneList || ['template', 'iso', 'cniconfiguration', 'guestnetwork', 'vnfapp', 'asnumbers', 'kubernetesiso', 'acllist', 'vpnuser', 'guestvlans', 'ipv4subnets'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route)) ? 1 : currentPage
+      query.page = (this.isPrimaryStorageList || this.isHostList || this.isClusterList || this.isZoneList || ['template', 'iso', 'cniconfiguration', 'guestnetwork', 'vnfapp', 'asnumbers', 'kubernetesiso', 'acllist', 'vpnuser', 'guestvlans', 'ipv4subnets'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route)) ? 1 : currentPage
       query.pagesize = pageSize
       this.$router.push({ query })
     },
