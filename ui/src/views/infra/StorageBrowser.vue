@@ -120,17 +120,19 @@
       :visible="showMigrateModal"
       :maskClosable="true"
       :confirmLoading="migrateModalLoading"
-      @cancel="showMigrateModal = false"
+      @cancel="closeMigrationModal"
       :footer="null"
       width="50%"
       :okText="$t('label.ok')"
       :cancelText="$t('label.cancel')">
       <div>
         <migrate-image-store-resource
+          v-if="showMigrateModal"
           :sourceImageStore="resource"
           :templateIdsToMigrate="templateIdsToMigrate"
           :snapshotIdsToMigrate="snapshotIdsToMigrate"
-          @close-action="showMigrateModal = false"
+          @refresh-data="fetchData"
+          @close-action="closeMigrationModal"
         />
       </div>
     </a-modal>
@@ -509,12 +511,15 @@ export default {
       this.rules = reactive({})
     },
     openMigrationModal (record) {
-      if (record.snapshotid) {
-        this.snapshotIdsToMigrate.push(record.snapshotid)
-      } else if (record.templateid) {
-        this.templateIdsToMigrate.push(record.templateid)
-      }
+      if (!this.$store.getters.apis.migrateResourceToAnotherSecondaryStorage) return
+      this.snapshotIdsToMigrate = record.snapshotid ? [record.snapshotid] : []
+      this.templateIdsToMigrate = !record.snapshotid && record.templateid ? [record.templateid] : []
       this.showMigrateModal = true
+    },
+    closeMigrationModal () {
+      this.showMigrateModal = false
+      this.snapshotIdsToMigrate = []
+      this.templateIdsToMigrate = []
     },
     changePage (page, pageSize) {
       if (this.isPrimaryStorage) {
