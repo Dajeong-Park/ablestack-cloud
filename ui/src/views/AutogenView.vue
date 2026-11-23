@@ -1002,6 +1002,7 @@ import { dnsServerListQuery, dnsServerSearchQuery } from '@/utils/dnsServer'
 import { clusterListQuery, clusterReadParams, clusterSearchQuery, clusterStatusQuery } from '@/utils/clusterSearch'
 import { primaryStorageListQuery, primaryStorageReadParams, primaryStorageSearchQuery, primaryStorageStatusQuery } from '@/utils/primaryStorageSearch'
 import { secondaryStorageListQuery, secondaryStorageReadParams, secondaryStorageSearchQuery } from '@/utils/secondaryStorageSearch'
+import { selectorApi, selectorPage } from '@/utils/secondaryStorageSelectors'
 import { hostListQuery, hostReadParams, hostSearchQuery, hostStatusQuery } from '@/utils/hostSearch'
 import { zoneListQuery, zoneReadParams, zoneSearchQuery } from '@/utils/zone'
 import { dnsZoneSearchQuery } from '@/utils/dnsZone'
@@ -2430,6 +2431,8 @@ export default {
       if (this.showAction) this.closeAction()
     },
     fetchData (params = {}) {
+      // The selector view owns its required Zone-scoped read.
+      if (this.$route.meta?.name === selectorPage) return Promise.resolve()
       const vpnUser = this.isVpnUser
       if (vpnUser) {
         if (this.vpnUserProjectSwitching) return
@@ -3907,6 +3910,15 @@ export default {
     },
     kmsNavigationScope () { return JSON.stringify([this.$route.fullPath, this.kmsSearchAuth]) },
     execAction (action, isGroupAction) {
+      if (this.isSecondaryStorageList && action.api === selectorApi.list) {
+        if (!this.$store.getters.apis[selectorApi.list]) return
+        const origin = secondaryStorageListQuery(this.$route.query)
+        return this.$router.push({
+          name: selectorPage,
+          query: { zoneid: origin.zoneid },
+          state: { secondaryStorageSelectorOrigin: origin }
+        })
+      }
       if (this.$route.meta?.name === 'role' && !canRoleAction(action.api, action.resource || this.resource, this.$store.getters.apis)) return
       if (this.isKmsDetail && !this.kmsDetailReady) return
       if (this.isLdapUi && action.api === 'deleteLdapConfiguration') {

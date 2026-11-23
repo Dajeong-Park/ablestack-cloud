@@ -18,6 +18,7 @@
 import { shallowRef, defineAsyncComponent } from 'vue'
 import store from '@/store'
 import { secondaryStorageSearchFields } from '@/utils/secondaryStorageSearch'
+import { selectorApi } from '@/utils/secondaryStorageSelectors'
 
 export default {
   name: 'imagestore',
@@ -95,12 +96,17 @@ export default {
       api: 'listSecondaryStagingStores',
       icon: 'database-outlined',
       label: 'label.secondary.staging.stores',
-      showLabel: true,
       listView: true,
       popup: true,
       standardDialogSize: 'md',
       standardDialogInitialFocus: '#secondary-staging-refresh',
       component: shallowRef(defineAsyncComponent(() => import('@/views/infra/SecondaryStagingStores.vue')))
+    },
+    {
+      api: selectorApi.list,
+      icon: 'aim-outlined',
+      label: 'label.secondary.storage.selector',
+      listView: true
     },
     {
       api: 'migrateSecondaryStorageData',
