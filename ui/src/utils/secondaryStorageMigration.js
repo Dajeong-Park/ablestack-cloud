@@ -28,7 +28,7 @@ export function migrationDestinations (source, stores) {
 }
 
 export async function listMigrationStores () {
-  const json = await getAPI('listImageStores', { page: 1, pagesize: -1 }, { preserveOnFailure: true })
+  const json = await getAPI('listImageStores', { pagesize: -1 }, { preserveOnFailure: true })
   return json.listimagestoresresponse.imagestore || []
 }
 

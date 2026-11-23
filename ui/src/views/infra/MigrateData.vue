@@ -17,28 +17,41 @@
 
 <template>
   <div class="form-layout" v-ctrl-enter="submit">
-    <a-alert v-if="readFailed" type="error" show-icon :message="$t('error.fetching.data')">
-      <template #action><a-button size="small" @click="fetchStores">{{ $t('label.retry') }}</a-button></template>
+    <a-alert v-if="readFailed" type="error" show-icon :message="$t('message.secondary.storage.list.failed')">
+      <template #description>
+        <a-button size="small" @click="fetchStores">{{ $t('label.retry') }}</a-button>
+      </template>
     </a-alert>
-    <a-alert v-else-if="!loading && !destinations.length" type="info" show-icon :message="$t('message.secondary.storage.migration.no.targets')" />
+    <a-alert
+      v-else-if="!loading && !sources.length"
+      type="info"
+      show-icon
+      :message="$t('message.secondary.storage.migration.no.sources')" />
+    <a-alert
+      v-else-if="!loading && !destinations.length"
+      type="info"
+      show-icon
+      :message="$t('message.secondary.storage.migration.no.targets')"
+      :description="$t('message.secondary.storage.migration.destination.rules')" />
     <a-alert v-if="migrationError" type="error" show-icon :message="migrationError" />
     <a-form layout="vertical" :model="form" @finish="submit">
-      <a-form-item name="srcpool" :label="$t('migrate.from')">
+      <a-form-item name="srcpool" html-for="secondary-migration-source" :label="$t('label.secondary.storage.migration.source')">
         <a-select
           id="secondary-migration-source"
           v-model:value="form.srcpool"
           :options="sources.map(storeOption)"
-          :disabled="locked"
+          :disabled="locked || readFailed || !sources.length"
           :loading="loading"
           option-filter-prop="label"
           show-search
           @change="changeSource" />
       </a-form-item>
-      <a-form-item name="destpools" :label="$t('migrate.to')">
+      <a-form-item name="destpools" html-for="secondary-migration-destinations" :label="$t('label.secondary.storage.migration.destinations')">
         <a-select
+          id="secondary-migration-destinations"
           v-model:value="form.destpools"
           :options="destinations.map(storeOption)"
-          :disabled="locked || !destinations.length"
+          :disabled="locked || readFailed || !destinations.length"
           mode="multiple"
           option-filter-prop="label"
           show-search />
