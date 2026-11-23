@@ -69,6 +69,7 @@
 </template>
 
 <script>
+import { oauthListLocation } from '@/utils/oauthConfiguration'
 import { ldapConfigRoute, ldapEndpointLabel, ldapListQuery } from '@/utils/ldapConfiguration'
 import { dnsServerListQuery } from '@/utils/dnsServer'
 import { physicalNetworkZoneLocation, zoneListQuery } from '@/utils/zone'
@@ -161,6 +162,7 @@ export default {
     isEventDetailRoute,
     eventBreadcrumbTitle (event) { return eventDisplayTitle(event, this.$t, date => this.$toLocaleDate(date)) },
     breadcrumbLocation (item) {
+      if (item.path === '/oauthsetting' && this.$route.params?.id) return oauthListLocation(this.$route)
       if (item.path === '/ldapsetting' && this.$route.params?.id) return { path: item.path, query: ldapListQuery(this.$route.query) }
       if (item.path === '/account' && isAccountDetailRoute(this.$route)) {
         return accountListLocation(this.$route, this.$router.options.history.state, this.$store.getters, this.$store.state?.user?.token)

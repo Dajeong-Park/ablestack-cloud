@@ -69,10 +69,11 @@ export default {
       name: 'oauthsetting',
       title: 'label.oauth.configuration',
       icon: 'login-outlined',
-      docHelp: 'adminguide/accounts.html#using-an-ldap-server-for-user-authentication',
-      permission: ['listOauthProvider'],
+      docHelp: 'adminguide/accounts.html#using-oauth2-authentication-for-users',
+      permission: ['listOauthProviderConfigurations'],
+      searchFilters: ['provider', 'domainid', 'id'],
       columns: ['provider', 'enabled', 'description', 'clientid', 'redirecturi', 'domainpath'],
-      details: ['provider', 'description', 'enabled', 'clientid', 'secretkey', 'redirecturi', 'authorizeurl', 'tokenurl', 'domainpath'],
+      details: ['description', 'enabled', 'configuredenabled', 'clientid', 'secretkeyconfigured', 'redirecturi', 'authorizeurl', 'tokenurl'],
       actions: [
         {
           api: 'registerOauthProvider',
@@ -80,14 +81,12 @@ export default {
           label: 'label.register.oauth',
           listView: true,
           dataView: false,
-          args: [
-            'provider', 'description', 'clientid', 'redirecturi', 'secretkey', 'authorizeurl', 'tokenurl', 'domainid'
-          ],
-          mapping: {
-            provider: {
-              options: ['google', 'github', 'keycloak']
-            }
-          }
+          popup: true,
+          oauthForm: true,
+          standardDialogSize: 'md',
+          standardDialogInitialFocus: '#oauth-form-provider',
+          component: shallowRef(defineAsyncComponent(() => import('@/views/setting/OAuthProviderForm.vue'))),
+          args: ['provider', 'description', 'clientid', 'redirecturi', 'secretkey', 'authorizeurl', 'tokenurl', 'domainid']
         },
         {
           api: 'updateOauthProvider',
@@ -95,6 +94,10 @@ export default {
           label: 'label.edit',
           dataView: true,
           popup: true,
+          oauthForm: true,
+          standardDialogSize: 'md',
+          standardDialogInitialFocus: '#oauth-form-description',
+          component: shallowRef(defineAsyncComponent(() => import('@/views/setting/OAuthProviderForm.vue'))),
           args: ['description', 'clientid', 'redirecturi', 'secretkey', 'authorizeurl', 'tokenurl', 'domainid']
         },
         {
@@ -104,7 +107,7 @@ export default {
           message: 'message.confirm.enable.provider',
           dataView: true,
           defaultArgs: { enabled: true },
-          show: (record) => { return record.enabled === false }
+          show: (record) => record.configuredenabled === false && record.scopeenabled === true && record.pluginavailable === true
         },
         {
           api: 'updateOauthProvider',
@@ -113,15 +116,18 @@ export default {
           message: 'message.confirm.disable.provider',
           dataView: true,
           defaultArgs: { enabled: false },
-          show: (record) => { return record.enabled === true }
+          show: (record) => record.configuredenabled === true
         },
         {
           api: 'deleteOauthProvider',
           icon: 'delete-outlined',
           label: 'label.action.delete.oauth.provider',
-          message: 'message.action.delete.guest.os',
           dataView: true,
-          popup: true
+          popup: true,
+          oauthRemoval: true,
+          standardDialogSize: 'sm',
+          standardDialogInitialFocus: '#oauth-delete-cancel',
+          component: shallowRef(defineAsyncComponent(() => import('@/views/setting/DeleteOAuthProvider.vue')))
         }
       ]
     },

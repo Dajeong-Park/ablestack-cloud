@@ -246,6 +246,11 @@ export default {
       return (text.length <= length) ? text : (text.substring(0, length - 3) + '...')
     },
     retrieveFieldLabel (fieldName) {
+      if (this.apiName === 'listOauthProviderConfigurations') {
+        if (fieldName === 'provider') return this.$t('label.oauth.search.provider')
+        if (fieldName === 'domainid') return this.$t('label.domain')
+        if (fieldName === 'keyword') return this.$t('label.search')
+      }
       if (this.apiName === 'listLdapConfigurations') {
         if (fieldName === 'id') return this.$t('label.ldap.configuration.uuid')
         if (fieldName === 'domainid') return this.$t('label.domain')
@@ -298,6 +303,7 @@ export default {
       }
     },
     getStaticFieldValue (key, value) {
+      if (this.apiName === 'listOauthProviderConfigurations' && key === 'scope') return this.$t(value === 'global' ? 'label.oauth.scope.global' : 'label.domain')
       if (this.apiName === 'listBackupSchedule' && key === 'quiescevm') return this.$t(String(value) === 'true' ? 'label.yes' : 'label.no')
       if (this.apiName === 'listBackupSchedule' && key === 'intervaltype' && ['HOURLY', 'DAILY', 'WEEKLY', 'MONTHLY'].includes(String(value).toUpperCase())) return this.$t('label.' + String(value).toLowerCase())
       if (this.apiName === 'listIsos' && ['bootable', 'isready', 'ispublic'].includes(key)) return this.$t(String(value) === 'true' ? 'label.yes' : 'label.no')
