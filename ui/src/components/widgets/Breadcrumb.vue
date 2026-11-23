@@ -73,6 +73,7 @@ import { ldapConfigRoute, ldapEndpointLabel, ldapListQuery } from '@/utils/ldapC
 import { dnsServerListQuery } from '@/utils/dnsServer'
 import { physicalNetworkZoneLocation, zoneListQuery } from '@/utils/zone'
 import { clusterListQuery } from '@/utils/clusterSearch'
+import { primaryStorageListQuery } from '@/utils/primaryStorageSearch'
 import { hostListQuery } from '@/utils/hostSearch'
 import { dnsZoneListQuery } from '@/utils/dnsZone'
 import { ipv4SubnetListQuery } from '@/utils/ipv4Subnet'
@@ -184,6 +185,7 @@ export default {
       if (item.path === '/kubernetesiso' && this.$route.meta?.name === 'kubernetesiso' && this.$route.params?.id) return kubernetesIsoListLocation(this.$route, this.$store.getters, this.$store.state?.user?.token)
       if (item.path === '/vpnuser' && vpnUserRoute(this.$route) && this.$route.params?.id) return vpnUserListLocation(this.$route, this.$store.getters)
       if (item.path === '/physicalnetwork' && this.$route.params?.id && this.resource?.zoneid) return physicalNetworkZoneLocation(this.$route, this.resource.zoneid)
+      if (item.path === '/storagepool' && this.$route.meta?.name === 'storagepool' && this.$route.params?.id) return { path: item.path, query: primaryStorageListQuery(this.$route.query) }
       if (item.path === '/cluster' && this.$route.meta?.name === 'cluster' && this.$route.params?.id) return { path: item.path, query: clusterListQuery(this.$route.query) }
       if (item.path === '/host' && this.$route.meta?.name === 'host' && this.$route.params?.id) return { path: item.path, query: hostListQuery(this.$route.query) }
       if (item.path === '/zone' && this.$route.params?.id) return { path: item.path, query: zoneListQuery(this.$route.query) }
