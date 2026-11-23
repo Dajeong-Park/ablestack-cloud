@@ -120,7 +120,8 @@ export default {
   },
   computed: {
     scope () {
-      return { type: this.$route.meta.name, id: this.resource.id }
+      const { id } = this.resource
+      return { type: this.$route.meta.name, id: id === this.$route.params?.id ? id : null }
     },
     canUpdate () {
       return 'updateConfiguration' in this.$store.getters.apis
@@ -197,7 +198,7 @@ export default {
       if (!params) return
       try {
         const response = await getAPI('listConfigurations', { ...params, pagesize: -1 }, { preserveOnFailure: true })
-        if (revision !== this.revision) return
+        if (revision !== this.revision || this.scope.id !== id || this.scope.type !== type) return
         const list = response.listconfigurationsresponse
         if (!list) throw new Error('Missing configuration response')
         const rows = list.configuration || []
@@ -211,7 +212,7 @@ export default {
       }
     },
     open (mode, record) {
-      if (mode !== 'details' && (this.loading || this.loadFailed)) return
+      if (!this.scope.id || (mode !== 'details' && (this.loading || this.loadFailed))) return
       this.dialog = { mode, record, scope: this.scope }
     },
     handleSaved () {
