@@ -23,6 +23,7 @@ import clusters from '@/config/section/infra/clusters'
 import hosts from '@/config/section/infra/hosts'
 import primaryStorages from '@/config/section/infra/primaryStorages'
 import secondaryStorages from '@/config/section/infra/secondaryStorages'
+import { selectorApi, selectorPage } from '@/utils/secondaryStorageSelectors'
 import backupRepositories from '@/config/section/infra/backupRepositories'
 import objectStorages from '@/config/section/infra/objectStorages'
 import systemVms from '@/config/section/infra/systemVms'
@@ -52,6 +53,14 @@ export default {
     hosts,
     primaryStorages,
     secondaryStorages,
+    {
+      name: selectorPage,
+      title: 'label.secondary.storage.selector',
+      icon: 'aim-outlined',
+      hidden: true,
+      permission: [selectorApi.list],
+      component: () => import('@/views/infra/SecondaryStorageSelectors.vue')
+    },
     backupRepositories,
     objectStorages,
     systemVms,

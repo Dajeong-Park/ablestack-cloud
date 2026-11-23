@@ -17,8 +17,8 @@
 
 <template>
   <div>
-    <p v-if="listRefreshFailed" :role="isPrimaryStorage && !hasPrimaryData ? 'alert' : 'status'">
-      {{ $t(isPrimaryStorage && !hasPrimaryData ? 'message.primary.storage.browser.load.failed' : 'message.list.refresh.stale') }}
+    <p v-if="listRefreshFailed" :role="hasBrowserData ? 'status' : 'alert'">
+      {{ $t(browserErrorLabel) }}
     </p>
     <a-card class="breadcrumb-card">
       <a-row>
@@ -120,24 +120,27 @@
       :visible="showMigrateModal"
       :maskClosable="true"
       :confirmLoading="migrateModalLoading"
-      @cancel="showMigrateModal = false"
+      @cancel="closeMigrationModal"
       :footer="null"
       width="50%"
       :okText="$t('label.ok')"
       :cancelText="$t('label.cancel')">
       <div>
         <migrate-image-store-resource
+          v-if="showMigrateModal"
           :sourceImageStore="resource"
           :templateIdsToMigrate="templateIdsToMigrate"
           :snapshotIdsToMigrate="snapshotIdsToMigrate"
-          @close-action="showMigrateModal = false"
+          @refresh-data="fetchData"
+          @close-action="closeMigrationModal"
         />
       </div>
     </a-modal>
 
-    <div v-if="!isPrimaryStorage || !listRefreshFailed || hasPrimaryData">
+    <div v-if="!listRefreshFailed || hasBrowserData">
       <a-table
         :columns="visibleColumns"
+        :loading="resourceType === 'ImageStore' && loading"
         :scroll="primaryTableScroll"
         :row-key="record => record.name"
         :data-source="dataSource"
@@ -148,12 +151,15 @@
               <a-button v-if="isPrimaryStorage" class="storage-browser-directory" type="link" @click="openDir(browserPath + record.name + '/')">
                 <folder-outlined /> {{ record.name }}
               </a-button>
-              <a v-else @click="openDir(browserPath + record.name + '/')">
+              <a v-else href="#" @click.prevent="openImageFolder(record)">
                 <folder-outlined /> {{ record.name }}
               </a>
             </template>
             <template v-else-if="resourceType === 'ImageStore'">
-              <a @click="downloadFile(record)">
+              <component
+                :is="canDownloadImage ? 'a' : 'span'"
+                :href="canDownloadImage ? '#' : undefined"
+                @click.prevent="downloadFile(record)">
                 <template v-if="record.snapshotid">
                   <build-outlined/>
                 </template>
@@ -165,7 +171,7 @@
                     <save-outlined v-else />
                 </template>
                 {{ record.name }}
-              </a>
+              </component>
             </template>
             <template v-else>
               <template v-if="record.snapshotid">
@@ -212,12 +218,11 @@
               {{ $t('label.unknown') }}
             </template>
           </template>
-          <template v-else-if="column.key === 'actions' && (record.templateid || record.snapshotid)">
+          <template v-else-if="column.key === 'actions' && canMigrateImage && (record.templateid || record.snapshotid)">
               <tooltip-button
               tooltipPlacement="top"
               :tooltip="$t('label.migrate.data.from.image.store')"
               icon="arrows-alt-outlined"
-              :copyResource="String(resource.id)"
               @onClick="openMigrationModal(record)" />
             </template>
             <template v-else-if="column.key === 'deleteactions' && eligibleRbdObject(record)">
@@ -304,18 +309,19 @@ function positiveInteger (value, fallback) {
   return Number.isSafeInteger(number) && number > 0 ? number : fallback
 }
 
-function primaryBrowserQuery (query) {
+function browserQuery (query, primary) {
   return {
     browserPath: typeof query.browserPath === 'string' ? query.browserPath : '',
     page: positiveInteger(query.browserPage, 1),
     pageSize: positiveInteger(query.browserPageSize, 10),
-    keyword: typeof query.browserKeyword === 'string' ? query.browserKeyword.trim() : ''
+    keyword: primary && typeof query.browserKeyword === 'string' ? query.browserKeyword.trim() : ''
   }
 }
 
 export default {
   mixins: [listRefreshMixin(['fetchImageStoreObjects', 'fetchPrimaryStoreObjects'], {
     interval: 60000,
+    active: vm => vm.$route.query?.tab === 'browser',
     select: vm => vm.resourceType === 'ImageStore' ? ['fetchImageStoreObjects'] : vm.resourceType === 'PrimaryStorage' ? ['fetchPrimaryStoreObjects'] : [],
     // URL normalization must not invalidate a response for the same listing.
     scopeKey: vm => [vm.$route?.path, vm.$store?.state?.user?.token,
@@ -373,18 +379,15 @@ export default {
       })
     }
     const query = this.$route.query
-    const browser = this.resourceType === 'PrimaryStorage' ? primaryBrowserQuery(query) : {
-      browserPath: query.browserPath || '',
-      page: parseInt(query.browserPage) || 1,
-      pageSize: parseInt(query.browserPageSize) || 10,
-      keyword: ''
-    }
+    const browser = browserQuery(query, this.resourceType === 'PrimaryStorage')
     return {
       loading: false,
       dataSource: [],
       ...browser,
       keywordDraft: browser.keyword,
       hasPrimaryData: false,
+      hasImageData: false,
+      downloadingImage: false,
       deletingRbd: false,
       rbdDeleteTarget: null,
       browserFocus: null,
@@ -422,8 +425,20 @@ export default {
     canDeleteRbdImage () {
       return this.isRbdPool && this.resource.state === 'Up' && !!this.$store.getters.apis.deleteRbdImage
     },
+    canDownloadImage () {
+      return this.resourceType === 'ImageStore' && !!this.$store.getters.apis.downloadImageStoreObject
+    },
+    canMigrateImage () {
+      return this.resourceType === 'ImageStore' && !!this.$store.getters.apis.migrateResourceToAnotherSecondaryStorage
+    },
+    hasBrowserData () { return this.isPrimaryStorage ? this.hasPrimaryData : this.hasImageData },
+    browserErrorLabel () {
+      if (this.hasBrowserData) return 'message.list.refresh.stale'
+      return this.isPrimaryStorage ? 'message.primary.storage.browser.load.failed' : 'message.secondary.storage.browser.load.failed'
+    },
     visibleColumns () {
-      const columns = this.columns.filter(column => column.key !== 'deleteactions' || this.canImportVolume || this.canDeleteRbdImage)
+      const columns = this.columns.filter(column => (column.key !== 'deleteactions' || this.canImportVolume || this.canDeleteRbdImage) &&
+        (column.key !== 'actions' || this.canMigrateImage))
       if (!this.isPrimaryStorage) return columns
       const widths = { name: 224, size: 92, lastupdated: 144, associatedResource: 148, deleteactions: 112 }
       return columns.map(column => ({ ...column, width: widths[column.key] }))
@@ -443,11 +458,11 @@ export default {
   },
   watch: {
     '$route.query' (query) {
-      if (!this.isPrimaryStorage || this.$route.params.id !== this.resource.id || query.tab !== 'browser') return
-      const next = primaryBrowserQuery(query)
+      if (this.$route.params.id !== this.resource.id || query.tab !== 'browser') return
+      const next = browserQuery(query, this.isPrimaryStorage)
       if (Object.keys(next).every(key => this[key] === next[key])) return
       Object.assign(this, next, { keywordDraft: next.keyword })
-      this.fetchPrimaryStoreObjects()
+      this.fetchData()
     }
   },
   created () {
@@ -484,9 +499,9 @@ export default {
     cancelRbdDelete () {
       if (!this.deletingRbd) this.rbdDeleteTarget = null
     },
-    navigatePrimaryBrowser (changes) {
+    navigateBrowser (changes) {
       const state = { browserPath: this.browserPath, page: this.page, pageSize: this.pageSize, keyword: this.keyword, ...changes }
-      if (Object.keys(state).every(key => this[key] === state[key])) return this.fetchPrimaryStoreObjects()
+      if (Object.keys(state).every(key => this[key] === state[key])) return this.fetchData()
       return this.$router.push({
         query: {
           ...this.$route.query,
@@ -494,13 +509,13 @@ export default {
           browserPath: state.browserPath || undefined,
           browserPage: String(state.page),
           browserPageSize: String(state.pageSize),
-          browserKeyword: state.keyword || undefined
+          browserKeyword: this.isPrimaryStorage ? state.keyword || undefined : undefined
         }
       })
     },
     searchPrimaryStore (keyword) {
       this.keywordDraft = (keyword || '').trim()
-      return this.navigatePrimaryBrowser({ keyword: this.keywordDraft, page: 1 })
+      return this.navigateBrowser({ keyword: this.keywordDraft, page: 1 })
     },
     initForm () {
       this.formRef = ref()
@@ -509,27 +524,19 @@ export default {
       this.rules = reactive({})
     },
     openMigrationModal (record) {
-      if (record.snapshotid) {
-        this.snapshotIdsToMigrate.push(record.snapshotid)
-      } else if (record.templateid) {
-        this.templateIdsToMigrate.push(record.templateid)
-      }
+      if (!this.$store.getters.apis.migrateResourceToAnotherSecondaryStorage) return
+      this.snapshotIdsToMigrate = record.snapshotid ? [record.snapshotid] : []
+      this.templateIdsToMigrate = !record.snapshotid && record.templateid ? [record.templateid] : []
       this.showMigrateModal = true
     },
-    changePage (page, pageSize) {
-      if (this.isPrimaryStorage) {
-        const size = positiveInteger(pageSize, this.pageSize)
-        return this.navigatePrimaryBrowser({ page: size === this.pageSize ? positiveInteger(page, this.page) : 1, pageSize: size })
-      }
-      this.page = page
-      this.pageSize = pageSize
-      this.fetchData()
+    closeMigrationModal () {
+      this.showMigrateModal = false
+      this.snapshotIdsToMigrate = []
+      this.templateIdsToMigrate = []
     },
-    handleTableChange (pagination, filters, sorter) {
-      if (this.isPrimaryStorage) return
-      this.page = pagination.current
-      this.pageSize = pagination.pageSize
-      this.fetchData()
+    changePage (page, pageSize) {
+      const size = positiveInteger(pageSize, this.pageSize)
+      return this.navigateBrowser({ page: size === this.pageSize ? positiveInteger(page, this.page) : 1, pageSize: size })
     },
     volumeTypeChange (val) {
       this.volumetype = val
@@ -592,32 +599,34 @@ export default {
         this.deletingRbd = false
       }
     },
-    fetchImageStoreObjects () {
+    async fetchImageStoreObjects () {
+      if (!this.$store.getters.apis.listImageStoreObjects || !this.resource.id) return
       const listRequest = this.listRequestToken('fetchImageStoreObjects')
       this.loading = !listRequest.loaded
-      return getAPI('listImageStoreObjects', {
-        path: this.browserPath,
-        id: this.resource.id,
-        page: this.page,
-        pagesize: this.pageSize
-      }).then(json => {
+      if (!listRequest.loaded) {
+        this.hasImageData = false
+        this.dataSource = []
+        this.total = 0
+        this.listRefreshFailed = false
+      }
+      try {
+        const json = await getAPI('listImageStoreObjects', {
+          path: this.browserPath,
+          id: this.resource.id,
+          page: this.page,
+          pagesize: this.pageSize
+        }, { preserveOnFailure: true })
         if (!this.isListRequestCurrent('fetchImageStoreObjects', listRequest)) return
-
         this.dataSource = json.listimagestoreobjectsresponse.datastoreobject || []
         this.total = json.listimagestoreobjectsresponse.count || 0
-      }).finally(() => {
-        if (!this.isListRequestCurrent('fetchImageStoreObjects', listRequest)) return
-
-        this.loading = false
-      }).catch(error => {
+        this.hasImageData = true
+      } catch {
         if (!this.isListRequestCurrent('fetchImageStoreObjects', listRequest)) return
         listRequest.failed = true
         this.listRefreshFailed = true
-        if (!listRequest.loaded) this.$notifyError(error)
-      }).finally(() => {
-        if (!this.isListRequestCurrent('fetchImageStoreObjects', listRequest)) return
-        this.loading = false
-      })
+      } finally {
+        if (this.isListRequestCurrent('fetchImageStoreObjects', listRequest)) this.loading = false
+      }
     },
     async fetchPrimaryStoreObjects () {
       if (!this.$store.getters.apis.listStoragePoolObjects || !this.resource.id) return
@@ -670,20 +679,7 @@ export default {
     },
     fetchData () {
       if (this.isPrimaryStorage) return this.fetchPrimaryStoreObjects()
-      this.$router.replace(
-        {
-          path: this.$route.path,
-          query: {
-            ...this.$route.query,
-            browserPath: this.browserPath,
-            browserPage: this.page,
-            browserPageSize: this.pageSize
-          }
-        }
-      )
-      if (this.resourceType === 'ImageStore') {
-        this.fetchImageStoreObjects()
-      }
+      if (this.resourceType === 'ImageStore') return this.fetchImageStoreObjects()
     },
     getRoutes () {
       let path = ''
@@ -710,47 +706,38 @@ export default {
       return val
     },
     openDir (name) {
-      if (this.isPrimaryStorage) return this.navigatePrimaryBrowser({ browserPath: name, page: 1 })
-      this.browserPath = name
-      this.page = 1
-      this.pageSize = 10
-      this.fetchData()
+      return this.navigateBrowser({ browserPath: name, page: 1 })
     },
-    downloadFile (record) {
-      this.loading = true
-      const params = {
-        id: this.resource.id,
-        path: `${this.browserPath}${record.name}`
+    openImageFolder (record) {
+      if (this.loading || !this.hasImageData || !this.dataSource.includes(record)) return
+      return this.openDir(this.browserPath + record.name + '/')
+    },
+    async downloadFile (record) {
+      if (!this.canDownloadImage || this.downloadingImage || this.loading || !this.dataSource.includes(record)) return
+      this.downloadingImage = true
+      const id = this.resource.id
+      try {
+        const response = await postAPI('downloadImageStoreObject', { id, path: this.browserPath + record.name }, { preserveOnFailure: true })
+        const jobId = response.downloadimagestoreobjectresponse?.jobid
+        if (!jobId) throw new Error()
+        const result = await this.$pollJob({ jobId, showSuccessMessage: false })
+        if (result.jobstatus !== 1 || this.resource.id !== id || this.$route.params.id !== id || this.listRefreshDisposed) return
+        const download = result.jobresult?.downloadimagestoreobjectresponse
+        const url = new URL(download.url)
+        if (!['http:', 'https:'].includes(url.protocol)) throw new Error()
+        const link = document.createElement('a')
+        link.href = url.href
+        link.download = download.name || record.name
+        link.target = '_blank'
+        link.rel = 'noopener'
+        document.body.appendChild(link)
+        link.click()
+        link.remove()
+      } catch {
+        this.$message.error(this.$t('message.secondary.storage.browser.download.failed'))
+      } finally {
+        this.downloadingImage = false
       }
-      postAPI('downloadImageStoreObject', params).then(response => {
-        const jobId = response.downloadimagestoreobjectresponse.jobid
-        this.$pollJob({
-          jobId: jobId,
-          successMethod: (result) => {
-            const url = result.jobresult.downloadimagestoreobjectresponse.url
-            const name = result.jobresult.downloadimagestoreobjectresponse.name
-            var elem = window.document.createElement('a')
-            elem.setAttribute('href', new URL(url))
-            elem.setAttribute('download', name)
-            elem.setAttribute('target', '_blank')
-            document.body.appendChild(elem)
-            elem.click()
-            document.body.removeChild(elem)
-            this.loading = false
-          },
-          errorMethod: () => {
-            this.loading = false
-          },
-          catchMessage: this.$t('error.fetching.async.job.result'),
-          catchMethod: () => {
-            this.loading = false
-          }
-        })
-      }).catch(error => {
-        console.error(error)
-        this.$message.error(error)
-        this.loading = false
-      })
     }
   }
 }
