@@ -33,10 +33,10 @@
             <tooltip-label :title="$t('label.name')" :tooltip="apiParams.name.description"/>
           </template>
           <a-input
+            id="primary-storage-edit-name"
             v-model:value="form.name"
             :disabled="loading || baseComplete"
-            :placeholder="apiParams.name.description"
-            v-focus="true" />
+            :placeholder="apiParams.name.description" />
         </a-form-item>
         <a-form-item v-if="apiParams.tags" name="tags" ref="tags">
           <template #label>
@@ -45,8 +45,7 @@
           <a-input
             v-model:value="form.tags"
             :disabled="loading || baseComplete"
-            :placeholder="apiParams.tags.description"
-            v-focus="true" />
+            :placeholder="apiParams.tags.description" />
         </a-form-item>
         <a-form-item v-if="apiParams.istagarule" name="isTagARule" ref="isTagARule">
           <template #label>
@@ -61,8 +60,7 @@
           <a-input
             v-model:value="form.capacityBytes"
             :disabled="loading || baseComplete"
-            :placeholder="apiParams.capacitybytes.description"
-            v-focus="true" />
+            :placeholder="apiParams.capacitybytes.description" />
         </a-form-item>
         <a-form-item v-if="apiParams.capacityiops" name="capacityIOPS" ref="capacityIOPS">
           <template #label>
@@ -71,8 +69,7 @@
           <a-input
             v-model:value="form.capacityIOPS"
             :disabled="loading || baseComplete"
-            :placeholder="apiParams.capacityiops.description"
-            v-focus="true" />
+            :placeholder="apiParams.capacityiops.description" />
         </a-form-item>
         <br>
         <a-form-item name="nfsMountOpts" ref="nfsMountOpts" v-if="canUpdateNFSMountOpts">
@@ -88,8 +85,7 @@
           <a-input
             v-model:value="form.nfsMountOpts"
             :disabled="loading || baseComplete"
-            :placeholder="$t('message.nfs.mount.options.description')"
-            v-focus="true" />
+            :placeholder="$t('message.nfs.mount.options.description')" />
         </a-form-item>
 
         <a-form-item v-if="canManageGroups" name="storageaccessgroups" html-for="primary-storage-edit-access-groups">
@@ -107,12 +103,12 @@
             :placeholder="groupParams.storageaccessgroups.description" />
         </a-form-item>
 
-        <div :span="24" class="action-button">
+        <mold-dialog-actions :busy="loading">
           <a-button :disabled="loading" @click="closeAction">{{ $t('label.cancel') }}</a-button>
           <a-button :loading="loading" ref="submit" type="primary" @click="handleSubmit">
             {{ $t(groupUnknown ? 'label.host.operation.recheck' : saveError ? 'label.retry' : 'label.ok') }}
           </a-button>
-        </div>
+        </mold-dialog-actions>
       </a-form>
     </a-spin>
   </div>
@@ -124,12 +120,13 @@ import { getAPI, postAPI } from '@/api'
 import { isAdmin } from '@/role'
 import { createHostJobTracker, hostRequestRejected, hostStorageGroups } from '@/utils/hostOperations'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 
 const groupReadTimeout = 10000
 
 export default {
   name: 'UpdateStoragePool',
-  components: { TooltipLabel },
+  components: { TooltipLabel, MoldDialogActions },
   props: {
     resource: {
       type: Object,
@@ -316,15 +313,7 @@ export default {
 }
 </script>
 
-<style scoped lang="less">
-  .primary-storage-save-status { margin-bottom: 12px; }
-
-  .form-layout {
-    width: 60vw;
-
-    @media (min-width: 500px) {
-      width: 450px;
-    }
-  }
-
+<style scoped>
+.form-layout { min-width: 0; width: 100%; }
+.primary-storage-save-status { margin-bottom: 12px; }
 </style>

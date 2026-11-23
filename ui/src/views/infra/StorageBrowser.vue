@@ -20,77 +20,98 @@
     <p v-if="listRefreshFailed" :role="isPrimaryStorage && !hasPrimaryData ? 'alert' : 'status'">
       {{ $t(isPrimaryStorage && !hasPrimaryData ? 'message.primary.storage.browser.load.failed' : 'message.list.refresh.stale') }}
     </p>
-    <a-card class="breadcrumb-card">
+    <resource-table-toolbar
+      v-if="isPrimaryStorage"
+      v-model:search="keywordDraft"
+      class="storage-browser-toolbar"
+      searchable
+      :refreshable="false"
+      :search-label="$t('label.objectstore.search')"
+      @search="searchPrimaryStore">
+      <a-breadcrumb :routes="getRoutes()" class="storage-browser-path">
+        <template #itemRender="{ route }">
+          <a-button v-if="route.breadcrumbName === 'root'" type="link" :aria-label="$t('label.home')" @click="openDir('')">
+            <home-outlined />
+          </a-button>
+          <a-button v-else type="link" @click="openDir(route.path)">{{ route.breadcrumbName }}</a-button>
+        </template>
+      </a-breadcrumb>
+      <template #actions>
+        <a-button v-if="canCreateRbdImage" ref="createImageButton" type="primary" @click="showAddVolModal">
+          <template #icon><plus-outlined /></template>
+          {{ $t('label.create.rbd.image') }}
+        </a-button>
+        <a-button v-if="canImportVolume" ref="importVolumeButton" type="primary" @click="openVolumeImport('')">
+          {{ $t('label.creation.source.import') }}
+        </a-button>
+        <a-button ref="browserRefreshButton" :loading="loading || listRefreshing > 0" @click="fetchData">
+          <template #icon><reload-outlined /></template>
+          {{ $t('label.refresh') }}
+        </a-button>
+      </template>
+    </resource-table-toolbar>
+    <a-card v-else class="breadcrumb-card">
       <a-row>
         <a-col :span="24" style="padding-left: 12px">
           <a-breadcrumb :routes="getRoutes()">
             <template #itemRender="{ route }">
-              <span v-if="['/', ''].includes(route.path) && route.breadcrumbName === 'root'">
-                <a @click="openDir('')">
-                  <home-outlined/>
-                </a>
-              </span>
-              <span v-else>
-                <a @click="openDir(route.path)">
-                {{ route.breadcrumbName }}
-                </a>
-              </span>
+              <a v-if="route.breadcrumbName === 'root'" @click="openDir('')"><home-outlined /></a>
+              <a v-else @click="openDir(route.path)">{{ route.breadcrumbName }}</a>
             </template>
           </a-breadcrumb>
-          </a-col>
-          <a-divider/>
-          <a-col :span="24" class="storage-browser-toolbar">
-            <a-input-search
-              v-if="resourceType === 'PrimaryStorage'"
-              class="storage-browser-search"
-              allowClear
-              size="medium"
-              v-model:value="keywordDraft"
-              :placeholder="$t('label.objectstore.search')"
-              :loading="loading"
-              @search="searchPrimaryStore"
-              :enter-button="$t('label.search')"/>
-            <a-button v-if="canImportVolume" class="storage-browser-action" type="primary" @click="openVolumeImport('')">{{ $t('label.creation.source.import') }}</a-button>
-            <a-tooltip placement="bottom">
-              <template #title>{{ $t('label.refresh') }}</template>
-              <a-button
-                class="storage-browser-action"
-                :loading="loading"
-                shape="round"
-                size="medium"
-                @click="fetchData()"
-              >
-                <template #icon><ReloadOutlined /></template>
-                {{ $t('label.refresh') }}
-              </a-button>
-            </a-tooltip>
-            <template v-if="canCreateRbdImage">
-              <a-button
-                type="primary"
-                class="storage-browser-action"
-                shape="round"
-                @click="showAddVolModal"
-                :loading="loading">
-                <template #icon><plus-outlined /></template> {{ $t('label.create.rbd.image') }}
-              </a-button>
-            </template>
-          </a-col>
+        </a-col>
+        <a-divider />
+        <a-col :span="24" class="storage-browser-toolbar">
+          <a-button :loading="loading" shape="round" @click="fetchData">
+            <template #icon><reload-outlined /></template>
+            {{ $t('label.refresh') }}
+          </a-button>
+        </a-col>
       </a-row>
-      <a-modal
-        v-if="canCreateRbdImage"
-        :visible="showAddVolumeModal"
-        :title="$t('label.create.rbd.image')"
-        :maskClosable="false"
-        :closable="true"
-        :footer="null"
-        @cancel="closeModals">
-          <CreateRbdImage :resource="resource" @close-action="closeModals" />
-      </a-modal>
     </a-card>
 
-    <a-modal v-if="canImportVolume" :visible="showImportVolumeModal" :title="$t('label.creation.source.import')" :footer="null" :mask-closable="false" @cancel="showImportVolumeModal = false">
+    <mold-dialog
+      v-if="canCreateRbdImage"
+      :visible="showAddVolumeModal"
+      :title="$t('label.create.rbd.image')"
+      size="md"
+      form-actions
+      focus-guard
+      initial-focus="#primary-rbd-image-name"
+      :after-close="restoreBrowserFocus"
+      @cancel="closeModals">
+      <create-rbd-image v-if="showAddVolumeModal" :resource="resource" @close-action="closeModals" />
+    </mold-dialog>
+    <mold-dialog
+      v-if="canImportVolume"
+      :visible="showImportVolumeModal"
+      :title="$t('label.creation.source.import')"
+      size="md"
+      form-actions
+      focus-guard
+      initial-focus="#import-volume-path"
+      :after-close="restoreBrowserFocus"
+      @cancel="showImportVolumeModal = false">
       <import-storage-volume v-if="showImportVolumeModal" :key="importVolumePath" :resource="resource" :initial-path="importVolumePath" @close-action="showImportVolumeModal = false" />
-    </a-modal>
+    </mold-dialog>
+    <mold-dialog
+      v-if="canDeleteRbdImage"
+      :visible="!!rbdDeleteTarget"
+      :title="$t('label.delete.rbd.image')"
+      size="md"
+      focus-guard
+      initial-focus=".rbd-delete-cancel"
+      :closable="!deletingRbd"
+      :keyboard="!deletingRbd"
+      :after-close="restoreBrowserFocus"
+      @cancel="cancelRbdDelete">
+      <p><strong>{{ rbdDeleteTarget?.name }}</strong></p>
+      <p>{{ $t('message.primary.storage.rbd.delete.confirm') }}</p>
+      <template #footer>
+        <a-button class="rbd-delete-cancel" :disabled="deletingRbd" @click="cancelRbdDelete">{{ $t('label.cancel') }}</a-button>
+        <a-button danger type="primary" :loading="deletingRbd" @click="deleteRbdImage(rbdDeleteTarget)">{{ $t('label.delete') }}</a-button>
+      </template>
+    </mold-dialog>
 
     <a-modal
       :title="$t('message.data.migration')"
@@ -115,13 +136,17 @@
     <div v-if="!isPrimaryStorage || !listRefreshFailed || hasPrimaryData">
       <a-table
         :columns="visibleColumns"
+        :scroll="primaryTableScroll"
         :row-key="record => record.name"
         :data-source="dataSource"
         :pagination="false" >
         <template #bodyCell="{ column, record }">
           <template v-if="column.key == 'name'">
             <template v-if="record.isdirectory">
-              <a @click="openDir(`${this.browserPath}${record.name}/`)">
+              <a-button v-if="isPrimaryStorage" class="storage-browser-directory" type="link" @click="openDir(browserPath + record.name + '/')">
+                <folder-outlined /> {{ record.name }}
+              </a-button>
+              <a v-else @click="openDir(browserPath + record.name + '/')">
                 <folder-outlined /> {{ record.name }}
               </a>
             </template>
@@ -194,39 +219,22 @@
               @onClick="openMigrationModal(record)" />
             </template>
             <template v-else-if="column.key === 'deleteactions' && eligibleRbdObject(record)">
-              <a-col flex="auto">
-              <a-tooltip
-              v-if="canImportVolume"
-              :title="$t('label.action.create.volume')">
-                <a-button
-                  type="primary"
-                  size="medium"
-                  shape="circle"
-                  @click="openVolumeImport(browserPath + record.name)"
-                  :loading="loading">
-                <template #icon><plus-outlined /></template>
-              </a-button>
-            </a-tooltip>
-                <a-popconfirm
-                  v-if="canDeleteRbdImage"
-                  :title="`${$t('label.delete.rbd.image')}?`"
-                  @confirm="deleteRbdImage(record)"
-                  :okText="$t('label.yes')"
-                  :cancelText="$t('label.no')"
-                  placement="left">
-                <a-tooltip
-                :title="$t('label.delete')">
-                <a-button
-                  type="primary"
-                  size="medium"
-                  shape="circle"
-                  :loading="deletingRbd"
-                  danger="true">
-                    <template #icon><delete-outlined /></template>
-                  </a-button>
-                </a-tooltip>
-                </a-popconfirm>
-              </a-col>
+              <a-dropdown :trigger="['click']">
+                <a-button size="small" :data-rbd-target="record.name">
+                  {{ $t('label.actions') }}
+                  <down-outlined />
+                </a-button>
+                <template #overlay>
+                  <a-menu>
+                    <a-menu-item v-if="canImportVolume" key="import" @click="openVolumeImport(browserPath + record.name, record.name)">
+                      {{ $t('label.creation.source.import') }}
+                    </a-menu-item>
+                    <a-menu-item v-if="canDeleteRbdImage" key="delete" danger @click="openRbdDelete(record)">
+                      {{ $t('label.delete') }}
+                    </a-menu-item>
+                  </a-menu>
+                </template>
+              </a-dropdown>
             </template>
           </template>
       </a-table>
@@ -273,6 +281,8 @@ import { getAPI, postAPI } from '@/api'
 import { ref, reactive } from 'vue'
 import InfoCard from '@/components/view/InfoCard'
 import TooltipButton from '@/components/widgets/TooltipButton'
+import MoldDialog from '@/components/view/MoldDialog'
+import ResourceTableToolbar from '@/components/view/ResourceTableToolbar'
 import MigrateImageStoreResource from '@/views/storage/MigrateImageStoreResource'
 import CreateRbdImage from '@/views/storage/CreateRbdImage'
 import ImportStorageVolume from '@/views/storage/ImportStorageVolume'
@@ -306,7 +316,9 @@ export default {
     MigrateImageStoreResource,
     TooltipButton,
     CreateRbdImage,
-    ImportStorageVolume
+    ImportStorageVolume,
+    MoldDialog,
+    ResourceTableToolbar
   },
   props: {
     resource: {
@@ -363,6 +375,8 @@ export default {
       keywordDraft: browser.keyword,
       hasPrimaryData: false,
       deletingRbd: false,
+      rbdDeleteTarget: null,
+      browserFocus: null,
       total: 0,
       columns: columns,
       migrateModalLoading: false,
@@ -398,7 +412,13 @@ export default {
       return this.isRbdPool && this.resource.state === 'Up' && !!this.$store.getters.apis.deleteRbdImage
     },
     visibleColumns () {
-      return this.columns.filter(column => column.key !== 'deleteactions' || this.canImportVolume || this.canDeleteRbdImage)
+      const columns = this.columns.filter(column => column.key !== 'deleteactions' || this.canImportVolume || this.canDeleteRbdImage)
+      if (!this.isPrimaryStorage) return columns
+      const widths = { name: 224, size: 92, lastupdated: 144, associatedResource: 148, deleteactions: 96 }
+      return columns.map(column => ({ ...column, width: widths[column.key] }))
+    },
+    primaryTableScroll () {
+      return this.isPrimaryStorage ? { x: this.visibleColumns.reduce((total, column) => total + column.width, 0) } : undefined
     },
     pageSizeOptions () {
       var sizes = [20, 50, 100, 200, this.$store.getters.defaultListViewPageSize]
@@ -428,10 +448,29 @@ export default {
       return this.isRbdPool && !!record.name && !record.isdirectory && !record.templateid &&
         !record.volumeid && !record.snapshotid && !/MOLD-DR|MOLD-AC|MOLD-HB|ccvm/i.test(record.name)
     },
-    openVolumeImport (path) {
+    openVolumeImport (path, rowName) {
       if (!this.canImportVolume) return
+      this.browserFocus = { id: this.resource.id, rowName, ref: 'importVolumeButton' }
       this.importVolumePath = path
       this.showImportVolumeModal = true
+    },
+    restoreBrowserFocus () {
+      const previous = this.browserFocus
+      this.browserFocus = null
+      if (!previous || previous.id !== this.$route.params?.id || previous.id !== this.resource.id) return
+      const target = previous.rowName
+        ? Array.from(this.$el?.querySelectorAll('button[data-rbd-target]') || []).find(button => button.dataset.rbdTarget === previous.rowName)
+        : this.$refs[previous.ref]?.$el
+      const anchor = target || this.$refs.browserRefreshButton?.$el
+      if (anchor?.isConnected) anchor.focus({ preventScroll: true })
+    },
+    openRbdDelete (record) {
+      if (!this.canDeleteRbdImage || !this.eligibleRbdObject(record)) return
+      this.browserFocus = { id: this.resource.id, rowName: record.name }
+      this.rbdDeleteTarget = record
+    },
+    cancelRbdDelete () {
+      if (!this.deletingRbd) this.rbdDeleteTarget = null
     },
     navigatePrimaryBrowser (changes) {
       const state = { browserPath: this.browserPath, page: this.page, pageSize: this.pageSize, keyword: this.keyword, ...changes }
@@ -524,12 +563,17 @@ export default {
       })
     },
     async deleteRbdImage (record) {
-      if (!this.canDeleteRbdImage || !this.eligibleRbdObject(record) || this.deletingRbd) return
+      if (!record || !this.canDeleteRbdImage || this.deletingRbd) return
+      const current = this.dataSource.find(item => item.name === record.name)
+      if (!current || !this.eligibleRbdObject(current)) return
       const id = this.resource.id
       this.deletingRbd = true
       try {
         await postAPI('deleteRbdImage', { name: record.name, id }, { preserveOnFailure: true })
-        if (this.resource.id === id) await this.fetchPrimaryStoreObjects()
+        if (this.resource.id === id) {
+          await this.fetchPrimaryStoreObjects()
+          this.rbdDeleteTarget = null
+        }
       } catch (error) {
         this.$notifyError(error)
       } finally {
@@ -598,7 +642,9 @@ export default {
       this.runApi()
     },
     showAddVolModal () {
-      if (this.canCreateRbdImage) this.showAddVolumeModal = true
+      if (!this.canCreateRbdImage) return
+      this.browserFocus = { id: this.resource.id, ref: 'createImageButton' }
+      this.showAddVolumeModal = true
     },
     showAddTyModal (name, size) {
       this.showAddTypeModal = true
@@ -706,12 +752,6 @@ export default {
   gap: 8px;
 }
 
-.storage-browser-search {
-  flex: 1 1 240px;
-  min-width: 0;
-}
-
-.storage-browser-action {
-  flex-shrink: 0;
-}
+.storage-browser-path { min-width: 0; overflow-wrap: anywhere; }
+.storage-browser-path :deep(button), .storage-browser-directory { padding-inline: 0; }
 </style>

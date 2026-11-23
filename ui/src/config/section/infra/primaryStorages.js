@@ -85,6 +85,8 @@ export default {
       label: 'label.add.primary.storage',
       listView: true,
       popup: true,
+      standardDialogSize: 'md',
+      standardDialogInitialFocus: '#primary-storage-add-scope',
       component: shallowRef(defineAsyncComponent(() => import('@/views/infra/AddPrimaryStorage.vue')))
     },
     {
@@ -93,12 +95,15 @@ export default {
       label: 'label.edit',
       dataView: true,
       popup: true,
+      standardDialogSize: 'md',
+      standardDialogInitialFocus: '#primary-storage-edit-name',
       component: shallowRef(defineAsyncComponent(() => import('@/views/infra/UpdatePrimaryStorage.vue')))
     },
     {
       api: 'updateStoragePool',
       icon: 'pause-circle-outlined',
       label: 'label.disable.storage',
+      danger: true,
       message: 'message.confirm.disable.storage',
       dataView: true,
       defaultArgs: { enabled: false },
@@ -125,6 +130,7 @@ export default {
       api: 'enableStorageMaintenance',
       icon: 'plus-square-outlined',
       label: 'label.action.enable.maintenance.mode',
+      danger: true,
       message: 'message.action.primarystorage.enable.maintenance.mode',
       dataView: true,
       show: (record) => { return ['Up', 'Connecting', 'Down', 'ErrorInMaintenance'].includes(record.state) }
@@ -155,12 +161,16 @@ export default {
            record.hypervisor === 'Simulator')
         )
       },
+      standardDialogSize: 'md',
+      standardDialogInitialFocus: '.mold-dialog-actions button',
       component: shallowRef(defineAsyncComponent(() => import('@/views/infra/ChangeStoragePoolScope.vue')))
     },
     {
       api: 'deleteStoragePool',
       icon: 'delete-outlined',
       label: 'label.action.delete.primary.storage',
+      danger: true,
+      message: 'message.primary.storage.delete.confirm',
       dataView: true,
       args: ['forced'],
       show: (record) => { return (record.state === 'Down' || record.state === 'Maintenance' || record.state === 'Disconnected') },

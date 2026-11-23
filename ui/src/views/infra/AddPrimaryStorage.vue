@@ -30,8 +30,8 @@
             <tooltip-label :title="$t('label.scope')" :tooltip="apiParams.scope.description"/>
           </template>
           <a-select
+            id="primary-storage-add-scope"
             v-model:value="form.scope"
-            v-focus="true"
             @change="val => changeScope(val)"
             showSearch
             optionFilterProp="label"
@@ -514,10 +514,10 @@
             :options="accessGroups" />
         </a-form-item>
 
-        <div :span="24" class="action-button">
+        <mold-dialog-actions :busy="submitting">
           <a-button @click="closeModal" :disabled="submitting">{{ $t('label.cancel') }}</a-button>
           <a-button type="primary" ref="submit" :loading="submitting" :disabled="loading" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
-        </div>
+        </mold-dialog-actions>
       </a-form>
     </a-spin>
   </div>
@@ -531,13 +531,15 @@ import { mixinForm } from '@/utils/mixin'
 import { hostStorageGroups } from '@/utils/hostOperations'
 import ResourceIcon from '@/components/view/ResourceIcon'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 
 export default {
   name: 'AddPrimaryStorage',
   mixins: [mixinForm],
   components: {
     TooltipLabel,
-    ResourceIcon
+    ResourceIcon,
+    MoldDialogActions
   },
   props: {
     resource: {
@@ -1132,11 +1134,6 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
-.form-layout {
-  width: 80vw;
-  @media (min-width: 1000px) {
-    width: 500px;
-  }
-}
+<style scoped>
+.form-layout { min-width: 0; width: 100%; }
 </style>
