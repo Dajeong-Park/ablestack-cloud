@@ -39,7 +39,7 @@
       <a-input-search
         allowClear
         class="input-search"
-        :aria-label="isLdapSearch ? $t('label.ldap.search.host') : isGuestVlanSearch ? $t('label.guest.vlan.search.keyword') : isVpnUserSearch ? $t('label.vpn.user.search.keyword') : isAclSearch ? $t('label.acl.search.keyword') : isEventSearch ? $t('label.events.search.keyword') : apiName === 'listIsos' ? $t('label.search') : undefined"
+        :aria-label="isOauthSearch ? $t('label.oauth.search.keyword') : isLdapSearch ? $t('label.ldap.search.host') : isGuestVlanSearch ? $t('label.guest.vlan.search.keyword') : isVpnUserSearch ? $t('label.vpn.user.search.keyword') : isAclSearch ? $t('label.acl.search.keyword') : isEventSearch ? $t('label.events.search.keyword') : apiName === 'listIsos' ? $t('label.search') : undefined"
         :placeholder="isGuestVlanSearch ? $t('label.guest.vlan.search.keyword') : apiName === 'listVpnCustomerGateways' ? $t('label.vpn.customer.gateway.search.keyword') : isVpnUserSearch ? $t('label.vpn.user.search.keyword') : isAclSearch ? $t('label.acl.search.keyword') : isEventSearch ? $t('label.events.search.keyword') : apiName === 'listVnfAppliances' ? $t('label.vnf.name.search') : $t('label.search')"
         :title="isLdapSearch ? $t('label.ldap.search.host') : apiName === 'listIsos' ? $t('message.iso.search.keyword') : undefined"
         v-model:value="searchQuery"
@@ -65,7 +65,7 @@
                   :name="field.name"
                   :key="index"
                   :label="retrieveFieldLabel(field.name)"
-                  :html-for="isInfrastructureSearch ? infrastructureFilterId(field.name) : isZoneSearch ? 'zone-filter-' + field.name : isVpnUserSearch ? 'vpn-user-filter-' + field.name : isAclSearch && field.name === 'vpcid' ? 'pip-search-candidate-vpcid' : isKmsSearch ? 'kms-filter-' + field.name : undefined"
+                  :html-for="isOauthSearch ? 'oauth-filter-' + field.name : isInfrastructureSearch ? infrastructureFilterId(field.name) : isZoneSearch ? 'zone-filter-' + field.name : isVpnUserSearch ? 'vpn-user-filter-' + field.name : isAclSearch && field.name === 'vpcid' ? 'pip-search-candidate-vpcid' : isKmsSearch ? 'kms-filter-' + field.name : undefined"
                   :extra="isLdapSearch && field.name === 'id' ? $t('message.ldap.search.uuid.only') : (isInfrastructureSearch || isVpnUserSearch || isIpv4SubnetSearch) && field.error ? $t('error.fetching.data') : ['listTemplates', 'listIsos'].includes(apiName) && ['name', 'isready', 'userdataid'].includes(field.name) ? $t('message.template.search.' + field.name) : undefined">
                   <PublicIpSearchSelect
                     v-if="isAclSearch && field.name === 'vpcid'"
@@ -107,8 +107,8 @@
                     allowClear
                     v-else-if="field.type==='list'"
                     :aria-label="(isInfrastructureSearch || isZoneSearch) ? retrieveFieldLabel(field.name) : undefined"
-                    :id="isInfrastructureSearch ? infrastructureFilterId(field.name) : isZoneSearch ? 'zone-filter-' + field.name : isVpnUserSearch ? 'vpn-user-filter-' + field.name : isKmsSearch ? 'kms-filter-' + field.name : undefined"
-                    :get-popup-container="isKmsSearch || isIpv4SubnetSearch ? filterPopupContainer : undefined"
+                    :id="isOauthSearch ? 'oauth-filter-' + field.name : isInfrastructureSearch ? infrastructureFilterId(field.name) : isZoneSearch ? 'zone-filter-' + field.name : isVpnUserSearch ? 'vpn-user-filter-' + field.name : isKmsSearch ? 'kms-filter-' + field.name : undefined"
+                    :get-popup-container="isOauthSearch || isKmsSearch || isIpv4SubnetSearch ? filterPopupContainer : undefined"
                     v-model:value="form[field.name]"
                     showSearch
                     :dropdownMatchSelectWidth="false"
@@ -163,8 +163,8 @@
                   <a-input
                     v-else-if="field.type==='input'"
                     v-model:value="form[field.name]"
-                    :id="isInfrastructureSearch ? infrastructureFilterId(field.name) : isZoneSearch ? 'zone-filter-' + field.name : isVpnUserSearch ? 'vpn-user-filter-' + field.name : undefined"
-                    :aria-label="isInfrastructureSearch || isZoneSearch || isEventSearch || isVpnUserSearch ? retrieveFieldLabel(field.name) : undefined" />
+                    :id="isOauthSearch ? 'oauth-filter-' + field.name : isInfrastructureSearch ? infrastructureFilterId(field.name) : isZoneSearch ? 'zone-filter-' + field.name : isVpnUserSearch ? 'vpn-user-filter-' + field.name : undefined"
+                    :aria-label="isOauthSearch || isInfrastructureSearch || isZoneSearch || isEventSearch || isVpnUserSearch ? retrieveFieldLabel(field.name) : undefined" />
                   <div v-else-if="field.type==='tag'">
                     <a-input-group
                       type="text"
@@ -232,7 +232,7 @@
               class="filter-button"
               size="small"
               :aria-label="$t('label.advanced.search')"
-                  @click="() => { if (!isLdapSearch && !isInfrastructureSearch && !isDnsZoneSearch && !isDnsServerSearch && !isIpv4SubnetSearch && !isGuestVlanSearch && !isAclSearch && !isVpnUserSearch && !['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups', 'listVnfAppliances', 'listEvents', 'listRoles'].includes(apiName)) searchQuery = null }">
+                  @click="() => { if (!isOauthSearch && !isLdapSearch && !isInfrastructureSearch && !isDnsZoneSearch && !isDnsServerSearch && !isIpv4SubnetSearch && !isGuestVlanSearch && !isAclSearch && !isVpnUserSearch && !['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups', 'listVnfAppliances', 'listEvents', 'listRoles'].includes(apiName)) searchQuery = null }">
               <filter-two-tone v-if="isFiltered" />
               <filter-outlined v-else />
             </a-button>
@@ -366,7 +366,7 @@ export default {
         this.searchQuery = to.query.q
       }
       if (this.isInfrastructureSearch || this.isZoneSearch || this.isDnsZoneSearch || this.isDnsServerSearch) this.searchQuery = to.query.keyword || ''
-      if (this.isLdapSearch || this.isIpv4SubnetSearch && !this.searchQuery) this.searchQuery = to.query.keyword || ''
+      if (this.isOauthSearch || this.isLdapSearch || this.isIpv4SubnetSearch && !this.searchQuery) this.searchQuery = to.query.keyword || ''
       this.updateIsFiltered()
       if (this.isAclSearch || this.isVpnUserSearch || this.isVpnCustomerGatewaySearch || this.isGuestVlanSearch || this.isIpv4SubnetSearch) this.visibleFilter = false
       if (this.apiName === 'listIsos' && to?.meta?.name === 'iso' && this.visibleFilter) this.fillFormFieldValues()
@@ -385,7 +385,7 @@ export default {
       this.searchQuery = this.$route.query.q
     }
     if (this.isInfrastructureSearch || this.isZoneSearch || this.isDnsZoneSearch || this.isDnsServerSearch) this.searchQuery = this.$route.query.keyword || ''
-    if (this.isLdapSearch || this.isIpv4SubnetSearch && !this.searchQuery) this.searchQuery = this.$route.query.keyword || ''
+    if (this.isOauthSearch || this.isLdapSearch || this.isIpv4SubnetSearch && !this.searchQuery) this.searchQuery = this.$route.query.keyword || ''
     this.updateIsFiltered()
   },
   computed: {
@@ -413,6 +413,7 @@ export default {
     isDnsServerSearch () { return this.apiName === 'listDnsServers' },
     isDnsZoneSearch () { return this.apiName === 'listDnsZones' },
     isLdapSearch () { return this.$route.meta?.name === 'ldapsetting' },
+    isOauthSearch () { return this.$route.meta?.name === 'oauthsetting' },
     isIpv4SubnetSearch () { return this.apiName === ipv4SubnetApi },
     ipv4SubnetZoneChoices () { return ipv4SubnetZoneChoices },
     isGuestVlanSearch () { return this.apiName === 'listGuestVlans' },
@@ -565,6 +566,8 @@ export default {
       if (this.isDnsServerSearch && fieldName === 'providertype') return this.$t('label.provider')
       if (this.isDnsZoneSearch && fieldName === 'dnsserverid') return this.$t('label.dns.server')
       if (this.isLdapSearch && fieldName === 'domainid') return this.$t('label.domain')
+      if (this.isOauthSearch && fieldName === 'provider') return this.$t('label.oauth.search.provider')
+      if (this.isOauthSearch && fieldName === 'domainid') return this.$t('label.domain')
       if (this.isLdapSearch && fieldName === 'id') return this.$t('label.ldap.configuration.uuid')
       if (this.isIpv4SubnetSearch && ipv4SubnetFilterLabel[fieldName]) return this.$t(ipv4SubnetFilterLabel[fieldName])
       if (this.isGuestVlanSearch && fieldName === 'vnet') return this.$t('label.guest.vlan.search.exact')
@@ -654,6 +657,7 @@ export default {
           type = 'boolean'
         }
 
+        if (this.isOauthSearch && item === 'provider') type = 'input'
         if (this.apiName === 'listAffinityGroups' && item === 'projectid') {
           if (!('listProjects' in this.$store.getters.apis)) return
           type = 'list'
@@ -1429,7 +1433,7 @@ export default {
           }
         }]
       }
-      if (this.isZoneSearch || this.isGuestVlanSearch || this.isGuestNetworkSearch || this.isVnfSearch || ['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups', 'listBackups', 'listBackupSchedule'].includes(this.apiName) || arrayField.includes('volumeid')) this.fillFormFieldValues()
+      if (this.isOauthSearch || this.isZoneSearch || this.isGuestVlanSearch || this.isGuestNetworkSearch || this.isVnfSearch || ['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups', 'listBackups', 'listBackupSchedule'].includes(this.apiName) || arrayField.includes('volumeid')) this.fillFormFieldValues()
 
       this.fetchStaticFieldData(arrayField)
 
@@ -1587,7 +1591,8 @@ export default {
       if (guestLookup && (!this.isGuestNetworkSearch || !this.$store.state?.user?.token || !('listDomains' in (this.$store.getters.apis || {})))) return Promise.resolve({ type: 'domainid', data: [] })
       return new Promise((resolve, reject) => {
         getAPI('listDomains', { listAll: true, details: 'min', showicon: true, keyword: searchKeyword }).then(json => {
-          const domain = json.listdomainsresponse.domain
+          const rows = json.listdomainsresponse?.domain || []
+          const domain = this.isOauthSearch ? rows.filter(row => row.name !== 'ROOT') : rows
           resolve({
             type: 'domainid',
             data: domain
@@ -2289,13 +2294,18 @@ export default {
         })
       })
     },
-    openLdapDomain () { this.visibleFilter = true },
+    openAdvancedFilters () { this.visibleFilter = true },
     onSearch (value) {
       this.paramsFilter = {}
       this.searchQuery = value
       this.$emit('search', { searchQuery: this.searchQuery })
     },
     async onClear () {
+      if (this.isOauthSearch) {
+        this.visibleFilter = false
+        this.$emit('search', {})
+        return
+      }
       if (this.isInfrastructureSearch) {
         this.visibleFilter = false
         this.searchQuery = ''
@@ -2389,6 +2399,13 @@ export default {
       this.$emit('search', this.paramsFilter)
     },
     handleSubmit () {
+      if (this.isOauthSearch) {
+        const id = this.form.id?.trim()
+        if (id && !this.$isValidUuid(id)) { this.$message.error(this.$t('message.error.input.invaliduuid')); return }
+        this.visibleFilter = false
+        this.$emit('search', { ...toRaw(this.form), id })
+        return
+      }
       if (this.isLdapSearch) {
         const id = this.form.id?.trim()
         if (id && !this.$isValidUuid(id)) { this.$message.error(this.$t('message.error.input.invaliduuid')); return }
@@ -2470,7 +2487,7 @@ export default {
       this.$emit('change-filter', filter)
     },
     updateIsFiltered () {
-      const params = this.isLdapSearch || this.isInfrastructureSearch || this.isZoneSearch || this.isDnsZoneSearch || this.isDnsServerSearch || this.isAccountSearch || this.isIpv4SubnetSearch || this.isRoleSearch || this.isGuestVlanSearch || this.isVpnUserSearch || this.isVpnCustomerGatewaySearch || this.isAclSearch || this.isEventSearch || this.isKmsSearch || this.isGuestNetworkSearch || this.isVnfSearch || ['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups'].includes(this.apiName) ? this.$route.query : this.searchParams
+      const params = this.isOauthSearch || this.isLdapSearch || this.isInfrastructureSearch || this.isZoneSearch || this.isDnsZoneSearch || this.isDnsServerSearch || this.isAccountSearch || this.isIpv4SubnetSearch || this.isRoleSearch || this.isGuestVlanSearch || this.isVpnUserSearch || this.isVpnCustomerGatewaySearch || this.isAclSearch || this.isEventSearch || this.isKmsSearch || this.isGuestNetworkSearch || this.isVnfSearch || ['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups'].includes(this.apiName) ? this.$route.query : this.searchParams
       this.isFiltered = this.searchFilters.some(item => {
         if (params[item]) {
           return true
