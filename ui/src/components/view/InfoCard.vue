@@ -265,6 +265,13 @@
         <div class="resource-detail-item" v-if="$route.meta.name === 'template' && templateRuntimeToolVisible">
           <router-link to="/runtimebundle">{{ $t('label.runtime.catalog') }}</router-link>
         </div>
+        <div v-if="resource.id && $route.meta.name === 'oauthsetting'" class="resource-detail-item">
+          <div class="resource-detail-item__label">{{ $t('label.scope') }}</div>
+          <div class="resource-detail-item__details">
+            <router-link v-if="resource.domainid && 'listDomains' in $store.getters.apis" :to="{ path: '/domain/' + resource.domainid, query: { tab: 'details' } }">{{ resource.domainpath || resource.domainid }}</router-link>
+            <span v-else>{{ resource.domainid ? resource.domainpath || resource.domainid : $t('label.oauth.scope.global') }}</span>
+          </div>
+        </div>
         <div v-if="resource.id && $route.meta.name === 'ldapsetting'" class="resource-detail-item">
           <div class="resource-detail-item__label">{{ $t('label.scope') }}</div>
           <div class="resource-detail-item__details">{{ $t(resource.domainid ? 'label.domain' : 'label.ldap.scope.global') }}</div>
@@ -1061,7 +1068,7 @@
                 <span v-else>{{ resource.rolename || resource.role || resource.roleid }}</span>
               </div>
             </div>
-            <div class="resource-detail-item" v-if="!['vpnuser', 'ldapsetting'].includes($route.meta.name) && resource.domainid">
+            <div class="resource-detail-item" v-if="!['vpnuser', 'ldapsetting', 'oauthsetting'].includes($route.meta.name) && resource.domainid">
               <div class="resource-detail-item__label">{{ $t('label.domain') }}</div>
               <div class="resource-detail-item__details">
                 <resource-icon v-if="images.domain" :image="images.domain" size="1x" style="margin-right: 5px"/>

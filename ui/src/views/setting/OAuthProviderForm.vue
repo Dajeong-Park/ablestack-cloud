@@ -8,7 +8,7 @@ agreed to in writing, software distributed under the License is distributed on
 an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND. See the License
 for the specific language governing permissions and limitations. -->
 <template>
-  <a-form layout="vertical" :model="form">
+  <a-form class="oauth-credential-form" layout="vertical" :model="form">
     <a-form-item
       v-if="registering"
       html-for="oauth-form-provider"
@@ -278,3 +278,20 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.oauth-credential-form :deep(.ant-input-password:not(.ant-input-affix-wrapper-disabled)) {
+  background: var(--ui-bg-input);
+  border-color: var(--ui-border-strong);
+}
+.oauth-credential-form :deep(.ant-input-password:not(.ant-input-affix-wrapper-disabled):hover),
+.oauth-credential-form :deep(.ant-input-password:focus-within) {
+  border-color: var(--ui-focus);
+}
+.oauth-credential-form :deep(.ant-input-password-icon) {
+  color: var(--ui-text-secondary);
+}
+.oauth-credential-form :deep(.ant-input-password-icon:hover) {
+  color: var(--ui-link);
+}
+</style>

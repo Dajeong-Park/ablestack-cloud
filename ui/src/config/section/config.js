@@ -73,7 +73,7 @@ export default {
       permission: ['listOauthProviderConfigurations'],
       searchFilters: ['provider', 'domainid', 'id'],
       columns: ['provider', 'enabled', 'description', 'clientid', 'redirecturi', 'domainpath'],
-      details: ['provider', 'description', 'enabled', 'configuredenabled', 'clientid', 'secretkeyconfigured', 'redirecturi', 'authorizeurl', 'tokenurl', 'domainpath'],
+      details: ['description', 'enabled', 'configuredenabled', 'clientid', 'secretkeyconfigured', 'redirecturi', 'authorizeurl', 'tokenurl'],
       actions: [
         {
           api: 'registerOauthProvider',
