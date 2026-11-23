@@ -39,9 +39,9 @@ export default {
       icon: 'team-outlined',
       docHelp: 'adminguide/accounts.html#using-an-ldap-server-for-user-authentication',
       permission: ['listLdapConfigurations'],
-      searchFilters: ['domainid', 'hostname', 'port'],
-      columns: ['hostname', 'port', 'domainid'],
-      details: ['id', 'hostname', 'port', 'domainid'],
+      searchFilters: ['domainid', 'hostname', 'port', 'id'],
+      columns: ['hostname', 'port', 'domainpath'],
+      details: ['id', 'hostname', 'port', 'domainpath'],
       actions: [
         {
           api: 'addLdapConfiguration',

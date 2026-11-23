@@ -813,7 +813,11 @@
       </template>
       <template v-if="column.key === 'hostname'">
         <router-link
-          v-if="record.hostid"
+          v-if="$route.meta?.name === 'ldapsetting' && record.id"
+          :to="{ path: '/ldapsetting/' + record.id, query: ldapListQuery($route.query) }"
+        >{{ text }}</router-link>
+        <router-link
+          v-else-if="record.hostid"
           :to="{ path: '/host/' + record.hostid }"
         >{{ text }}</router-link>
         <router-link
@@ -1329,6 +1333,7 @@ import { zoneFeatureLabel, zoneFeatureState, zoneListQuery, zoneMetricText } fro
 import { clusterListQuery, clusterStateLabel } from '@/utils/clusterSearch'
 import { hostListQuery } from '@/utils/hostSearch'
 import { dnsZoneListQuery } from '@/utils/dnsZone'
+import { ldapListQuery } from '@/utils/ldapConfiguration'
 import { ipv4SubnetListQuery } from '@/utils/ipv4Subnet'
 import AclScopeValue from '@/components/view/AclScopeValue'
 import { projectDetailLocation } from '@/utils/projectSearch'
@@ -1691,6 +1696,7 @@ export default {
     zoneFeatureLabel,
     zoneMetricText,
     dnsZoneListQuery,
+    ldapListQuery,
     ipv4SubnetListQuery,
     guestVlanNetworkLocation,
     guestVlanListQuery,

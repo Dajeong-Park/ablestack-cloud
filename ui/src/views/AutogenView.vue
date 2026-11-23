@@ -41,6 +41,17 @@
                 </a-button>
                 <label v-if="isTemplateList || isIsoList || (s2sDisplayFilterId && filters?.length > 0) || (isPublicIpUi && !dataView && filters?.length > 0)" :for="s2sDisplayFilterId || (isPublicIpUi ? 'public-ip-state-filter' : templateFilterId)" class="template-filter-accessible-label">{{ $t('label.filterby') }}</label>
                 <label v-if="aclDisplayFilterId && !dataView" :for="aclDisplayFilterId" class="template-filter-accessible-label">{{ $t('label.acl.display.filter') }}</label>
+                <a-select
+                  v-if="isLdapUi && !dataView"
+                  id="ldap-scope-filter"
+                  class="project-state-filter"
+                  :aria-label="$t('label.scope')"
+                  :value="ldapScopeValue"
+                  :options="ldapScopeOptions"
+                  size="small"
+                  @change="changeLdapScope">
+                  <template #suffixIcon><filter-outlined /></template>
+                </a-select>
                 <label v-if="kmsListRoute($route)" for="kms-display-filter" class="template-filter-accessible-label">{{ $t('label.kms.display.filter') }}</label>
                 <a-select
                   v-if="kmsListRoute($route)"
@@ -209,6 +220,7 @@
             <ProjectListSearch v-if="isProjectList" class="project-toolbar-search" @search="onSearch" />
             <search-view
               v-else-if="!dataView"
+              ref="ldapSearch"
               :class="{ 'kms-toolbar-search': kmsListRoute($route), 'vm-acl-toolbar-search': standardResourceToolbar, 'account-toolbar-search': isAccountList }"
               :searchFilters="searchFilters"
               :searchParams="searchParams"
@@ -764,6 +776,9 @@
       <a-alert v-if="dataView && $route.meta?.name === 'kubernetesiso' && kubernetesIsoReadError" type="error" show-icon :message="$t((kubernetesIsoReadError === 'unsupported' ? 'message.kubernetes.iso.search.unsupported' : kubernetesIsoReadError === 'searchInvalid' ? 'message.kubernetes.iso.search.invalid' : 'message.kubernetes.iso.read.' + kubernetesIsoReadError))">
         <template #description><a-button size="small" :disabled="listRequestPending" @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button></template>
       </a-alert>
+      <a-alert v-if="isLdapUi && listRefreshError" type="error" show-icon :message="$t('error.fetching.data')">
+        <template #description><a-button size="small" :disabled="listRequestPending" @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button></template>
+      </a-alert>
       <a-alert v-if="isVpnUser && listRefreshError" class="vpn-user-read-error" type="error" show-icon :message="$t('message.vpn.user.search.failed')">
         <template #description><a-button size="small" :disabled="listRequestPending || vpnUserProjectSwitching" @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button></template>
       </a-alert>
@@ -831,8 +846,8 @@
         />
         <p v-if="isVmList && listRefreshError" role="status">{{ $t('message.list.refresh.stale') }}</p>
         <list-view
-          v-if="!isVpnUser || !listRefreshError"
-          :loading="sharedFSContentLoading || isVpnUser && vpnUserProjectSwitching"
+          v-if="!(isVpnUser || isLdapUi) || !listRefreshError"
+          :loading="sharedFSContentLoading || isVpnUser && vpnUserProjectSwitching || isLdapUi && listRequestPending"
           :columns="presentedColumns"
           :kms-table="kmsListRoute($route)"
           :items="items"
@@ -852,7 +867,7 @@
           @table-change="handleTableChange"
         />
         <a-pagination
-          v-if="(!isVpnUser || !listRefreshError) && ((!isSnapshotList && !['vmgroup', 'vnfapp'].includes($route.meta?.name)) || listLoadedScope)"
+          v-if="(!(isVpnUser || isLdapUi) || !listRefreshError) && ((!isSnapshotList && !['vmgroup', 'vnfapp'].includes($route.meta?.name)) || listLoadedScope)"
           class="row-element"
           style="margin-top: 10px"
           size="small"
@@ -968,6 +983,7 @@ import ActionButton from '@/components/view/ActionButton'
 import { affinityGroupQuery } from '@/utils/affinityGroupCreation'
 import SearchView from '@/components/view/SearchView'
 import SearchFilter from '@/components/view/SearchFilter'
+import { ldapConfigApi, ldapConfigRoute, ldapDomainPaths, ldapListQuery, ldapReadParams, ldapSearchQuery } from '@/utils/ldapConfiguration'
 import OsLogo from '@/components/widgets/OsLogo'
 import ResourceIcon from '@/components/view/ResourceIcon'
 import BulkActionProgress from '@/components/view/BulkActionProgress'
@@ -1524,7 +1540,7 @@ export default {
         this.resetSelection()
         const page = Number(to.query.page)
         this.page = Number.isInteger(page) && page > 0 ? page : 1
-        if ('pagesize' in to.query || ipv4SubnetRoute(to)) this.pageSize = this.getValidPageSize(to.query.pagesize)
+        if ('pagesize' in to.query || ipv4SubnetRoute(to) || ldapConfigRoute(to)) this.pageSize = this.getValidPageSize(to.query.pagesize)
         this.itemCount = 0
         this.clearAutoRefresh()
         this.fetchData()
@@ -1669,6 +1685,19 @@ export default {
     isDnsZone () { return this.$route.meta?.name === 'dnszone' },
     isIpv4Subnet () { return ipv4SubnetRoute(this.$route) },
     isVpnCustomerGateway () { return this.$route.meta?.name === 'vpncustomergateway' },
+    isLdapUi () { return ldapConfigRoute(this.$route) },
+    ldapScopeValue () {
+      const query = ldapListQuery(this.$route.query)
+      return query.domainid ? 'domain' : query.scope || 'all'
+    },
+    ldapScopeOptions () {
+      const options = [
+        { value: 'all', label: this.$t('label.all') },
+        { value: 'global', label: this.$t('label.ldap.scope.global') }
+      ]
+      if ('listDomains' in this.$store.getters.apis) options.push({ value: 'domain', label: this.$t('label.domain') })
+      return options
+    },
     standardResourceToolbar () { return this.isClusterUi || this.isHostUi || this.isZoneUi || this.isPhysicalNetworkUi || this.isZoneRelatedList || this.isRoleUi || this.isVmUi || this.isAclUi || this.isVpnUser || this.isProjectUi || this.isVpnCustomerGateway || this.isGuestVlan || this.isIpv4Subnet || this.isDnsZone || this.isDnsServer },
     vpnUserAuth () { return this.isVpnUser ? vpnUserSearchAuth(this.$store.getters, this.$store.state?.user?.token) : null },
     vpnUserScope () { return this.isVpnUser ? vpnUserProject(this.$route.query, this.$store.getters) : null },
@@ -1832,7 +1861,7 @@ export default {
     activeFiltersList () {
       if (asnRoute(this.$route) || this.isS2sSearchList) return []
       if (this.isIsoList) return isoFilterChips(this.$route.query, this.$store.getters)
-      const queryParams = this.isProjectList ? projectSearchQuery(this.$route.query, this.$store.getters) : { ...this.$route.query }
+      const queryParams = this.isLdapUi ? ldapListQuery(this.$route.query) : this.isProjectList ? projectSearchQuery(this.$route.query, this.$store.getters) : { ...this.$route.query }
       const activeFilters = []
       for (const filter in queryParams) {
         if (guestVlanRoute(this.$route) && ['filter', 'allocatedonly'].includes(filter)) continue
@@ -2583,7 +2612,7 @@ export default {
       if (kubernetesIsoQuery && !sameList) {
         this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null; this.resetSelection()
       }
-      if ((kmsList || publicIpList || (this.isAclUi && !this.dataView) || snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || (this.isObjectStorageUi || guestNetworkRoute(this.$route) || vnfRoute(this.$route) || this.isS2sSearchList) && !this.dataView) && !sameList) {
+      if ((this.isLdapUi || kmsList || publicIpList || (this.isAclUi && !this.dataView) || snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || (this.isObjectStorageUi || guestNetworkRoute(this.$route) || vnfRoute(this.$route) || this.isS2sSearchList) && !this.dataView) && !sameList) {
         this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null
         this.snapshotListError = ''; this.listRefreshError = false
         this.resetSelection()
@@ -2974,6 +3003,10 @@ export default {
         delete params.excludeprojectresources
         if (vpnConnectionDisplaySupported(this.$store.getters)) params.displayall = true
       }
+      if (this.apiName === ldapConfigApi) {
+        params = ldapReadParams(this.$route, params)
+        this.columns.forEach(column => { column.sorter = false })
+      }
       if (this.apiName === 'listPhysicalNetworks' && this.$route.params?.id) params = { id: this.$route.params.id }
       if (guestVlanRoute(this.$route)) params = guestVlanReadParams(params)
       if (this.isClusterUi) params = clusterReadParams(this.$route.query, params, this.$getApiParams(this.apiName))
@@ -3057,7 +3090,7 @@ export default {
         ? readVpnUsers(getAPI, this.$route.query, this.$route.params?.id)
         : isAclListRoute(this.$route)
           ? readAclList(getAPI, params, aclDisplaySupported(this.$store.getters), this.$route.params.id, readCurrentScope)
-          : kmsDetail ? readKmsDetail(getAPI, this.$route, this.$store.getters) : kmsList ? readKmsPage(getAPI, requestApi, params, readCurrentScope) : s2sGatewayRoute(this.$route) && this.dataView ? readGatewayDetail(getAPI, this.$route, this.$store.getters, readCurrentScope, this.$getApiParams('listVpnGateways')) : this.isVpnConnectionDetail || this.isS2sSearchList ? (vpnConnectionRoute(this.$route) ? readVpnConnectionQuery : readS2sGatewayQuery)(getAPI, params, this.$store.getters, readCurrentScope) : asnRoute(this.$route) ? readAsnQuery(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : isoQuery && this.dataView ? readIsoResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : this.publicIpDetail ? readPublicIpDetail(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : templateQuery && this.dataView ? readTemplateResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : policyDetail ? Promise.resolve().then(() => readPolicyDetail(getAPI, this.$route, this.$store.getters.project, () => version === this.listRequestVersion && scope === this.listScope())) : snapshotDetail ? Promise.resolve().then(() => readSnapshotDetail(getAPI, snapshotDetailParams(this.$route, this.$store.getters.project), this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope())) : this.isClusterUi || this.isHostUi || this.isEventList || publicIpList || isoQuery || kubernetesIsoQuery || vmGroups || sshDetail || templateQuery || cniQuery || ['vm', 'vnfapp'].includes(this.$route.meta?.name) || this.publicIpDetail || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) ? getAPI(requestApi, params, { preserveOnFailure: true, timeout: 20000, ...(kubernetesIsoQuery ? { readScope: JSON.stringify([this.$store.state?.user?.token, this.$store.getters.userInfo?.id, this.$store.getters.project?.id]) } : {}) }) : callAPI(requestApi, params)
+          : kmsDetail ? readKmsDetail(getAPI, this.$route, this.$store.getters) : kmsList ? readKmsPage(getAPI, requestApi, params, readCurrentScope) : s2sGatewayRoute(this.$route) && this.dataView ? readGatewayDetail(getAPI, this.$route, this.$store.getters, readCurrentScope, this.$getApiParams('listVpnGateways')) : this.isVpnConnectionDetail || this.isS2sSearchList ? (vpnConnectionRoute(this.$route) ? readVpnConnectionQuery : readS2sGatewayQuery)(getAPI, params, this.$store.getters, readCurrentScope) : asnRoute(this.$route) ? readAsnQuery(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : isoQuery && this.dataView ? readIsoResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : this.publicIpDetail ? readPublicIpDetail(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : templateQuery && this.dataView ? readTemplateResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : policyDetail ? Promise.resolve().then(() => readPolicyDetail(getAPI, this.$route, this.$store.getters.project, () => version === this.listRequestVersion && scope === this.listScope())) : snapshotDetail ? Promise.resolve().then(() => readSnapshotDetail(getAPI, snapshotDetailParams(this.$route, this.$store.getters.project), this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope())) : this.isLdapUi || this.isClusterUi || this.isHostUi || this.isEventList || publicIpList || isoQuery || kubernetesIsoQuery || vmGroups || sshDetail || templateQuery || cniQuery || ['vm', 'vnfapp'].includes(this.$route.meta?.name) || this.publicIpDetail || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) ? getAPI(requestApi, params, { preserveOnFailure: true, timeout: 20000, ...(kubernetesIsoQuery ? { readScope: JSON.stringify([this.$store.state?.user?.token, this.$store.getters.userInfo?.id, this.$store.getters.project?.id]) } : {}) }) : callAPI(requestApi, params)
       const request = response.then(async json => {
         if (templateOperationHeld()) return
         if (version !== this.listRequestVersion || scope !== this.listScope()) return
@@ -3147,7 +3180,7 @@ export default {
           return
         }
 
-        if (!this.dataView && (policyPage || Object.prototype.hasOwnProperty.call(json[responseName], 'count'))) {
+        if (!this.dataView && (this.isLdapUi || policyPage || Object.prototype.hasOwnProperty.call(json[responseName], 'count'))) {
           const lastPage = Math.max(1, Math.ceil(apiItemCount / this.pageSize))
           if (this.page > lastPage) {
             this.$router.replace({ query: { ...this.$route.query, page: String(lastPage) } })
@@ -3155,6 +3188,10 @@ export default {
           }
         }
         let responseItems = vnfPage ? vnfPage.rows : policyPage ? policyPage.rows : snapshotPage ? snapshotPage.rows : groupResult ? groupResult.rows : json[responseName][objectName]
+        if (requestApi === ldapConfigApi) {
+          responseItems = await ldapDomainPaths(getAPI, responseItems || [], 'listDomains' in this.$store.getters.apis, this.$t('label.ldap.scope.global'))
+          if (!readCurrentScope()) return
+        }
         if (this.$route.name === 'autoscalevmgroup' && !this.dataView && this.selectedColumns.includes('zonename')) {
           responseItems = await autoScaleInfrastructureRows(getAPI, responseItems || [], 'listNetworks' in this.$store.getters.apis)
           if (version !== this.listRequestVersion || scope !== this.listScope()) return
@@ -3239,7 +3276,7 @@ export default {
         }
         if (templateOperationHeld()) return
         if (version !== this.listRequestVersion || scope !== this.listScope()) return
-        if (this.isEventList) {
+        if (this.isEventList || this.isLdapUi) {
           this.listRefreshError = true; this.listLoadedScope = null
           this.items = []; this.resource = {}; this.itemCount = 0
           this.resetSelection()
@@ -3613,6 +3650,11 @@ export default {
       this.closeAction()
     },
     removeFilter (filter) {
+      if (this.isLdapUi) {
+        const query = { ...this.$route.query, page: '1' }
+        delete query[filter.key]
+        return this.$router.push({ query: ldapListQuery(query) })
+      }
       if (this.isHostList || this.isClusterList) {
         const listQuery = this.isClusterList ? clusterListQuery : hostListQuery
         const query = { ...listQuery(this.$route.query), page: '1' }
@@ -4993,7 +5035,22 @@ export default {
       const query = projectSearchQuery({ ...this.$route.query, state, page: '1' }, this.$store.getters)
       return this.$router.push({ query })
     },
+    changeLdapScope (value) {
+      if (value === 'domain') {
+        if (this.$refs.ldapSearch) this.$refs.ldapSearch.openLdapDomain()
+        return
+      }
+      const query = { ...this.$route.query, scope: value, page: '1' }
+      delete query.id
+      delete query.domainid
+      return this.$router.push({ query: ldapListQuery(query) })
+    },
     onSearch (opts) {
+      if (this.isLdapUi && !this.dataView) {
+        const query = ldapSearchQuery(this.$route.query, opts || {})
+        if (JSON.stringify(query) === JSON.stringify(this.$route.query)) return this.fetchData({ irefresh: true })
+        return this.$router.push({ query })
+      }
       if (this.isHostList || this.isClusterList) {
         const searchQuery = this.isClusterList ? clusterSearchQuery : hostSearchQuery
         const query = searchQuery(this.$route.query, opts || {}, this.pageSize)
@@ -5189,6 +5246,7 @@ export default {
       const query = Object.assign({}, this.$route.query)
       query.page = (this.isHostList || this.isClusterList || this.isZoneList || this.isRoleList || this.isProjectList || ['template', 'iso', 'cniconfiguration', 'guestnetwork', 'vnfapp', 'asnumbers', 'kubernetesiso', 'acllist', 'vpnuser', 'guestvlans', 'ipv4subnets', 'dnszone', 'dnsserver'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route) || vpnConnectionListRoute(this.$route)) && Number(pageSize) !== this.pageSize ? 1 : page
       query.pagesize = pageSize
+      if (this.isLdapUi) return this.$router.push({ query: ldapListQuery({ ...query, page: Number(pageSize) === this.pageSize ? page : 1 }) })
       this.$router.push({ query: this.isRoleList ? roleSearchQuery(query) : this.isAccountList ? accountQuery(query) : query })
     },
     handleTableChange (pagination, filters, sorter) {
