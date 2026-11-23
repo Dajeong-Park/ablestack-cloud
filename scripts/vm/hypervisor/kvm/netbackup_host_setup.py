@@ -26,9 +26,12 @@ import re
 import shlex
 import shutil
 import ssl
+import stat
 import subprocess
 import sys
+import tempfile
 import time
+import uuid
 from pathlib import Path
 from typing import Optional
 from urllib.parse import quote, quote_plus
@@ -1087,19 +1090,93 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--kvm-ip", help="Optional compatibility assertion: expected Mold Host IP; normally detected from the policy Client")
     parser.add_argument("--vm-schedule-backup", type=parse_boolean, metavar="true|false",
                         help="Update Mold's global NetBackup VM schedule mode for all host policies. "
-                             "If omitted, use the current Mold value (initial default: true).")
-    parser.add_argument("--incremental-backup", type=parse_boolean, default=True, metavar="true|false",
-                        help="Set only this Cluster's kvm.incremental.backup; preserve the Global default (default: true). Use false for Full backups only.")
+                             "If omitted, use the current Mold value (initial default: true). With --host-only, require the current value instead of changing it.")
+    parser.add_argument("--incremental-backup", type=parse_boolean, metavar="true|false",
+                        help="Set only this Cluster's kvm.incremental.backup (legacy default: true). With --host-only, preserve the current effective value.")
     parser.add_argument("--backup-chain-size", type=int,
-                        help="Update global kvm.backup.chain.size in incremental mode only. If omitted, retain the existing value (default: 8).")
+                        help="Update global kvm.backup.chain.size in incremental mode only (unavailable with --host-only). If omitted, retain the existing value (default: 8).")
     parser.add_argument("--backup-staging-root", default=str(BACKUP_STAGING_ROOT),
                         help="Legacy bootstrap option. Jobs use Mold backup.thirdparty.staging.root.path/ablestack-netbackup.")
-    parser.add_argument("--mold-url", required=True)
-    parser.add_argument("--admin-apikey", required=True)
-    parser.add_argument("--admin-secretkey", required=True)
+    parser.add_argument("--mold-url")
+    parser.add_argument("--admin-apikey")
+    parser.add_argument("--admin-secretkey")
     parser.add_argument("--netbackup-url")
     parser.add_argument("--netbackup-apikey")
-    return parser.parse_args()
+    parser.add_argument("--credentials-file", help="Private mode-600 JSON file containing Mold and NetBackup connection credentials")
+    parser.add_argument("--host-only", action="store_true",
+                        help="Use the UI configuration workflow and preserve current Global/Zone/Cluster settings")
+    parser.add_argument("--check-only", action="store_true", help="With --host-only, run UI preflight without applying host files")
+    args = parser.parse_args()
+    if args.credentials_file:
+        try:
+            path = Path(args.credentials_file)
+            info = path.lstat()
+            if not stat.S_ISREG(info.st_mode) or info.st_uid != os.geteuid() or stat.S_IMODE(info.st_mode) != 0o600:
+                parser.error("Credentials file must be an owned, private regular file with mode 600")
+            values = json.loads(path.read_text())
+            if not isinstance(values, dict):
+                parser.error("Credentials file must contain a JSON object")
+            for field, key in (("mold_url", "moldurl"), ("admin_apikey", "adminapikey"),
+                    ("admin_secretkey", "adminsecretkey"), ("netbackup_url", "netbackupurl"),
+                    ("netbackup_apikey", "netbackupapikey")):
+                if getattr(args, field) is None:
+                    value = values.get(key)
+                    if value is not None and (not isinstance(value, str) or not value.strip()):
+                        parser.error("Credentials file fields must be nonempty strings")
+                    setattr(args, field, value)
+        except (OSError, ValueError):
+            parser.error("Unable to read a valid private credentials JSON file")
+    for field in ("mold_url", "admin_apikey", "admin_secretkey"):
+        if not getattr(args, field):
+            parser.error("--" + field.replace("_", "-") + " or its credentials-file field is required")
+    if args.check_only and not args.host_only:
+        parser.error("--check-only requires --host-only")
+    if not args.host_only and args.incremental_backup is None:
+        args.incremental_backup = True
+    return args
+
+
+def configure_host_only(args):
+    """The emergency CLI submits the same durable, mutually exclusive worker as the UI."""
+    import netbackup_host_configuration as configuration
+    if not args.policy_name or not args.netbackup_url or not args.netbackup_apikey:
+        fail("--policy-name, NetBackup URL and API key are required for host-only configuration")
+    validate_policy_name(args.policy_name)
+    if args.backup_chain_size is not None:
+        fail("--host-only preserves shared settings; change backup chain size in Mold first")
+    zone, cluster = resolve_host_context(args)
+    mode = get_configuration_value(NETBACKUP_VM_SCHEDULE_CONFIG_NAME,
+                                   args.mold_url, args.admin_apikey, args.admin_secretkey).lower()
+    incremental = get_configuration_value("kvm.incremental.backup",
+            args.mold_url, args.admin_apikey, args.admin_secretkey, cluster_id=cluster).lower()
+    if mode not in {"true", "false"} or incremental not in {"true", "false"}:
+        fail("Mold returned invalid effective backup settings")
+    if args.vm_schedule_backup is not None and args.vm_schedule_backup != (mode == "true"):
+        fail("--host-only preserves VM schedule mode; change the Mold Global setting first")
+    if args.incremental_backup is not None and args.incremental_backup != (incremental == "true"):
+        fail("--host-only preserves incremental backup settings; change the Mold setting first")
+    request = {"action": "CHECK" if args.check_only else "APPLY", "operationid": str(uuid.uuid4()),
+               "policyname": args.policy_name, "hostid": args.kvm_host_id, "zoneid": zone, "clusterid": cluster,
+               "moldurl": args.mold_url, "adminapikey": args.admin_apikey, "adminsecretkey": args.admin_secretkey,
+               "netbackupurl": args.netbackup_url, "netbackupapikey": args.netbackup_apikey,
+               "vmschedulebackup": mode == "true", "incrementalbackup": incremental == "true"}
+    configuration.ROOT.mkdir(mode=0o700, parents=True, exist_ok=True)
+    descriptor, name = tempfile.mkstemp(prefix=".cli-request-", suffix=".json", dir=configuration.ROOT)
+    try:
+        with os.fdopen(descriptor, "w") as stream:
+            os.fchmod(stream.fileno(), 0o600)
+            json.dump(request, stream)
+        receipt = configuration.start(name)
+    except Exception as error:
+        Path(name).unlink(missing_ok=True)
+        message = str(error)
+        for secret in (args.admin_apikey, args.admin_secretkey, args.netbackup_apikey):
+            if secret:
+                message = message.replace(secret, "<hidden>")
+        fail(message)
+    # The worker removes the private request and records the same result shown in the UI.
+    print(json.dumps(receipt))
+    print("Configuration started. Inspect the Host preconfiguration UI or run netbackup_host_configuration.py --status.")
 
 
 def configure_vm_selection(args: argparse.Namespace) -> None:
@@ -1152,6 +1229,9 @@ def prepare_secret_key() -> None:
 
 def main() -> None:
     args = parse_args()
+    if args.host_only:
+        configure_host_only(args)
+        return
     validate_args(args)
 
     log_step("NetBackup Configuration")

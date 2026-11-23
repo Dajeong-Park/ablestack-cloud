@@ -139,6 +139,12 @@ public interface BackupProvider {
         return takeNetBackup(vm, policyName, backupScheduleId);
     }
 
+    /** Deadline applies only before admitting a new backup, never to its subsequent data processing. */
+    default Pair<Boolean, Backup> takeNetBackup(VirtualMachine vm, String policyName, Long backupScheduleId,
+            Boolean quiesceVM, long preparationDeadline) {
+        return takeNetBackup(vm, policyName, backupScheduleId, quiesceVM);
+    }
+
     default boolean cancelBackup(VirtualMachine vm, Backup backup) {
         throw new UnsupportedOperationException("Backup cancellation is not supported by provider " + getName());
     }

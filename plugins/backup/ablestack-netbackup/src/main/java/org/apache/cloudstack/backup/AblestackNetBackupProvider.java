@@ -275,12 +275,24 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
 
     @Override
     public Pair<Boolean, Backup> takeNetBackup(final VirtualMachine vm, final String policyName, final Long backupScheduleId, final Boolean quiesceVM) {
-        try (ThirdPartyBackupVolumeService.Lease lease = thirdPartyBackupVolumeService.acquireLifecycle(vm.getId())) {
-            return takeVolumeNetBackup(vm, policyName, backupScheduleId, quiesceVM);
+        return takeNetBackup(vm, policyName, backupScheduleId, quiesceVM, 0);
+    }
+
+    @Override
+    public Pair<Boolean, Backup> takeNetBackup(final VirtualMachine vm, final String policyName, final Long backupScheduleId,
+            final Boolean quiesceVM, final long preparationDeadline) {
+        BackupPreparation.checkDeadline(preparationDeadline, backupPreparationTime());
+        try (ThirdPartyBackupVolumeService.Lease lease = thirdPartyBackupVolumeService.acquireBackupPreparation(vm.getId())) {
+            // The timed lock itself may have crossed the caller's deadline.
+            BackupPreparation.checkDeadline(preparationDeadline, backupPreparationTime());
+            return takeVolumeNetBackup(vm, policyName, backupScheduleId, quiesceVM, preparationDeadline);
         }
     }
 
-    private Pair<Boolean, Backup> takeVolumeNetBackup(final VirtualMachine vm, final String policyName, final Long backupScheduleId, final Boolean quiesceVM) {
+    protected long backupPreparationTime() { return System.currentTimeMillis(); }
+
+    private Pair<Boolean, Backup> takeVolumeNetBackup(final VirtualMachine vm, final String policyName, final Long backupScheduleId,
+            final Boolean quiesceVM, final long preparationDeadline) {
         thirdPartyBackupStagingService.requireEnabled();
         final Host host = getVMHypervisorHostForBackup(vm, true);
         validateVmSnapshotCoexistenceForBackup(vm);
@@ -319,7 +331,7 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
                     getBackupDetail(latestBackup, DETAIL_CHECKPOINT_XML)));
         }
         BackupExecutionResult result = executeBackup(vm, quiesceVM, host, vmVolumes, volumePoolsAndPaths, incrementalBackup ? latestBackup : null,
-                incrementalBackup, policyName);
+                incrementalBackup, policyName, preparationDeadline);
         Backup failedIncrementalBackup = null;
         if (!result.success && incrementalBackup) {
             failedIncrementalBackup = result.backup;
@@ -331,7 +343,7 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
                     fallbackReason);
             LOG.warn("Incremental NetBackup backup failed for VM [{}] due to [{}]. Retrying as full backup.", vm.getInstanceName(), fallbackReason);
             result = executeBackup(vm, quiesceVM, host, vmVolumes, volumePoolsAndPaths, null, false,
-                    policyName);
+                    policyName, preparationDeadline);
             recordIncrementalFallback(result.backup, failedIncrementalBackup, fallbackReason);
             if (cleanupSuccessful && failedIncrementalBackup != null) {
                 removeFailedBackupAfterSuccessfulFullRetry(failedIncrementalBackup);
@@ -357,6 +369,12 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
     private BackupExecutionResult executeBackup(final VirtualMachine vm, final Boolean quiesceVM, final Host vmHost,
             final List<VolumeVO> vmVolumes, final Pair<List<PrimaryDataStoreTO>, List<String>> volumePoolsAndPaths,
             final Backup latestBackup, final boolean incrementalBackup, final String policyName) {
+        return executeBackup(vm, quiesceVM, vmHost, vmVolumes, volumePoolsAndPaths, latestBackup, incrementalBackup, policyName, 0);
+    }
+
+    private BackupExecutionResult executeBackup(final VirtualMachine vm, final Boolean quiesceVM, final Host vmHost,
+            final List<VolumeVO> vmVolumes, final Pair<List<PrimaryDataStoreTO>, List<String>> volumePoolsAndPaths,
+            final Backup latestBackup, final boolean incrementalBackup, final String policyName, final long preparationDeadline) {
         if (StringUtils.isBlank(policyName)) {
             throw new CloudRuntimeException("Volume backup requires the source NetBackup policy name; start the backup from its configured policy");
         }
@@ -381,6 +399,8 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
         backupDetails.put(DETAIL_SOURCE_HOST_NAME, vmHost.getName());
         backupDetails.put(DETAIL_CLIENT_NAME, sourceClient);
 
+        // Policy/catalog/storage preflight may itself outlive the caller. Fence allocation as well as lock acquisition.
+        BackupPreparation.checkDeadline(preparationDeadline, backupPreparationTime());
         final BackupVO backupVO = createBackupObject(vm, vmHost.getId(), backupPath, requestedBackupType, backupDetails);
         boolean planPersisted = false;
         try {

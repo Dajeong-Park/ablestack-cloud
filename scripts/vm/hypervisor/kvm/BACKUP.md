@@ -668,8 +668,10 @@ NetBackup의 [netbackup-host-config.py](netbackup-host-config.py), Veeam의 [vee
 최초 구성 도구는 스테이징이 활성화되어 있어야 실행할 수 있다. 기존 Host의 모호한 정책명 때문에 활성화가 보류되면
 해당 정책의 정확한 `NETBACKUP_POLICY_NAME`과 구성 파일의 소유 Host를 확인해 수정한 뒤 활성화를 재시도한다.
 아래 옵션 주의사항은 구성 도구를 실제로 재실행하는 경우에 적용한다.
+NetBackup은 UI 또는 `--host-only`로 현재 공통 설정을 유지하여 구성한다.
+다음 모드·증분·체인 변경 옵션 설명은 `--host-only` 없는 기존 CLI와 Veeam 구성 도구에 적용한다.
 
-- `--vm-schedule-backup`과, `false`일 때의 include/exclude를 기존 운영 값으로 명시한다.
+- `--vm-schedule-backup`을 기존 운영 값으로 명시한다. Veeam은 `false`일 때 include/exclude도 확인한다.
 - `--incremental-backup`도 현재 적용할 값으로 명시한다. 생략하면 기본 `true`가 해당 Cluster에만 반영된다. 두 도구 모두 Global 증분값을 변경하지 않는다.
 - 체인 길이를 변경하지 않으면 `--backup-chain-size`는 생략하여 기존 `kvm.backup.chain.size`를 유지한다.
 - Veeam 기본 구성을 사용하면 `--agent-payload-path`를 생략하고 출력된 새 마커 디렉터리로 부모 Job의 SelectedFiles를 변경한다.
@@ -737,12 +739,14 @@ NetBackup과 ABLESTACK Veeam은 각각 Mold 글로벌 설정으로 VM별 스케�
 | NetBackup | `backup.plugin.netbackup.vm.schedule.enabled` |
 | ABLESTACK Veeam | `backup.plugin.ablestack-veeam.vm.schedule.enabled` |
 
-사전 구성의 `--vm-schedule-backup true|false` 입력은 해당 솔루션의 글로벌 설정을 갱신한다.
+기존 구성 CLI의 `--vm-schedule-backup true|false` 입력은 해당 솔루션의 글로벌 설정을 갱신한다.
+NetBackup UI와 `--host-only`는 글로벌 설정을 갱신하지 않고 현재 값을 사용한다.
 호스트의 NetBackup `/etc/ablestack/netbackup/netbackup-host-<policy>.conf`와
 Veeam `/etc/ablestack/veeam/<job>.conf`에는 모드 값을 저장하지 않는다.
 운영 중에는 Mold에서 글로벌 설정을 변경한다.
 
-사전 구성의 입력 순서는 다음과 같다.
+아래 include/exclude 입력 절차와 호스트 필터 예시는 Veeam 구성에 적용한다.
+NetBackup은 두 스케줄 모드 모두 오퍼링이 할당된 VM을 기준으로 하며 include/exclude 옵션을 지원하지 않는다.
 
 1. VM별 스케줄 사용 여부를 먼저 선택한다. 현재 Mold 글로벌 값을 기본값으로 표시하며,
    터미널이 없는 실행에서도 옵션을 생략하면 현재 값을 유지한다. 다른 Host를 추가하면서 제품 기본값으로 덮어쓰지 않는다.
@@ -815,12 +819,13 @@ VM별 스케줄 방식에서 외부 호스트 정책은 실행 계기이며, 실
 호스트 필터 방식에서 백업을 중단하려면 VM 목록에서도 제외해야 한다. 오퍼링만 해제하면 다음 실행에 다시 자동 할당된다.
 
 **기존 Host 전환:** 외부 정책/Job 실행을 중지한 상태에서 관리 서버와 Host 스크립트를 함께 갱신하고,
-원하는 `--vm-schedule-backup true|false`를 명시해 각 솔루션의 사전 구성을 재실행한다.
+NetBackup은 Mold에서 모드를 선택한 뒤 UI 또는 `--host-only`로 구성한다.
+Veeam 기존 CLI는 원하는 `--vm-schedule-backup true|false`를 명시해 재실행한다.
 각 솔루션의 모든 Host가 같은 글로벌 모드를 사용하므로 예전에 호스트별로 다른 모드를 사용했다면 공통 모드를 먼저 정한다.
 기존 conf의 `VM_SCHEDULE_BACKUP`은 런타임에서 무시하며, 재구성하면 파일에서 제거한다.
 기존 스케줄 모드가 자동 저장한 `VM_INCLUDE=*`, `VM_EXCLUDE=*` 조합은 재구성 시 제외 sentinel을 제거한다.
-의도적으로 모든 VM을 제외하려면 `--vm-schedule-backup false --vm-exclude '*'`를 명시한다.
-필터 모드로 전환하기 전에는 각 Host conf에 저장된 include/exclude를 확인한다.
+Veeam에서 의도적으로 모든 VM을 제외하려면 `--vm-schedule-backup false --vm-exclude '*'`를 명시한다.
+Veeam 필터 모드로 전환하기 전에는 각 Host conf에 저장된 include/exclude를 확인한다.
 새 API나 글로벌 설정을 제공하지 않는 서버에서는 조회/사전 구성 실패로 중단한다.
 
 ### 정지 VM을 포함한 호스트 정책 실행
@@ -1067,49 +1072,107 @@ Mold에서 VM별 백업 스케줄을 사용하는 경우에는 아래의
 3. NetBackup REST API 주소와 API key, 대상 Mold 서버의 관리자 API key·secret key를 준비한다.
    NetBackup API 계정에는 정책·Job·카탈로그 조회 및 복원·이미지 만료에 필요한 권한을 부여한다.
    신규 백업은 Host의 `bpbackup`으로 실행하며 별도 정책을 생성하지 않는다.
-4. 위의 공통 준비 절차에 따라 Mold의 Zone 설정과 스테이징을 활성화한다.
-5. 해당 Host에서 [netbackup-host-config.py](netbackup-host-config.py)를 실행한다.
-
-   ```bash
-   python3 /usr/share/cloudstack-common/scripts/vm/hypervisor/kvm/netbackup-host-config.py \
-     --policy-name "<NetBackup에 미리 생성한 정책명>" \
-     --vm-schedule-backup false \
-     --vm-include "<대상 VM의 i-계열 인스턴스 이름>" \
-     --mold-url "<Mold API 주소>" \
-     --admin-apikey "<Mold 관리자 API key>" \
-     --admin-secretkey "<Mold 관리자 secret key>" \
-     --netbackup-url "<NetBackup REST API 주소>" \
-     --netbackup-apikey "<NetBackup API key>" \
-     --incremental-backup true \
-     --backup-chain-size 8
-   ```
-
-   `--vm-include`는 여러 VM을 쉼표로 지정할 수 있으며, 미지정 시 `*`를 사용한다.
-   `--incremental-backup`은 `true` 또는 `false`를 받으며 기본값은 `true`다.
-   `true`이면 최초 Full 이후 정상 부모와 체인 길이 조건을 충족할 때 증분으로 이어간다.
-   `--backup-chain-size`는 이때만 지정할 수 있으며, 생략하면 기존 전역값을 유지한다. 제품 기본값은 `8`이다.
-   매번 독립 Full 백업을 생성하려면 `--incremental-backup false`를 사용하고 `--backup-chain-size`는 제외한다.
-   Full 모드는 이전 백업 체인·부모 체크포인트를 사용하지 않으며, 기존 백업의 복원 체인은 유지한다.
-   VM의 표시 이름과 Host에서 사용하는 `i-...-VM` 인스턴스 이름을 구분하여 입력한다.
-   실제 키를 명령행에 입력할 때는 Shell history와 명령행 접근 권한을 관리한다.
-6. 스크립트는 Mold 글로벌 `backup.plugin.netbackup.vm.schedule.enabled`를 선택값으로 설정하고 Zone·Cluster 설정을 확인한 뒤 NetBackup 오퍼링을 등록한다.
-   `kvm.incremental.backup`은 해당 Cluster 값만 선택한 값으로 명시적으로 저장한다. 전역 기본값과 다른 Cluster 값은 변경하지 않는다.
-   현재 유효값이 요청값과 같아도 Cluster 값을 저장하여 이후 전역 기본값 변경의 영향을 받지 않게 한다.
-   Global이 `false`여도 대상 Cluster가 `true`이면 정상 부모와 체인 조건을 충족할 때 증분 백업을 선택한다.
-   `kvm.backup.chain.size`는 여러 백업 공급자가 공유하는 전역값이다.
-   관리 서버 재기동 안내와 함께 중단되면 Mold를 재기동하고 같은 명령을 다시 실행한다.
+4. Mold의 Global에서 공통 설정과 스테이징을 준비한다. Zone·Cluster에 별도 값이 있으면 그 범위의 유효값을 확인한다.
+5. Host 상세의 NetBackup 백업 연동 UI에서 정책명을 입력하고 사전 점검 후 구성을 적용한다.
+   UI를 사용할 수 없을 때는 아래 **PoC 비상용 수동 실행**의 `--host-only` 옵션을 사용한다.
+6. UI와 `--host-only`는 현재 Global·Zone·Cluster 설정을 읽고 유지한다. VM 스케줄 모드·증분 여부·체인 길이는 Mold에서 먼저 설정한다.
+   `--host-only` 없이 실행하는 기존 CLI는 공통 설정을 변경하는 이전 방식이므로 비상용으로 사용하지 않는다.
 7. 사전·사후 백업 스크립트, 암호화된 Mold 인증정보와 복원 감시 서비스를 Host에 구성한다.
    **NetBackup 기준 정책의 Backup Selections는 구성 결과에 출력된 bootstrap 디렉터리 하나로 설정한다.**
    볼륨 스테이징 전체 경로를 선택하지 않는다. 기존 Host도 업그레이드 후 재구성과 이 선택 경로 변경을 한 번 수행한다.
    신규 Host 키는 자동 준비하지만 Mold API key 자체를 발급하는 기능은 아니므로 3번의 키는 필요하다.
 8. NetBackup 연결 설정과 서비스 상태를 확인한다. VM별 일정을 사용할 때는 등록된 오퍼링을 VM에 연결하고 Mold 백업 스케줄을 추가한다.
-   `backup.plugin.netbackup.vm.schedule.enabled=false` 방식은 설정 파일 대상의 미할당 VM에 기본 오퍼링을 자동 연결한다.
+   `backup.plugin.netbackup.vm.schedule.enabled=false` 방식도 보호할 VM에 오퍼링을 직접 할당한다. VM별 Mold 스케줄은 필요하지 않다.
    이 구성은 각 백업 Host에서 수행한다. VM이 이동할 수 있다면 이동 대상 Host도 준비한다.
 
 구성 스크립트는 `/usr/openv/netbackup/bp.conf`가 있으면 기존 파일을 백업하고
 사전·사후 작업 및 Client 읽기 timeout을 Global `backup.plugin.netbackup.hook.timeout` 값
 (기본 `86400`초)으로 설정한 후 NetBackup 서비스를 재시작한다.
 진행 중인 NetBackup 작업이 없는 시간에 구성한다. NetBackup Client 자체를 설치하는 스크립트는 아니다.
+
+### PoC 비상용 수동 실행
+
+대상 KVM Host에 root로 접속하여 실행한다. 해당 Host의 NetBackup 정책은 비활성화하고 백업·복원·정리 작업이 끝난 뒤 적용한다.
+Mold와 NetBackup 접속 정보, 활성화된 공통 스테이징 등 공통 설정은 이미 준비되어 있어야 한다.
+수동 실행에서도 정책 Client와 로컬 Host의 일치 여부, 정책 스케줄, 스테이징, 현재 설정과 구성 시 작업 유무를 UI와 같은 Host 작업으로 점검한다.
+정책명은 Host 이름과 달라도 되며, 다른 Host의 정책을 입력하면 Client 검증에서 차단한다.
+
+각 Host에 아래 파일을 준비한다. 실제 키는 편집기로 입력하고 파일 소유자는 root, 권한은 `600`으로 유지한다.
+NetBackup 주소·키는 해당 Zone의 현재 유효값과 일치해야 한다.
+
+```bash
+install -m 600 /dev/null /root/netbackup-host-credentials.json
+vi /root/netbackup-host-credentials.json
+```
+
+```json
+{
+  "moldurl": "http://192.168.1.30:8080/client/api",
+  "adminapikey": "<Mold 관리자 API key>",
+  "adminsecretkey": "<Mold 관리자 secret key>",
+  "netbackupurl": "https://netbackup2:1556/netbackup",
+  "netbackupapikey": "<NetBackup API key>"
+}
+```
+
+처음에는 `--check-only`로 점검한다. 예시는 Host 1의 실제 PoC 정책명을 사용한다.
+
+```bash
+python3 /usr/share/cloudstack-common/scripts/vm/hypervisor/kvm/netbackup-host-config.py \
+  --host-only --check-only \
+  --policy-name ablecube1-poc-policy \
+  --credentials-file /root/netbackup-host-credentials.json
+```
+
+명령은 접수 결과 `RUNNING`과 `operationid`를 출력하고 종료한다. 완료 여부는 다음 명령이나 해당 Host의 백업 연동 UI를 새로고침하여 확인한다.
+`RUNNING`은 구성 완료를 의미하지 않는다. 작업은 터미널 연결이 종료되어도 Host에서 계속 실행된다.
+접수 전 입력·Host 식별 검증에서 중단되면 새 작업은 등록되지 않으므로 터미널에 출력된 오류를 확인한다.
+
+```bash
+python3 /usr/share/cloudstack-common/scripts/vm/hypervisor/kvm/netbackup_host_configuration.py --status
+```
+
+점검 결과 `CHECKED`와 각 점검 항목을 확인한 뒤 `--check-only`를 빼고 적용한다.
+아래 명령을 **각 줄에 지정된 Host에서 한 줄씩** 실행한다. 정책명은 환경에 맞게 변경한다.
+
+| 실행 Host | 접속 주소 | 해당 Host의 NetBackup 정책 |
+| --- | --- | --- |
+| ablecube1 | 192.168.1.21 | ablecube1-poc-policy |
+| ablecube2 | 192.168.1.22 | ablecube2-poc-policy |
+| ablecube3 | 192.168.1.23 | ablecube3-poc-policy |
+| ablecube4 | 192.168.1.24 | ablecube4-poc-policy |
+
+```bash
+# ablecube1에서 실행
+python3 /usr/share/cloudstack-common/scripts/vm/hypervisor/kvm/netbackup-host-config.py --host-only --policy-name ablecube1-poc-policy --credentials-file /root/netbackup-host-credentials.json
+
+# ablecube2에서 실행
+python3 /usr/share/cloudstack-common/scripts/vm/hypervisor/kvm/netbackup-host-config.py --host-only --policy-name ablecube2-poc-policy --credentials-file /root/netbackup-host-credentials.json
+
+# ablecube3에서 실행
+python3 /usr/share/cloudstack-common/scripts/vm/hypervisor/kvm/netbackup-host-config.py --host-only --policy-name ablecube3-poc-policy --credentials-file /root/netbackup-host-credentials.json
+
+# ablecube4에서 실행
+python3 /usr/share/cloudstack-common/scripts/vm/hypervisor/kvm/netbackup-host-config.py --host-only --policy-name ablecube4-poc-policy --credentials-file /root/netbackup-host-credentials.json
+```
+
+적용 결과 `COMPLETED`와 `policypathmatched: true`를 확인한다.
+`POLICY_PATH_MISMATCH`이면 출력된 `bootstrappath` 하나만 NetBackup 정책의 Backup Selections에 등록한 후 `--check-only`로 재확인한다.
+`FAILED`는 `message`와 실패한 점검 항목을 확인한다. `UNCONFIRMED`는 이전 작업의 종료·결과를 확인한 뒤 점검부터 재실행한다.
+수동 실행도 UI와 같은 결과 파일과 구성 잠금을 사용하므로 별도 UI 등록은 필요 없다.
+이 옵션은 VM 오퍼링 할당·스케줄 등록·정책 활성화를 자동으로 수행하지 않는다. 구성 확인 후 운영자가 진행한다.
+
+### 이전 백업 정리 중 PRE 요청 처리
+
+`createNetBackup` 접수 시 같은 VM의 이전 작업 정리 상태 또는 생성·정리 잠금 충돌이 확인되면 백업을 생성하기 전에 보류한다.
+같은 비동기 요청 안에서 최대 5분 동안 5초 간격으로 재확인하며, PRE Hook 또는 응답 대기 예산이 더 짧으면 그 기한을 따른다.
+대기 중 VM 볼륨·스냅샷 잠금과 리소스 예약을 해제하고 매번 Host·오퍼링·모드·스케줄 조건을 다시 검사한다.
+백업이 접수된 뒤에는 새 생성 요청으로 재시도하지 않으며, 응답·전송 결과가 불명확한 일반 오류도 자동 재접수하지 않는다.
+
+기한 초과는 `BACKUP_PREPARATION_TIMEOUT`으로 종료하며 새 백업을 만들거나 VM 스케줄을 소비하지 않는다.
+후속 정상 정책 실행에서 아직 도래 상태인 VM 스케줄을 다시 선택할 수 있다.
+이 대기는 슬롯 대기(`backup.thirdparty.staging.queue.timeout`) 및 데이터 처리(`backup.data.operation.timeout`)와 별개다.
+새 Global 설정은 추가하지 않는다. Management와 Host 스크립트를 함께 반영해야 호출자 기한 전달도 적용된다.
 
 **백업 순서**
 
@@ -1331,31 +1394,23 @@ Host 공용 스크립트와 UI를 같은 소스 기준으로 반영한다. `able
 종료가 확인되지 않은 작업의 잠금·예약·원본 보호 기록을 삭제하여 다음 시험을 시작하지 않는다.
 
 아래는 `ablecube1`에서 실행하는 예시다. 나머지 Host에서는 `--policy-name`을 해당 Host를 Client로 등록한 실제 NetBackup 정책명으로 바꿔 순서대로 실행한다.
-`--vm-schedule-backup true`일 때는 `--vm-include`·`--vm-exclude`를 지정하지 않는다.
+Mold의 VM 스케줄 모드를 먼저 `true`로 설정한다. 자격증명 파일은 위의 **PoC 비상용 수동 실행**을 참고한다.
 
 ```bash
 python3 /usr/share/cloudstack-common/scripts/vm/hypervisor/kvm/netbackup-host-config.py \
+  --host-only \
   --policy-name 'ablecube1' \
-  --mold-url 'http://<Mold>:8080/client/api' \
-  --admin-apikey '<Mold 관리자 API key>' \
-  --admin-secretkey '<Mold 관리자 secret key>' \
-  --netbackup-url 'https://<NetBackup>:1556/netbackup' \
-  --netbackup-apikey '<NetBackup API key>' \
-  --vm-schedule-backup true \
-  --incremental-backup true \
-  --backup-chain-size 8
+  --credentials-file /root/netbackup-host-credentials.json
 ```
 
-스크립트는 Mold 연결 설정과 증분 설정을 확인하고 해당 Zone의 NetBackup 오퍼링을 등록하거나 기존 오퍼링을 사용한다.
-체인 길이 `8`은 전역 설정이므로 기존 환경에서는 현재 운영 값을 확인하여 지정한다.
-비동적 설정 변경으로 중단되면 **Mold 관리 서버에서** 다음 명령으로 재시작하고,
-Host에서 같은 사전구성 명령을 다시 실행한다.
+`--host-only`는 현재 Mold 설정을 유지하고 해당 Zone의 NetBackup 오퍼링을 등록하거나 기존 오퍼링을 사용한다.
+비동적 공통 설정을 변경했다면 Host 구성 전에 **Mold 관리 서버에서** 재시작한다.
 
 ```bash
 systemctl restart mold.service
 ```
 
-최종적으로 `[ OK ] Completed NetBackup host configuration`과 출력된 `Parent policy Backup Selections`를 확인한다.
+최종적으로 Host UI 또는 `netbackup_host_configuration.py --status`에서 `COMPLETED`와 `policypathmatched: true`를 확인한다.
 스크립트가 해당 Host의 bootstrap 디렉터리를 생성하므로 이 단계까지 완료한 뒤 정책을 실행한다.
 예를 들어 `ablecube4`에서는 다음 항목을 확인한다.
 
@@ -2498,17 +2553,16 @@ Veeam은 Linux Agent 설치와 VBR의 SSH 접속 구성을 먼저 완료한다.
 두 사전구성 도구는 공통 스테이징의 활성화·경로·현재 Host의 파일시스템을 먼저 검사한다.
 MOUNT에서는 별도 마운트를 확인하고, LOCAL DIRECTORY에서는 실제 로컬 파일시스템·쓰기·가용 공간을 확인한다.
 검사에 실패하면 Mold 설정 변경·오퍼링 생성·인증정보 및 Hook 파일 생성 전에 중단한다.
-호스트마다 같은 Mold/Zone 설정을 변경하므로 사전구성 명령은 순서대로 실행한다.
+기존 공통 설정을 유지하는 NetBackup 비상용 수동 구성은 `--host-only`를 사용한다.
+공통 설정까지 변경하는 기존 구성 도구를 사용할 때는 Host마다 순서대로 실행한다.
 두 솔루션 모두 증분 여부는 매 백업 시 Mold 유효값을 따르며, Host 구성 파일로 런타임 값을 덮어쓰지 않는다.
 
 ```bash
-# NetBackup: VM별 스케줄 사용
+# NetBackup: Mold에서 VM 스케줄 모드를 먼저 true로 설정한 뒤 Host만 구성
 python3 netbackup-host-config.py \
+  --host-only \
   --policy-name '<NetBackup 기준 정책 이름>' \
-  --mold-url 'http://<Mold>:8080/client/api' \
-  --admin-apikey '<Mold API key>' --admin-secretkey '<Mold API secret>' \
-  --netbackup-url 'https://<NetBackup>/netbackup' --netbackup-apikey '<NetBackup API key>' \
-  --vm-schedule-backup true --incremental-backup true --backup-chain-size 8
+  --credentials-file /root/netbackup-host-credentials.json
 
 # Veeam: VM별 스케줄 사용
 python3 veeam-host-config.py \
@@ -2519,8 +2573,9 @@ python3 veeam-host-config.py \
   --vm-schedule-backup true --incremental-backup true --backup-chain-size 8
 ```
 
-호스트 필터 방식은 `--vm-schedule-backup false --vm-include '*' --vm-exclude ''`로 지정한다.
-재실행할 때 운영 중 변경한 증분 정책을 유지하려면 `--incremental-backup`에 현재 원하는 값을 명시한다.
+Veeam 호스트 필터 방식은 `--vm-schedule-backup false --vm-include '*' --vm-exclude ''`로 지정한다.
+NetBackup은 모드와 관계없이 오퍼링이 할당된 VM을 대상으로 한다.
+NetBackup `--host-only`에서는 현재 증분 설정을 그대로 사용한다. 기존 설정 변경 도구를 재실행할 때는 `--incremental-backup`에 현재 원하는 값을 명시한다.
 
 ## Full 및 증분 백업 운영
 

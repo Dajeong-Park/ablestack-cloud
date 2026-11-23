@@ -164,6 +164,85 @@ load_admin_secretkey
         with patch.object(sys, "argv", argv + list(options)):
             return config.parse_args()
 
+    def test_private_credentials_file_can_replace_command_line_secrets(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "credentials.json"
+            values = dict(moldurl="http://mold.test/client/api", adminapikey="synthetic-key",
+                          adminsecretkey="synthetic-secret", netbackupurl="https://netbackup.test/netbackup",
+                          netbackupapikey="synthetic-netbackup-key")
+            path.write_text(json.dumps(values)); path.chmod(0o600)
+            argv = ["netbackup-host-config.py", "--host-only", "--check-only", "--policy-name", "host-test",
+                    "--credentials-file", str(path)]
+            with patch.object(sys, "argv", argv):
+                args = config.parse_args()
+            self.assertEqual(values["adminsecretkey"], args.admin_secretkey)
+            self.assertEqual(values["netbackupurl"], args.netbackup_url)
+            self.assertTrue(args.check_only)
+            self.assertIsNone(args.incremental_backup)
+            for mode in (0o644, 0o640, 0o400):
+                path.chmod(mode)
+                with patch.object(sys, "argv", argv), contextlib.redirect_stderr(io.StringIO()):
+                    with self.assertRaises(SystemExit):
+                        config.parse_args()
+            path.chmod(0o600)
+            link = Path(directory) / "credentials-link.json"
+            link.symlink_to(path)
+            with patch.object(sys, "argv", argv[:-1] + [str(link)]), contextlib.redirect_stderr(io.StringIO()):
+                with self.assertRaises(SystemExit):
+                    config.parse_args()
+
+    def test_host_only_uses_ui_worker_receipt_and_never_updates_shared_settings(self):
+        import netbackup_host_configuration as configuration
+        for check_only, action in ((True, "CHECK"), (False, "APPLY")):
+            args = self.arguments("--host-only", *( ["--check-only"] if check_only else []))
+            args.kvm_host_id = "host-uuid"
+            with tempfile.TemporaryDirectory() as directory, patch.object(configuration, "ROOT", Path(directory)), \
+                    patch.object(config, "resolve_host_context", return_value=("zone", "cluster")), \
+                    patch.object(config, "update_configuration_value") as update, \
+                    patch.object(config, "ensure_backup_framework_configuration") as shared, \
+                    patch.object(configuration, "start") as start, contextlib.redirect_stdout(io.StringIO()) as output:
+                def submit(path):
+                    request = configuration.read_request(path)
+                    self.assertEqual(action, request["action"])
+                    self.assertEqual("host-uuid", request["hostid"])
+                    self.assertTrue(request["vmschedulebackup"])
+                    self.assertTrue(request["incrementalbackup"])
+                    self.assertEqual("synthetic-secret", request["adminsecretkey"])
+                    Path(path).unlink()
+                    return dict(state="RUNNING", action=action, operationid=request["operationid"])
+                start.side_effect = submit
+                config.configure_host_only(args)
+                start.assert_called_once()
+                update.assert_not_called(); shared.assert_not_called()
+                self.assertIn('"state": "RUNNING"', output.getvalue())
+                self.assertNotIn("synthetic-secret", output.getvalue())
+                self.assertNotIn("synthetic-netbackup-key", output.getvalue())
+
+    def test_host_only_rejects_requested_shared_setting_changes(self):
+        import netbackup_host_configuration as configuration
+        for options in (("--backup-chain-size", "4"), ("--vm-schedule-backup", "false"),
+                        ("--incremental-backup", "false")):
+            args = self.arguments("--host-only", *options)
+            with patch.object(config, "resolve_host_context", return_value=("zone", "cluster")), \
+                    patch.object(configuration, "start") as start, contextlib.redirect_stderr(io.StringIO()):
+                with self.assertRaises(SystemExit):
+                    config.configure_host_only(args)
+                start.assert_not_called()
+
+    def test_host_only_launch_failure_removes_private_request_and_redacts_secrets(self):
+        import netbackup_host_configuration as configuration
+        args = self.arguments("--host-only")
+        args.kvm_host_id = "host-uuid"
+        with tempfile.TemporaryDirectory() as directory, patch.object(configuration, "ROOT", Path(directory)), \
+                patch.object(config, "resolve_host_context", return_value=("zone", "cluster")), \
+                patch.object(configuration, "start", side_effect=ValueError("failed: " + args.admin_secretkey)), \
+                contextlib.redirect_stderr(io.StringIO()) as error:
+            with self.assertRaises(SystemExit):
+                config.configure_host_only(args)
+            self.assertEqual([], list(Path(directory).iterdir()))
+            self.assertNotIn(args.admin_secretkey, error.getvalue())
+            self.assertIn("<hidden>", error.getvalue())
+
     def host(self, **values):
         return dict(dict(id="host-uuid", name="host-test", ipaddress="192.0.2.1", hypervisor="KVM",
                          zoneid="zone", clusterid="cluster"), **values)

@@ -1667,9 +1667,19 @@ public class ThirdPartyBackupVolumeServiceImpl extends ManagerBase implements Th
 
     @Override
     public Lease acquireLifecycle(long vmId) {
+        return acquireLifecycle(vmId, false);
+    }
+
+    @Override
+    public Lease acquireBackupPreparation(long vmId) {
+        return acquireLifecycle(vmId, true);
+    }
+
+    private Lease acquireLifecycle(long vmId, boolean preparingBackup) {
         GlobalLock lock = GlobalLock.getInternLock("backup.volume.lifecycle." + vmId);
         if (!lock.lock(5)) {
             lock.releaseRef();
+            if (preparingBackup) { throw new BackupPreparation.Busy(vmId); }
             throw new CloudRuntimeException("Backup creation or artifact cleanup is in progress for this VM");
         }
         return () -> { try { lock.unlock(); } finally { lock.releaseRef(); } };

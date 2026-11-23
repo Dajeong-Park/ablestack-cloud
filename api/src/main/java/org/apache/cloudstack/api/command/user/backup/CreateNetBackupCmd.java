@@ -58,6 +58,8 @@ public class CreateNetBackupCmd extends BaseAsyncCreateCmd {
         createdBackupId = value;
     }
 
+    public String getCreatedBackupId() { return createdBackupId; }
+
     /////////////////////////////////////////////////////
     //////////////// API parameters /////////////////////
     /////////////////////////////////////////////////////
@@ -105,6 +107,13 @@ public class CreateNetBackupCmd extends BaseAsyncCreateCmd {
             description = "the backup schedule ID that triggered this NetBackup staging request",
             since = "4.23.0")
     private Long scheduleId;
+
+    @Parameter(name = "preparationdeadline", type = CommandType.LONG,
+            description = "Latest initial backup admission time as Unix epoch milliseconds. "
+                    + "Hosts use their remaining PRE Hook and async-response budget; data processing has its own timeout.")
+    private Long preparationDeadline;
+
+    public Long getPreparationDeadline() { return preparationDeadline; }
 
     /////////////////////////////////////////////////////
     /////////////////// Accessors ///////////////////////

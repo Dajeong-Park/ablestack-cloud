@@ -1303,6 +1303,31 @@ run_stage_vm_backup() {
 
   log -ne "Calling Mold createNetBackup API for vm=${vm_name} vmId=${vm_id} scheduleId=${schedule_id} url=${MOLD_CREATE_BACKUP_API_URL}"
   stage_start_epoch="$(date +%s)"
+  # Keep the admission wait inside this PRE invocation. A delayed async worker
+  # must not admit another backup after its caller's preparation budget expired.
+  local preparation_deadline
+  if ! preparation_deadline="$(python3 - "$MOLD_ASYNC_JOB_TIMEOUT" "${ABLESTACK_NETBACKUP_HOOK_DEADLINE_MS:-}" <<'PY'
+import sys, time
+try:
+    timeout = int(sys.argv[1])
+    if timeout <= 0:
+        raise ValueError("Async response timeout must be positive")
+    now = int(time.time() * 1000)
+    deadline = now + timeout * 1000
+    if sys.argv[2]:
+        deadline = min(deadline, int(sys.argv[2]))
+    if deadline <= now:
+        raise ValueError("PRE Hook preparation deadline expired")
+    print(deadline)
+except ValueError as error:
+    print(str(error), file=sys.stderr)
+    sys.exit(1)
+PY
+  )"; then
+    printf 'FAILED\t%s\t\t\t%s\n' "$vm_id" "Preparation deadline is unavailable or expired; no request was submitted"
+    return 1
+  fi
+  api_args+=("preparationdeadline" "$preparation_deadline")
   if ! initial_response="$(invoke_mold_api \
     "${MOLD_CREATE_BACKUP_API_METHOD}" \
     "${MOLD_CREATE_BACKUP_API_URL}" \

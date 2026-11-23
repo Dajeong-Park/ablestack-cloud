@@ -54,7 +54,8 @@ if os.environ.get('IGNORE_TERM'):
 child=subprocess.Popen([sys.executable,'-c','import time; time.sleep(60)'],close_fds=False)
 (root/'ready').write_text(json.dumps({'pid':os.getpid(),'child':child.pid,
  'retiredPid':os.environ.get('ABLESTACK_NETBACKUP_RETIRED_PRE_PID'),
- 'retiredToken':os.environ.get('ABLESTACK_NETBACKUP_RETIRED_PRE_TOKEN')}))
+ 'retiredToken':os.environ.get('ABLESTACK_NETBACKUP_RETIRED_PRE_TOKEN'),
+ 'deadlineMs':os.environ.get('ABLESTACK_NETBACKUP_HOOK_DEADLINE_MS')}))
 if os.environ.get('FINISH_EARLY'): sys.exit(0)
 while True: time.sleep(0.1)
 ''')
@@ -117,6 +118,14 @@ raise SystemExit(runner.run_supervised(sys.argv[2],'policy__schedule__host','PRE
         record = runner.read_json(runner.paths(self.state, self.context, 'PRE')[0])
         self.assertEqual('STOPPED', record['state'], (self.root / 'output').read_text())
         self.assertEqual('POST_STATUS_74', record['reason'])
+
+    def test_worker_receives_the_same_absolute_deadline_as_its_supervisor(self):
+        process = self.launch(timeout=10)
+        record = self.wait_ready()
+        worker = json.loads((self.root / 'ready').read_text())
+        self.assertEqual(int((record['startedAt'] + 10) * 1000), int(worker['deadlineMs']))
+        self.assertTrue(self.stop_request())
+        process.wait(timeout=5)
 
     def test_user_cancel_stops_its_own_pre_and_a_fresh_retry_can_acquire_the_lock(self):
         first = self.launch()

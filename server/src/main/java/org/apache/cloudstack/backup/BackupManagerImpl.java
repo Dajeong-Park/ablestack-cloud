@@ -1601,6 +1601,11 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
     private static final String ABLESTACK_VEEAM_INTERVAL_TYPE_DETAIL = "ablestack.veeam.interval.type";
 
     private void checkAblestackBackupRecoveryBeforeStart(final VirtualMachine vm, final BackupProvider provider) {
+        checkAblestackBackupRecoveryBeforeStart(vm, provider, false);
+    }
+
+    private void checkAblestackBackupRecoveryBeforeStart(final VirtualMachine vm, final BackupProvider provider,
+            final boolean waitForCleanup) {
         if (!isAblestackHostSideRestoreProvider(provider.getName())) { return; }
         ablestackBackupOperationGuard.checkBackup(vm.getId(), provider.getName());
         final List<Backup> existing = backupDao.listByVmId(null, vm.getId());
@@ -1611,6 +1616,7 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
             backupDao.loadDetails(backup);
             final String cleanup = backup.getDetail(AblestackBackupFrameworkUtils.BACKUP_CLEANUP_STATE_DETAIL);
             if (isBackupCancellationPending(backup) || java.util.Set.of("WAITING", "ARTIFACTS_REMOVED").contains(StringUtils.defaultString(cleanup))) {
+                if (waitForCleanup) { throw new BackupPreparation.Busy(vm.getId()); }
                 throw new CloudRuntimeException("A previous backup is awaiting termination or cleanup; a new backup cannot start yet");
             }
         }
@@ -1779,6 +1785,36 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
     @Override
     @ActionEvent(eventType = EventTypes.EVENT_VM_BACKUP_CREATE, eventDescription = "creating VM backup for NetBackup", async = true)
     public boolean createNetBackup(final CreateNetBackupCmd cmd) throws ResourceAllocationException {
+        final long deadline = BackupPreparation.deadline(backupPreparationTime(), cmd.getPreparationDeadline(), NetBackupHookTimeout.value());
+        while (true) {
+            BackupPreparation.checkDeadline(deadline, backupPreparationTime());
+            try {
+                return createNetBackupAttempt(cmd, deadline);
+            } catch (BackupPreparation.Busy busy) {
+                // No general/API/transport failure is retried: only a confirmed pre-allocation busy result.
+                if (busy.getVmId() != cmd.getVmId() || StringUtils.isNotBlank(cmd.getCreatedBackupId())) { throw busy; }
+                final long now = backupPreparationTime();
+                BackupPreparation.checkDeadline(deadline, now);
+                logger.info("NetBackup preparation waits for VM [{}] lifecycle cleanup in the same async request; deadline=[{}]",
+                        cmd.getVmId(), deadline);
+                // createNetBackupAttempt has closed all VM/volume/snapshot leases before waiting.
+                awaitBackupPreparation(Math.min(BackupPreparation.POLL_INTERVAL_MILLIS, deadline - now));
+            }
+        }
+    }
+
+    protected long backupPreparationTime() { return System.currentTimeMillis(); }
+
+    protected void awaitBackupPreparation(long millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new CloudRuntimeException("NetBackup preparation interrupted; no replacement request was submitted", e);
+        }
+    }
+
+    boolean createNetBackupAttempt(final CreateNetBackupCmd cmd, final long preparationDeadline) throws ResourceAllocationException {
         try (BackupVolumeGuard.Lease volumeGuard = backupVolumeGuard.acquire(cmd.getVmId());
                 BackupSnapshotGuard.Lease guard = backupSnapshotGuard.acquire(cmd.getVmId())) {
             final Long vmId = cmd.getVmId();
@@ -1808,7 +1844,7 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
 
             validateNetBackupScheduleForVm(backupScheduleId, vm.getId());
             createCheckedBackup(cmd, owner, backupScheduleId != null, backupSize, vm, vm.getId(), backupProvider, backupScheduleId,
-                    schedule != null ? schedule.getQuiesceVM() : cmd.getQuiesceVM());
+                    schedule != null ? schedule.getQuiesceVM() : cmd.getQuiesceVM(), preparationDeadline);
             finishExternalBackupSchedule(schedule);
             return true;
         }
@@ -2769,9 +2805,10 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
     }
 
     private void createCheckedBackup(CreateNetBackupCmd cmd, Account owner, boolean isScheduledBackup, Long backupSize,
-                VMInstanceVO vm, Long vmId, BackupProvider backupProvider, Long backupScheduleId, Boolean quiesceVM)
+                VMInstanceVO vm, Long vmId, BackupProvider backupProvider, Long backupScheduleId, Boolean quiesceVM,
+                long preparationDeadline)
             throws ResourceAllocationException {
-        checkAblestackBackupRecoveryBeforeStart(vm, backupProvider);
+        checkAblestackBackupRecoveryBeforeStart(vm, backupProvider, true);
         try (CheckedReservation backupReservation = new CheckedReservation(owner, Resource.ResourceType.backup,
                 1L, reservationDao, resourceLimitMgr);
             CheckedReservation backupStorageReservation = new CheckedReservation(owner,
@@ -2782,7 +2819,8 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
                     vmId, ApiCommandResourceType.VirtualMachine.toString(),
                     true, 0);
 
-            Pair<Boolean, Backup> result = backupProvider.takeNetBackup(vm, cmd.getPolicyId(), backupScheduleId, quiesceVM);
+            Pair<Boolean, Backup> result = backupProvider.takeNetBackup(vm, cmd.getPolicyId(), backupScheduleId, quiesceVM,
+                    preparationDeadline);
             if (!result.first()) {
                 throw new CloudRuntimeException("Failed to create VM backup for NetBackup");
             }

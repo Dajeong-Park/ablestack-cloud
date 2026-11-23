@@ -23,6 +23,7 @@ import os
 from pathlib import Path
 import subprocess
 import tempfile
+import time
 import unittest
 
 
@@ -79,6 +80,63 @@ wait_for_vm_staging_complete i-2-1-VM 1 "$TEST_BACKUP"
 
     def requests(self):
         return [json.loads(line) for line in (self.root / "requests").read_text().splitlines()]
+
+    def dispatch(self, responses, hook_deadline=""):
+        self.responses.write_text(json.dumps(responses))
+        script = r'''source "$TEST_COMMON"
+POLICY_NAME=parent-policy POLICY_SAFE=parent-policy
+NETBACKUP_PARENT_PAYLOAD_PATH="$BACKUP_STAGING_ROOT/bootstrap/$POLICY_SAFE"
+MOLD_CREATE_BACKUP_API_URL=http://mold.test/client/api
+MOLD_QUERY_ASYNC_JOB_API_URL=http://mold.test/client/api
+MOLD_ASYNC_JOB_TIMEOUT=60 MOLD_ASYNC_JOB_POLL_INTERVAL=0.01
+lookup_mold_vm_id() { printf vm-id; }
+lookup_mold_vm_schedule_id() { printf schedule-id; }
+lookup_mold_candidate_field() { printf field; }
+invoke_mold_api() { python3 "$TEST_ROOT/api.py" "$@"; }
+wait_for_vm_staging_complete() { printf '%s/stage/i-2-1-VM/current' "$TEST_ROOT"; }
+run_stage_vm_backup i-2-1-VM
+'''
+        return subprocess.run(["bash", "-c", script], env=dict(self.env,
+                              ABLESTACK_NETBACKUP_HOOK_DEADLINE_MS=str(hook_deadline)),
+                              text=True, capture_output=True, timeout=8)
+
+    def test_cleanup_wait_polls_one_async_job_without_resubmitting_creation(self):
+        deadline = int(time.time() * 1000) + 5000
+        result = self.dispatch([dict(createnetbackupresponse=dict(jobid="async-id")),
+                                dict(queryasyncjobresultresponse=dict(jobstatus=0)),
+                                dict(queryasyncjobresultresponse=dict(jobstatus=0)),
+                                dict(queryasyncjobresultresponse=dict(jobstatus=1, jobresult=dict(backupid=BACKUP)))], deadline)
+        self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+        requests = self.requests()
+        self.assertEqual(1, sum(request[2] == "createNetBackup" for request in requests))
+        self.assertEqual(3, sum(request[2] == "queryAsyncJobResult" for request in requests))
+        args = requests[0]
+        self.assertEqual(str(deadline), args[args.index("preparationdeadline") + 1])
+
+    def test_admission_deadline_uses_the_async_budget_when_no_hook_fence_is_available(self):
+        before = int(time.time() * 1000)
+        result = self.dispatch([dict(createnetbackupresponse=dict(jobid="async-id")),
+                                dict(queryasyncjobresultresponse=dict(jobstatus=1, jobresult=dict(backupid=BACKUP)))])
+        self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+        args = self.requests()[0]
+        deadline = int(args[args.index("preparationdeadline") + 1])
+        self.assertGreaterEqual(deadline, before + 60000)
+        self.assertLessEqual(deadline, int(time.time() * 1000) + 60000)
+
+    def test_expired_or_invalid_hook_deadline_never_submits_a_request(self):
+        for deadline in (int(time.time() * 1000) - 1000, "invalid", "0"):
+            with self.subTest(deadline=deadline):
+                result = self.dispatch([], deadline)
+                self.assertNotEqual(0, result.returncode)
+                self.assertIn("no request was submitted", result.stdout)
+                self.assertFalse((self.root / "requests").exists())
+
+    def test_terminal_async_failure_is_not_resubmitted(self):
+        result = self.dispatch([dict(createnetbackupresponse=dict(jobid="async-id")),
+                               dict(queryasyncjobresultresponse=dict(jobstatus=2, jobresult=dict(errortext="result unknown")))])
+        self.assertNotEqual(0, result.returncode)
+        self.assertIn("result unknown", result.stdout)
+        self.assertEqual(1, sum(request[2] == "createNetBackup" for request in self.requests()))
 
     def test_failure_before_marker_returns_the_original_reason_without_waiting_for_timeout(self):
         result = self.wait([self.status("FAILED")])

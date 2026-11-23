@@ -186,6 +186,11 @@ public interface ThirdPartyBackupVolumeService {
     /** Serialize parent selection with deletion of artifacts shared by an incremental chain. */
     Lease acquireLifecycle(long vmId);
 
+    /** A busy initial acquisition may be retried, but no backup may have been allocated yet. */
+    default Lease acquireBackupPreparation(long vmId) {
+        return acquireLifecycle(vmId);
+    }
+
     /** Hold across VM start admission and dispatch, including its transition to Starting. */
     Lease guardVmStart(long vmId);
 

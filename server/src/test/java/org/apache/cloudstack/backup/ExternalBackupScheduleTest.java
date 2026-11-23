@@ -117,6 +117,7 @@ public class ExternalBackupScheduleTest {
         depot = mock(ConfigDepotImpl.class);
         ConfigKey.init(depot);
         when(depot.getConfigStringValue(eq(BackupManager.NetBackupVmScheduleEnabled.key()), eq(ConfigKey.Scope.Global), isNull())).thenReturn("true");
+        when(depot.getConfigStringValue(eq(BackupManager.NetBackupHookTimeout.key()), eq(ConfigKey.Scope.Global), isNull())).thenReturn("86400");
         when(depot.getConfigStringValue(eq(BackupManager.AblestackVeeamVmScheduleEnabled.key()), eq(ConfigKey.Scope.Global), isNull())).thenReturn("true");
         manager = spy(new BackupManagerImpl());
         ReflectionTestUtils.setField(manager, "netBackupScheduleModeGuard", mock(NetBackupScheduleModeGuard.class));
@@ -750,7 +751,7 @@ public class ExternalBackupScheduleTest {
         acceptedBackup.setDetails(new HashMap<>());
         acceptedBackup.getDetails().put(ThirdPartyBackupManifest.MODE_KEY, ThirdPartyBackupManifest.VOLUME_MODE);
         when(backups.findById(40L)).thenReturn(acceptedBackup);
-        when(backupProvider.takeNetBackup(eq(vm), eq("parent-policy"), eq(5L), any())).thenReturn(new Pair<>(accepted, acceptedBackup));
+        when(backupProvider.takeNetBackup(eq(vm), eq("parent-policy"), eq(5L), any(), anyLong())).thenReturn(new Pair<>(accepted, acceptedBackup));
         when(backupProvider.takeBackup(eq(vm), any(), eq(5L), eq("parent-policy"))).thenReturn(new Pair<>(accepted, null));
         final Map<String, BackupProvider> providers = new HashMap<>();
         providers.put(provider, backupProvider);
@@ -805,7 +806,7 @@ public class ExternalBackupScheduleTest {
     public void scheduledQuiesceTakesPrecedenceOverADisabledRequest() throws Exception {
         final BackupProvider backupProvider = executeScheduledBackup(true, true, false);
         if (provider.endsWith("netbackup")) {
-            verify(backupProvider).takeNetBackup(vm, "parent-policy", 5L, true);
+            verify(backupProvider).takeNetBackup(eq(vm), eq("parent-policy"), eq(5L), eq(true), anyLong());
         } else {
             verify(backupProvider).takeBackup(vm, true, 5L, "parent-policy");
         }
@@ -815,7 +816,7 @@ public class ExternalBackupScheduleTest {
     public void scheduleCanDisableQuiesceEvenWhenTheRequestEnablesIt() throws Exception {
         final BackupProvider backupProvider = executeScheduledBackup(true, false, true);
         if (provider.endsWith("netbackup")) {
-            verify(backupProvider).takeNetBackup(vm, "parent-policy", 5L, false);
+            verify(backupProvider).takeNetBackup(eq(vm), eq("parent-policy"), eq(5L), eq(false), anyLong());
         } else {
             verify(backupProvider).takeBackup(vm, false, 5L, "parent-policy");
         }

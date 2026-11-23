@@ -231,7 +231,8 @@ def run_supervised(state_root, context, phase, backup_id, job_id, command, timeo
         record = dict(version=1, state='RUNNING', phase=phase, context=context, backupId=backup_id,
                       jobId=job_id, attempt=uuid.uuid4().hex, supervisor=supervisor, callers=callers,
                       netbackupCaller=caller, worker=None, startedAt=time.time(), timeoutSeconds=timeout)
-        environment = dict(os.environ, ABLESTACK_NETBACKUP_HOOK_WORKER=phase)
+        environment = dict(os.environ, ABLESTACK_NETBACKUP_HOOK_WORKER=phase,
+                           ABLESTACK_NETBACKUP_HOOK_DEADLINE_MS=str(int((record['startedAt'] + timeout) * 1000)))
         for name in ('ABLESTACK_NETBACKUP_RETIRED_PRE_PID', 'ABLESTACK_NETBACKUP_RETIRED_PRE_TOKEN'):
             environment.pop(name, None)
         if (phase == 'PRE' and previous and previous.get('worker')
