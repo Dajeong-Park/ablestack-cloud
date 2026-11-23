@@ -1,0 +1,59 @@
+// Licensed to the Apache Software Foundation (ASF) under one
+// or more contributor license agreements.  See the NOTICE file
+// distributed with this work for additional information
+// regarding copyright ownership.  The ASF licenses this file
+// to you under the Apache License, Version 2.0 (the
+// "License"); you may not use this file except in compliance
+// with the License.  You may obtain a copy of the License at
+//
+//   http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing,
+// software distributed under the License is distributed on an
+// "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+// KIND, either express or implied.  See the License for the
+// specific language governing permissions and limitations
+// under the License.
+
+import { getAPI } from '@/api'
+
+export const selectorTypes = ['ISO', 'TEMPLATE', 'SNAPSHOT', 'VOLUME', 'BACKUP']
+export const selectorConfigKey = 'js.interpretation.enabled'
+export const selectorPage = 'secondarystorageselector'
+export const selectorApi = {
+  list: 'listSecondaryStorageSelectors',
+  create: 'createSecondaryStorageSelector',
+  update: 'updateSecondaryStorageSelector',
+  remove: 'removeSecondaryStorageSelector'
+}
+
+const uuidPattern = /^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/i
+const quotedLiteral = /^(['"])([^'"]+)\1;?$/
+
+export function isSelectorUuid (value) {
+  return typeof value === 'string' && uuidPattern.test(value)
+}
+
+export function fixedSelectorId (rule) {
+  const match = typeof rule === 'string' ? quotedLiteral.exec(rule.trim()) : null
+  return isSelectorUuid(match?.[2]) ? match[2].toLowerCase() : ''
+}
+
+export function fixedSelectorRule (id) {
+  return isSelectorUuid(id) ? JSON.stringify(id) : ''
+}
+
+export async function readSecondaryStorageSelectors (zoneid, { type, showRemoved = false } = {}) {
+  if (!isSelectorUuid(zoneid)) return []
+  const params = { zoneid, showremoved: showRemoved }
+  if (selectorTypes.includes(type)) params.type = type
+  const data = await getAPI(selectorApi.list, params, { preserveOnFailure: true })
+  const response = data.listsecondarystorageselectorsresponse
+  if (!response || (response.heuristics != null && !Array.isArray(response.heuristics))) throw new Error('Invalid selector list')
+  return response.heuristics || []
+}
+
+export async function readSelectorStores (zoneid) {
+  const json = await getAPI('listImageStores', { zoneid, pagesize: -1 }, { preserveOnFailure: true })
+  return (json.listimagestoresresponse.imagestore || []).filter(store => store.zoneid === zoneid && isSelectorUuid(store.id))
+}

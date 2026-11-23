@@ -15,11 +15,15 @@
 // specific language governing permissions and limitations
 // under the License.
 
-import InfrastructureSettingsTab from '@/views/setting/InfrastructureSettingsTab.vue'
+import { getAPI } from '@/api'
+import { listMigrationStores } from '@/utils/secondaryStorageMigration'
 
-test('waits for the new resource when moving between infrastructure settings tabs', () => {
-  const route = { meta: { name: 'imagestore' }, params: { id: 'image-id' } }
-  const scope = InfrastructureSettingsTab.computed.scope
-  expect(scope.call({ resource: { id: 'zone-id' }, $route: route })).toEqual({ type: 'imagestore', id: null })
-  expect(scope.call({ resource: { id: 'image-id' }, $route: route })).toEqual({ type: 'imagestore', id: 'image-id' })
+jest.mock('@/api', () => ({ getAPI: jest.fn() }))
+
+test('lists migration stores without combining a page number with unlimited page size', async () => {
+  const stores = [{ id: 'store', providername: 'NFS' }]
+  getAPI.mockResolvedValueOnce({ listimagestoresresponse: { imagestore: stores } })
+
+  await expect(listMigrationStores()).resolves.toEqual(stores)
+  expect(getAPI).toHaveBeenCalledWith('listImageStores', { pagesize: -1 }, { preserveOnFailure: true })
 })

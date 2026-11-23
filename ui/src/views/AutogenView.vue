@@ -16,7 +16,7 @@
 // under the License.
 
 <template>
-  <div :class="{ 'autoscale-screen': $route.meta?.name === 'autoscalevmgroup', 'userdata-library': $route.meta?.name === 'userdata', 'affinity-library': $route.meta?.name === 'affinitygroup', 'snapshot-list-page': isSnapshotList, 'object-storage-ui': isObjectStorageUi, 'bucket-list-page': isBucketList, 'vm-list-page': isVmList, 'event-list-page': isEventList, 'vm-acl-standard': standardResourceToolbar, 'vpn-user-page': isVpnUser, 'vpn-customer-gateway-page': isVpnCustomerGateway, 'project-standard-page': isProjectUi, 'role-standard-page': isRoleUi, 'account-standard-page': isAccountUi, 'account-standard-list': isAccountList, 'acl-page': isAclUi, 'kms-management-page': kmsRoute($route), 'kms-list-page': kmsListRoute($route),  'public-ip-page': isPublicIpUi, 'volume-list-page': isVolumeList, 'template-list-page': isTemplateList, 'iso-list-page': isIsoList, 'kubernetes-iso-page': $route.meta?.name === 'kubernetesiso', 'kubernetes-iso-list-page': isKubernetesIsoList, 's2s-gateway-list-page': s2sGatewayListRoute($route), 's2s-connection-page': vpnConnectionRoute($route), 'asn-list-page': !!asnSearchAuth, 'host-standard-page': isHostUi, 'themed-list-toolbar': isClusterList || isHostList || isZoneList || isZoneRelatedList || isAccountList || isRoleList || isGuestVlan || isIpv4Subnet || isDnsZone || isDnsServer || isVpnCustomerGateway || isVpnUser || vpnConnectionRoute($route) || isS2sSearchList || !!asnSearchAuth || isKubernetesIsoList || isPublicIpUi || isTemplateList || isIsoList || isVpcUi || isVmList || isProjectList || isAclUi || isEventList || isVolumeList || isGuestNetworkList || ($route.name === 'sharedfs' && !dataView), 'guest-network-page': isGuestNetworkUi, 'runtime-catalog-screen': $route.meta?.name === 'runtimebundle' }">
+  <div :class="{ 'autoscale-screen': $route.meta?.name === 'autoscalevmgroup', 'userdata-library': $route.meta?.name === 'userdata', 'affinity-library': $route.meta?.name === 'affinitygroup', 'snapshot-list-page': isSnapshotList, 'object-storage-ui': isObjectStorageUi, 'bucket-list-page': isBucketList, 'vm-list-page': isVmList, 'event-list-page': isEventList, 'vm-acl-standard': standardResourceToolbar, 'vpn-user-page': isVpnUser, 'vpn-customer-gateway-page': isVpnCustomerGateway, 'project-standard-page': isProjectUi, 'role-standard-page': isRoleUi, 'account-standard-page': isAccountUi, 'account-standard-list': isAccountList, 'acl-page': isAclUi, 'kms-management-page': kmsRoute($route), 'kms-list-page': kmsListRoute($route),  'public-ip-page': isPublicIpUi, 'volume-list-page': isVolumeList, 'template-list-page': isTemplateList, 'iso-list-page': isIsoList, 'kubernetes-iso-page': $route.meta?.name === 'kubernetesiso', 'kubernetes-iso-list-page': isKubernetesIsoList, 's2s-gateway-list-page': s2sGatewayListRoute($route), 's2s-connection-page': vpnConnectionRoute($route), 'asn-list-page': !!asnSearchAuth, 'host-standard-page': isHostUi, 'oauth-list-page': isOauthUi && !dataView, 'themed-list-toolbar': ((isLdapUi || isOauthUi) && !dataView) || isSecondaryStorageList || isPrimaryStorageList || isClusterList || isHostList || isZoneList || isZoneRelatedList || isAccountList || isRoleList || isGuestVlan || isIpv4Subnet || isDnsZone || isDnsServer || isVpnCustomerGateway || isVpnUser || vpnConnectionRoute($route) || isS2sSearchList || !!asnSearchAuth || isKubernetesIsoList || isPublicIpUi || isTemplateList || isIsoList || isVpcUi || isVmList || isProjectList || isAclUi || isEventList || isVolumeList || isGuestNetworkList || ($route.name === 'sharedfs' && !dataView), 'guest-network-page': isGuestNetworkUi, 'runtime-catalog-screen': $route.meta?.name === 'runtimebundle' }">
     <div class="content-breadcrumb">
       <a-card class="breadcrumb-card" style="z-index: 10">
         <a-row>
@@ -29,7 +29,7 @@
               <template #end>
                 <a-button
                   v-if="$route.meta?.name !== 'runtimebundle'"
-                  :loading="loading || ($route.meta?.name === 'vnfapp' && vnfProjectSync) || ((isClusterUi || isZoneUi || isPhysicalNetworkUi || vpnConnectionRoute($route) || ['vmgroup', 'vnfapp'].includes($route.meta?.name) || isSnapshotList || isAclUi) && listRequestPending)"
+                  :loading="loading || ($route.meta?.name === 'vnfapp' && vnfProjectSync) || ((isSecondaryStorageUi || isPrimaryStorageUi || isClusterUi || isZoneUi || isPhysicalNetworkUi || vpnConnectionRoute($route) || ['vmgroup', 'vnfapp'].includes($route.meta?.name) || isSnapshotList || isAclUi) && listRequestPending)"
                   :disabled="(isSnapshotList || isAclUi) && listRequestPending || isVpnUser && (vpnUserProjectSwitching || listRequestPending)"
                   style="margin-bottom: 5px"
                   shape="round"
@@ -41,6 +41,26 @@
                 </a-button>
                 <label v-if="isTemplateList || isIsoList || (s2sDisplayFilterId && filters?.length > 0) || (isPublicIpUi && !dataView && filters?.length > 0)" :for="s2sDisplayFilterId || (isPublicIpUi ? 'public-ip-state-filter' : templateFilterId)" class="template-filter-accessible-label">{{ $t('label.filterby') }}</label>
                 <label v-if="aclDisplayFilterId && !dataView" :for="aclDisplayFilterId" class="template-filter-accessible-label">{{ $t('label.acl.display.filter') }}</label>
+                <a-select
+                  v-if="isLdapUi && !dataView"
+                  id="ldap-scope-filter"
+                  :aria-label="$t('label.scope')"
+                  :value="ldapScopeValue"
+                  :options="ldapScopeOptions"
+                  size="small"
+                  @change="changeLdapScope">
+                  <template #suffixIcon><filter-outlined /></template>
+                </a-select>
+                <a-select
+                  v-if="isOauthUi && !dataView"
+                  id="oauth-scope-filter"
+                  :aria-label="$t('label.scope')"
+                  :value="oauthScopeValue"
+                  :options="oauthScopeOptions"
+                  size="small"
+                  @change="changeOauthScope">
+                  <template #suffixIcon><filter-outlined /></template>
+                </a-select>
                 <label v-if="kmsListRoute($route)" for="kms-display-filter" class="template-filter-accessible-label">{{ $t('label.kms.display.filter') }}</label>
                 <a-select
                   v-if="kmsListRoute($route)"
@@ -209,6 +229,7 @@
             <ProjectListSearch v-if="isProjectList" class="project-toolbar-search" @search="onSearch" />
             <search-view
               v-else-if="!dataView"
+              ref="ldapSearch"
               :class="{ 'kms-toolbar-search': kmsListRoute($route), 'vm-acl-toolbar-search': standardResourceToolbar, 'account-toolbar-search': isAccountList }"
               :searchFilters="searchFilters"
               :searchParams="searchParams"
@@ -234,10 +255,10 @@
       </a-card>
     </div>
 
-    <a-alert v-if="(isHostList || isClusterList) && listRefreshError" class="image-list-query-error" type="error" show-icon>
+    <a-alert v-if="(isSecondaryStorageUi || isPrimaryStorageList || isHostList || isClusterList) && listRefreshError" class="image-list-query-error" type="error" show-icon>
       <template #message>
         <a-space wrap>
-          <span>{{ $t(isClusterList ? 'message.cluster.list.failed' : 'message.host.list.failed') }}</span>
+          <span>{{ $t(isSecondaryStorageUi ? secondaryStorageErrorLabel : isPrimaryStorageList ? 'message.primary.storage.list.failed' : isClusterList ? 'message.cluster.list.failed' : 'message.host.list.failed') }}</span>
           <a-button size="small" @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button>
         </a-space>
       </template>
@@ -263,7 +284,7 @@
         @refresh-data="refreshActionData"
         @close-action="closeAction"
       />
-      <keep-alive :max="(isStorageUi || isPolicyUi || isObjectStorageUi || currentAction.vmDeletionTargets || currentAction.vmEditCurrent || currentAction.vnfReinstallCurrent || vmStandardDialog || roleStandardDialog || accountStandardDialog || publicIpStandardDialog || isDnsZone || isDnsServer || isZoneUi || isHostUi || isClusterUi) ? 1 : undefined" v-else-if="currentAction.component && (!currentAction.invokedAsGroupAction || ['destroyVirtualMachine', 'deleteBackup', 'destroySharedFileSystem'].includes(currentAction.api))">
+      <keep-alive :max="(isLdapUi || isOauthUi || isStorageUi || isPolicyUi || isObjectStorageUi || currentAction.vmDeletionTargets || currentAction.vmEditCurrent || currentAction.vnfReinstallCurrent || vmStandardDialog || roleStandardDialog || accountStandardDialog || publicIpStandardDialog || isDnsZone || isDnsServer || isZoneUi || isHostUi || isClusterUi || isPrimaryStorageUi || isSecondaryStorageUi) ? 1 : undefined" v-else-if="currentAction.component && (!currentAction.invokedAsGroupAction || ['destroyVirtualMachine', 'deleteBackup', 'destroySharedFileSystem'].includes(currentAction.api))">
         <component
           :is="currentAction.fixedFormFooter ? 'SharedFSFormDialog' : isVpcUi ? 'VpcDialog' : standardActionDialog ? 'MoldDialog' : 'a-modal'"
           :size="currentAction.standardDialogSize || (isHostUi || vmStandardDialog || roleStandardDialog || accountStandardDialog ? 'md' : isVpcUi || isObjectStorageUi ? 'md' : isStorageUi ? storageDialogSize(currentAction.api) : undefined)"
@@ -279,7 +300,7 @@
           :footer="standardActionDialog ? undefined : null"
           :form-actions="standardActionDialog"
           :initial-focus="currentAction.standardDialogInitialFocus"
-          :focus-guard="isClusterUi || isHostUi || isZoneUi || isPhysicalNetworkUi || isDnsZone || isDnsServer || isIpv4Subnet || isVpcUi || isProjectUi || vmStandardDialog || roleStandardDialog || accountStandardDialog || publicIpStandardDialog || !!currentAction.snapshotStandardDialog || !!currentAction.vnfReinstallCurrent"
+          :focus-guard="isLdapUi || isOauthUi || isSecondaryStorageUi || isPrimaryStorageUi || isClusterUi || isHostUi || isZoneUi || isPhysicalNetworkUi || isDnsZone || isDnsServer || isIpv4Subnet || isVpcUi || isProjectUi || vmStandardDialog || roleStandardDialog || accountStandardDialog || publicIpStandardDialog || !!currentAction.snapshotStandardDialog || !!currentAction.vnfReinstallCurrent"
           :after-close="restoreClosedActionFocus"
           :width="currentAction.dialogWidth || 'auto'"
         >
@@ -299,9 +320,9 @@
           <cluster-action-context v-if="isClusterUi && resource.id && !currentAction.listView" :resource="resource" />
           <host-action-context v-if="isHostUi && resource.id && !currentAction.listView && ['configureOutOfBandManagement', 'updateHostPassword', 'configureHAForHost'].includes(currentAction.api)" :resource="resource" :api="currentAction.api" />
           <VpcActionContext v-if="isVpcUi && resource.id && !currentAction.listView" :resources="[resource]" />
-          <keep-alive :max="(isStorageUi || isPolicyUi || isObjectStorageUi || currentAction.vmDeletionTargets || currentAction.vmEditCurrent || currentAction.vnfReinstallCurrent || vmStandardDialog || roleStandardDialog || accountStandardDialog || publicIpStandardDialog || isDnsZone || isDnsServer || isZoneUi || isHostUi || isClusterUi) ? 1 : undefined">
+          <keep-alive :max="(isLdapUi || isOauthUi || isStorageUi || isPolicyUi || isObjectStorageUi || currentAction.vmDeletionTargets || currentAction.vmEditCurrent || currentAction.vnfReinstallCurrent || vmStandardDialog || roleStandardDialog || accountStandardDialog || publicIpStandardDialog || isDnsZone || isDnsServer || isZoneUi || isHostUi || isClusterUi || isPrimaryStorageUi || isSecondaryStorageUi) ? 1 : undefined">
             <component
-              :key="(isStorageUi || isPolicyUi || isObjectStorageUi || currentAction.vmDeletionTargets || currentAction.vmEditCurrent || currentAction.vnfReinstallCurrent || vmStandardDialog || roleStandardDialog || accountStandardDialog || publicIpStandardDialog || isDnsZone || isDnsServer || isZoneUi || isHostUi || isClusterUi) ? storageActionGeneration : undefined"
+              :key="(isLdapUi || isOauthUi || isStorageUi || isPolicyUi || isObjectStorageUi || currentAction.vmDeletionTargets || currentAction.vmEditCurrent || currentAction.vnfReinstallCurrent || vmStandardDialog || roleStandardDialog || accountStandardDialog || publicIpStandardDialog || isDnsZone || isDnsServer || isZoneUi || isHostUi || isClusterUi || isPrimaryStorageUi || isSecondaryStorageUi) ? storageActionGeneration : undefined"
               :is="currentAction.component"
               :resource="resource"
               :loading="loading"
@@ -348,17 +369,18 @@
         @refresh="finishEventMutation(false)"
       />
       <component
-        :is="isVpcUi ? 'VpcDialog' : (isStorageUi || isBucketGroupDelete || isGuestNetworkDelete || vmStandardDialog || projectStandardDialog || roleStandardDialog || accountStandardDialog || aclStandardDialog || publicIpReleaseDialog || infrastructureStandardDialog) ? 'MoldDialog' : 'a-modal'"
-        :size="(isVpcUi || isStorageUi || isBucketGroupDelete || isGuestNetworkDelete || vmStandardDialog || projectStandardDialog || roleStandardDialog || accountStandardDialog || aclStandardDialog || publicIpReleaseDialog || infrastructureStandardDialog) ? 'md' : undefined"
+        :is="isVpcUi ? 'VpcDialog' : (isStorageUi || isBucketGroupDelete || isGuestNetworkDelete || vmStandardDialog || projectStandardDialog || roleStandardDialog || accountStandardDialog || aclStandardDialog || publicIpReleaseDialog || infrastructureStandardDialog || oauthStatusDialog) ? 'MoldDialog' : 'a-modal'"
+        :size="oauthStatusDialog ? 'sm' : (isVpcUi || isStorageUi || isBucketGroupDelete || isGuestNetworkDelete || vmStandardDialog || projectStandardDialog || roleStandardDialog || accountStandardDialog || aclStandardDialog || publicIpReleaseDialog || infrastructureStandardDialog) ? 'md' : undefined"
         class="mold-dialog"
-        :class="{ 'storage-standard-dialog': infrastructureStandardDialog || isStorageUi || isBucketGroupDelete || isGuestNetworkDelete || vmStandardDialog || projectStandardDialog || roleStandardDialog || accountStandardDialog || aclStandardDialog || publicIpReleaseDialog, 'vpc-standard-dialog': isVpcUi, 'acl-standard-dialog': aclStandardDialog, 'object-storage-dialog': isBucketGroupDelete, 'autoscale-dialog': $route.meta?.name === 'autoscalevmgroup' }"
+        :class="{ 'storage-standard-dialog': oauthStatusDialog || infrastructureStandardDialog || isStorageUi || isBucketGroupDelete || isGuestNetworkDelete || vmStandardDialog || projectStandardDialog || roleStandardDialog || accountStandardDialog || aclStandardDialog || publicIpReleaseDialog, 'vpc-standard-dialog': isVpcUi, 'acl-standard-dialog': aclStandardDialog, 'object-storage-dialog': isBucketGroupDelete, 'autoscale-dialog': $route.meta?.name === 'autoscalevmgroup' }"
           v-else
         :visible="showAction"
-        :closable="!(isVpcUi || vmStandardDialog || projectStandardDialog || roleStandardDialog || accountStandardDialog || aclStandardDialog || publicIpReleaseDialog || infrastructureStandardDialog) || !(actionLoading || vmActionValidationPending)"
+        :closable="!(isVpcUi || vmStandardDialog || projectStandardDialog || roleStandardDialog || accountStandardDialog || aclStandardDialog || publicIpReleaseDialog || infrastructureStandardDialog || oauthStatusDialog) || !(actionLoading || vmActionValidationPending)"
         :maskClosable="false"
         :width="(isBucketGroupDelete || isGuestNetworkDelete || publicIpReleaseDialog || aclStandardDialog) ? 'min(720px, calc(100vw - 32px))' : (currentAction.invokedAsGroupAction ? modalWidth : 760)"
-        :focus-guard="isVpcUi || vmStandardDialog || projectStandardDialog || roleStandardDialog || accountStandardDialog || aclStandardDialog || publicIpReleaseDialog || infrastructureStandardDialog"
-        :keyboard="!(isVpcUi || vmStandardDialog || projectStandardDialog || roleStandardDialog || accountStandardDialog || aclStandardDialog || publicIpReleaseDialog || infrastructureStandardDialog) || !(actionLoading || vmActionValidationPending)"
+        :focus-guard="isVpcUi || vmStandardDialog || projectStandardDialog || roleStandardDialog || accountStandardDialog || aclStandardDialog || publicIpReleaseDialog || infrastructureStandardDialog || oauthStatusDialog"
+        :initial-focus="oauthStatusDialog ? '#oauth-status-cancel' : undefined"
+        :keyboard="!(isVpcUi || vmStandardDialog || projectStandardDialog || roleStandardDialog || accountStandardDialog || aclStandardDialog || publicIpReleaseDialog || infrastructureStandardDialog || oauthStatusDialog) || !(actionLoading || vmActionValidationPending)"
         :after-close="restoreClosedActionFocus"
         :ok-button-props="getOkProps()"
         ok-text="111"
@@ -382,6 +404,15 @@
         <cluster-action-context v-if="isClusterUi && resource.id && !currentAction.listView" :resource="resource" :impact="currentAction.impact" :destructive="currentAction.danger" />
         <host-action-context v-if="isHostUi && resource.id && !currentAction.listView" :resource="resource" :api="currentAction.api" />
         <VpcActionContext v-if="isVpcUi && !currentAction.listView" :resources="currentAction.invokedAsGroupAction ? selectedItems : [resource]" />
+        <dl v-if="isPrimaryStorageUi && resource.id" class="acl-action-context">
+          <dt>{{ $t('label.name') }}</dt><dd>{{ resource.name || resource.id }}</dd>
+          <dt>{{ $t('label.state') }}</dt><dd>{{ resource.state }}</dd>
+          <dt>{{ $t('label.scope') }}</dt><dd>{{ resource.scope }}</dd>
+        </dl>
+        <dl v-if="isSecondaryStorageUi && !currentAction.listView && resource.id" class="acl-action-context">
+          <dt>{{ $t('label.name') }}</dt><dd>{{ resource.name || resource.id }}</dd>
+          <dt>{{ $t('label.id') }}</dt><dd>{{ resource.id }}</dd>
+        </dl>
         <dl v-if="aclStandardDialog && !currentAction.listView && resource.id" class="acl-action-context">
           <dt>{{ $t('label.name') }}</dt><dd>{{ resource.name }}</dd>
           <dt>{{ $t('label.scope') }}</dt><dd><AclScopeValue :resource="resource" :linked="false" /></dd>
@@ -730,9 +761,10 @@
         </a-spin>
         <template #footer>
           <a-button
-            v-focus="aclDeleteDialog || (isClusterUi && !!currentAction.danger)"
-            @click="vmStandardDialog || projectStandardDialog || roleStandardDialog || accountStandardDialog || aclStandardDialog || infrastructureStandardDialog ? cancelAction() : closeAction()"
-            :disabled="(vmStandardDialog || projectStandardDialog || roleStandardDialog || accountStandardDialog || aclStandardDialog || publicIpReleaseDialog || infrastructureStandardDialog) && (actionLoading || vmActionValidationPending)">
+            v-focus="aclDeleteDialog || ((isSecondaryStorageUi || isPrimaryStorageUi || isClusterUi) && !!currentAction.danger)"
+            :id="oauthStatusDialog ? 'oauth-status-cancel' : undefined"
+            @click="vmStandardDialog || projectStandardDialog || roleStandardDialog || accountStandardDialog || aclStandardDialog || infrastructureStandardDialog || oauthStatusDialog ? cancelAction() : closeAction()"
+            :disabled="(vmStandardDialog || projectStandardDialog || roleStandardDialog || accountStandardDialog || aclStandardDialog || publicIpReleaseDialog || infrastructureStandardDialog || oauthStatusDialog) && (actionLoading || vmActionValidationPending)">
             {{ $t('label.cancel') }}
           </a-button>
           <a-button
@@ -740,9 +772,9 @@
             @click="handleSubmit"
             :disabled="isSubmitDisabled || (vmStandardDialog && (vmActionValidationPending || vmActionUnknown))"
             :loading="actionLoading || (vmStandardDialog && vmActionValidationPending)"
-            :danger="(isClusterUi && !!currentAction.danger) || isHostUi && currentAction.api === 'deleteHost' || aclDeleteDialog || (projectStandardDialog && currentAction.api === 'deleteProject') || publicIpReleaseDialog || isVpcUi && currentAction.api?.startsWith('delete') || vmStandardDialog && currentAction.api === 'stopVirtualMachine'"
+            :danger="((isSecondaryStorageUi || isPrimaryStorageUi || isClusterUi) && !!currentAction.danger) || isHostUi && currentAction.api === 'deleteHost' || aclDeleteDialog || (projectStandardDialog && currentAction.api === 'deleteProject') || publicIpReleaseDialog || isVpcUi && currentAction.api?.startsWith('delete') || vmStandardDialog && currentAction.api === 'stopVirtualMachine'"
             ref="submit">
-            {{ $t(publicIpReleaseDialog ? 'label.public.ip.release.confirm' : (isVpcUi || vmStandardDialog || projectStandardDialog || roleStandardDialog || accountStandardDialog || aclStandardDialog || infrastructureStandardDialog) && currentAction.label ? currentAction.label : 'label.ok') }}
+            {{ $t(publicIpReleaseDialog ? 'label.public.ip.release.confirm' : (isVpcUi || vmStandardDialog || projectStandardDialog || roleStandardDialog || accountStandardDialog || aclStandardDialog || infrastructureStandardDialog || oauthStatusDialog) && currentAction.label ? currentAction.label : 'label.ok') }}
           </a-button>
         </template>
       </component>
@@ -763,6 +795,28 @@
       </a-alert>
       <a-alert v-if="dataView && $route.meta?.name === 'kubernetesiso' && kubernetesIsoReadError" type="error" show-icon :message="$t((kubernetesIsoReadError === 'unsupported' ? 'message.kubernetes.iso.search.unsupported' : kubernetesIsoReadError === 'searchInvalid' ? 'message.kubernetes.iso.search.invalid' : 'message.kubernetes.iso.read.' + kubernetesIsoReadError))">
         <template #description><a-button size="small" :disabled="listRequestPending" @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button></template>
+      </a-alert>
+      <a-alert
+        v-if="isLdapUi && (listRefreshError || ldapDetailMissing)"
+        class="storage-query-error"
+        show-icon
+        :type="ldapDetailMissing ? 'info' : 'error'"
+        :message="$t(ldapDetailMissing ? 'message.resource.not.found' : 'message.ldap.list.failed')">
+        <template #description>
+          <router-link v-if="ldapDetailMissing" class="ldap-list-return" :to="ldapListLocation">{{ $t('label.ldap.configuration') }}</router-link>
+          <a-button v-else size="small" :disabled="listRequestPending" @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button>
+        </template>
+      </a-alert>
+      <a-alert
+        v-if="isOauthUi && (listRefreshError || oauthDetailMissing)"
+        class="storage-query-error"
+        show-icon
+        :type="oauthDetailMissing ? 'info' : 'error'"
+        :message="$t(oauthDetailMissing ? 'message.resource.not.found' : 'message.oauth.list.failed')">
+        <template #description>
+          <router-link v-if="oauthDetailMissing" :to="oauthListLocation($route)">{{ $t('label.oauth.configuration') }}</router-link>
+          <a-button v-else size="small" @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button>
+        </template>
       </a-alert>
       <a-alert v-if="isVpnUser && listRefreshError" class="vpn-user-read-error" type="error" show-icon :message="$t('message.vpn.user.search.failed')">
         <template #description><a-button size="small" :disabled="listRequestPending || vpnUserProjectSwitching" @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button></template>
@@ -805,14 +859,14 @@
           v-if="$route.path.startsWith('/publicip')"
         ></slot>
         <resource-view
-          v-else-if="(!isKmsDetail || (resource.id || loading) && !kmsDetailError) && (!(s2sGatewayRoute($route) || isVpnConnectionDetail) || resource.id || loading) && (!isVpnUser || !listRefreshError && (resource.id || loading)) && !templateDetailError && !($route.meta?.name === 'kubernetesiso' && kubernetesIsoReadError) && (!(isSnapshotDetail || isPolicyDetail) || resource.id || loading) && (!isSshKeyPairDetail || sshKeyPairDetailVisible) && ($route.meta?.name !== 'vmgroup' || resource.id || loading)"
+          v-else-if="(!isOauthUi || (!listRefreshError && !oauthDetailMissing)) && (!isLdapUi || (!listRefreshError && !ldapDetailMissing)) && (!isKmsDetail || (resource.id || loading) && !kmsDetailError) && (!(s2sGatewayRoute($route) || isVpnConnectionDetail) || resource.id || loading) && (!isVpnUser || !listRefreshError && (resource.id || loading)) && !templateDetailError && !($route.meta?.name === 'kubernetesiso' && kubernetesIsoReadError) && (!(isSnapshotDetail || isPolicyDetail) || resource.id || loading) && (!isSshKeyPairDetail || sshKeyPairDetailVisible) && ($route.meta?.name !== 'vmgroup' || resource.id || loading)"
           :key="isKmsDetail || isSshKeyPairDetail || isSnapshotDetail || isPolicyDetail ? listScope() : $route.path"
           :readPending="listRequestPending"
           :readFailed="(isVpcUi || isAclUi || ['ilb', 'vm', 'vnfapp', 's2svpn', 's2svpnconn'].includes($route.meta?.name)) && listRefreshError"
-          :readyForActions="isKmsDetail ? kmsDetailReady : $route.meta?.name === 'kubernetesiso' ? !listRequestPending && !kubernetesIsoReadError && listLoadedScope === listScope() : ['vm', 'vnfapp', 's2svpn', 's2svpnconn', 'vpncustomergateway'].includes($route.meta?.name) ? storageActionReady : (isStorageUi || isObjectStorageUi || isSnapshotDetail || isPolicyDetail) ? storageActionReady : isSshKeyPairDetail ? sshKeyPairDetailActionReady : ($route.meta?.name === 'cniconfiguration' ? cniDetailActionReady : ($route.meta?.name !== 'vmgroup' || vmGroupQueryReady))"
+          :readyForActions="isKmsDetail ? kmsDetailReady : $route.meta?.name === 'kubernetesiso' ? !listRequestPending && !kubernetesIsoReadError && listLoadedScope === listScope() : ['vm', 'vnfapp', 's2svpn', 's2svpnconn', 'vpncustomergateway'].includes($route.meta?.name) ? storageActionReady : (isSecondaryStorageUi || isStorageUi || isObjectStorageUi || isSnapshotDetail || isPolicyDetail) ? storageActionReady : isSshKeyPairDetail ? sshKeyPairDetailActionReady : ($route.meta?.name === 'cniconfiguration' ? cniDetailActionReady : ($route.meta?.name !== 'vmgroup' || vmGroupQueryReady))"
           :resource="resource"
           :loading="loading"
-          :quiet-refresh="isClusterUi || isHostUi || isZoneUi || isPhysicalNetworkUi || isIpv4Subnet || isGuestVlan || s2sGatewayRoute($route) || isVpnConnectionDetail || isVpcUi || ['sharedfs', 'runtimebundle'].includes($route.meta?.name)"
+          :quiet-refresh="isSecondaryStorageUi || isPrimaryStorageUi || isClusterUi || isHostUi || isZoneUi || isPhysicalNetworkUi || isIpv4Subnet || isGuestVlan || s2sGatewayRoute($route) || isVpnConnectionDetail || isVpcUi || ['sharedfs', 'runtimebundle'].includes($route.meta?.name)"
           :tabs="$route.meta.tabs"
           :actions="(isSshKeyPairDetail && !sshKeyPairDetailActionReady) || ($route.meta?.name === 'vmgroup' && !vmGroupQueryReady) ? [] : actions"
           @exec-action="handleDataViewAction"
@@ -831,15 +885,16 @@
         />
         <p v-if="isVmList && listRefreshError" role="status">{{ $t('message.list.refresh.stale') }}</p>
         <list-view
-          v-if="!isVpnUser || !listRefreshError"
-          :loading="sharedFSContentLoading || isVpnUser && vpnUserProjectSwitching"
+          v-if="(!(isVpnUser || isLdapUi || isOauthUi) || !listRefreshError) && (!(isPrimaryStorageList || isSecondaryStorageList) || !listRefreshError || items.length)"
+          :loading="sharedFSContentLoading || isVpnUser && vpnUserProjectSwitching || (isLdapUi || isOauthUi) && listRequestPending"
           :columns="presentedColumns"
           :kms-table="kmsListRoute($route)"
           :items="items"
+          :empty-text="isLdapUi ? $t('message.ldap.list.empty') : isOauthUi ? $t('message.oauth.list.empty') : undefined"
           :actions="(asnSearchAuth && asnSearchFailure) || isSnapshotCopyList || snapshotSearchFailure || policySearchFailure || ((isSnapshotList || isPolicyList || isObjectStorageUi || $route.meta?.name === 'vnfapp') && !storageActionReady) || ($route.meta?.name === 'vmgroup' && !vmGroupQueryReady) ? [] : actions"
           :selectionDisabled="record => ((isProjectList || isVpnUser || isVpnCustomerGateway) && !storageActionReady) || (asnSearchAuth && !asnListReady) || (isSnapshotList || isPolicyList || isObjectStorageUi || $route.meta?.name === 'vnfapp') && !storageActionReady"
           :explicitlyAllowRowSelection="policySelectionAvailable || !!asnSearchAuth"
-          :tableScroll="isRoleList ? { x: 670 } : isGuestVlan || isIpv4Subnet ? { x: presentedColumns.reduce((sum, column) => sum + column.width, 0) } : isProjectList ? { x: projectTableWidth } : isEventList ? { x: 1210 } : isVpnUser ? { x: 458 } : isVpnCustomerGateway ? { x: presentedColumns.reduce((sum, column) => sum + (column.width || 0), 36) } : asnSearchAuth ? { x: 1640 } : s2sGatewayListRoute($route) ? { x: 860 } : vpnConnectionListRoute($route) ? { x: vpnConnectionTableWidth } : undefined"
+          :tableScroll="isOauthUi ? { x: 920 } : isSecondaryStorageList ? { x: presentedColumns.reduce((sum, column) => sum + column.width, 0) } : isRoleList ? { x: 670 } : isGuestVlan || isIpv4Subnet ? { x: presentedColumns.reduce((sum, column) => sum + column.width, 0) } : isProjectList ? { x: projectTableWidth } : isEventList ? { x: 1210 } : isVpnUser ? { x: 458 } : isVpnCustomerGateway ? { x: presentedColumns.reduce((sum, column) => sum + (column.width || 0), 36) } : asnSearchAuth ? { x: 1640 } : s2sGatewayListRoute($route) ? { x: 860 } : vpnConnectionListRoute($route) ? { x: vpnConnectionTableWidth } : undefined"
           :keyboardContextMenu="isSnapshotList"
           :currentPage="page"
           :pageSize="pageSize"
@@ -852,7 +907,7 @@
           @table-change="handleTableChange"
         />
         <a-pagination
-          v-if="(!isVpnUser || !listRefreshError) && ((!isSnapshotList && !['vmgroup', 'vnfapp'].includes($route.meta?.name)) || listLoadedScope)"
+          v-if="(!(isVpnUser || isLdapUi || isOauthUi) || !listRefreshError) && ((!isSnapshotList && !['vmgroup', 'vnfapp'].includes($route.meta?.name)) || listLoadedScope)"
           class="row-element"
           style="margin-top: 10px"
           size="small"
@@ -945,6 +1000,9 @@ import HostActionContext from '@/views/infra/HostActionContext.vue'
 import ClusterActionContext from '@/views/infra/ClusterActionContext.vue'
 import { dnsServerListQuery, dnsServerSearchQuery } from '@/utils/dnsServer'
 import { clusterListQuery, clusterReadParams, clusterSearchQuery, clusterStatusQuery } from '@/utils/clusterSearch'
+import { primaryStorageListQuery, primaryStorageReadParams, primaryStorageSearchQuery, primaryStorageStatusQuery } from '@/utils/primaryStorageSearch'
+import { secondaryStorageListQuery, secondaryStorageReadParams, secondaryStorageSearchQuery } from '@/utils/secondaryStorageSearch'
+import { selectorApi, selectorPage } from '@/utils/secondaryStorageSelectors'
 import { hostListQuery, hostReadParams, hostSearchQuery, hostStatusQuery } from '@/utils/hostSearch'
 import { zoneListQuery, zoneReadParams, zoneSearchQuery } from '@/utils/zone'
 import { dnsZoneSearchQuery } from '@/utils/dnsZone'
@@ -968,6 +1026,8 @@ import ActionButton from '@/components/view/ActionButton'
 import { affinityGroupQuery } from '@/utils/affinityGroupCreation'
 import SearchView from '@/components/view/SearchView'
 import SearchFilter from '@/components/view/SearchFilter'
+import { oauthConfigApi, oauthListLocation, oauthListQuery, oauthReadParams, oauthRoute, oauthSearchQuery } from '@/utils/oauthConfiguration'
+import { ldapConfigApi, ldapConfigRoute, ldapDomainPaths, ldapListQuery, ldapReadParams, ldapRemovedListQuery, ldapSearchQuery } from '@/utils/ldapConfiguration'
 import OsLogo from '@/components/widgets/OsLogo'
 import ResourceIcon from '@/components/view/ResourceIcon'
 import BulkActionProgress from '@/components/view/BulkActionProgress'
@@ -1520,11 +1580,11 @@ export default {
           this.fetchData({ irefresh: true })
           return
         }
-        if ((ipv4SubnetRoute(from) || storageUiRoute(from) || (from.meta?.name || from.name) === 'snapshot' || this.currentAction.projectBulkTargets) && this.showAction) this.closeAction()
+        if ((ldapConfigRoute(from) || oauthRoute(from) || ipv4SubnetRoute(from) || storageUiRoute(from) || (from.meta?.name || from.name) === 'snapshot' || this.currentAction.projectBulkTargets) && this.showAction) this.closeAction()
         this.resetSelection()
         const page = Number(to.query.page)
         this.page = Number.isInteger(page) && page > 0 ? page : 1
-        if ('pagesize' in to.query || ipv4SubnetRoute(to)) this.pageSize = this.getValidPageSize(to.query.pagesize)
+        if ('pagesize' in to.query || ipv4SubnetRoute(to) || ldapConfigRoute(to) || oauthRoute(to)) this.pageSize = this.getValidPageSize(to.query.pagesize)
         this.itemCount = 0
         this.clearAutoRefresh()
         this.fetchData()
@@ -1655,6 +1715,14 @@ export default {
     isGuestVlan () { return guestVlanRoute(this.$route) },
     isClusterUi () { return this.$route.meta?.name === 'cluster' },
     isClusterList () { return this.isClusterUi && !this.$route.params?.id },
+    isPrimaryStorageUi () { return this.$route.meta?.name === 'storagepool' },
+    isSecondaryStorageUi () { return this.$route.meta?.name === 'imagestore' },
+    isSecondaryStorageList () { return this.isSecondaryStorageUi && !this.$route.params?.id },
+    secondaryStorageErrorLabel () {
+      if (!this.isSecondaryStorageList) return 'message.secondary.storage.detail.failed'
+      return this.items.length ? 'message.list.refresh.stale' : 'message.secondary.storage.list.failed'
+    },
+    isPrimaryStorageList () { return this.isPrimaryStorageUi && !this.$route.params?.id },
     isHostUi () { return this.$route.meta?.name === 'host' },
     isHostList () { return this.isHostUi && !this.$route.params?.id },
     isZoneUi () { return this.$route.meta?.name === 'zone' },
@@ -1664,12 +1732,41 @@ export default {
       return !this.$route.params?.id && !!this.$route.query.zoneid &&
         ['pod', 'cluster', 'host', 'storagepool', 'imagestore'].includes(this.$route.meta?.name)
     },
-    infrastructureStandardDialog () { return (this.isClusterUi || this.isHostUi || this.isZoneUi || this.isPhysicalNetworkUi) && !!this.currentAction.api },
+    infrastructureStandardDialog () { return (this.isSecondaryStorageUi || this.isPrimaryStorageUi || this.isClusterUi || this.isHostUi || this.isZoneUi || this.isPhysicalNetworkUi) && !!this.currentAction.api },
     isDnsServer () { return this.$route.meta?.name === 'dnsserver' },
     isDnsZone () { return this.$route.meta?.name === 'dnszone' },
     isIpv4Subnet () { return ipv4SubnetRoute(this.$route) },
     isVpnCustomerGateway () { return this.$route.meta?.name === 'vpncustomergateway' },
-    standardResourceToolbar () { return this.isClusterUi || this.isHostUi || this.isZoneUi || this.isPhysicalNetworkUi || this.isZoneRelatedList || this.isRoleUi || this.isVmUi || this.isAclUi || this.isVpnUser || this.isProjectUi || this.isVpnCustomerGateway || this.isGuestVlan || this.isIpv4Subnet || this.isDnsZone || this.isDnsServer },
+    isLdapUi () { return ldapConfigRoute(this.$route) },
+    isOauthUi () { return oauthRoute(this.$route) },
+    oauthDetailMissing () { return this.isOauthUi && this.dataView && this.storageActionReady && !this.resource.id },
+    oauthScopeValue () {
+      const query = oauthListQuery(this.$route.query)
+      return query.domainid ? 'domain' : query.scope || 'all'
+    },
+    oauthScopeOptions () {
+      const options = [
+        { value: 'all', label: this.$t('label.all') },
+        { value: 'global', label: this.$t('label.oauth.scope.global') }
+      ]
+      if ('listDomains' in this.$store.getters.apis) options.push({ value: 'domain', label: this.$t('label.domain') })
+      return options
+    },
+    ldapDetailMissing () { return this.isLdapUi && this.dataView && this.storageActionReady && !this.resource.id },
+    ldapListLocation () { return { path: '/ldapsetting', query: ldapListQuery(this.$route.query) } },
+    ldapScopeValue () {
+      const query = ldapListQuery(this.$route.query)
+      return query.domainid ? 'domain' : query.scope || 'all'
+    },
+    ldapScopeOptions () {
+      const options = [
+        { value: 'all', label: this.$t('label.all') },
+        { value: 'global', label: this.$t('label.ldap.scope.global') }
+      ]
+      if ('listDomains' in this.$store.getters.apis) options.push({ value: 'domain', label: this.$t('label.domain') })
+      return options
+    },
+    standardResourceToolbar () { return this.isLdapUi || this.isOauthUi || this.isSecondaryStorageUi || this.isPrimaryStorageUi || this.isClusterUi || this.isHostUi || this.isZoneUi || this.isPhysicalNetworkUi || this.isZoneRelatedList || this.isRoleUi || this.isVmUi || this.isAclUi || this.isVpnUser || this.isProjectUi || this.isVpnCustomerGateway || this.isGuestVlan || this.isIpv4Subnet || this.isDnsZone || this.isDnsServer },
     vpnUserAuth () { return this.isVpnUser ? vpnUserSearchAuth(this.$store.getters, this.$store.state?.user?.token) : null },
     vpnUserScope () { return this.isVpnUser ? vpnUserProject(this.$route.query, this.$store.getters) : null },
     vpnUserDeleteScope () {
@@ -1702,8 +1799,18 @@ export default {
     publicIpAuth () { return publicIpRoute(this.$route) ? publicIpReadAuth(this.$store) : '' },
     presentedColumns () {
       const columns = this.localizePublicIpColumns(this.columns)
-      if (this.isHostList || this.isClusterList) {
-        const query = this.isClusterList ? clusterListQuery : hostListQuery
+      if (this.isSecondaryStorageList) {
+        const { sortkey, sortorder } = secondaryStorageListQuery(this.$route.query)
+        const widths = { name: 180, url: 248, disksizetotal: 112, disksizeused: 112, protocol: 100, providername: 108, scope: 96, zonename: 136, readonly: 108, filtercolumn: 44 }
+        return columns.map(column => ({
+          ...column,
+          width: widths[column.key] || 120,
+          ellipsis: ['name', 'url', 'zonename'].includes(column.key),
+          sortOrder: sortkey === column.key ? (sortorder === 'asc' ? 'ascend' : 'descend') : null
+        }))
+      }
+      if (this.isPrimaryStorageList || this.isHostList || this.isClusterList) {
+        const query = this.isPrimaryStorageList ? primaryStorageListQuery : this.isClusterList ? clusterListQuery : hostListQuery
         const { sortkey, sortorder } = query(this.$route.query)
         return columns.map(column => {
           if (column.key !== sortkey || !column.sorter || !['asc', 'desc'].includes(sortorder)) return column
@@ -1814,7 +1921,8 @@ export default {
     publicIpReleaseDialog () { return this.$route.meta?.name === 'publicip' && this.currentAction?.api === 'releaseIpAddress' },
     publicIpReservationDialog () { return this.$route.meta?.name === 'publicip' && this.currentAction?.api === 'reserveIpAddress' },
     publicIpStandardDialog () { return this.$route.meta?.name === 'publicip' && ['reserveIpAddress', 'updateIpAddress'].includes(this.currentAction?.api) },
-    standardActionDialog () { return this.isClusterUi || this.isHostUi || this.roleStandardDialog || this.accountStandardDialog || this.vmStandardDialog || this.isVpcUi || this.isStorageUi || this.isObjectStorageUi || !!this.currentAction.standardDialogSize },
+    oauthStatusDialog () { return this.isOauthUi && this.currentAction.api === 'updateOauthProvider' && typeof this.currentAction.defaultArgs?.enabled === 'boolean' },
+    standardActionDialog () { return this.isSecondaryStorageUi || this.isClusterUi || this.isHostUi || this.roleStandardDialog || this.accountStandardDialog || this.vmStandardDialog || this.isVpcUi || this.isStorageUi || this.isObjectStorageUi || !!this.currentAction.standardDialogSize },
     storageActionReady () { return !this.listRequestPending && !this.listRefreshError && this.listLoadedScope === this.listScope() },
     policySelectionAvailable () {
       return this.isPolicyList && !this.policySearchFailure && this.actions.some(action => action.groupAction && action.api in this.$store.getters.apis)
@@ -1832,7 +1940,7 @@ export default {
     activeFiltersList () {
       if (asnRoute(this.$route) || this.isS2sSearchList) return []
       if (this.isIsoList) return isoFilterChips(this.$route.query, this.$store.getters)
-      const queryParams = this.isProjectList ? projectSearchQuery(this.$route.query, this.$store.getters) : { ...this.$route.query }
+      const queryParams = this.isOauthUi ? oauthListQuery(this.$route.query) : this.isLdapUi ? ldapListQuery(this.$route.query) : this.isProjectList ? projectSearchQuery(this.$route.query, this.$store.getters) : { ...this.$route.query }
       const activeFilters = []
       for (const filter in queryParams) {
         if (guestVlanRoute(this.$route) && ['filter', 'allocatedonly'].includes(filter)) continue
@@ -1867,6 +1975,7 @@ export default {
       return activeFilters
     },
     showSearchFilters () {
+      if (this.isOauthUi) return !this.dataView && this.activeFiltersList.some(filter => ['id', 'provider', 'scope', 'domainid'].includes(filter.key))
       if (ipv4SubnetRoute(this.$route)) return !this.dataView && this.activeFiltersList.some(filter => ['zoneid', 'parentid', 'subnet', 'networkid', 'vpcid'].includes(filter.key))
       if (isAclListRoute(this.$route)) return !this.dataView && this.activeFiltersList.length > 0
       const excludedKeys = ['page', 'pagesize', 'q', 'keyword', 'tags', 'projectid']
@@ -1903,6 +2012,7 @@ export default {
         const value = String(this.$route.query.filter || this.$route.query.state || this.$route.meta.defaultFilter).toLowerCase()
         return this.filters.includes(value) ? value : this.$route.meta.defaultFilter
       }
+      if (this.isPrimaryStorageList) return String(this.$route.query.status || this.$route.query.filter || 'all').toLowerCase()
       if (this.isAccountList) return this.$route.query.state || 'all'
       if (this.$route.query.filter) {
         return this.$route.query.filter
@@ -1926,6 +2036,7 @@ export default {
       return 'self'
     },
     visibleDataViewActions () {
+      if ((this.isLdapUi || this.isOauthUi) && (!this.storageActionReady || this.resource?.id !== this.$route.params?.id)) return []
       if ((this.isVpnUser || this.isVpnCustomerGateway) && !this.storageActionReady) return []
       if (this.isAclUi && (this.listRefreshError || this.resource?.id !== this.$route.params?.id)) return []
       if (this.isKmsDetail && !this.kmsDetailReady) return []
@@ -2013,6 +2124,7 @@ export default {
     storageDialogSize,
     snapshotSourceVolumeRoute,
     documentationUrl,
+    oauthListLocation,
     rejectSshKeyPairDetail (status) {
       this.sshKeyPairDetailStatus = status
       this.items = []; this.resource = {}; this.itemCount = 0
@@ -2122,7 +2234,7 @@ export default {
       } else if (this.$route.meta?.name === 'cniconfiguration' && this.$route.params?.id) {
         routeKey = cniHistoryRouteKey(this.$route)
       }
-      return JSON.stringify([routeKey, ...(['template', 'iso', 'vm', 'kubernetesiso'].includes(this.$route.meta?.name) ? [this.$store.getters.userInfo?.roletype, this.$store.getters.userInfo?.roleid, this.$store.state?.user?.token, Object.keys(this.$store.getters.apis || {}).sort()] : []), ...(guestNetworkRoute(this.$route) ? [this.guestNetworkAuth] : []), ...(publicIpRoute(this.$route) ? [this.publicIpAuth] : []), ...(asnRoute(this.$route) ? [this.asnSearchAuth] : []), ...(this.s2sGatewaySearchAuth ? [this.s2sGatewaySearchAuth] : []), ...((snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.isObjectStorageUi) ? [this.$store.getters.userInfo?.roletype, this.$store.state?.user?.token, this.$store.getters.userInfo?.roleid, ...(snapshotDetailRoute(this.$route) ? [snapshotDetailPermissions(this.$store.getters)] : []), ...(policyDetailRoute(this.$route) ? [this.$store.getters.userInfo?.roleid, policyDetailPermissions(this.$store.getters)] : [])] : []), this.$store.getters.project?.id,
+      return JSON.stringify([routeKey, ...(['template', 'iso', 'vm', 'kubernetesiso', 'ldapsetting', 'oauthsetting'].includes(this.$route.meta?.name) ? [this.$store.getters.userInfo?.roletype, this.$store.getters.userInfo?.roleid, this.$store.state?.user?.token, Object.keys(this.$store.getters.apis || {}).sort()] : []), ...(guestNetworkRoute(this.$route) ? [this.guestNetworkAuth] : []), ...(publicIpRoute(this.$route) ? [this.publicIpAuth] : []), ...(asnRoute(this.$route) ? [this.asnSearchAuth] : []), ...(this.s2sGatewaySearchAuth ? [this.s2sGatewaySearchAuth] : []), ...((snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.isObjectStorageUi) ? [this.$store.getters.userInfo?.roletype, this.$store.state?.user?.token, this.$store.getters.userInfo?.roleid, ...(snapshotDetailRoute(this.$route) ? [snapshotDetailPermissions(this.$store.getters)] : []), ...(policyDetailRoute(this.$route) ? [this.$store.getters.userInfo?.roleid, policyDetailPermissions(this.$store.getters)] : [])] : []), this.$store.getters.project?.id,
         this.$store.getters.userInfo?.id, this.$store.getters.metrics, this.$store.getters.listAllProjects])
     },
     getStyle () {
@@ -2319,6 +2431,8 @@ export default {
       if (this.showAction) this.closeAction()
     },
     fetchData (params = {}) {
+      // The selector view owns its required Zone-scoped read.
+      if (this.$route.meta?.name === selectorPage) return Promise.resolve()
       const vpnUser = this.isVpnUser
       if (vpnUser) {
         if (this.vpnUserProjectSwitching) return
@@ -2583,7 +2697,7 @@ export default {
       if (kubernetesIsoQuery && !sameList) {
         this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null; this.resetSelection()
       }
-      if ((kmsList || publicIpList || (this.isAclUi && !this.dataView) || snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || (this.isObjectStorageUi || guestNetworkRoute(this.$route) || vnfRoute(this.$route) || this.isS2sSearchList) && !this.dataView) && !sameList) {
+      if ((this.isLdapUi || this.isOauthUi || kmsList || publicIpList || (this.isAclUi && !this.dataView) || snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || (this.isObjectStorageUi || guestNetworkRoute(this.$route) || vnfRoute(this.$route) || this.isS2sSearchList) && !this.dataView) && !sameList) {
         this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null
         this.snapshotListError = ''; this.listRefreshError = false
         this.resetSelection()
@@ -2974,8 +3088,18 @@ export default {
         delete params.excludeprojectresources
         if (vpnConnectionDisplaySupported(this.$store.getters)) params.displayall = true
       }
+      if (this.apiName === oauthConfigApi) {
+        params = oauthReadParams(this.$route, params)
+        this.columns.forEach(column => { column.sorter = false })
+      }
+      if (this.apiName === ldapConfigApi) {
+        params = ldapReadParams(this.$route, params)
+        this.columns.forEach(column => { column.sorter = false })
+      }
       if (this.apiName === 'listPhysicalNetworks' && this.$route.params?.id) params = { id: this.$route.params.id }
       if (guestVlanRoute(this.$route)) params = guestVlanReadParams(params)
+      if (this.isPrimaryStorageUi) params = primaryStorageReadParams(this.$route.query, params, this.$getApiParams(this.apiName))
+      if (this.isSecondaryStorageUi) params = secondaryStorageReadParams(this.$route.query, params, this.$getApiParams(this.apiName))
       if (this.isClusterUi) params = clusterReadParams(this.$route.query, params, this.$getApiParams(this.apiName))
       if (this.isHostUi) params = hostReadParams(this.$route.query, params, this.$getApiParams(this.apiName))
       if (['listZones', 'listZonesMetrics'].includes(this.apiName) && this.$route.meta?.name === 'zone') params = zoneReadParams(this.$route.query, params)
@@ -3057,7 +3181,7 @@ export default {
         ? readVpnUsers(getAPI, this.$route.query, this.$route.params?.id)
         : isAclListRoute(this.$route)
           ? readAclList(getAPI, params, aclDisplaySupported(this.$store.getters), this.$route.params.id, readCurrentScope)
-          : kmsDetail ? readKmsDetail(getAPI, this.$route, this.$store.getters) : kmsList ? readKmsPage(getAPI, requestApi, params, readCurrentScope) : s2sGatewayRoute(this.$route) && this.dataView ? readGatewayDetail(getAPI, this.$route, this.$store.getters, readCurrentScope, this.$getApiParams('listVpnGateways')) : this.isVpnConnectionDetail || this.isS2sSearchList ? (vpnConnectionRoute(this.$route) ? readVpnConnectionQuery : readS2sGatewayQuery)(getAPI, params, this.$store.getters, readCurrentScope) : asnRoute(this.$route) ? readAsnQuery(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : isoQuery && this.dataView ? readIsoResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : this.publicIpDetail ? readPublicIpDetail(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : templateQuery && this.dataView ? readTemplateResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : policyDetail ? Promise.resolve().then(() => readPolicyDetail(getAPI, this.$route, this.$store.getters.project, () => version === this.listRequestVersion && scope === this.listScope())) : snapshotDetail ? Promise.resolve().then(() => readSnapshotDetail(getAPI, snapshotDetailParams(this.$route, this.$store.getters.project), this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope())) : this.isClusterUi || this.isHostUi || this.isEventList || publicIpList || isoQuery || kubernetesIsoQuery || vmGroups || sshDetail || templateQuery || cniQuery || ['vm', 'vnfapp'].includes(this.$route.meta?.name) || this.publicIpDetail || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) ? getAPI(requestApi, params, { preserveOnFailure: true, timeout: 20000, ...(kubernetesIsoQuery ? { readScope: JSON.stringify([this.$store.state?.user?.token, this.$store.getters.userInfo?.id, this.$store.getters.project?.id]) } : {}) }) : callAPI(requestApi, params)
+          : kmsDetail ? readKmsDetail(getAPI, this.$route, this.$store.getters) : kmsList ? readKmsPage(getAPI, requestApi, params, readCurrentScope) : s2sGatewayRoute(this.$route) && this.dataView ? readGatewayDetail(getAPI, this.$route, this.$store.getters, readCurrentScope, this.$getApiParams('listVpnGateways')) : this.isVpnConnectionDetail || this.isS2sSearchList ? (vpnConnectionRoute(this.$route) ? readVpnConnectionQuery : readS2sGatewayQuery)(getAPI, params, this.$store.getters, readCurrentScope) : asnRoute(this.$route) ? readAsnQuery(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : isoQuery && this.dataView ? readIsoResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : this.publicIpDetail ? readPublicIpDetail(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : templateQuery && this.dataView ? readTemplateResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : policyDetail ? Promise.resolve().then(() => readPolicyDetail(getAPI, this.$route, this.$store.getters.project, () => version === this.listRequestVersion && scope === this.listScope())) : snapshotDetail ? Promise.resolve().then(() => readSnapshotDetail(getAPI, snapshotDetailParams(this.$route, this.$store.getters.project), this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope())) : this.isLdapUi || this.isOauthUi || this.isSecondaryStorageUi || this.isPrimaryStorageUi || this.isClusterUi || this.isHostUi || this.isEventList || publicIpList || isoQuery || kubernetesIsoQuery || vmGroups || sshDetail || templateQuery || cniQuery || ['vm', 'vnfapp'].includes(this.$route.meta?.name) || this.publicIpDetail || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) ? getAPI(requestApi, params, { preserveOnFailure: true, timeout: 20000, ...(kubernetesIsoQuery ? { readScope: JSON.stringify([this.$store.state?.user?.token, this.$store.getters.userInfo?.id, this.$store.getters.project?.id]) } : {}) }) : callAPI(requestApi, params)
       const request = response.then(async json => {
         if (templateOperationHeld()) return
         if (version !== this.listRequestVersion || scope !== this.listScope()) return
@@ -3147,7 +3271,7 @@ export default {
           return
         }
 
-        if (!this.dataView && (policyPage || Object.prototype.hasOwnProperty.call(json[responseName], 'count'))) {
+        if (!this.dataView && (this.isLdapUi || policyPage || Object.prototype.hasOwnProperty.call(json[responseName], 'count'))) {
           const lastPage = Math.max(1, Math.ceil(apiItemCount / this.pageSize))
           if (this.page > lastPage) {
             this.$router.replace({ query: { ...this.$route.query, page: String(lastPage) } })
@@ -3155,6 +3279,10 @@ export default {
           }
         }
         let responseItems = vnfPage ? vnfPage.rows : policyPage ? policyPage.rows : snapshotPage ? snapshotPage.rows : groupResult ? groupResult.rows : json[responseName][objectName]
+        if (requestApi === ldapConfigApi) {
+          responseItems = await ldapDomainPaths(getAPI, responseItems || [], 'listDomains' in this.$store.getters.apis, this.$t('label.ldap.scope.global'))
+          if (!readCurrentScope()) return
+        }
         if (this.$route.name === 'autoscalevmgroup' && !this.dataView && this.selectedColumns.includes('zonename')) {
           responseItems = await autoScaleInfrastructureRows(getAPI, responseItems || [], 'listNetworks' in this.$store.getters.apis)
           if (version !== this.listRequestVersion || scope !== this.listScope()) return
@@ -3211,7 +3339,7 @@ export default {
           }
         }
         if (vmGroups) this.vmGroupQueryStatus = this.items.length ? 'ready' : (this.dataView ? 'missing' : 'empty')
-        if (this.items.length <= 0 && this.dataView && !vmGroups && !this.isVpnConnectionDetail) {
+        if (this.items.length <= 0 && this.dataView && !vmGroups && !this.isVpnConnectionDetail && !this.isLdapUi && !this.isOauthUi) {
           this.$router.push({ path: '/exception/404' })
         }
         if (!this.showAction || this.dataView || (this.items.length === 1 && this.apiName === 'getUserKeys')) {
@@ -3239,8 +3367,12 @@ export default {
         }
         if (templateOperationHeld()) return
         if (version !== this.listRequestVersion || scope !== this.listScope()) return
-        if (this.isEventList) {
-          this.listRefreshError = true; this.listLoadedScope = null
+        if (this.isEventList || this.isLdapUi || this.isOauthUi) {
+          // LDAP detail requests send only the ID. An unresolved entity is rejected
+          // by CloudStack with PARAM_ERROR before the list command is dispatched.
+          const ldapMissing = this.isLdapUi && this.dataView && error?.response?.status === 431
+          this.listRefreshError = !ldapMissing
+          this.listLoadedScope = ldapMissing ? scope : null
           this.items = []; this.resource = {}; this.itemCount = 0
           this.resetSelection()
           if (this.$refs.listview) this.$refs.listview.resetSelection()
@@ -3322,12 +3454,16 @@ export default {
           this.listRefreshError = true
           return
         }
-        if (this.isHostList || this.isClusterList) {
+        if (this.isSecondaryStorageUi || this.isPrimaryStorageList || this.isHostList || this.isClusterList) {
           this.listRefreshError = true
           if (!sameList || [401, 403].includes(error?.response?.status)) {
             this.items = []
             this.itemCount = 0
             this.resetSelection()
+            if (this.isSecondaryStorageUi) {
+              this.resource = {}
+              this.$emit('change-resource', this.resource)
+            }
           }
           return
         }
@@ -3434,6 +3570,10 @@ export default {
       return this.fetchData({ irefresh: true })
     },
     closeAction (result) {
+      const oauthRemoved = result?.oauthRemoved
+      if (oauthRemoved && (this.currentAction.oauthTarget?.id !== oauthRemoved || !this.currentAction.oauthCurrent?.())) return
+      const ldapRemoved = result?.ldapRemoved
+      if (ldapRemoved && (this.currentAction.ldapTarget?.id !== ldapRemoved || !this.currentAction.ldapCurrent?.())) return
       const refreshAccountList = this.currentAction?.accountTargets && result?.refreshAccountList && this.$route.meta?.name === 'account'
       const refreshProjectBulk = this.currentAction?.projectBulkTargets && result?.refreshProjectList && this.isProjectList
       const gatewayDeletion = this.vpnCustomerGatewayActionScope && this.currentAction?.vpnCustomerGatewayScope === this.vpnCustomerGatewayActionScope && result?.gatewayDeletion
@@ -3482,7 +3622,7 @@ export default {
       const snapshotDialog = this.currentAction?.storageSnapshotMode || this.currentAction?.snapshotStandardDialog
       const vpnUserDelete = !!this.currentAction?.vpnUserDeleteTargets
       const kmsDialog = kmsRoute(this.$route) && this.currentAction?.selfManagedDialog
-      const guardedDialog = this.isClusterUi || this.isHostUi || this.isZoneUi || this.isPhysicalNetworkUi || !!this.currentAction?.vpnCustomerGatewayScope || ['downloadEvents', 'addVpnUser'].includes(this.currentAction?.api) || !!this.currentAction?.eventMutationTargets || vpnUserDelete || kmsDialog || this.isProjectUi || ['kubernetesiso', 's2svpn', 's2svpnconn'].includes(this.$route.meta?.name) || this.vmStandardDialog || this.roleStandardDialog || this.accountStandardDialog || this.aclStandardDialog || this.publicIpStandardDialog || snapshotDialog || !!this.currentAction?.vnfReinstallCurrent || !!this.currentAction?.vnfUnmanageCurrent
+      const guardedDialog = this.isLdapUi || this.isOauthUi || this.isSecondaryStorageUi || this.isPrimaryStorageUi || this.isClusterUi || this.isHostUi || this.isZoneUi || this.isPhysicalNetworkUi || !!this.currentAction?.vpnCustomerGatewayScope || ['downloadEvents', 'addVpnUser'].includes(this.currentAction?.api) || !!this.currentAction?.eventMutationTargets || vpnUserDelete || kmsDialog || this.isProjectUi || ['kubernetesiso', 's2svpn', 's2svpnconn'].includes(this.$route.meta?.name) || this.vmStandardDialog || this.roleStandardDialog || this.accountStandardDialog || this.aclStandardDialog || this.publicIpStandardDialog || snapshotDialog || !!this.currentAction?.vnfReinstallCurrent || !!this.currentAction?.vnfUnmanageCurrent
       const policyDeleteDialog = this.currentAction?.policyDeleteDialog
       const deletedPolicyDetail = policyDeleteDialog && policyDetailRoute(this.$route) && this.currentAction.policyListScope === this.listScope() && result?.removed?.includes(this.$route.params?.id)
       let policyListLocation
@@ -3528,6 +3668,35 @@ export default {
       this.showAction = false
       this.currentAction = {}
       this.actionConfirmText = ''
+      if (oauthRemoved) {
+        const location = oauthListLocation(this.$route)
+        if (location.query.id === oauthRemoved) delete location.query.id
+        this.listRequestVersion++
+        this.listRequestPending = false
+        this.listLoadedScope = null
+        this.resource = {}
+        this.items = []
+        this.itemCount = 0
+        this.resetSelection()
+        return this.$router.replace(location).then(() => this.$nextTick(() => {
+          const scope = this.$el?.querySelector('#oauth-scope-filter')
+          if (scope) scope.focus({ preventScroll: true })
+        }))
+      }
+      if (ldapRemoved) {
+        const query = ldapRemovedListQuery(this.$route.query, ldapRemoved)
+        this.listRequestVersion++
+        this.listRequestPending = false
+        this.listLoadedScope = null
+        this.resource = {}
+        this.items = []
+        this.itemCount = 0
+        this.resetSelection()
+        return this.$router.replace({ path: '/ldapsetting', query }).then(() => this.$nextTick(() => {
+          const focus = this.$route.path === '/ldapsetting' && this.$el?.querySelector('#ldap-scope-filter')
+          if (focus) focus.focus({ preventScroll: true })
+        }))
+      }
       if (refreshAccountList) {
         this.resetSelection()
         if (this.$refs.listview) this.$refs.listview.resetSelection()
@@ -3569,7 +3738,7 @@ export default {
         if ((guardedDialog || this.isVpcUi) && (generation !== this.storageActionGeneration || scope !== this.listScope?.() || originPath !== this.$route?.path)) return
         let replacement = (this.isVpcUi || this.isStorageUi || guardedDialog) && originPath === this.$route?.path
           ? (this.$refs?.detailActionsTrigger?.$el || (triggerLabel && Array.from(this.$el?.querySelectorAll('.autogen-toolbar-actions button') || []).find(button => button.getAttribute('aria-label') === triggerLabel)) ||
-            ((this.isClusterList || this.isHostList) && this.$el?.querySelector('.autogen-toolbar-actions button[title]')))
+            ((this.isSecondaryStorageList || this.isPrimaryStorageList || this.isClusterList || this.isHostList) && this.$el?.querySelector('.autogen-toolbar-actions button[title]')))
           : null
         if (kmsDialog && !replacement && !trigger?.isConnected) replacement = this.$el?.querySelector('.autogen-toolbar-actions button:not([disabled])')
         if (vpnUserDelete && !replacement && (!trigger?.isConnected || !trigger.getClientRects().length || trigger === document.body || trigger.disabled)) {
@@ -3608,11 +3777,38 @@ export default {
     },
     cancelAction () {
       if (this.vmStandardDialog && (this.actionLoading || this.vmActionValidationPending)) return
-      if ((this.isVpcUi || this.aclStandardDialog || this.projectStandardDialog || this.roleStandardDialog) && this.actionLoading) return
+      if ((this.isVpcUi || this.aclStandardDialog || this.projectStandardDialog || this.roleStandardDialog || this.oauthStatusDialog) && this.actionLoading) return
       eventBus.emit('action-closing', { action: this.currentAction })
       this.closeAction()
     },
     removeFilter (filter) {
+      if (this.isOauthUi) {
+        const query = { ...this.$route.query, page: '1' }
+        delete query[filter.key]
+        return this.$router.push({ query: oauthListQuery(query) })
+      }
+      if (this.isSecondaryStorageList) {
+        const query = { ...secondaryStorageListQuery(this.$route.query), page: '1' }
+        delete query[filter.key]
+        return this.$router.push({ query })
+      }
+      if (this.isLdapUi) {
+        const query = { ...this.$route.query, page: '1' }
+        delete query[filter.key]
+        return this.$router.push({ query: ldapListQuery(query) })
+      }
+      if (this.isPrimaryStorageList) {
+        const query = { ...primaryStorageListQuery(this.$route.query), page: '1' }
+        delete query[filter.key]
+        if (filter.key === 'zoneid') delete query.podid
+        if (['zoneid', 'podid'].includes(filter.key)) delete query.clusterid
+        if (['zoneid', 'podid', 'clusterid'].includes(filter.key)) delete query.hostid
+        if (['status', 'filter'].includes(filter.key)) {
+          delete query.status
+          delete query.filter
+        }
+        return this.$router.push({ query })
+      }
       if (this.isHostList || this.isClusterList) {
         const listQuery = this.isClusterList ? clusterListQuery : hostListQuery
         const query = { ...listQuery(this.$route.query), page: '1' }
@@ -3714,8 +3910,34 @@ export default {
     },
     kmsNavigationScope () { return JSON.stringify([this.$route.fullPath, this.kmsSearchAuth]) },
     execAction (action, isGroupAction) {
+      if (this.isSecondaryStorageList && action.api === selectorApi.list) {
+        if (!this.$store.getters.apis[selectorApi.list]) return
+        const origin = secondaryStorageListQuery(this.$route.query)
+        return this.$router.push({
+          name: selectorPage,
+          query: { zoneid: origin.zoneid },
+          state: { secondaryStorageSelectorOrigin: origin }
+        })
+      }
       if (this.$route.meta?.name === 'role' && !canRoleAction(action.api, action.resource || this.resource, this.$store.getters.apis)) return
       if (this.isKmsDetail && !this.kmsDetailReady) return
+      if (this.isLdapUi && action.api === 'deleteLdapConfiguration') {
+        const target = this.resource
+        if (!this.storageActionReady || !target?.id || target.id !== this.$route.params?.id || !this.$store.getters.apis.deleteLdapConfiguration) return
+        const scope = this.listScope()
+        const generation = ++this.storageActionGeneration
+        this.actionTrigger = this.$refs?.detailActionsTrigger?.$el || document.activeElement
+        this.actionTriggerLabel = this.actionTrigger?.getAttribute('aria-label')
+        this.actionOriginPath = this.$route.path
+        this.currentAction = {
+          ...action,
+          ldapTarget: Object.freeze({ ...target }),
+          ldapCurrent: () => this.showAction && generation === this.storageActionGeneration &&
+            scope === this.listScope() && this.resource?.id === target.id
+        }
+        this.showAction = true
+        return
+      }
       if (availabilityActions.includes(action.api)) {
         const getters = this.$store.getters
         const reason = actionAvailability(action.api, { resource: action.resource || this.resource, scope: { role: getters.userInfo?.roletype }, apis: getters.apis })
@@ -4061,6 +4283,17 @@ export default {
       const missingArgs = this.getArgs(action, isGroupAction, paramFields)
       if (missingArgs.length > 0) {
         this.rejectActionSchema(action.api, missingArgs)
+        return
+      }
+      if (action.oauthForm || action.oauthRemoval) {
+        const target = action.dataView ? action.resource : {}
+        const scope = this.listScope()
+        const generation = this.storageActionGeneration
+        if (action.dataView && (!target?.id || target.id !== this.$route.params?.id)) return
+        this.currentAction.oauthTarget = Object.freeze({ ...target })
+        this.currentAction.oauthCurrent = () => this.showAction && generation === this.storageActionGeneration && scope === this.listScope()
+        this.actionLoading = false
+        this.showAction = true
         return
       }
       this.getFilters(action, isGroupAction, paramFields)
@@ -4719,7 +4952,8 @@ export default {
         var hasJobId = false
         const actionScope = this.listScope()
         this.actionLoading = true
-        const request = roleEditId ? postAPI(action.api, params, { preserveOnFailure: true }) : this.postSnapshotAwareAction(action, params)
+        const oauthCredentials = ['registerOauthProvider', 'updateOauthProvider'].includes(action.api)
+        const request = roleEditId || oauthCredentials ? postAPI(action.api, params, { preserveOnFailure: true }) : this.postSnapshotAwareAction(action, params)
         request.then(json => {
           if (roleEditId && (action !== this.currentAction || roleEditId !== this.resource.id)) return
           if (vmScope && (action !== this.currentAction || vmScope !== vmEditScope(this.resource, this.$route, this.$store))) return
@@ -4760,6 +4994,13 @@ export default {
             return
           }
 
+          if (oauthCredentials) {
+            if (action === this.currentAction && actionScope === this.listScope()) {
+              if (typeof action.defaultArgs?.enabled === 'boolean') this.fetchData({ irefresh: true })
+              this.$notification.error({ message: this.$t('message.request.failed') })
+            }
+            return
+          }
           if (!isVmGroupAction(action.api)) console.log(error)
           if (projectScope && this.currentAction === action && projectScope === this.listScope()) {
             this.projectActionError = Object.values(error.response?.data || {}).find(value => value?.errortext)?.errortext || this.$t('message.request.failed')
@@ -4842,6 +5083,7 @@ export default {
       this.$router.push({ query })
     },
     changeFilter (filter) {
+      if (this.isPrimaryStorageList) return this.$router.push({ query: primaryStorageStatusQuery(this.$route.query, filter) })
       if (this.isClusterList) return this.$router.push({ query: clusterStatusQuery(this.$route.query, filter) })
       if (this.isHostList) return this.$router.push({ query: hostStatusQuery(this.$route.query, filter) })
       if (this.isAccountList) {
@@ -4900,12 +5142,6 @@ export default {
       } else if (['account', 'publicip', 'systemvm', 'router', 'runtimebundle'].includes(this.$route.name)) {
         if (filter !== 'all') {
           query.state = filter
-        }
-      } else if (this.$route.name === 'storagepool') {
-        if (filter === 'all') {
-          delete query.status
-        } else {
-          query.status = filter
         }
       } else if (['pod', 'cluster'].includes(this.$route.name)) {
         if (filter === 'all') {
@@ -4993,9 +5229,43 @@ export default {
       const query = projectSearchQuery({ ...this.$route.query, state, page: '1' }, this.$store.getters)
       return this.$router.push({ query })
     },
+    changeLdapScope (value) {
+      if (value === 'domain') {
+        if (this.$refs.ldapSearch) this.$refs.ldapSearch.openAdvancedFilters()
+        return
+      }
+      const query = { ...this.$route.query, scope: value, page: '1' }
+      delete query.id
+      delete query.domainid
+      return this.$router.push({ query: ldapListQuery(query) })
+    },
+    changeOauthScope (scope) {
+      if (scope === 'domain') {
+        if (this.$refs.ldapSearch) this.$refs.ldapSearch.openAdvancedFilters()
+        return
+      }
+      const query = { ...this.$route.query, scope, page: '1' }
+      delete query.id
+      delete query.domainid
+      return this.$router.push({ query: oauthListQuery(query) })
+    },
     onSearch (opts) {
-      if (this.isHostList || this.isClusterList) {
-        const searchQuery = this.isClusterList ? clusterSearchQuery : hostSearchQuery
+      if (this.isOauthUi && !this.dataView) {
+        const query = oauthSearchQuery(this.$route.query, opts || {})
+        if (JSON.stringify(query) === JSON.stringify(this.$route.query)) return this.fetchData({ irefresh: true })
+        return this.$router.push({ query })
+      }
+      if (this.isSecondaryStorageList) {
+        const query = secondaryStorageSearchQuery(this.$route.query, opts || {}, this.pageSize)
+        return this.$router.push({ query })
+      }
+      if (this.isLdapUi && !this.dataView) {
+        const query = ldapSearchQuery(this.$route.query, opts || {})
+        if (JSON.stringify(query) === JSON.stringify(this.$route.query)) return this.fetchData({ irefresh: true })
+        return this.$router.push({ query })
+      }
+      if (this.isPrimaryStorageList || this.isHostList || this.isClusterList) {
+        const searchQuery = this.isPrimaryStorageList ? primaryStorageSearchQuery : this.isClusterList ? clusterSearchQuery : hostSearchQuery
         const query = searchQuery(this.$route.query, opts || {}, this.pageSize)
         if (JSON.stringify(query) === JSON.stringify(this.$route.query)) return this.fetchData({ irefresh: true })
         return this.$router.push({ query })
@@ -5165,8 +5435,6 @@ export default {
               query.hypervisor = value
             } else if (this.$route.name === 'guestos') {
               query.description = value
-            } else if (this.$route.name === 'oauthsetting') {
-              query.provider = value
             } else {
               query.keyword = value
             }
@@ -5187,13 +5455,22 @@ export default {
     },
     changePage (page, pageSize) {
       const query = Object.assign({}, this.$route.query)
-      query.page = (this.isHostList || this.isClusterList || this.isZoneList || this.isRoleList || this.isProjectList || ['template', 'iso', 'cniconfiguration', 'guestnetwork', 'vnfapp', 'asnumbers', 'kubernetesiso', 'acllist', 'vpnuser', 'guestvlans', 'ipv4subnets', 'dnszone', 'dnsserver'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route) || vpnConnectionListRoute(this.$route)) && Number(pageSize) !== this.pageSize ? 1 : page
+      if (this.isSecondaryStorageList) {
+        return this.$router.push({ query: secondaryStorageListQuery({ ...query, page: Number(pageSize) === this.pageSize ? page : 1, pagesize: pageSize }) })
+      }
+      query.page = (this.isPrimaryStorageList || this.isHostList || this.isClusterList || this.isZoneList || this.isRoleList || this.isProjectList || ['template', 'iso', 'cniconfiguration', 'guestnetwork', 'vnfapp', 'asnumbers', 'kubernetesiso', 'acllist', 'vpnuser', 'guestvlans', 'ipv4subnets', 'dnszone', 'dnsserver'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route) || vpnConnectionListRoute(this.$route)) && Number(pageSize) !== this.pageSize ? 1 : page
       query.pagesize = pageSize
+      if (this.isOauthUi) return this.$router.push({ query: oauthListQuery({ ...query, page: Number(pageSize) === this.pageSize ? page : 1 }) })
+      if (this.isLdapUi) return this.$router.push({ query: ldapListQuery({ ...query, page: Number(pageSize) === this.pageSize ? page : 1 }) })
       this.$router.push({ query: this.isRoleList ? roleSearchQuery(query) : this.isAccountList ? accountQuery(query) : query })
     },
     handleTableChange (pagination, filters, sorter) {
-      if (this.isHostList || this.isClusterList) {
-        const listQuery = this.isClusterList ? clusterListQuery : hostListQuery
+      if (this.isSecondaryStorageList) {
+        const sortorder = sorter?.order === 'ascend' ? 'asc' : sorter?.order === 'descend' ? 'desc' : undefined
+        return this.$router.replace({ query: secondaryStorageListQuery({ ...this.$route.query, sortkey: sortorder && sorter.columnKey, sortorder }) })
+      }
+      if (this.isPrimaryStorageList || this.isHostList || this.isClusterList) {
+        const listQuery = this.isPrimaryStorageList ? primaryStorageListQuery : this.isClusterList ? clusterListQuery : hostListQuery
         const sortorder = sorter?.order === 'ascend' ? 'asc' : sorter?.order === 'descend' ? 'desc' : undefined
         return this.$router.push({ query: listQuery({ ...this.$route.query, sortkey: sortorder && (sorter.columnKey || sorter.field), sortorder }) })
       }
@@ -5251,7 +5528,7 @@ export default {
     },
     changePageSize (currentPage, pageSize) {
       const query = Object.assign({}, this.$route.query)
-      query.page = (this.isHostList || this.isClusterList || this.isZoneList || ['template', 'iso', 'cniconfiguration', 'guestnetwork', 'vnfapp', 'asnumbers', 'kubernetesiso', 'acllist', 'vpnuser', 'guestvlans', 'ipv4subnets'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route)) ? 1 : currentPage
+      query.page = (this.isPrimaryStorageList || this.isHostList || this.isClusterList || this.isZoneList || ['template', 'iso', 'cniconfiguration', 'guestnetwork', 'vnfapp', 'asnumbers', 'kubernetesiso', 'acllist', 'vpnuser', 'guestvlans', 'ipv4subnets'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route)) ? 1 : currentPage
       query.pagesize = pageSize
       this.$router.push({ query })
     },
@@ -5413,6 +5690,7 @@ export default {
 
 <style scoped>
 .vm-action-error { overflow-wrap: anywhere; margin-bottom: 16px; }
+.ldap-list-return { color: var(--ui-link); }
 .runtime-catalog-screen :deep(.breadcrumb-card > .ant-card-body > .ant-row) { display:flex; flex-direction:column; gap:8px; }
 .runtime-catalog-screen :deep(.breadcrumb-card .ant-col) { width:100%; max-width:100%; float:none !important; }
 .runtime-catalog-screen :deep(.autogen-toolbar-actions) { display:flex !important; align-items:center; gap:8px; }

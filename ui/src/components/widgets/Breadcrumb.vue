@@ -69,9 +69,13 @@
 </template>
 
 <script>
+import { oauthListLocation } from '@/utils/oauthConfiguration'
+import { ldapConfigRoute, ldapEndpointLabel, ldapListQuery } from '@/utils/ldapConfiguration'
 import { dnsServerListQuery } from '@/utils/dnsServer'
 import { physicalNetworkZoneLocation, zoneListQuery } from '@/utils/zone'
 import { clusterListQuery } from '@/utils/clusterSearch'
+import { primaryStorageListQuery } from '@/utils/primaryStorageSearch'
+import { secondaryStorageListQuery } from '@/utils/secondaryStorageSearch'
 import { hostListQuery } from '@/utils/hostSearch'
 import { dnsZoneListQuery } from '@/utils/dnsZone'
 import { ipv4SubnetListQuery } from '@/utils/ipv4Subnet'
@@ -123,6 +127,7 @@ export default {
     resourceTitle () {
       if (s2sGatewayRoute(this.$route)) return gatewayName(this.resource)
       if (isVmIdentityRoute(this.$route)) return vmDisplayName(this.resource)
+      if (ldapConfigRoute(this.$route)) return ldapEndpointLabel(this.resource) || this.$route.params.id
       if (this.$route.meta?.name === 'ipv4subnets' && this.resource.subnet) return this.resource.subnet
       if (guestVlanRoute(this.$route) && this.resource.vlan) return this.$t('label.vlan') + ' ' + this.resource.vlan
       const row = this.resource
@@ -158,6 +163,8 @@ export default {
     isEventDetailRoute,
     eventBreadcrumbTitle (event) { return eventDisplayTitle(event, this.$t, date => this.$toLocaleDate(date)) },
     breadcrumbLocation (item) {
+      if (item.path === '/oauthsetting' && this.$route.params?.id) return oauthListLocation(this.$route)
+      if (item.path === '/ldapsetting' && this.$route.params?.id) return { path: item.path, query: ldapListQuery(this.$route.query) }
       if (item.path === '/account' && isAccountDetailRoute(this.$route)) {
         return accountListLocation(this.$route, this.$router.options.history.state, this.$store.getters, this.$store.state?.user?.token)
       }
@@ -181,6 +188,8 @@ export default {
       if (item.path === '/kubernetesiso' && this.$route.meta?.name === 'kubernetesiso' && this.$route.params?.id) return kubernetesIsoListLocation(this.$route, this.$store.getters, this.$store.state?.user?.token)
       if (item.path === '/vpnuser' && vpnUserRoute(this.$route) && this.$route.params?.id) return vpnUserListLocation(this.$route, this.$store.getters)
       if (item.path === '/physicalnetwork' && this.$route.params?.id && this.resource?.zoneid) return physicalNetworkZoneLocation(this.$route, this.resource.zoneid)
+      if (item.path === '/imagestore' && this.$route.meta?.name === 'imagestore' && this.$route.params?.id) return { path: item.path, query: secondaryStorageListQuery(this.$route.query) }
+      if (item.path === '/storagepool' && this.$route.meta?.name === 'storagepool' && this.$route.params?.id) return { path: item.path, query: primaryStorageListQuery(this.$route.query) }
       if (item.path === '/cluster' && this.$route.meta?.name === 'cluster' && this.$route.params?.id) return { path: item.path, query: clusterListQuery(this.$route.query) }
       if (item.path === '/host' && this.$route.meta?.name === 'host' && this.$route.params?.id) return { path: item.path, query: hostListQuery(this.$route.query) }
       if (item.path === '/zone' && this.$route.params?.id) return { path: item.path, query: zoneListQuery(this.$route.query) }
