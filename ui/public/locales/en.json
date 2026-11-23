@@ -4291,6 +4291,7 @@
   "message.error.remove.secondary.ipaddress": "There was an error removing the secondary IP Address",
   "message.error.remove.tungsten.routing.policy": "Removing Tungsten-Fabric Routing Policy from Network failed",
   "message.error.required.input": "Please enter input",
+  "message.scoped.setting.reset": "Reset the setting for this resource to its inherited value?",
   "message.error.reset.config": "Unable to reset config to default value",
   "message.error.retrieve.kubeconfig": "Unable to retrieve Kubernetes cluster config",
   "message.error.routing.policy.term": "Community need to have the following format number:number",

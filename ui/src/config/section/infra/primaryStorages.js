@@ -61,7 +61,7 @@ export default {
     component: shallowRef(defineAsyncComponent(() => import('@/components/view/DetailsTab.vue')))
   }, {
     name: 'settings',
-    component: shallowRef(defineAsyncComponent(() => import('@/components/view/SettingsTab.vue')))
+    component: shallowRef(defineAsyncComponent(() => import('@/views/setting/InfrastructureSettingsTab.vue')))
   }, {
     name: 'browser',
     resourceType: 'PrimaryStorage',

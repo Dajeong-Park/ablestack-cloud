@@ -4259,6 +4259,7 @@
   "message.error.remove.tungsten.routing.policy": "네트워크에서 Tungsten Fabric 라우팅 정책 제거 실패",
   "message.error.remove.vm.schedule": "인스턴스 일정을 삭제하지 못했습니다.",
   "message.error.required.input": "입력해 주십시오.",
+  "message.scoped.setting.reset": "이 자원의 설정을 초기화하고 상위 설정값을 적용하시겠습니까?",
   "message.error.reset.config": "구성을 기본값으로 재설정할 수 없습니다",
   "message.error.retrieve.kubeconfig": "쿠버네티스 클러스터 구성을 검색 할 수 없습니다.",
   "message.error.routing.policy.term": "커뮤니티는 다음 형식의 숫자를 가져야 합니다:숫자",

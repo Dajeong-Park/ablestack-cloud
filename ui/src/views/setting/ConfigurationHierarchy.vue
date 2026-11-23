@@ -24,6 +24,7 @@
       :expanded-row-keys="expandedRowKeys"
       :row-key="record => record.name"
       :pagination="false"
+      :loading="loading"
       :scroll="{ x: 760 }"
       @update:expanded-row-keys="$emit('update:expandedRowKeys', $event)">
       <template #bodyCell="{ column, record }">
@@ -46,19 +47,21 @@
           {{ configurationApplyLabel(record) ? $t(configurationApplyLabel(record)) : '—' }}
         </template>
         <template v-else-if="column.key === 'actions'">
-          <a-space size="small">
-            <tooltip-button
-              v-if="canUpdate"
-              icon="edit-outlined"
-              :tooltip="$t('label.edit')"
-              @onClick="$emit('edit-setting', record)" />
-            <tooltip-button
-              v-if="canReset"
-              icon="reload-outlined"
-              :tooltip="$t('label.reset.config.value')"
-              :disabled="record.value === record.defaultvalue"
-              @onClick="$emit('reset-setting', record)" />
-          </a-space>
+          <slot name="actions" :record="record">
+            <a-space size="small">
+              <tooltip-button
+                v-if="canUpdate"
+                icon="edit-outlined"
+                :tooltip="$t('label.edit')"
+                @onClick="$emit('edit-setting', record)" />
+              <tooltip-button
+                v-if="canReset"
+                icon="reload-outlined"
+                :tooltip="$t('label.reset.config.value')"
+                :disabled="record.value === record.defaultvalue"
+                @onClick="$emit('reset-setting', record)" />
+            </a-space>
+          </slot>
         </template>
       </template>
     </a-table>
@@ -91,6 +94,7 @@ export default {
     config: { type: Array, default: () => [] },
     expandedRowKeys: { type: Array, default: () => [] },
     grouped: { type: Boolean, default: false },
+    loading: { type: Boolean, default: false },
     count: { type: Number, default: 0 },
     page: { type: Number, default: 1 },
     pagesize: { type: Number, default: 20 }
