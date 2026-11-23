@@ -10,7 +10,7 @@ for the specific language governing permissions and limitations. -->
 <template>
   <div>
     <a-descriptions :column="1" size="small">
-      <a-descriptions-item :label="$t('label.host')">{{ endpoint }}</a-descriptions-item>
+      <a-descriptions-item :label="$t('label.hostname')">{{ endpoint }}</a-descriptions-item>
       <a-descriptions-item :label="$t('label.scope')">{{ scope }}</a-descriptions-item>
     </a-descriptions>
     <a-alert show-icon type="warning" :message="$t('message.ldap.delete.confirm')" />

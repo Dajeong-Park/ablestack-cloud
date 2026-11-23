@@ -55,7 +55,7 @@
     :message="$t(l2Network.configDrive ? 'message.l2.network.configdrive' : 'message.l2.network.basic')" />
   <a-list
     class="resource-details-list"
-    :class="{ 'template-details-list': ['template', 'iso'].includes($route.meta.name), 's2s-gateway-details': $route.meta.name === 's2svpn', 'vm-details-list': kmsRoute($route) || ['vm', 'vnfapp', 'publicip', 's2svpn', 'acllist', 'event', 'vpnuser', 'project', 'guestvlans', 'ipv4subnets', 'dnszone', 'dnsserver', 'zone', 'physicalnetwork', 'host', 'cluster'].includes($route.meta.name) }"
+    :class="{ 'template-details-list': ['template', 'iso'].includes($route.meta.name), 's2s-gateway-details': $route.meta.name === 's2svpn', 'vm-details-list': kmsRoute($route) || ['vm', 'vnfapp', 'publicip', 's2svpn', 'acllist', 'event', 'vpnuser', 'project', 'guestvlans', 'ipv4subnets', 'dnszone', 'dnsserver', 'zone', 'physicalnetwork', 'host', 'cluster', 'ldapsetting'].includes($route.meta.name) }"
     size="small"
     :dataSource="(fetchDetails() || []).concat(Object.keys(allocationDetails))">
     <template #renderItem="{item}">
@@ -177,7 +177,7 @@
             <div>{{ $t('message.vm.delete.edit') }}</div>
           </div>
           <a-tag v-else-if="$route.meta.name === 'acllist' && item === 'fordisplay'">{{ $t(aclDisplayLabel(dataResource.fordisplay)) }}</a-tag>
-          <div v-else-if="$route.meta.name === 'acllist' && item === 'id'" class="acl-details-id">
+          <div v-else-if="['acllist', 'ldapsetting'].includes($route.meta.name) && item === 'id'" :class="{ 'acl-details-id': $route.meta.name === 'acllist' }">
             <span>{{ dataResource.id }}</span>
             <tooltip-button
               :tooltip="$t('label.copyid')"
@@ -186,6 +186,10 @@
               :copyResource="dataResource.id"
               @copy-success="$message.success($t('label.copied.clipboard'))" />
           </div>
+          <template v-else-if="$route.meta.name === 'ldapsetting' && item === 'domainpath'">
+            <router-link v-if="dataResource.domainid && 'listDomains' in $store.getters.apis" :to="{ path: '/domain/' + dataResource.domainid, query: { tab: 'details' } }">{{ dataResource.domainpath }}</router-link>
+            <span v-else>{{ dataResource.domainid ? dataResource.domainpath : '—' }}</span>
+          </template>
           <Ipv4SubnetResourceLink v-else-if="$route.meta?.name === 'ipv4subnets' && ['networkname', 'vpcname'].includes(item)" :record="dataResource" :field="item" />
           <network-ip-vm-link v-else-if="$route.meta.name === 'publicip' && item === 'virtualmachinename'" :record="dataResource" />
           <InternalLbRules v-else-if="$route.meta.name === 'ilb' && item === 'loadbalancerrule'" :record="dataResource" :loading="loading" />

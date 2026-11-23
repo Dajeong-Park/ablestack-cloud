@@ -41,7 +41,7 @@
         class="input-search"
         :aria-label="isLdapSearch ? $t('label.ldap.search.host') : isGuestVlanSearch ? $t('label.guest.vlan.search.keyword') : isVpnUserSearch ? $t('label.vpn.user.search.keyword') : isAclSearch ? $t('label.acl.search.keyword') : isEventSearch ? $t('label.events.search.keyword') : apiName === 'listIsos' ? $t('label.search') : undefined"
         :placeholder="isGuestVlanSearch ? $t('label.guest.vlan.search.keyword') : apiName === 'listVpnCustomerGateways' ? $t('label.vpn.customer.gateway.search.keyword') : isVpnUserSearch ? $t('label.vpn.user.search.keyword') : isAclSearch ? $t('label.acl.search.keyword') : isEventSearch ? $t('label.events.search.keyword') : apiName === 'listVnfAppliances' ? $t('label.vnf.name.search') : $t('label.search')"
-        :title="isLdapSearch ? $t('message.ldap.search.host') : apiName === 'listIsos' ? $t('message.iso.search.keyword') : undefined"
+        :title="isLdapSearch ? $t('label.ldap.search.host') : apiName === 'listIsos' ? $t('message.iso.search.keyword') : undefined"
         v-model:value="searchQuery"
         @search="onSearch">
         <template #addonBefore>

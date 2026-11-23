@@ -69,7 +69,7 @@
 </template>
 
 <script>
-import { ldapListQuery } from '@/utils/ldapConfiguration'
+import { ldapConfigRoute, ldapEndpointLabel, ldapListQuery } from '@/utils/ldapConfiguration'
 import { dnsServerListQuery } from '@/utils/dnsServer'
 import { physicalNetworkZoneLocation, zoneListQuery } from '@/utils/zone'
 import { clusterListQuery } from '@/utils/clusterSearch'
@@ -124,6 +124,7 @@ export default {
     resourceTitle () {
       if (s2sGatewayRoute(this.$route)) return gatewayName(this.resource)
       if (isVmIdentityRoute(this.$route)) return vmDisplayName(this.resource)
+      if (ldapConfigRoute(this.$route)) return ldapEndpointLabel(this.resource) || this.$route.params.id
       if (this.$route.meta?.name === 'ipv4subnets' && this.resource.subnet) return this.resource.subnet
       if (guestVlanRoute(this.$route) && this.resource.vlan) return this.$t('label.vlan') + ' ' + this.resource.vlan
       const row = this.resource

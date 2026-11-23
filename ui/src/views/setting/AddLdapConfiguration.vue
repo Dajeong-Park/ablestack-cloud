@@ -14,7 +14,7 @@ for the specific language governing permissions and limitations. -->
       required
       :validate-status="errors.hostname ? 'error' : undefined"
       :help="errors.hostname ? $t(errors.hostname) : undefined">
-      <template #label><tooltip-label :title="$t('label.hostname')" :tooltip="$t('message.ldap.host.help')" /></template>
+      <template #label><tooltip-label :title="$t('label.hostname')" :tooltip="$t('message.ldap.host.help')" focusable /></template>
       <a-input
         id="ldap-server-hostname"
         v-model:value="form.hostname"
@@ -27,11 +27,11 @@ for the specific language governing permissions and limitations. -->
       required
       :validate-status="errors.port ? 'error' : undefined"
       :help="errors.port ? $t(errors.port) : undefined">
-      <template #label><tooltip-label :title="$t('label.port')" :tooltip="$t('message.ldap.port.help')" /></template>
+      <template #label><tooltip-label :title="$t('label.port')" :tooltip="$t('message.ldap.port.help')" focusable /></template>
       <a-input id="ldap-server-port" v-model:value="form.port" inputmode="numeric" :disabled="busy" @keydown.enter.prevent="submit" />
     </a-form-item>
     <a-form-item html-for="ldap-server-scope" required>
-      <template #label><tooltip-label :title="$t('label.scope')" :tooltip="$t('message.ldap.scope.help')" /></template>
+      <template #label><tooltip-label :title="$t('label.scope')" :tooltip="$t('message.ldap.scope.help')" focusable /></template>
       <a-select id="ldap-server-scope" v-model:value="form.scope" :disabled="busy" :options="scopes" />
     </a-form-item>
     <a-form-item
