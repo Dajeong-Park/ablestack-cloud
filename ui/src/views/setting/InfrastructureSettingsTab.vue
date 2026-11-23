@@ -226,5 +226,6 @@ export default {
 <style scoped>
 .infrastructure-settings { min-width: 0; }
 .infrastructure-settings > .ant-alert { margin-bottom: 12px; }
+.infrastructure-settings :deep(.ant-table-thead > tr > th.ant-table-cell) { background: var(--ui-bg-elevated); }
 .configuration-description { margin: 12px 0; color: var(--ui-text-secondary); overflow-wrap: anywhere; }
 </style>
