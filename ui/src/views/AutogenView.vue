@@ -5287,8 +5287,6 @@ export default {
               query.hypervisor = value
             } else if (this.$route.name === 'guestos') {
               query.description = value
-            } else if (this.$route.name === 'oauthsetting') {
-              query.provider = value
             } else {
               query.keyword = value
             }

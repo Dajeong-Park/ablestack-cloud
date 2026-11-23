@@ -70,7 +70,7 @@ export default {
       title: 'label.oauth.configuration',
       icon: 'login-outlined',
       docHelp: 'adminguide/accounts.html#using-an-ldap-server-for-user-authentication',
-      permission: ['listOauthProvider'],
+      permission: ['listOauthProviderConfigurations'],
       columns: ['provider', 'enabled', 'description', 'clientid', 'redirecturi', 'domainpath'],
       details: ['provider', 'description', 'enabled', 'clientid', 'secretkey', 'redirecturi', 'authorizeurl', 'tokenurl', 'domainpath'],
       actions: [
