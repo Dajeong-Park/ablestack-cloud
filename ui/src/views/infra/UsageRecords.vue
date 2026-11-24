@@ -72,7 +72,7 @@
     </a-card>
   </div>
   <a-col>
-    <a-card size="small" :loading="serverMetricsLoading" v-if="'listUsageServerMetrics' in $store.getters.apis">
+    <a-card class="usage-records-metrics" size="small" :loading="serverMetricsLoading" v-if="'listUsageServerMetrics' in $store.getters.apis">
       <a-row justify="space-around">
         <a-card-grid style="width: 30%; text-align: center; font-size: small;">
           <a-statistic
@@ -106,7 +106,7 @@
   </a-col>
   <a-row justify="space-between">
     <a-col :span="24">
-      <a-card>
+      <a-card class="usage-records-filters">
         <a-form
           :ref="formRef"
           :model="form"
@@ -249,6 +249,7 @@
       <list-view
         :loading="tableLoading"
         :columns="columns"
+        :table-scroll="{ x: tableWidth }"
         :items="usageRecords"
         :columnKeys="columnKeys"
         :selectedColumns="selectedColumnKeys"
@@ -378,6 +379,18 @@ import InfiniteScrollSelect from '@/components/widgets/InfiniteScrollSelect.vue'
 dayjs.extend(relativeTime)
 dayjs.extend(utc)
 
+const usageColumnWidths = {
+  account: 88,
+  domain: 80,
+  usageType: 120,
+  usageid: 112,
+  startdate: 148,
+  enddate: 148,
+  rawusage: 110,
+  description: 178,
+  usageActions: 86
+}
+
 export default {
   name: 'UsageRecords',
   mixins: [mixinForm],
@@ -452,6 +465,9 @@ export default {
     this.updateColumns()
   },
   computed: {
+    tableWidth () {
+      return this.columns.reduce((width, column) => width + column.width, 0)
+    },
     domainsApiParams () {
       return {
         listall: true
@@ -697,7 +713,6 @@ export default {
         if (!this.selectedColumnKeys.includes(columnKey)) continue
         var title
         var dataIndex = columnKey
-        var resizable = true
         switch (columnKey) {
           case 'templateid':
             title = this.$t('label.templatename')
@@ -722,13 +737,15 @@ export default {
           key: columnKey,
           title: title,
           dataIndex: dataIndex,
-          resizable: resizable
+          width: usageColumnWidths[columnKey] || 140,
+          resizable: true
         })
       }
       this.columns.push({
         key: 'usageActions',
         title: this.$t('label.view'),
         dataIndex: 'usageActions',
+        width: usageColumnWidths.usageActions,
         resizable: false
       })
       if (this.columns.length > 0) {
@@ -851,5 +868,20 @@ export default {
   margin-right: -24px;
   margin-top: -16px;
   margin-bottom: 12px;
+}
+</style>
+
+<style lang="less">
+body.dark-mode .usage-records-metrics .ant-card-meta-description {
+  color: var(--ui-text-secondary);
+}
+
+body.dark-mode .usage-records-filters {
+  .ant-select:not(.ant-select-disabled) .ant-select-selection-placeholder,
+  .ant-input:not(:disabled)::placeholder,
+  .ant-picker-input > input:not(:disabled)::placeholder {
+    color: var(--ui-text-muted);
+    opacity: 1;
+  }
 }
 </style>

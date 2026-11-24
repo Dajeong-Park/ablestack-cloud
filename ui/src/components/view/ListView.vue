@@ -71,7 +71,14 @@
       <span v-else>{{ column.title }}</span>
     </template>
     <template #bodyCell="{ column, text, record }">
-      <TableOverflowText v-if="kmsTable && column.key !== 'filtercolumn'" :text="kmsValue(column.key, text)" :location="kmsCellLink(column.key, record)">
+      <TableOverflowText v-if="isUsageList && column.key === 'usageid'" :text="text ?? ''">
+        <CopyLabel v-if="text != null && text !== ''" :label="String(text)" hide-tooltip />
+      </TableOverflowText>
+      <TableOverflowText
+        v-else-if="isUsageList && column.key !== 'usageActions'"
+        :text="usageCellText(column.key, text, record)"
+        :location="usageCellLocation(column.key, text, record)" />
+      <TableOverflowText v-else-if="kmsTable && column.key !== 'filtercolumn'" :text="kmsValue(column.key, text)" :location="kmsCellLink(column.key, record)">
         <Status v-if="['enabled', 'state'].includes(column.key) && text != null" :text="String(text)" :display-label="kmsValue(column.key, text)" display-text />
         <template v-else>{{ kmsValue(column.key, text) }}</template>
       </TableOverflowText>
@@ -1152,7 +1159,7 @@
       <template v-if="$route.meta.name === 'host' && column.key === 'haenable'">
         <a-tag :color="hostStatusColor(record.hostha?.haenable)">{{ $t(hostStatusLabel(record.hostha?.haenable)) }}</a-tag>
       </template>
-      <template v-if="['startdate', 'enddate'].includes(column.key) && ['quotasummary', 'usage'].includes($route.path.split('/')[1])">
+      <template v-if="['startdate', 'enddate'].includes(column.key) && $route.path.split('/')[1] === 'quotasummary'">
         {{ $toLocaleDate(text.replace('\'T\'', ' ')) }}
       </template>
       <template v-if="['isfeatured'].includes(column.key) && ['guestoscategory'].includes($route.path.split('/')[1])">
@@ -1631,10 +1638,12 @@ export default {
     this.getUsageTypes()
   },
   computed: {
+    isUsageList () { return this.$route.path === '/usage' && !this.resourcePath },
     isRuntimeCatalogList () { return this.$route.path === '/runtimebundle' && !this.resourcePath },
     emptyTableImage () { return Empty.PRESENTED_IMAGE_SIMPLE },
     isProjectMainList () { return this.$route.meta?.name === 'project' && !this.$route.params?.id && !this.resourcePath },
     scrollRegionLabel () {
+      if (this.isUsageList) return this.$t('label.usage')
       if (this.isRuntimeCatalogList) return this.$t('label.runtime.catalog')
       if (this.$route.meta?.name === 'oauthsetting') return this.$t('label.oauth.configuration')
       if (this.isProjectMainList) return this.$t('label.projects')
@@ -1823,6 +1832,54 @@ export default {
     snapshotListSizeValue,
     snapshotListInterval,
     volumeVmPath,
+    usageCellText (field, text, record) {
+      switch (field) {
+        case 'startdate':
+        case 'enddate':
+          return text ? this.$toLocaleDate(text.replace("'T'", ' ')) : ''
+        case 'usageType':
+          return this.usageTypeMap[record.usagetype] ?? record.usagetype ?? ''
+        case 'account':
+          return text?.startsWith('PrjAcct-')
+            ? (record.projectname || record.project || text) + ' (' + this.$t('label.project') + ')'
+            : text ?? ''
+        case 'domain':
+          return text || (this.$store.getters.userInfo.roletype !== 'User' ? record.domainid || '' : '')
+        case 'zone':
+          return text || (this.usageCellLocation(field, text, record) ? record.zoneid : '')
+        case 'vpcname':
+          return text || record.vpcid || ''
+        case 'type':
+          return this.translateEventType(text) ?? ''
+        default:
+          return text ?? ''
+      }
+    },
+    usageCellLocation (field, text, record) {
+      const canLinkScope = this.$store.getters.userInfo.roletype !== 'User'
+      switch (field) {
+        case 'account':
+          if (!text || text.startsWith('PrjAcct-')) return null
+          if (record.accountid) return { path: '/account/' + record.accountid }
+          return canLinkScope ? { path: '/account', query: { name: text, domainid: record.domainid, dataView: true } } : null
+        case 'domain':
+          return canLinkScope && record.domainid ? { path: '/domain/' + record.domainid, query: { tab: 'details' } } : null
+        case 'zone': {
+          const path = '/zone/' + record.zoneid
+          return record.zoneid && this.$router.resolve(path).matched[0]?.redirect !== '/exception/404' ? { path } : null
+        }
+        case 'virtualmachinename':
+          return record.virtualmachineid ? { path: this.getVmRouteUsingType(record) + record.virtualmachineid } : null
+        case 'templateid':
+          return record.templateid ? { path: '/template/' + record.templateid } : null
+        case 'project':
+          return this.canLinkProject(record) ? { path: '/project/' + record.projectid } : null
+        case 'vpcname':
+          return record.vpcid ? { path: '/vpc/' + record.vpcid } : null
+        default:
+          return null
+      }
+    },
     kmsValue (field, value) {
       return kmsCellLabel(field, value, this.$t, this.$te, this.$bytesToHumanReadableSize, this.$store.getters.features)
     },
