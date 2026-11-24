@@ -3078,6 +3078,10 @@ export default {
 
       params.page = Number.isFinite(Number(this.page)) && Number(this.page) > 0 ? Number(this.page) : 1
       params.pagesize = this.getValidPageSize(this.pageSize)
+      if (this.isExtensionUi && this.dataView) {
+        params.page = 1
+        params.pagesize = 20
+      }
 
       if (this.$showIcon()) {
         params.showIcon = true
