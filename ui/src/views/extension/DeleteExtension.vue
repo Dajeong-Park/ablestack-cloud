@@ -20,7 +20,7 @@
     <p class="extension-delete-name">{{ resource.name }}</p>
     <p>{{ $t('message.action.delete.extension') }}</p>
     <a-alert v-if="linked" type="warning" show-icon :message="$t('message.extension.delete.linked')" />
-    <a-checkbox v-model:checked="cleanup" :disabled="loading" aria-describedby="extension-delete-cleanup-description">
+    <a-checkbox v-model:checked="cleanup" :disabled="loading || unverified" aria-describedby="extension-delete-cleanup-description">
       {{ $t('label.extension.delete.cleanup') }}
     </a-checkbox>
     <p id="extension-delete-cleanup-description">{{ $t('message.extension.delete.cleanup') }}</p>
