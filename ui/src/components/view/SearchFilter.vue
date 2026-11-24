@@ -252,6 +252,7 @@ export default {
     },
     retrieveFieldLabel (fieldName) {
       if (this.runtimeCatalog && fieldName === 'keyword') return this.$t('label.runtime.catalog.keyword')
+      if (this.runtimeCatalog && fieldName === 'version') return this.$t('label.runtime.catalog.version.exact')
       if (this.apiName === 'listOauthProviderConfigurations') {
         if (fieldName === 'provider') return this.$t('label.oauth.search.provider')
         if (fieldName === 'domainid') return this.$t('label.domain')

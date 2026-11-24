@@ -17,3 +17,9 @@ test('loads catalogue details by ID and constrains list queries to the catalogue
   expect(runtimeCatalogReadParams({ purpose: 'apply', sharedfilesystemid: 'other', page: 2, pagesize: 20, state: 'DRAFT' }))
     .toEqual({ purpose: 'catalog', page: 2, pagesize: 20, state: 'DRAFT' })
 })
+
+test('combines an exact version with keyword and maps deleted history to only the deleted state', () => {
+  expect(runtimeCatalogReadParams({ history: 'deleted', version: ' v1.2 ', keyword: 'key', state: 'DRAFT', page: 1, pagesize: 20 }))
+    .toEqual({ purpose: 'catalog', state: 'DELETED', version: 'v1.2', keyword: 'key', page: 1, pagesize: 20 })
+  expect(runtimeCatalogFilters({ version: 'v1.2', state: 'DELETED' })).toEqual({ version: 'v1.2' })
+})

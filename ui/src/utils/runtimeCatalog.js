@@ -13,12 +13,20 @@ export const runtimeCatalogChoices = {
 export function runtimeCatalogFilters (input) {
   const filters = {}
   if (typeof input.keyword === 'string' && input.keyword.trim()) filters.keyword = input.keyword.trim()
+  if (typeof input.version === 'string' && input.version.trim()) filters.version = input.version.trim()
   for (const [field, choices] of Object.entries(runtimeCatalogChoices)) {
     if (choices.includes(input[field])) filters[field] = input[field]
+  }
+  if (input.history === 'deleted') {
+    filters.history = 'deleted'
+    delete filters.state
   }
   return filters
 }
 
 export function runtimeCatalogReadParams ({ id, page, pagesize, ...params }) {
-  return { purpose: 'catalog', page, pagesize, ...(id ? { id } : runtimeCatalogFilters(params)) }
+  if (id) return { purpose: 'catalog', id, page, pagesize }
+  const { history, ...filters } = runtimeCatalogFilters(params)
+  if (history === 'deleted') filters.state = 'DELETED'
+  return { purpose: 'catalog', page, pagesize, ...filters }
 }

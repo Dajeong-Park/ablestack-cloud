@@ -24,6 +24,9 @@ a copy of the License at http://www.apache.org/licenses/LICENSE-2.0. -->
               <a-form-item :label="$t('label.runtime.catalog.keyword')" html-for="runtime-filter-keyword">
                 <a-input id="runtime-filter-keyword" ref="formKeyword" v-model:value="form.keyword" />
               </a-form-item>
+              <a-form-item :label="$t('label.runtime.catalog.version.exact')" html-for="runtime-filter-version">
+                <a-input id="runtime-filter-version" v-model:value="form.version" />
+              </a-form-item>
               <a-form-item v-for="(values, field) in choices" :key="field" :label="$t('label.' + field)" :html-for="'runtime-filter-' + field">
                 <a-select
                   :id="'runtime-filter-' + field"
@@ -55,10 +58,13 @@ import { runtimeCatalogChoices, runtimeCatalogFilters } from '@/utils/runtimeCat
 export default {
   name: 'RuntimeCatalogSearch',
   emits: ['search'],
-  data () { return { keyword: '', visible: false, form: {}, choices: runtimeCatalogChoices } },
+  data () { return { keyword: '', visible: false, form: {} } },
   computed: {
     applied () { return runtimeCatalogFilters(this.$route.query) },
-    filtered () { return Object.keys(this.applied).some(field => field !== 'keyword') }
+    choices () {
+      return this.applied.history === 'deleted' ? { validationstatus: runtimeCatalogChoices.validationstatus } : runtimeCatalogChoices
+    },
+    filtered () { return Object.keys(this.applied).some(field => !['keyword', 'history'].includes(field)) }
   },
   watch: {
     applied: {
@@ -83,7 +89,7 @@ export default {
     reset () {
       this.keyword = ''
       this.close(true)
-      this.$emit('search', {})
+      this.$emit('search', this.applied.history ? { history: this.applied.history } : {})
     },
     searchKeyword (keyword) {
       this.$emit('search', runtimeCatalogFilters({ ...this.applied, keyword }))

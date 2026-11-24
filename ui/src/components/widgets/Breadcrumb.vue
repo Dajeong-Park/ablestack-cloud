@@ -169,6 +169,7 @@ export default {
     eventBreadcrumbTitle (event) { return eventDisplayTitle(event, this.$t, date => this.$toLocaleDate(date)) },
     breadcrumbLocation (item) {
       if (item.location) return item.location
+      if (item.path === '/runtimebundle' && this.$route.params?.id && this.$route.query.history === 'deleted') return { path: item.path, query: { history: 'deleted' } }
       if (item.path === '/oauthsetting' && this.$route.params?.id) return oauthListLocation(this.$route)
       if (item.path === '/ldapsetting' && this.$route.params?.id) return { path: item.path, query: ldapListQuery(this.$route.query) }
       if (item.path === '/account' && isAccountDetailRoute(this.$route)) {

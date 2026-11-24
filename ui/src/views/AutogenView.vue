@@ -225,6 +225,13 @@
               <template #icon><reload-outlined /></template>
               {{ $t('label.refresh') }}
             </a-button>
+            <a-button
+              v-if="$route.meta?.name === 'runtimebundle' && !dataView"
+              :aria-pressed="$route.query.history === 'deleted'"
+              data-testid="runtime-catalog-history"
+              @click="toggleRuntimeCatalogHistory">
+              {{ $t($route.query.history === 'deleted' ? 'label.runtime.catalog.active.list' : 'label.runtime.catalog.deleted.history') }}
+            </a-button>
             <AsnListTools v-if="asnSearchAuth" :selected="selectedItems" :ready="asnListReady" :scope="listScope()" @refresh="resetSelection(); $refs.listview?.resetSelection(); fetchData({ irefresh: true })" />
             <ProjectListSearch v-if="isProjectList" class="project-toolbar-search" @search="onSearch" />
             <search-view
@@ -1945,7 +1952,8 @@ export default {
     snapshotSecurityScope () { return JSON.stringify([this.$store.getters.userInfo?.id, this.$store.getters.project?.id, this.$store.state?.user?.token, this.$store.getters.userInfo?.roletype, ...(snapshotDetailRoute(this.$route) ? [this.$store.getters.userInfo?.roleid, snapshotDetailPermissions(this.$store.getters)] : []), ...(policyDetailRoute(this.$route) ? [this.$store.getters.userInfo?.roleid, policyDetailPermissions(this.$store.getters)] : [])]) },
     activeFiltersList () {
       if (this.$route.meta?.name === 'runtimebundle') {
-        return Object.entries(runtimeCatalogFilters(this.$route.query)).map(([key, value]) => ({ key, value }))
+        const { history, ...filters } = runtimeCatalogFilters(this.$route.query)
+        return Object.entries(filters).map(([key, value]) => ({ key, value }))
       }
       if (asnRoute(this.$route) || this.isS2sSearchList) return []
       if (this.isIsoList) return isoFilterChips(this.$route.query, this.$store.getters)
@@ -2046,6 +2054,7 @@ export default {
       return 'self'
     },
     visibleDataViewActions () {
+      if (this.$route.meta?.name === 'runtimebundle' && (this.resource.id !== this.$route.params?.id || this.resource.state === 'DELETED')) return []
       if ((this.isLdapUi || this.isOauthUi) && (!this.storageActionReady || this.resource?.id !== this.$route.params?.id)) return []
       if ((this.isVpnUser || this.isVpnCustomerGateway) && !this.storageActionReady) return []
       if (this.isAclUi && (this.listRefreshError || this.resource?.id !== this.$route.params?.id)) return []
@@ -2073,6 +2082,7 @@ export default {
       }).map(action => policyBackgroundRead ? { ...action, disabled: () => true } : action)
     },
     visibleListActions () {
+      if (this.$route.meta?.name === 'runtimebundle' && this.$route.query.history === 'deleted') return []
       if (this.isVpnUser && this.vpnUserProjectSwitching) return []
       if (vnfRoute(this.$route) && !this.storageActionReady) return []
       if (this.isObjectStorageUi && !this.storageActionReady) return []
@@ -3876,6 +3886,10 @@ export default {
       queryParams.pagesize = String(this.pageSize)
       if (this.isProjectList && filter.key === 'account') delete queryParams.username
       this.$router.push({ query: this.isProjectList ? projectSearchQuery(queryParams, this.$store.getters) : queryParams })
+    },
+    toggleRuntimeCatalogHistory () {
+      const query = runtimeCatalogFilters({ ...this.$route.query, history: this.$route.query.history === 'deleted' ? undefined : 'deleted' })
+      this.$router.push({ query: { ...query, page: '1', pagesize: String(this.pageSize) } })
     },
     onRowSelectionChange (selection) {
       if (this.isProjectList && !this.storageActionReady && selection?.length) return

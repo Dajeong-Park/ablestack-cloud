@@ -248,7 +248,7 @@ export default {
       show: () => store.getters.userInfo.roletype === 'Admin',
       columns: ['name', 'state', 'validationstatus', 'profileid', 'referencecount', 'signingkeyid'],
       details: ['version', 'id', 'state', 'validationstatus', 'revision', 'runtimeabiversion', 'desiredstateschemaversion', 'serviceimpact', 'sha256', 'manifestsha256', 'signingkeyid', 'artifacturl', 'manifesturl', 'signatureurl', 'created'],
-      searchFilters: ['keyword', 'state', 'validationstatus'],
+      searchFilters: ['keyword', 'version', 'state', 'validationstatus', 'history'],
       customParamHandler: runtimeCatalogReadParams,
       tabs: [
         { name: 'details', component: shallowRef(defineAsyncComponent(() => import('@/components/view/DetailsTab.vue'))) },
@@ -275,7 +275,7 @@ export default {
           catalogAction: action,
           component: shallowRef(defineAsyncComponent(() => import('@/views/tools/RuntimeCatalogAction.vue'))),
           show: record => {
-            if (record.validationstatus === 'RUNNING') return false
+            if (!record.id || record.state === 'DELETED' || record.validationstatus === 'RUNNING') return false
             if (action === 'VALIDATE') return ['DRAFT', 'PUBLISHED', 'SUSPENDED'].includes(record.state)
             if (action === 'PUBLISH') return ['DRAFT', 'SUSPENDED'].includes(record.state) && record.validationstatus === 'VERIFIED'
             if (action === 'SUSPEND') return record.state === 'PUBLISHED'
