@@ -86,10 +86,6 @@
         <template #label>
           <tooltip-label :title="$t('label.externalid')" :tooltip="apiParams.externalid.description"/>
         </template>
-        <template v-if="!isNasProvider && !isCommvaultProvider" #extra>
-          <div v-if="externalIdHelp">{{ externalIdHelp }}</div>
-          <div v-if="externalLoadFailed || (externalOptionsLoaded && !externals.opts.length)">{{ externalEmptyMessage }}</div>
-        </template>
         <a-select
           allowClear
           v-model:value="form.externalid"
@@ -221,9 +217,6 @@ export default {
     this.fetchData()
   },
   computed: {
-    isNasProvider () {
-      return (this.selectedProviderName || '').toLowerCase() === 'ablestack-nas'
-    },
     isCommvaultProvider () {
       return this.selectedProviderName && this.selectedProviderName.toLowerCase() === 'ablestack-commvault'
     },
@@ -243,10 +236,6 @@ export default {
       if (this.isVeeamProvider) return this.$t('message.backup.offering.exists.ablestack.veeam')
       if (this.isCommvaultProvider) return this.$t('message.error.import.backup.offering')
       return this.$t('message.backup.offering.externalid.unavailable')
-    },
-    externalIdHelp () {
-      if (this.isNasProvider || this.isCommvaultProvider || this.isNetBackupProvider || this.isVeeamProvider || !this.selectedProviderName) return ''
-      return this.$t('message.backup.offering.externalid.available')
     },
     externalEmptyMessage () {
       if (this.externalLoadFailed) return this.$t('error.fetching.data')

@@ -171,8 +171,7 @@ test.each(['ablestack-veeam', 'ablestack-netbackup', 'ablestack-commvault', 'vee
   wrapper.unmount()
 })
 
-test('ABLESTACK providers omit the requested help paragraphs, and every new message has English and Korean text', () => {
-  for (const provider of ['ablestack-nas', 'ablestack-commvault', 'ablestack-netbackup', 'ablestack-veeam']) expect(context(ImportOffering, provider).externalIdHelp).toBe('')
+test('every new message has English and Korean text and Commvault messages stay provider-specific', () => {
   const keys = Object.keys(en).filter(key => key.startsWith('message.backup.offering.externalid.') || key.startsWith('message.backup.offering.exists.'))
   for (const key of keys) {
     expect(en[key]).toBeTruthy()

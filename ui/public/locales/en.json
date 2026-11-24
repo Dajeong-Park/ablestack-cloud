@@ -6207,7 +6207,6 @@
   "message.error.import.backup.offering": "A Commvault backup offering already exists in the selected Zone. Only one Plan can be imported per Zone; use the existing offering.",
   "message.backup.offering.exists.netbackup": "A NetBackup backup offering already exists in the selected Zone. Use the existing offering for host preconfiguration and VM assignments.",
   "message.backup.offering.exists.ablestack.veeam": "An ABLESTACK Veeam backup offering already exists in the selected Zone. Use the existing offering for host preconfiguration and VM assignments.",
-  "message.backup.offering.externalid.available": "Only external IDs not yet registered in the selected Zone are shown. An ID registered in another Zone can be used in this Zone.",
   "message.backup.offering.externalid.all.registered": "All available external IDs are already registered in the selected Zone. Check the existing backup offerings.",
   "message.backup.offering.externalid.none": "No external offerings are available for this Zone and provider.",
   "message.backup.offering.externalid.unavailable": "The selected external ID is already registered or is no longer available for import. Select another item from the refreshed list or use the existing backup offering.",
