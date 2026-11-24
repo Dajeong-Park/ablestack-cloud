@@ -62,11 +62,7 @@
             :loading="loading"
             :tab="tabs[0].name"
             v-bind="$route.meta?.name === 'kubernetesiso' && ['details','zones'].includes(tabs[0].name) ? { observation: kubernetesIsoObservation } : {}"
-            @show-zones="$route.meta?.name === 'kubernetesiso' && onTabChange('zones')"
-            @refresh-availability="refreshKubernetesIsoAvailability"
-            @refresh="(['buckets', 'objectstore'].includes($route.meta.name) || ($route.meta.name === 'template' && ['vnf.settings','settings'].includes(tabs[0].name))) && $emit('refresh')"
-            v-on="$route.meta?.name === 'template' && tabs[0].name === 'zones' ? { 'availability-observed': acceptTemplateObservation, 'operation-retained': value => $emit('template-operation-retained',value), 'refresh-parent': () => $emit('refresh') } : $route.meta?.name === 'iso' && tabs[0].name === 'zones' ? { 'operation-retained': value => $emit('iso-operation-retained',value), 'refresh-parent': () => $emit('refresh') } : {}"
-            @wide-layout-change="onWideLayoutChange" />
+            v-on="tabListeners(tabs[0])" />
         </keep-alive>
         <a-tabs
           v-else
@@ -86,16 +82,10 @@
                   :is="tab.component"
                   :key="tabInstanceKey(tab)"
                   :resource="resource"
-                  :resourceType="tab.resourceType"
                   :loading="loading && !(quietRefresh && tab.name === 'details' && resource.id && resource.id === $route.params?.id)"
                   :tab="$route.meta?.name === 's2svpnconn' ? tab.name : activeTab"
-                  v-bind="$route.meta?.name === 'kubernetesiso' && ['details','zones'].includes(tab.name) ? { observation: kubernetesIsoObservation } : {}"
-                  @show-zones="$route.meta?.name === 'kubernetesiso' && onTabChange('zones')"
-                  @refresh-availability="refreshKubernetesIsoAvailability"
-                  @change-resource="$emit('change-resource', $event)"
-                  @refresh="(['buckets', 'objectstore'].includes($route.meta.name) || (['account', 'domain'].includes($route.meta.name) && tab.name === 'limits.configure') || ($route.meta.name === 'template' && ['vnf.settings','settings'].includes(tab.name))) && $emit('refresh')"
-                  v-on="$route.meta?.name === 'template' && tab.name === 'zones' ? { 'availability-observed': acceptTemplateObservation, 'operation-retained': value => $emit('template-operation-retained',value), 'refresh-parent': () => $emit('refresh') } : $route.meta?.name === 'iso' && tab.name === 'zones' ? { 'operation-retained': value => $emit('iso-operation-retained',value), 'refresh-parent': () => $emit('refresh') } : {}"
-            @wide-layout-change="onWideLayoutChange" />
+                  v-bind="tabProperties(tab)"
+                  v-on="tabListeners(tab, true)" />
               </keep-alive>
             </a-tab-pane>
           </template>
@@ -284,6 +274,36 @@ export default {
       }
     },
     tabInstanceKey (tab) { if (this.dnsZoneTabScope) return this.dnsZoneTabScope + ':' + tab.name; if (this.$route.meta?.name === 's2svpn') return this.s2sTabScope + ':' + tab.name; if (this.$route.meta?.name === 'kubernetesiso') return this.kubernetesIsoContext + ':' + tab.name; return this.isNetworkTabs ? this.networkTabScope + ':' + tab.name : tab.name },
+    tabProperties (tab) {
+      const props = {}
+      if (tab.resourceType) props.resourceType = tab.resourceType
+      if (this.$route.meta?.name === 'kubernetesiso' && ['details', 'zones'].includes(tab.name)) {
+        props.observation = this.kubernetesIsoObservation
+      }
+      return props
+    },
+    tabListeners (tab, multiple = false) {
+      const section = this.$route.meta?.name
+      if (['extension', 'customaction'].includes(section)) return {}
+
+      const listeners = { 'wide-layout-change': this.onWideLayoutChange }
+      if (section === 'kubernetesiso') {
+        listeners['show-zones'] = () => this.onTabChange('zones')
+        listeners['refresh-availability'] = this.refreshKubernetesIsoAvailability
+      }
+      if (multiple) listeners['change-resource'] = value => this.$emit('change-resource', value)
+      if (['buckets', 'objectstore'].includes(section) ||
+          (multiple && ['account', 'domain'].includes(section) && tab.name === 'limits.configure') ||
+          (section === 'template' && ['vnf.settings', 'settings'].includes(tab.name))) {
+        listeners.refresh = () => this.$emit('refresh')
+      }
+      if (tab.name === 'zones' && ['template', 'iso'].includes(section)) {
+        if (section === 'template') listeners['availability-observed'] = this.acceptTemplateObservation
+        listeners['operation-retained'] = value => this.$emit(section + '-operation-retained', value)
+        listeners['refresh-parent'] = () => this.$emit('refresh')
+      }
+      return listeners
+    },
     onTabChange (key) {
       this.conditionalTabNotice = ''
       this.activeTab = key
@@ -316,7 +336,7 @@ export default {
         this.$emit('onTabChange', key)
         return
       }
-      if (networkTabRoute(this.$route) || ['zone', 'physicalnetwork', 'kubernetesiso', 'template', 'iso', 'ssh', 'userdata', 'cniconfiguration', 'affinitygroup', 'volume', 'computeoffering', 'diskoffering', 'vpcoffering', 'privategw', 's2svpn', 's2svpnconn', 'vpncustomergateway', 'guestvlans', 'dnszone'].includes(this.$route.meta?.name)) {
+      if (networkTabRoute(this.$route) || ['zone', 'physicalnetwork', 'kubernetesiso', 'template', 'iso', 'ssh', 'userdata', 'cniconfiguration', 'affinitygroup', 'volume', 'computeoffering', 'diskoffering', 'vpcoffering', 'privategw', 's2svpn', 's2svpnconn', 'vpncustomergateway', 'guestvlans', 'dnszone', 'extension', 'customaction'].includes(this.$route.meta?.name)) {
         this.$router.push({ path: this.$route.path, query })
         this.$emit('onTabChange', key)
         return

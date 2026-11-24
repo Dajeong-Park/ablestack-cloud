@@ -1400,6 +1400,7 @@ import KeyboardTooltip from '@/components/widgets/KeyboardTooltip'
 import CloneFlattenControl from '@/components/widgets/CloneFlattenControl'
 import { getFastClonePhase, getFastClonePhaseLabel, getFastClonePhaseColor } from '@/utils/fastClone'
 import ResourceContextMenu from '@/components/view/ResourceContextMenu'
+import QuickView from '@/components/view/QuickView'
 import ResourceIcon from '@/components/view/ResourceIcon'
 import CopyLabel from '@/components/widgets/CopyLabel'
 import { cniDetailLink } from '@/utils/cniDeletion'
@@ -1465,6 +1466,7 @@ export default {
     Status,
     CloneFlattenControl,
     ResourceContextMenu,
+    QuickView,
     CopyLabel,
     GuestNetworkSummary,
     TooltipButton,
@@ -1472,6 +1474,16 @@ export default {
     ResourceLabel,
     FileTextOutlined
   },
+  emits: [
+    'disable-gpu-device',
+    'edit-tariff-action',
+    'enable-gpu-device',
+    'refresh',
+    'selection-change',
+    'table-change',
+    'update-selected-columns',
+    'view-usage-record'
+  ],
   props: {
     tableScroll: { type: Object, default: null },
     kmsTable: { type: Boolean, default: false },
