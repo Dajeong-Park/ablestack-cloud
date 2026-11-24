@@ -166,6 +166,7 @@
             </status>
             <status v-else-if="$route.meta.name === 's2svpnconn'" class="status" :text="resource.state || ''" :display-label="$t(vpnConnectionState(resource))" display-text />
             <status v-else-if="['role', 'account'].includes($route.meta.name)" class="status" :text="resource.state" :display-label="$t('label.' + resource.state)" display-text />
+            <RuntimeCatalogValue v-else-if="$route.meta.name === 'runtimebundle'" group="state" :value="resource.state" status />
             <status v-else class="status" :text="resource.state || resource.status" displayText/>
           </div>
         </div>
@@ -1252,6 +1253,7 @@ import { validateLinksAsync } from '@/utils/links'
 import Console from '@/components/widgets/Console'
 import OsLogo from '@/components/widgets/OsLogo'
 import Status from '@/components/widgets/Status'
+import RuntimeCatalogValue from '@/components/view/RuntimeCatalogValue'
 import TemplateAvailability from '@/components/widgets/TemplateAvailability'
 import KubernetesIsoStatus from '@/components/widgets/KubernetesIsoStatus'
 import BackupProgress from '@/components/view/BackupProgress'
@@ -1278,6 +1280,7 @@ export default {
   name: 'InfoCard',
   mixins: [vmNetworkAccessMixin()],
   components: {
+    RuntimeCatalogValue,
     AclScopeValue,
     PublicIpDetailValue,
     TemplateAvailability,

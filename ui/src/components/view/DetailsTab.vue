@@ -79,6 +79,13 @@
           <div><a-tag :color="hostStatusColor(dataResource[item])">{{ $t(hostStatusLabel(dataResource[item])) }}</a-tag></div>
         </div>
       </a-list-item>
+      <a-list-item v-else-if="$route.meta.name === 'runtimebundle' && dataResource.id && ['state', 'validationstatus', 'serviceimpact', 'artifactsize', 'compatibility', 'eligibilityreason'].includes(item)">
+        <div class="runtime-catalog-detail-field">
+          <strong>{{ $t(['compatibility', 'eligibilityreason'].includes(item) ? 'label.runtime.catalog.' + item : 'label.' + item) }}</strong>
+          <div><RuntimeCatalogValue :group="item" :value="dataResource[item]" /></div>
+          <small v-if="item === 'compatibility'">{{ $t('message.runtime.catalog.profile.compatibility') }}</small>
+        </div>
+      </a-list-item>
       <a-list-item v-else-if="$route.meta.name === 'cluster' && ['allocationstate', 'managedstate', 'clustertype', 'haenable'].includes(item)">
         <div>
           <strong>{{ $t('label.' + item) }}</strong>
@@ -535,6 +542,7 @@ display-text />
 </template>
 
 <script>
+import RuntimeCatalogValue from '@/components/view/RuntimeCatalogValue'
 import { hostStatusColor, hostStatusLabel } from '@/utils/hostPresentation'
 import { clusterStateLabel } from '@/utils/clusterSearch'
 import { zoneDnsSearchOrder, zoneFeatureLabel, zoneFeatureState } from '@/utils/zone'
@@ -582,6 +590,7 @@ import VnfAccessNotice from '@/components/compute/VnfAccessNotice'
 export default {
   name: 'DetailsTab',
   components: {
+    RuntimeCatalogValue,
     Ipv4SubnetResourceLink,
     VpnUserValue,
     AclScopeValue,
