@@ -249,7 +249,7 @@ export default {
         postAPI('addCustomAction', params).then(response => {
           this.$emit('refresh-data')
           this.$notification.success({
-            message: this.$t('label.create.extension'),
+            message: this.$t('label.add.custom.action'),
             description: this.$t('message.success.create.extension')
           })
           this.closeAction()

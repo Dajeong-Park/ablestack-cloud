@@ -17,7 +17,9 @@
 
 <template>
   <div>
-    <p v-if="listRefreshFailed" role="status">{{ $t('message.list.refresh.stale') }}</p>
+    <a-alert v-if="listRefreshFailed" type="warning" show-icon :message="$t('message.list.refresh.stale')">
+      <template #action><a-button size="small" @click="fetchCustomActions">{{ $t('label.refresh') }}</a-button></template>
+    </a-alert>
     <a-button
       type="primary"
       style="width: 100%; margin-bottom: 10px"
@@ -114,7 +116,7 @@
       :closable="true"
       :footer="null"
       @cancel="closeModals">
-      <add-custom-action :extension="resource" @close-action="closeModals" />
+      <add-custom-action :extension="resource" @refresh-data="refreshAfterChange" @close-action="closeModals" />
     </a-modal>
 
     <a-modal
@@ -128,6 +130,7 @@
       <update-custom-action
       :key="customActionForUpdate.id"
       :resource="customActionForUpdate"
+      @refresh-data="refreshAfterChange"
       @close-action="closeModals" />
     </a-modal>
   </div>
@@ -144,7 +147,10 @@ import UpdateCustomAction from '@/views/extension/UpdateCustomAction.vue'
 import Status from '@/components/widgets/Status'
 
 export default {
-  mixins: [listRefreshMixin(['fetchCustomActions'])],
+  mixins: [listRefreshMixin(['fetchCustomActions'], {
+    scopeKey: vm => [vm.$route.path, vm.$store.getters.userInfo?.id, vm.$store.getters.project?.id,
+      vm.resource.id, vm.page, vm.pageSize, vm.listRevision]
+  })],
   name: 'ExtensionCustomActionsTab',
   components: {
     ObjectListTable,
@@ -162,6 +168,8 @@ export default {
   data () {
     return {
       tabLoading: false,
+      extensionCustomActions: [],
+      listRevision: 0,
       columns: [
         {
           key: 'name',
@@ -197,24 +205,25 @@ export default {
       customActionForUpdate: {}
     }
   },
-  computed: {
-    extensionResources () {
-      return this.resource?.resources || []
-    }
-  },
   created () {
     this.fetchData()
   },
   watch: {
-    resource: {
-      handler () {
-        this.fetchCustomActions()
-      }
+    'resource.id' () {
+      this.page = 1
+      this.totalCount = 0
+      this.extensionCustomActions = []
+      this.listRefreshFailed = false
+      this.fetchCustomActions()
     }
   },
   methods: {
     fetchData () {
       this.fetchCustomActions()
+    },
+    refreshAfterChange () {
+      this.listRevision += 1
+      return this.fetchCustomActions()
     },
     changePage (page, size) {
       this.page = size === this.pageSize ? page : 1
@@ -275,7 +284,7 @@ export default {
       }
       this.updateLoading = true
       postAPI('updateCustomAction', params).then(json => {
-        this.fetchCustomActions()
+        this.refreshAfterChange()
         this.$notification.success({
           message: record.enabled ? this.$t('label.disable.custom.action') : this.$t('label.enable.custom.action'),
           description: this.$t('message.success.update.custom.action')
@@ -292,7 +301,7 @@ export default {
       }
       this.deleteLoading = true
       postAPI('deleteCustomAction', params).then(json => {
-        this.fetchCustomActions()
+        this.refreshAfterChange()
         this.$notification.success({
           message: this.$t('label.delete.custom.action'),
           description: this.$t('message.success.delete.custom.action')
