@@ -16,6 +16,7 @@
 // under the License.
 import store from '@/store'
 import { shallowRef, defineAsyncComponent } from 'vue'
+import { runtimeCatalogReadParams } from '@/utils/runtimeCatalog'
 
 export default {
   name: 'tools',
@@ -248,7 +249,7 @@ export default {
       columns: ['name', 'state', 'validationstatus', 'profileid', 'referencecount', 'signingkeyid'],
       details: ['version', 'id', 'state', 'validationstatus', 'revision', 'runtimeabiversion', 'desiredstateschemaversion', 'serviceimpact', 'sha256', 'manifestsha256', 'signingkeyid', 'artifacturl', 'manifesturl', 'signatureurl', 'created'],
       searchFilters: ['keyword', 'state', 'validationstatus'],
-      params: () => ({ purpose: 'catalog' }),
+      customParamHandler: runtimeCatalogReadParams,
       tabs: [
         { name: 'details', component: shallowRef(defineAsyncComponent(() => import('@/components/view/DetailsTab.vue'))) },
         ...['runtime.validations', 'runtime.usages', 'runtime.events'].map(name => ({ name, component: shallowRef(defineAsyncComponent(() => import('@/views/tools/RuntimeCatalogRecords.vue'))) }))
