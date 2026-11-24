@@ -1,15 +1,23 @@
 <!-- Licensed under the Apache License, Version 2.0. See the NOTICE file. -->
 <template>
   <MoldDialog class="sharedfs-standard-dialog" :visible="true" :title="$t('label.runtime.catalog.' + kind.toLowerCase())" size="lg" form-actions @cancel="close">
-    <a-alert show-icon type="info" :message="$t('message.runtime.catalog.separate')" />
     <template v-if="kind === 'REGISTER'">
+      <a-alert show-icon type="info" :message="$t('message.runtime.catalog.separate')" />
       <a-form layout="vertical">
-        <a-form-item v-for="field in fields" :key="field" :label="$t('label.' + field)" :required="field !== 'artifactsize'">
-          <a-input-number v-if="field === 'artifactsize'" v-model:value="form[field]" :min="1" :max="67108864" style="width:100%" />
-          <a-select v-else-if="field === 'serviceimpact'" v-model:value="form[field]">
-            <a-select-option v-for="value in ['NONE','PROTOCOL_RESTART','VM_REBOOT']" :key="value" :value="value">{{ value }}</a-select-option>
+        <a-form-item
+          v-for="field in fields"
+          :key="field"
+          :label="$t('label.' + field)"
+          :html-for="'runtime-catalog-' + field"
+          :extra="$t('message.runtime.catalog.register.field.' + field)"
+          :required="field !== 'artifactsize'">
+          <a-input-number v-if="field === 'artifactsize'" :id="'runtime-catalog-' + field" v-model:value="form[field]" :min="1" :max="67108864" style="width:100%" />
+          <a-select v-else-if="field === 'serviceimpact'" :id="'runtime-catalog-' + field" v-model:value="form[field]">
+            <a-select-option v-for="value in ['NONE', 'PROTOCOL_RESTART', 'VM_REBOOT']" :key="value" :value="value">
+              {{ $t('label.runtime.catalog.serviceimpact.' + value) }}
+            </a-select-option>
           </a-select>
-          <a-input v-else v-model:value="form[field]" :aria-label="$t('label.' + field)" />
+          <a-input v-else :id="'runtime-catalog-' + field" v-model:value="form[field]" :aria-label="$t('label.' + field)" />
         </a-form-item>
       </a-form>
       <a-alert type="warning" show-icon :message="$t('message.runtime.catalog.identity')" />
