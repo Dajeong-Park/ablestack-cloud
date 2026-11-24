@@ -97,6 +97,7 @@
       @change="changePage" />
 
     <mold-dialog
+      :after-close="restoreDialogFocus"
       size="lg"
       form-actions
       focus-guard
@@ -107,6 +108,7 @@
     </mold-dialog>
 
     <mold-dialog
+      :after-close="restoreDialogFocus"
       size="lg"
       form-actions
       focus-guard
@@ -121,6 +123,7 @@ v-if="showUpdateCustomAction"
       @close-action="closeModals" />
     </mold-dialog>
     <mold-dialog
+      :after-close="restoreDialogFocus"
       size="sm"
       :visible="!!confirmation"
       :title="$t(confirmationTitle)"
@@ -172,6 +175,7 @@ export default {
   data () {
     return {
       tabLoading: false,
+      dialogTrigger: null,
       extensionCustomActions: [],
       listRevision: 0,
       columns: [
@@ -240,6 +244,14 @@ export default {
     }
   },
   methods: {
+    rememberDialogTrigger () {
+      this.dialogTrigger = document.activeElement
+    },
+    restoreDialogFocus () {
+      const trigger = this.dialogTrigger?.isConnected ? this.dialogTrigger : this.$el.querySelector('.extension-action-toolbar button:not([disabled])')
+      this.dialogTrigger = null
+      if (trigger) trigger.focus()
+    },
     fetchData () {
       this.fetchCustomActions()
     },
@@ -309,9 +321,11 @@ export default {
       })
     },
     showAddCustomActionModal () {
+      this.rememberDialogTrigger()
       this.showAddCustomAction = true
     },
     openUpdateCustomActionModal (action) {
+      this.rememberDialogTrigger()
       this.customActionForUpdate = action
       this.showUpdateCustomAction = true
     },
@@ -321,6 +335,7 @@ export default {
       this.customActionForUpdate = {}
     },
     openConfirmation (record, operation) {
+      this.rememberDialogTrigger()
       this.confirmation = { record, operation }
     },
     closeConfirmation () {

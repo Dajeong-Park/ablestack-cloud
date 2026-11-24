@@ -17,7 +17,7 @@
 
 <template>
   <div>
-    <a-button v-if="'registerExtension' in $store.getters.apis && ['Orchestrator', 'NetworkOrchestrator'].includes(resource.type)" type="primary" class="register-extension-resource" @click="registerModalVisible = true">
+    <a-button v-if="'registerExtension' in $store.getters.apis && ['Orchestrator', 'NetworkOrchestrator'].includes(resource.type)" type="primary" class="register-extension-resource" @click="openRegisterModal">
       <template #icon><plus-outlined /></template>
       {{ $t('label.register.extension') }}
     </a-button>
@@ -52,7 +52,7 @@
             type="primary"
             :danger="true"
             icon="delete-outlined"
-            @onClick="unregisterTarget = record" />
+            @onClick="openUnregister(record)" />
         </template>
       </template>
       <template #expandedRowRender="{ record }">
@@ -62,6 +62,7 @@
       </template>
     </a-table>
     <mold-dialog
+      :after-close="restoreDialogFocus"
       size="md"
       form-actions
       focus-guard
@@ -71,6 +72,7 @@
       <register-extension v-if="registerModalVisible" :resource="resource" @refresh-data="handleRefreshData" @close-action="registerModalVisible = false" />
     </mold-dialog>
     <mold-dialog
+      :after-close="restoreDialogFocus"
       size="md"
       form-actions
       focus-guard
@@ -85,6 +87,7 @@ v-if="updateModalVisible"
         @close-action="closeUpdateModal" />
     </mold-dialog>
     <mold-dialog
+      :after-close="restoreDialogFocus"
       size="sm"
       :visible="!!unregisterTarget"
       :title="$t('label.action.unregister.extension.resource')"
@@ -129,6 +132,7 @@ export default {
   data () {
     return {
       tabLoading: false,
+      dialogTrigger: null,
       columns: [
         {
           key: 'name',
@@ -162,7 +166,24 @@ export default {
     }
   },
   methods: {
+    rememberDialogTrigger () {
+      this.dialogTrigger = document.activeElement
+    },
+    restoreDialogFocus () {
+      const trigger = this.dialogTrigger?.isConnected ? this.dialogTrigger : this.$el.querySelector('.register-extension-resource')
+      this.dialogTrigger = null
+      if (trigger) trigger.focus()
+    },
+    openRegisterModal () {
+      this.rememberDialogTrigger()
+      this.registerModalVisible = true
+    },
+    openUnregister (record) {
+      this.rememberDialogTrigger()
+      this.unregisterTarget = record
+    },
     openUpdateModal (record) {
+      this.rememberDialogTrigger()
       this.selectedResource = record
       this.updateModalVisible = true
     },
