@@ -2975,6 +2975,8 @@
   "message.secondary.selector.zones.failed": "Could not load Zones.",
   "message.secondary.selector.js.disabled": "JavaScript interpretation is disabled. Creating and editing rules is unavailable.",
   "message.secondary.selector.list.failed": "Could not load secondary storage selection rules.",
+  "message.secondary.selector.rule.missing": "Could not find this rule in the selected Zone.",
+  "message.secondary.selector.detail.zone": "A Zone is required to view this rule.",
   "message.secondary.selector.no.rules": "No selection rules match the filters.",
   "message.secondary.selector.choose.zone": "Select a Zone to view its rules.",
   "message.secondary.selector.remove.effect": "After removal, new storage selections use the default policy.",

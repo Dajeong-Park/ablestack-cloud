@@ -17,7 +17,7 @@
 
 <template>
   <a-breadcrumb class="breadcrumb" v-bind="$attrs">
-    <a-breadcrumb-item v-for="(item, index) in breadList" :key="index">
+    <a-breadcrumb-item v-for="(item, index) in resolvedTrail" :key="index">
       <router-link
         v-if="item && item.name && !tungstenPaths.includes(item.path)"
         :to="breadcrumbLocation(item)"
@@ -31,6 +31,9 @@
         <render-icon v-if="index == 0" :icon="item.meta.icon" style="font-size: 16px" @click="resetToMainView" />
         {{ $t(item.meta.title) }}
       </router-link>
+      <span v-else-if="item.current" class="vm-acl-breadcrumb-current" aria-current="page">
+        {{ item.text || $t(item.meta.title) }}
+      </span>
       <span
         v-else-if="$route.params.id"
         :class="{ 'vm-acl-breadcrumb-current': standardLayout }"
@@ -56,14 +59,14 @@
         {{ $t(item.meta.title) }}
       </span>
       <BreadcrumbControls
-        v-if="!standardLayout && index === breadList.length - 1"
+        v-if="!standardLayout && index === resolvedTrail.length - 1"
         :doc-url="helpUrl(item)"
         :parent-location="kmsParentLocation">
         <template #end><slot name="end" /></template>
       </BreadcrumbControls>
     </a-breadcrumb-item>
   </a-breadcrumb>
-  <BreadcrumbControls v-if="standardLayout && breadList.length" standard :doc-url="helpUrl(breadList.at(-1))">
+  <BreadcrumbControls v-if="standardLayout && resolvedTrail.length" standard :doc-url="helpUrl(resolvedTrail.at(-1))">
     <template #end><slot name="end" /></template>
   </BreadcrumbControls>
 </template>
@@ -108,6 +111,7 @@ export default {
   components: { BreadcrumbControls, KeyboardTooltip },
   props: {
     standardLayout: { type: Boolean, default: false },
+    trail: { type: Array, default: null },
     resource: {
       type: Object,
       default: function () {
@@ -124,6 +128,7 @@ export default {
     }
   },
   computed: {
+    resolvedTrail () { return this.trail || this.breadList },
     resourceTitle () {
       if (s2sGatewayRoute(this.$route)) return gatewayName(this.resource)
       if (isVmIdentityRoute(this.$route)) return vmDisplayName(this.resource)
@@ -163,6 +168,7 @@ export default {
     isEventDetailRoute,
     eventBreadcrumbTitle (event) { return eventDisplayTitle(event, this.$t, date => this.$toLocaleDate(date)) },
     breadcrumbLocation (item) {
+      if (item.location) return item.location
       if (item.path === '/oauthsetting' && this.$route.params?.id) return oauthListLocation(this.$route)
       if (item.path === '/ldapsetting' && this.$route.params?.id) return { path: item.path, query: ldapListQuery(this.$route.query) }
       if (item.path === '/account' && isAccountDetailRoute(this.$route)) {

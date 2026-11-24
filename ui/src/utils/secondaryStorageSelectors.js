@@ -20,6 +20,7 @@ import { getAPI } from '@/api'
 export const selectorTypes = ['ISO', 'TEMPLATE', 'SNAPSHOT', 'VOLUME', 'BACKUP']
 export const selectorConfigKey = 'js.interpretation.enabled'
 export const selectorPage = 'secondarystorageselector'
+export const selectorPageSizes = ['10', '20', '50', '100', '200']
 export const selectorApi = {
   list: 'listSecondaryStorageSelectors',
   create: 'createSecondaryStorageSelector',
@@ -34,13 +35,34 @@ export function isSelectorUuid (value) {
   return typeof value === 'string' && uuidPattern.test(value)
 }
 
+export function selectorListQuery (query = {}) {
+  const result = {}
+  if (isSelectorUuid(query.zoneid)) result.zoneid = query.zoneid
+  if (selectorTypes.includes(query.type)) result.type = query.type
+  if (query.showremoved === 'true') result.showremoved = 'true'
+  if (typeof query.keyword === 'string' && query.keyword.trim()) result.keyword = query.keyword.trim()
+  if (Number.isSafeInteger(Number(query.page)) && Number(query.page) > 0) result.page = String(Number(query.page))
+  if (selectorPageSizes.includes(String(query.pagesize))) result.pagesize = String(query.pagesize)
+  return result
+}
+
 export function fixedSelectorId (rule) {
-  const match = typeof rule === 'string' ? quotedLiteral.exec(rule.trim()) : null
-  return isSelectorUuid(match?.[2]) ? match[2].toLowerCase() : ''
+  if (typeof rule !== 'string') return ''
+  const source = rule.trim().replace(/\r\n/g, '\n')
+  const literal = quotedLiteral.exec(source)?.[2]
+  if (isSelectorUuid(literal)) return literal.toLowerCase()
+  const id = /return pool\.id === '([^']+)';/.exec(source)?.[1]
+  const omitIndent = script => script.replace(/^[ \t]+/gm, '')
+  return isSelectorUuid(id) && omitIndent(source.replace(/;$/, '')) === omitIndent(fixedSelectorRule(id)) ? id.toLowerCase() : ''
 }
 
 export function fixedSelectorRule (id) {
-  return isSelectorUuid(id) ? JSON.stringify(id) : ''
+  if (!isSelectorUuid(id)) return ''
+  return `function findStorageWithSpecificId(pool) {
+    return pool.id === '${id}';
+}
+
+secondaryStorages.filter(findStorageWithSpecificId)[0].id`
 }
 
 export async function readSecondaryStorageSelectors (zoneid, { type, showRemoved = false } = {}) {
