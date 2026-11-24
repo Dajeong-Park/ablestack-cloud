@@ -167,10 +167,11 @@ export default {
   },
   methods: {
     rememberDialogTrigger () {
-      this.dialogTrigger = document.activeElement
+      const active = document.activeElement
+      this.dialogTrigger = active instanceof HTMLElement && active !== document.body ? active : null
     },
     restoreDialogFocus () {
-      const trigger = this.dialogTrigger?.isConnected ? this.dialogTrigger : this.$el.querySelector('.register-extension-resource')
+      const trigger = this.dialogTrigger?.isConnected ? this.dialogTrigger : this.$el?.querySelector?.('.register-extension-resource')
       this.dialogTrigger = null
       if (trigger) trigger.focus()
     },
