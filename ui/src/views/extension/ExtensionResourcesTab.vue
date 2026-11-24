@@ -46,23 +46,13 @@
               icon="edit-outlined"
               @onClick="openUpdateModal(record)" />
           </span>
-          <span style="margin-right: 5px">
-            <a-popconfirm
-              v-if="'unregisterExtension' in $store.getters.apis"
-              placement="topRight"
-              :title="$t('message.action.unregister.extension.resource')"
-              :ok-text="$t('label.yes')"
-              :cancel-text="$t('label.no')"
-              :loading="unregisterLoading"
-              @confirm="unregisterExtension(record)"
-            >
-              <tooltip-button
-                :tooltip="$t('label.action.unregister.extension.resource')"
-                type="primary"
-                :danger="true"
-                icon="delete-outlined" />
-            </a-popconfirm>
-          </span>
+          <tooltip-button
+            v-if="'unregisterExtension' in $store.getters.apis"
+            :tooltip="$t('label.action.unregister.extension.resource')"
+            type="primary"
+            :danger="true"
+            icon="delete-outlined"
+            @onClick="unregisterTarget = record" />
         </template>
       </template>
       <template #expandedRowRender="{ record }">
@@ -71,32 +61,48 @@
           :data-map="record.details" />
       </template>
     </a-table>
-    <a-modal
-      v-if="registerModalVisible"
+    <mold-dialog
+      size="md"
+      form-actions
+      focus-guard
       :visible="registerModalVisible"
       :title="$t('label.register.extension')"
-      :footer="null"
       @cancel="registerModalVisible = false">
-      <register-extension :resource="resource" @refresh-data="handleRefreshData" @close-action="registerModalVisible = false" />
-    </a-modal>
-    <a-modal
-      v-if="updateModalVisible"
+      <register-extension v-if="registerModalVisible" :resource="resource" @refresh-data="handleRefreshData" @close-action="registerModalVisible = false" />
+    </mold-dialog>
+    <mold-dialog
+      size="md"
+      form-actions
+      focus-guard
       :visible="updateModalVisible"
-      :width="600"
       :title="$t('label.action.update.extension.resource')"
-      :closable="true"
-      :footer="null"
       @cancel="closeUpdateModal">
       <update-registered-extension
+v-if="updateModalVisible"
         :resource="resource"
         :extension-resource="selectedResource"
         @refresh-data="handleRefreshData"
         @close-action="closeUpdateModal" />
-    </a-modal>
+    </mold-dialog>
+    <mold-dialog
+      size="sm"
+      :visible="!!unregisterTarget"
+      :title="$t('label.action.unregister.extension.resource')"
+      :closable="!unregisterLoading"
+      :keyboard="!unregisterLoading"
+      @cancel="closeUnregister">
+      <p>{{ unregisterTarget?.name }}</p>
+      <p>{{ $t('message.action.unregister.extension.resource') }}</p>
+      <template #footer>
+        <a-button :disabled="unregisterLoading" @click="closeUnregister">{{ $t('label.cancel') }}</a-button>
+        <a-button type="primary" danger :loading="unregisterLoading" @click="unregisterExtension(unregisterTarget)">{{ $t('label.ok') }}</a-button>
+      </template>
+    </mold-dialog>
   </div>
 </template>
 
 <script>
+import MoldDialog from '@/components/view/MoldDialog'
 import { postAPI } from '@/api'
 import eventBus from '@/config/eventBus'
 import ObjectListTable from '@/components/view/ObjectListTable.vue'
@@ -107,6 +113,7 @@ import RegisterExtension from '@/views/extension/RegisterExtension'
 export default {
   name: 'ExtensionResourcesTab',
   components: {
+    MoldDialog,
     ObjectListTable,
     TooltipButton,
     UpdateRegisteredExtension,
@@ -143,6 +150,7 @@ export default {
         }
       ],
       unregisterLoading: false,
+      unregisterTarget: null,
       updateModalVisible: false,
       registerModalVisible: false,
       selectedResource: null
@@ -167,7 +175,11 @@ export default {
         this.parentFetchData()
       }
     },
+    closeUnregister () {
+      if (!this.unregisterLoading) this.unregisterTarget = null
+    },
     unregisterExtension (record) {
+      if (!record || this.unregisterLoading) return
       const params = {
         extensionid: this.resource.id,
         resourceid: record.id,
@@ -175,6 +187,7 @@ export default {
       }
       this.unregisterLoading = true
       postAPI('unregisterExtension', params).then(() => {
+        this.unregisterTarget = null
         eventBus.emit('async-job-complete', null)
         this.$notification.success({
           message: this.$t('label.unregister.extension'),

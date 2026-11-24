@@ -84,6 +84,8 @@ export default {
   actions: [
     {
       api: 'createExtension',
+      standardDialogSize: 'md',
+      standardDialogInitialFocus: '#form_item_name',
       icon: 'plus-outlined',
       label: 'label.create.extension',
       docHelp: 'adminguide/extensions.html',
@@ -93,6 +95,7 @@ export default {
     },
     {
       api: 'updateExtension',
+      standardDialogSize: 'md',
       icon: 'edit-outlined',
       label: 'label.update.extension',
       dataView: true,
@@ -101,6 +104,7 @@ export default {
     },
     {
       api: 'registerExtension',
+      standardDialogSize: 'md',
       icon: 'api-outlined',
       label: 'label.register.extension',
       message: 'message.action.register.extension',

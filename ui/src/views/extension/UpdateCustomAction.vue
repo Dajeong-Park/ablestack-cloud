@@ -101,15 +101,16 @@
           :placeholder="apiParams.timeout.description"
           :min="1" />
       </a-form-item>
-      <div :span="24" class="action-button">
+      <mold-dialog-actions :busy="loading">
         <a-button @click="closeAction">{{ $t('label.cancel') }}</a-button>
         <a-button :loading="loading" ref="submit" type="primary" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
-      </div>
+      </mold-dialog-actions>
     </a-form>
   </div>
 </template>
 
 <script>
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import { ref, reactive, toRaw } from 'vue'
 import { getAPI, postAPI } from '@/api'
 import { customActionResourceTypes } from '@/utils/extension'
@@ -120,6 +121,7 @@ import DetailsInput from '@/components/widgets/DetailsInput'
 export default {
   name: 'UpdateCustomAction',
   components: {
+    MoldDialogActions,
     TooltipLabel,
     ParametersInput,
     DetailsInput
@@ -191,11 +193,11 @@ export default {
       this.rules = reactive({})
     },
     handleSubmit (e) {
-      e.preventDefault()
+      if (typeof e?.preventDefault === 'function') e.preventDefault()
       if (this.loading) return
+      this.loading = true
       this.formRef.value.validate().then(() => {
         const values = toRaw(this.form)
-        this.loading = true
         const params = {
           id: this.resource.id
         }
@@ -223,7 +225,7 @@ export default {
         } else {
           params.cleanupdetails = true
         }
-        postAPI('updateCustomAction', params).then(response => {
+        return postAPI('updateCustomAction', params).then(response => {
           this.$emit('refresh-data')
           this.$notification.success({
             message: this.$t('label.update.custom.action'),
@@ -237,11 +239,11 @@ export default {
             description: (error.response && error.response.headers && error.response.headers['x-description']) || error.message,
             duration: 0
           })
-        }).finally(() => {
-          this.loading = false
         })
       }).catch(error => {
-        this.$notifyError(error)
+        if (!error.errorFields) this.$notifyError(error)
+      }).finally(() => {
+        this.loading = false
       })
     },
     closeAction () {
@@ -252,10 +254,5 @@ export default {
 </script>
 
 <style scoped lang="less">
-.form-layout {
-  width: 100vw;
-  @media (min-width: 1000px) {
-    width: 950px;
-  }
-}
+.form-layout { width: 100%; min-width: 0; }
 </style>

@@ -64,38 +64,18 @@
               icon="edit-outlined"
               @click="openUpdateCustomActionModal(record)" />
           </span>
-          <span style="margin-right: 5px">
-            <a-popconfirm
-              v-if="'updateCustomAction' in $store.getters.apis"
-              placement="topRight"
-              :title="record.enabled ? $t('message.confirm.disable.custom.action') : $t('message.confirm.enable.custom.action')"
-              :ok-text="$t('label.yes')"
-              :cancel-text="$t('label.no')"
-              :loading="updateLoading"
-              @confirm="updateCustomAction(record)"
-            >
-              <tooltip-button
-                :tooltip="record.enabled ? $t('label.disable.custom.action') : $t('label.enable.custom.action')"
-                :icon="record.enabled ? 'pause-circle-outlined' : 'play-circle-outlined'" />
-            </a-popconfirm>
-          </span>
-          <span style="margin-right: 5px">
-            <a-popconfirm
-              v-if="'deleteCustomAction' in $store.getters.apis"
-              placement="topRight"
-              :title="$t('message.action.delete.custom.action')"
-              :ok-text="$t('label.yes')"
-              :cancel-text="$t('label.no')"
-              :loading="deleteLoading"
-              @confirm="deleteCustomAction(record)"
-            >
-              <tooltip-button
-                :tooltip="$t('label.delete.custom.action')"
-                type="primary"
-                :danger="true"
-                icon="delete-outlined" />
-            </a-popconfirm>
-          </span>
+          <tooltip-button
+            v-if="'updateCustomAction' in $store.getters.apis"
+            :tooltip="$t(record.enabled ? 'label.disable.custom.action' : 'label.enable.custom.action')"
+            :icon="record.enabled ? 'pause-circle-outlined' : 'play-circle-outlined'"
+            @onClick="openConfirmation(record, 'toggle')" />
+          <tooltip-button
+            v-if="'deleteCustomAction' in $store.getters.apis"
+            :tooltip="$t('label.delete.custom.action')"
+            type="primary"
+            :danger="true"
+            icon="delete-outlined"
+            @onClick="openConfirmation(record, 'delete')" />
         </template>
       </template>
       <template #expandedRowRender="{ record }">
@@ -116,35 +96,49 @@
       show-size-changer
       @change="changePage" />
 
-    <a-modal
-      style="min-width: 1000px;"
+    <mold-dialog
+      size="lg"
+      form-actions
+      focus-guard
       :visible="showAddCustomAction"
       :title="$t('label.add.custom.action')"
-      :maskClosable="false"
-      :closable="true"
-      :footer="null"
       @cancel="closeModals">
-      <add-custom-action :extension="resource" @refresh-data="refreshAfterChange" @close-action="closeModals" />
-    </a-modal>
+      <add-custom-action v-if="showAddCustomAction" :extension="resource" @refresh-data="refreshAfterChange" @close-action="closeModals" />
+    </mold-dialog>
 
-    <a-modal
-      style="min-width: 1000px;"
+    <mold-dialog
+      size="lg"
+      form-actions
+      focus-guard
       :visible="showUpdateCustomAction"
       :title="$t('label.update.custom.action')"
-      :maskClosable="false"
-      :closable="true"
-      :footer="null"
       @cancel="closeModals">
       <update-custom-action
+v-if="showUpdateCustomAction"
       :key="customActionForUpdate.id"
       :resource="customActionForUpdate"
       @refresh-data="refreshAfterChange"
       @close-action="closeModals" />
-    </a-modal>
+    </mold-dialog>
+    <mold-dialog
+      size="sm"
+      :visible="!!confirmation"
+      :title="$t(confirmationTitle)"
+      :closable="!confirmationBusy"
+      :keyboard="!confirmationBusy"
+      @cancel="closeConfirmation">
+      <p>{{ confirmation?.record.name }}</p>
+      <p>{{ $t(confirmationMessage) }}</p>
+      <template #footer>
+        <a-button :disabled="confirmationBusy" @click="closeConfirmation">{{ $t('label.cancel') }}</a-button>
+        <a-button type="primary" :danger="confirmation?.operation === 'delete'" :loading="confirmationBusy" @click="confirmOperation">{{ $t('label.ok') }}</a-button>
+      </template>
+    </mold-dialog>
   </div>
 </template>
 
 <script>
+import MoldDialog from '@/components/view/MoldDialog'
 import { customActionResourceTypes, extensionActionListQuery, extensionListQuery } from '@/utils/extension'
 import { listRefreshMixin } from '@/utils/listRefreshMixin'
 
@@ -162,6 +156,7 @@ export default {
   })],
   name: 'ExtensionCustomActionsTab',
   components: {
+    MoldDialog,
     ObjectListTable,
     TooltipButton,
     AddCustomAction,
@@ -212,11 +207,21 @@ export default {
       showAddCustomAction: false,
       updateLoading: false,
       deleteLoading: false,
+      confirmation: null,
       showUpdateCustomAction: false,
       customActionForUpdate: {}
     }
   },
   computed: {
+    confirmationBusy () { return this.updateLoading || this.deleteLoading },
+    confirmationTitle () {
+      if (this.confirmation?.operation === 'delete') return 'label.delete.custom.action'
+      return this.confirmation?.record.enabled ? 'label.disable.custom.action' : 'label.enable.custom.action'
+    },
+    confirmationMessage () {
+      if (this.confirmation?.operation === 'delete') return 'message.action.delete.custom.action'
+      return this.confirmation?.record.enabled ? 'message.confirm.disable.custom.action' : 'message.confirm.enable.custom.action'
+    },
     resourceTypes () { return customActionResourceTypes(this.resource.type) },
     actionDetailQuery () {
       return { ...extensionListQuery(this.$route.query), ...this.actionQuery() }
@@ -315,6 +320,18 @@ export default {
       this.showUpdateCustomAction = false
       this.customActionForUpdate = {}
     },
+    openConfirmation (record, operation) {
+      this.confirmation = { record, operation }
+    },
+    closeConfirmation () {
+      if (!this.confirmationBusy) this.confirmation = null
+    },
+    confirmOperation () {
+      if (!this.confirmation || this.confirmationBusy) return
+      const { record, operation } = this.confirmation
+      if (operation === 'delete') this.deleteCustomAction(record)
+      else this.updateCustomAction(record)
+    },
     updateCustomAction (record) {
       const params = {
         id: record.id,
@@ -322,6 +339,7 @@ export default {
       }
       this.updateLoading = true
       postAPI('updateCustomAction', params).then(json => {
+        this.confirmation = null
         this.refreshAfterChange()
         this.$notification.success({
           message: record.enabled ? this.$t('label.disable.custom.action') : this.$t('label.enable.custom.action'),
@@ -339,6 +357,7 @@ export default {
       }
       this.deleteLoading = true
       postAPI('deleteCustomAction', params).then(json => {
+        this.confirmation = null
         this.refreshAfterChange()
         this.$notification.success({
           message: this.$t('label.delete.custom.action'),

@@ -60,15 +60,16 @@
         <details-input
           v-model:value="form.details" />
       </a-form-item>
-      <div :span="24" class="action-button">
+      <mold-dialog-actions :busy="loading">
         <a-button @click="closeAction">{{ $t('label.cancel') }}</a-button>
         <a-button :loading="loading" ref="submit" type="primary" :disabled="!form.resourceid" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
-      </div>
+      </mold-dialog-actions>
     </a-form>
   </div>
 </template>
 
 <script>
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import { ref, reactive } from 'vue'
 import { getAPI, postAPI } from '@/api'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
@@ -77,6 +78,7 @@ import DetailsInput from '@/components/widgets/DetailsInput'
 export default {
   name: 'RegisterExtension',
   components: {
+    MoldDialogActions,
     TooltipLabel,
     DetailsInput
   },
@@ -176,11 +178,6 @@ export default {
 </script>
 
 <style scoped lang="less">
-.form-layout {
-  width: 80vw;
-  @media (min-width: 600px) {
-    width: 550px;
-  }
-}
+.form-layout { width: 100%; min-width: 0; }
 .registration-notice { margin: 8px 0; }
 </style>
