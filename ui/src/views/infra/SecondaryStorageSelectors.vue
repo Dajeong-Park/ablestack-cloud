@@ -561,6 +561,9 @@ export default {
 .secondary-storage-selectors .breadcrumb-card { margin-bottom: 16px; }
 .secondary-storage-selectors .ant-alert { margin-bottom: 12px; }
 .secondary-storage-selectors .selector-zone { min-width: 140px; }
+.secondary-storage-selectors :deep(.vm-acl-breadcrumb-layout .breadcrumb) {
+  flex-wrap: wrap;
+}
 .selector-filters { min-width: 180px; }
 .selector-filter-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 12px; }
 </style>
