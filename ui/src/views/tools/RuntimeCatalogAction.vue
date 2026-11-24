@@ -1,6 +1,14 @@
 <!-- Licensed under the Apache License, Version 2.0. See the NOTICE file. -->
 <template>
-  <MoldDialog class="sharedfs-standard-dialog" :visible="true" :title="$t('label.runtime.catalog.' + kind.toLowerCase())" size="lg" form-actions @cancel="close">
+  <MoldDialog
+    class="sharedfs-standard-dialog"
+    :visible="true"
+    :title="$t('label.runtime.catalog.' + kind.toLowerCase())"
+    size="md"
+    :initial-focus="initialFocus"
+    focus-guard
+    form-actions
+    @cancel="close">
     <template v-if="kind === 'REGISTER'">
       <a-alert show-icon type="info" :message="$t('message.runtime.catalog.separate')" />
       <a-form layout="vertical">
@@ -39,7 +47,9 @@
       <a-alert v-if="kind === 'REVOKE'" type="error" show-icon :message="$t('message.runtime.catalog.revoke')" />
       <a-alert v-if="kind === 'DELETE'" type="warning" show-icon :message="$t('message.runtime.catalog.delete')" />
       <a-form v-if="kind !== 'VALIDATE'" layout="vertical">
-        <a-form-item :label="$t('label.reason')" required><a-textarea v-model:value="reason" :maxlength="1024" :rows="3" /></a-form-item>
+        <a-form-item :label="$t('label.reason')" html-for="runtime-catalog-reason" required>
+          <a-textarea id="runtime-catalog-reason" v-model:value="reason" :maxlength="1024" :rows="3" />
+        </a-form-item>
       </a-form>
       <a-checkbox v-if="kind === 'REVOKE'" v-model:checked="acknowledged">{{ $t('message.runtime.catalog.ack') }}</a-checkbox>
     </template>
@@ -75,6 +85,7 @@ export default {
   },
   computed: {
     kind () { return this.currentAction.catalogAction || 'REGISTER' },
+    initialFocus () { return this.kind === 'REGISTER' ? '#runtime-catalog-version' : this.kind === 'VALIDATE' ? '.ant-modal-close' : '#runtime-catalog-reason' },
     fields () { return ['version', 'signingkeyid', 'runtimeabiversion', 'desiredstateschemaversion', 'serviceimpact', 'artifacturl', 'manifesturl', 'signatureurl', 'artifactsize', 'sha256', 'manifestsha256'] },
     artifactSize () {
       const value = String(this.form.artifactsize ?? '').trim()

@@ -32,11 +32,19 @@
           <router-link v-if="record.sharedfilesystemid" :to="'/sharedfs/' + record.sharedfilesystemid + '?tab=runtime'">{{ record.name }}</router-link>
           <router-link v-else-if="record.vmid" :to="'/vm/' + record.vmid">{{ record.name }}</router-link><span v-else>{{ record.name }}</span>
         </template>
-        <template v-else-if="column.key === 'view'"><a-button size="small" @click="detail = record">{{ $t('label.details') }}</a-button></template>
+        <template v-else-if="column.key === 'view'"><a-button size="small" @click="openRecord(record, $event)">{{ $t('label.details') }}</a-button></template>
       </template>
     </a-table>
     <a-pagination v-if="total > 0" :current="page" :page-size="pagesize" :total="total" :disabled="busy" show-size-changer @change="changePage" />
-    <MoldDialog class="sharedfs-standard-dialog" v-if="detail" :visible="true" :title="$t('label.details')" size="lg" @cancel="detail = null">
+    <MoldDialog
+      v-if="detail"
+      class="sharedfs-standard-dialog"
+      :visible="true"
+      :title="$t('label.details')"
+      size="md"
+      initial-focus=".ant-modal-close"
+      focus-guard
+      @cancel="closeRecord">
       <a-descriptions bordered size="small" :column="1">
         <a-descriptions-item v-for="field in detailFields" :key="field" :label="$t(detailLabel(field))">
           {{ detailValues[field] ?? '—' }}
@@ -70,7 +78,7 @@ export default {
     tab: { type: String, required: true },
     active: { type: Boolean, default: true }
   },
-  data () { return { rows: [], total: 0, page: 1, pagesize: 10, busy: false, hasSuccessfulRead: false, error: false, epoch: 0, detail: null } },
+  data () { return { rows: [], total: 0, page: 1, pagesize: 10, busy: false, hasSuccessfulRead: false, error: false, epoch: 0, detail: null, detailTrigger: null } },
   computed: {
     scope () { return this.resource.id + ':' + this.tab },
     detailFields () {
@@ -103,12 +111,25 @@ export default {
         this.epoch++
         this.busy = false
         this.detail = null
+        this.detailTrigger = null
       }
     }
   },
   created () { this.load() },
   beforeUnmount () { this.epoch++ },
   methods: {
+    openRecord (record, event) {
+      this.detailTrigger = event.currentTarget
+      this.detail = record
+    },
+    closeRecord () {
+      const trigger = this.detailTrigger
+      this.detail = null
+      this.detailTrigger = null
+      this.$nextTick(() => {
+        if (this.active && trigger?.isConnected && trigger.getClientRects().length) trigger.focus({ preventScroll: true })
+      })
+    },
     parseDetails (value) {
       try { return JSON.parse(value) } catch { return null }
     },
@@ -131,6 +152,7 @@ export default {
       this.total = 0
       this.detail = null
       this.hasSuccessfulRead = false
+      this.detailTrigger = null
       this.error = false
       this.busy = false
       this.page = 1
@@ -163,9 +185,9 @@ export default {
 }
 </script>
 <style scoped lang="less">
-.catalog-toolbar { display:flex; margin-bottom:16px !important; }
-.ant-alert, .ant-descriptions, .ant-pagination { margin-bottom:16px; }
-.ant-pagination { margin-top:16px; }
+.runtime-catalog-records { min-width: 0; }
+.catalog-toolbar { display: flex; margin-bottom: 16px; }
+.ant-alert, .ant-descriptions { margin-bottom: 16px; }
 pre { white-space:pre-wrap; overflow-wrap:anywhere; color:var(--ui-text-primary); background:var(--ui-bg-surface); padding:16px; }
 summary { cursor: pointer; }
 :deep(.ant-descriptions-item-content) { overflow-wrap: anywhere; word-break: break-word; }

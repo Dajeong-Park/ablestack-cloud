@@ -23,7 +23,7 @@
       :columns="displayColumns"
       :dataSource="items"
       :tableLayout="isIsoMainList || $route.meta?.name === 'ldapsetting' || scrollRegionLabel ? 'fixed' : undefined"
-      :scroll="kmsTableScroll || tableScroll || kubernetesIsoTableScroll || isoTableScroll || templateTableScroll || ($route.name === 'snapshot' ? { x: 1400 } : ['autoscalevmgroup', 'affinitygroup'].includes($route.name) ? { x: 980 } : undefined)"
+      :scroll="kmsTableScroll || tableScroll || kubernetesIsoTableScroll || isoTableScroll || templateTableScroll || (isRuntimeCatalogList ? { x: 850 } : $route.name === 'snapshot' ? { x: 1400 } : ['autoscalevmgroup', 'affinitygroup'].includes($route.name) ? { x: 980 } : undefined)"
       :rowKey="listRowKey"
       :pagination="false"
       :rowSelection="explicitlyAllowRowSelection || enableGroupAction() || $route.name === 'event' ? {selectedRowKeys: selectedRowKeys, onChange: onSelectChange, getCheckboxProps: record => ({ disabled: selectionDisabled(record) }), columnWidth: 30} : null"
@@ -223,7 +223,9 @@
           </span>
           <router-link v-else-if="$route.path === '/dnsserver' && !resourcePath && record.id" :to="{ path: '/dnsserver/' + record.id, query: dnsServerListQuery($route.query) }">{{ text }}</router-link>
           <router-link v-else-if="$route.path === '/dnszone' && !resourcePath && record.id" :to="{ path: '/dnszone/' + record.id, query: dnsZoneListQuery($route.query) }">{{ text }}</router-link>
-          <router-link v-else-if="$route.path === '/runtimebundle' && !resourcePath && record.id && $route.query.history === 'deleted'" :to="{ path: '/runtimebundle/' + record.id, query: { history: 'deleted' } }">{{ text }}</router-link>
+          <router-link
+            v-else-if="isRuntimeCatalogList && record.id"
+            :to="{ path: '/runtimebundle/' + encodeURIComponent(record.id), query: runtimeCatalogListQuery($route.query) }">{{ text }}</router-link>
           <span v-else-if="resourcePath && record.id" class="embedded-resource-name"><router-link :to="resourceLink ? resourceLink(record) : { path: resourcePath === '/vm' ? createPathBasedOnVmType(record.vmtype, record.id) : resourcePath + '/' + record.id }">{{ text }}</router-link></span>
           <span v-else-if="record.hasannotations">
             <span v-if="record.id">
@@ -1352,6 +1354,7 @@
 </template>
 
 <script>
+import { runtimeCatalogListQuery } from '@/utils/runtimeCatalog'
 import Ipv4SubnetResourceLink from '@/components/widgets/Ipv4SubnetResourceLink'
 import { dnsServerListQuery } from '@/utils/dnsServer'
 import { hostStatusColor, hostStatusLabel } from '@/utils/hostPresentation'
@@ -1610,9 +1613,11 @@ export default {
     this.getUsageTypes()
   },
   computed: {
+    isRuntimeCatalogList () { return this.$route.path === '/runtimebundle' && !this.resourcePath },
     emptyTableImage () { return Empty.PRESENTED_IMAGE_SIMPLE },
     isProjectMainList () { return this.$route.meta?.name === 'project' && !this.$route.params?.id && !this.resourcePath },
     scrollRegionLabel () {
+      if (this.isRuntimeCatalogList) return this.$t('label.runtime.catalog')
       if (this.$route.meta?.name === 'oauthsetting') return this.$t('label.oauth.configuration')
       if (this.isProjectMainList) return this.$t('label.projects')
       if (this.$route.path === '/imagestore' && !this.resourcePath) return this.$t('label.secondary.storage')
@@ -1720,6 +1725,7 @@ export default {
     }
   },
   methods: {
+    runtimeCatalogListQuery,
     dnsServerListQuery,
     zoneListQuery,
     hostListQuery,

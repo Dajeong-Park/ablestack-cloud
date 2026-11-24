@@ -25,8 +25,16 @@ export function runtimeCatalogFilters (input) {
 }
 
 export function runtimeCatalogReadParams ({ id, page, pagesize, ...params }) {
-  if (id) return { purpose: 'catalog', id, page, pagesize }
+  if (id) return { purpose: 'catalog', id }
   const { history, ...filters } = runtimeCatalogFilters(params)
   if (history === 'deleted') filters.state = 'DELETED'
   return { purpose: 'catalog', page, pagesize, ...filters }
+}
+
+export function runtimeCatalogListQuery (query) {
+  const result = runtimeCatalogFilters(query)
+  for (const field of ['page', 'pagesize']) {
+    if (typeof query[field] === 'string' && /^[1-9]\d*$/.test(query[field])) result[field] = query[field]
+  }
+  return result
 }
