@@ -55,7 +55,7 @@
     :message="$t(l2Network.configDrive ? 'message.l2.network.configdrive' : 'message.l2.network.basic')" />
   <a-list
     class="resource-details-list"
-    :class="{ 'template-details-list': ['template', 'iso'].includes($route.meta.name), 's2s-gateway-details': $route.meta.name === 's2svpn', 'vm-details-list': kmsRoute($route) || ['vm', 'vnfapp', 'publicip', 's2svpn', 'acllist', 'event', 'vpnuser', 'project', 'guestvlans', 'ipv4subnets', 'dnszone', 'dnsserver', 'zone', 'physicalnetwork', 'host', 'cluster', 'ldapsetting', 'oauthsetting', 'storagepool', 'imagestore'].includes($route.meta.name) }"
+    :class="{ 'template-details-list': ['template', 'iso'].includes($route.meta.name), 's2s-gateway-details': $route.meta.name === 's2svpn', 'vm-details-list': kmsRoute($route) || ['vm', 'vnfapp', 'publicip', 's2svpn', 'acllist', 'event', 'vpnuser', 'project', 'guestvlans', 'ipv4subnets', 'dnszone', 'dnsserver', 'zone', 'physicalnetwork', 'host', 'cluster', 'ldapsetting', 'oauthsetting', 'storagepool', 'imagestore', 'secondarystorageselector'].includes($route.meta.name) }"
     size="small"
     :dataSource="(fetchDetails() || []).concat(Object.keys(allocationDetails))">
     <template #renderItem="{item}">
@@ -181,6 +181,11 @@
           <div v-else-if="['vm', 'vnfapp'].includes($route.meta.name) && item === 'deleteprotection'">
             <a-tag :color="dataResource.deleteprotection === true ? 'warning' : dataResource.deleteprotection === false ? 'success' : 'default'">{{ $t('label.vm.protection.' + (resourceReadFailed() ? 'failed' : dataResource.deleteprotection === true ? 'protected' : dataResource.deleteprotection === false ? 'unprotected' : 'unknown')) }}</a-tag>
             <div>{{ $t('message.vm.delete.edit') }}</div>
+          </div>
+          <div v-else-if="$route.meta.name === 'extension' && ['pathready', 'isuserdefined', 'orchestratorrequirespreparevm'].includes(item)">{{ $t(dataResource[item] ? 'label.yes' : 'label.no') }}</div>
+          <div v-else-if="$route.meta.name === 'extension' && ['path', 'id'].includes(item)" class="extension-long-value">
+            <span>{{ dataResource[item] }}</span>
+            <tooltip-button :tooltip="$t('label.copy')" icon="copy-outlined" size="small" :copyResource="dataResource[item]" @copy-success="$message.success($t('label.copied.clipboard'))" />
           </div>
           <a-tag v-else-if="$route.meta.name === 'acllist' && item === 'fordisplay'">{{ $t(aclDisplayLabel(dataResource.fordisplay)) }}</a-tag>
           <div v-else-if="['acllist', 'ldapsetting'].includes($route.meta.name) && item === 'id'" :class="{ 'acl-details-id': $route.meta.name === 'acllist' }">
@@ -1067,4 +1072,9 @@ export default {
 
 <style scoped>
 .kms-metadata { min-width: 0; overflow-wrap: anywhere; }
+</style>
+
+<style scoped>
+.extension-long-value { display: flex; align-items: flex-start; gap: 8px; }
+.extension-long-value span { min-width: 0; overflow-wrap: anywhere; }
 </style>

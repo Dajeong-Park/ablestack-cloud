@@ -201,6 +201,7 @@
           <router-link v-else-if="$route.meta?.name === 'account' && !resourcePath && record.id" :title="text" :to="accountDetailLocation($route, record, $store.getters, $store.state?.user?.token)">{{ text }}</router-link>
           <router-link v-else-if="$route.meta?.name === 'role' && !resourcePath && record.id" :title="text" :to="roleDetailLocation($route, record, $store.getters, $store.state?.user?.token)">{{ text }}</router-link>
           <router-link v-else-if="kmsListRoute($route) && !resourcePath && record.id" :to="kmsDetailLocation($route, record, $store.getters, $store.state?.user?.token)">{{ text }}</router-link>
+          <router-link v-else-if="$route.path === '/extension' && !resourcePath && record.id" :to="{ path: '/extension/' + record.id, query: extensionListQuery($route.query) }">{{ text }}</router-link>
           <span v-else-if="$route.path === '/imagestore' && !resourcePath && record.id">
             <router-link :to="{ path: '/imagestore/' + record.id, query: secondaryStorageListQuery($route.query) }">{{ text }}</router-link>
             <router-link v-if="record.hasannotations" :aria-label="$t('label.comments')" :to="{ path: '/imagestore/' + record.id, query: { ...secondaryStorageListQuery($route.query), tab: 'comments' } }"><message-filled /></router-link>
@@ -1355,6 +1356,7 @@ import Ipv4SubnetResourceLink from '@/components/widgets/Ipv4SubnetResourceLink'
 import { dnsServerListQuery } from '@/utils/dnsServer'
 import { hostStatusColor, hostStatusLabel } from '@/utils/hostPresentation'
 import { zoneFeatureLabel, zoneFeatureState, zoneListQuery, zoneMetricText } from '@/utils/zone'
+import { extensionListQuery } from '@/utils/extension'
 import { clusterListQuery, clusterStateLabel } from '@/utils/clusterSearch'
 import { primaryStorageListQuery } from '@/utils/primaryStorageSearch'
 import { secondaryStorageListQuery } from '@/utils/secondaryStorageSearch'
@@ -1398,6 +1400,7 @@ import KeyboardTooltip from '@/components/widgets/KeyboardTooltip'
 import CloneFlattenControl from '@/components/widgets/CloneFlattenControl'
 import { getFastClonePhase, getFastClonePhaseLabel, getFastClonePhaseColor } from '@/utils/fastClone'
 import ResourceContextMenu from '@/components/view/ResourceContextMenu'
+import QuickView from '@/components/view/QuickView'
 import ResourceIcon from '@/components/view/ResourceIcon'
 import CopyLabel from '@/components/widgets/CopyLabel'
 import { cniDetailLink } from '@/utils/cniDeletion'
@@ -1463,6 +1466,7 @@ export default {
     Status,
     CloneFlattenControl,
     ResourceContextMenu,
+    QuickView,
     CopyLabel,
     GuestNetworkSummary,
     TooltipButton,
@@ -1470,6 +1474,16 @@ export default {
     ResourceLabel,
     FileTextOutlined
   },
+  emits: [
+    'disable-gpu-device',
+    'edit-tariff-action',
+    'enable-gpu-device',
+    'refresh',
+    'selection-change',
+    'table-change',
+    'update-selected-columns',
+    'view-usage-record'
+  ],
   props: {
     tableScroll: { type: Object, default: null },
     kmsTable: { type: Boolean, default: false },
@@ -1615,6 +1629,7 @@ export default {
       if (this.$route.meta?.name === 'oauthsetting') return this.$t('label.oauth.configuration')
       if (this.isProjectMainList) return this.$t('label.projects')
       if (this.$route.path === '/imagestore' && !this.resourcePath) return this.$t('label.secondary.storage')
+      if (this.$route.meta?.name === 'secondarystorageselector' && !this.$route.params?.id) return this.$t('label.secondary.storage.selector')
       if (this.$route.meta?.name === 'guestvlans' && !this.$route.params?.id) return this.$t('label.guest.vlan')
       if (this.kmsTable) return this.$t(this.resourcePath === '/volume' ? 'label.volumes' : this.resourcePath === '/kmskey' ? 'label.kms.keys' : this.$route.meta.title)
       if (this.isKubernetesIsoMainList) return this.$t('label.kubernetes.isos')
@@ -1722,6 +1737,7 @@ export default {
     zoneListQuery,
     hostListQuery,
     clusterListQuery,
+    extensionListQuery,
     primaryStorageListQuery,
     secondaryStorageListQuery,
     clusterStateLabel,
