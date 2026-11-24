@@ -247,7 +247,11 @@ export default {
       permission: ['listStorageServiceRuntimeBundles'],
       show: () => store.getters.userInfo.roletype === 'Admin',
       columns: ['name', 'state', 'validationstatus', 'profileid', 'referencecount', 'signingkeyid'],
-      details: ['version', 'id', 'state', 'validationstatus', 'revision', 'runtimeabiversion', 'desiredstateschemaversion', 'serviceimpact', 'sha256', 'manifestsha256', 'signingkeyid', 'artifacturl', 'manifesturl', 'signatureurl', 'created'],
+      details: [
+        'version', 'id', 'state', 'validationstatus', 'revision', 'runtimeabiversion', 'desiredstateschemaversion',
+        'serviceimpact', 'artifactsize', 'compatibility', 'eligibilityreason', 'sha256', 'manifestsha256',
+        'signingkeyid', 'artifacturl', 'manifesturl', 'signatureurl', 'created'
+      ],
       searchFilters: ['keyword', 'version', 'state', 'validationstatus', 'history'],
       customParamHandler: runtimeCatalogReadParams,
       tabs: [

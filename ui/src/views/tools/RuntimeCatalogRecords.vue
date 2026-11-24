@@ -38,9 +38,14 @@
     <a-pagination v-if="total > 0" :current="page" :page-size="pagesize" :total="total" :disabled="busy" show-size-changer @change="changePage" />
     <MoldDialog class="sharedfs-standard-dialog" v-if="detail" :visible="true" :title="$t('label.details')" size="lg" @cancel="detail = null">
       <a-descriptions bordered size="small" :column="1">
-        <a-descriptions-item v-for="field in ['requestid','state','phase','compatibility','errorcode','errormessage','reason','created','completed']" :key="field" :label="$t('label.' + field)">{{ detail[field] || '-' }}</a-descriptions-item>
+        <a-descriptions-item v-for="field in detailFields" :key="field" :label="$t(detailLabel(field))">
+          {{ detailValues[field] ?? '—' }}
+        </a-descriptions-item>
       </a-descriptions>
-      <pre>{{ pretty(detail.detailsjson) }}</pre>
+      <details v-if="detail.detailsjson">
+        <summary>{{ $t('label.runtime.catalog.diagnostics') }}</summary>
+        <pre>{{ pretty(detail.detailsjson) }}</pre>
+      </details>
     </MoldDialog>
   </div>
 </template>
@@ -68,6 +73,22 @@ export default {
   data () { return { rows: [], total: 0, page: 1, pagesize: 10, busy: false, hasSuccessfulRead: false, error: false, epoch: 0, detail: null } },
   computed: {
     scope () { return this.resource.id + ':' + this.tab },
+    detailFields () {
+      return this.tab === 'runtime.events'
+        ? ['requestid', 'actoruserid', 'action', 'fromstate', 'tostate', 'fromrevision', 'revision', 'errorcode', 'reason', 'created']
+        : ['requestid', 'state', 'phase', 'compatibility', 'observedrevision', 'errorcode', 'errormessage', 'created', 'completed']
+    },
+    detailValues () {
+      if (!this.detail) return {}
+      if (this.tab !== 'runtime.events') return { ...this.detail, observedrevision: this.detail.revision }
+      const transition = this.parseDetails(this.detail.detailsjson)
+      return {
+        ...this.detail,
+        fromstate: transition?.fromState,
+        tostate: transition?.toState ?? this.detail.state,
+        fromrevision: transition?.fromRevision
+      }
+    },
     columns () {
       const names = this.tab === 'runtime.usages' ? ['type', 'target', 'state', 'created'] : this.tab === 'runtime.events' ? ['created', 'action', 'state', 'reason', 'revision', 'view'] : ['created', 'state', 'compatibility', 'errorcode', 'view']
       return names.map(key => ({ key, dataIndex: key, title: this.$t('label.' + (key === 'target' ? 'resource' : key === 'view' ? 'details' : key)), width: key === 'target' || key === 'reason' ? 280 : 150 }))
@@ -88,7 +109,17 @@ export default {
   created () { this.load() },
   beforeUnmount () { this.epoch++ },
   methods: {
-    pretty (value) { try { return JSON.stringify(JSON.parse(value || '{}'), null, 2) } catch (_) { return value } },
+    parseDetails (value) {
+      try { return JSON.parse(value) } catch { return null }
+    },
+    pretty (value) {
+      const parsed = this.parseDetails(value)
+      return parsed === null ? value : JSON.stringify(parsed, null, 2)
+    },
+    detailLabel (field) {
+      const catalogueFields = ['actoruserid', 'fromstate', 'tostate', 'fromrevision', 'observedrevision', 'phase']
+      return catalogueFields.includes(field) ? 'label.runtime.catalog.' + field : 'label.' + field
+    },
     changePage (page, size) {
       if (this.page === page && this.pagesize === size) return
       this.detail = null
@@ -136,4 +167,6 @@ export default {
 .ant-alert, .ant-descriptions, .ant-pagination { margin-bottom:16px; }
 .ant-pagination { margin-top:16px; }
 pre { white-space:pre-wrap; overflow-wrap:anywhere; color:var(--ui-text-primary); background:var(--ui-bg-surface); padding:16px; }
+summary { cursor: pointer; }
+:deep(.ant-descriptions-item-content) { overflow-wrap: anywhere; word-break: break-word; }
 </style>

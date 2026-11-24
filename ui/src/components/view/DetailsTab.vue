@@ -79,6 +79,13 @@
           <div><a-tag :color="hostStatusColor(dataResource[item])">{{ $t(hostStatusLabel(dataResource[item])) }}</a-tag></div>
         </div>
       </a-list-item>
+      <a-list-item v-else-if="$route.meta.name === 'runtimebundle' && dataResource.id && ['artifactsize', 'compatibility', 'eligibilityreason'].includes(item)">
+        <div class="runtime-catalog-detail-field">
+          <strong>{{ $t(item === 'artifactsize' ? 'label.artifactsize' : 'label.runtime.catalog.' + item) }}</strong>
+          <div>{{ dataResource[item] ?? '—' }}</div>
+          <small v-if="item === 'compatibility'">{{ $t('message.runtime.catalog.profile.compatibility') }}</small>
+        </div>
+      </a-list-item>
       <a-list-item v-else-if="$route.meta.name === 'cluster' && ['allocationstate', 'managedstate', 'clustertype', 'haenable'].includes(item)">
         <div>
           <strong>{{ $t('label.' + item) }}</strong>
