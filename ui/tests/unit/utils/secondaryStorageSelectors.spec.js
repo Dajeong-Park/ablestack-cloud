@@ -25,9 +25,17 @@ const store = 'f0000000-0000-4000-8000-000000019311'
 
 beforeEach(() => getAPI.mockReset())
 
-test('decodes a fixed destination without interpreting a conditional rule', () => {
-  expect(fixedSelectorRule(store)).toBe(JSON.stringify(store))
+test('writes the documented filter form and recognizes legacy fixed rules', () => {
+  expect(fixedSelectorRule(store)).toBe(`function findStorageWithSpecificId(pool) {
+    return pool.id === '${store}';
+}
+
+secondaryStorages.filter(findStorageWithSpecificId)[0].id`)
+  expect(fixedSelectorId(JSON.stringify(store))).toBe(store)
+  expect(fixedSelectorId(fixedSelectorRule(store).replaceAll('\n', '\r\n') + ';')).toBe(store)
+  expect(fixedSelectorId(fixedSelectorRule(store) + '\nif (true) "other";')).toBe('')
   expect(fixedSelectorId(fixedSelectorRule(store))).toBe(store)
+  expect(fixedSelectorId(fixedSelectorRule(store).replace('    return', '   return'))).toBe(store)
   expect(fixedSelectorId("'" + store + "';")).toBe(store)
   expect(fixedSelectorId("isKvm ? '" + store + "' : null")).toBe('')
   expect(fixedSelectorRule('not-a-storage-id')).toBe('')

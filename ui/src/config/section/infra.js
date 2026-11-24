@@ -57,6 +57,7 @@ export default {
       name: selectorPage,
       title: 'label.secondary.storage.selector',
       icon: 'aim-outlined',
+      docHelp: 'https://docs.cloudstack.apache.org/en/latest/adminguide/storage.html#direct-resources-to-a-specific-secondary-storage',
       hidden: true,
       permission: [selectorApi.list],
       details: ['name', 'id', 'zonename', 'type', 'description', 'state', 'created', 'removed'],

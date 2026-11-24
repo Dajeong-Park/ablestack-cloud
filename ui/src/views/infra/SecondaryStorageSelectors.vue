@@ -18,7 +18,7 @@
 <template>
   <div class="vm-acl-standard themed-list-toolbar secondary-storage-selectors">
     <div class="content-breadcrumb">
-      <a-card class="breadcrumb-card">
+      <a-card class="breadcrumb-card" style="z-index: 10">
         <a-row>
           <a-col :span="mobile ? 24 : 12" class="vm-acl-breadcrumb-layout">
             <breadcrumb :trail="breadcrumbTrail" standard-layout>
@@ -78,34 +78,35 @@
                 <template #icon><plus-outlined /></template>
                 {{ $t('label.secondary.selector.add') }}
               </a-button>
-              <div class="vm-acl-toolbar-search selector-search">
+              <div class="vm-acl-toolbar-search filter-group">
                 <a-input-search
                   v-model:value="keywordDraft"
                   class="input-search"
                   :aria-label="$t('label.search')"
                   :placeholder="$t('label.search')"
                   allow-clear
-                  @search="setFilter({ keyword: $event, page: '1' })" />
-                <a-popover v-model:visible="filtersVisible" trigger="click" placement="bottomRight">
-                  <template #content>
-                    <a-form class="selector-filters" layout="vertical" @submit.prevent="applyFilters">
-                      <a-form-item html-for="secondary-selector-list-type" :label="$t('label.type')">
-                        <a-select id="secondary-selector-list-type" v-model:value="typeDraft" :options="typeOptions" />
-                      </a-form-item>
-                      <a-checkbox v-model:checked="removedDraft">{{ $t('label.secondary.selector.show.removed') }}</a-checkbox>
-                      <div class="selector-filter-actions">
-                        <a-button @click="resetFilters">{{ $t('label.reset') }}</a-button>
-                        <a-button type="primary" html-type="submit">{{ $t('label.apply') }}</a-button>
-                      </div>
-                    </a-form>
+                  @search="setFilter({ keyword: $event, page: '1' })">
+                  <template #addonBefore>
+                    <a-popover v-model:visible="filtersVisible" trigger="click" placement="bottomRight">
+                      <template #content>
+                        <a-form class="selector-filters" layout="vertical" @submit.prevent="applyFilters">
+                          <a-form-item html-for="secondary-selector-list-type" :label="$t('label.type')">
+                            <a-select id="secondary-selector-list-type" v-model:value="typeDraft" :options="typeOptions" />
+                          </a-form-item>
+                          <a-checkbox v-model:checked="removedDraft">{{ $t('label.secondary.selector.show.removed') }}</a-checkbox>
+                          <div class="selector-filter-actions">
+                            <a-button @click="resetFilters">{{ $t('label.reset') }}</a-button>
+                            <a-button type="primary" html-type="submit">{{ $t('label.apply') }}</a-button>
+                          </div>
+                        </a-form>
+                      </template>
+                      <a-button class="filter-button" size="small" :aria-label="$t('label.advanced.search')">
+                        <filter-two-tone v-if="selectorType || showRemoved" />
+                        <filter-outlined v-else />
+                      </a-button>
+                    </a-popover>
                   </template>
-                  <a-button class="filter-button" :aria-label="$t('label.advanced.search')">
-                    <template #icon>
-                      <filter-two-tone v-if="selectorType || showRemoved" />
-                      <filter-outlined v-else />
-                    </template>
-                  </a-button>
-                </a-popover>
+                </a-input-search>
               </div>
             </template>
           </a-col>
@@ -257,14 +258,15 @@ export default {
     listLocation () { return { name: selectorPage, query: this.query, state: this.originState } },
     breadcrumbTrail () {
       const items = [
-        { name: 'infra', path: '/infra', meta: { title: 'label.infrastructure', icon: 'bank-outlined' } },
+        this.$route.matched[0],
+        { name: 'infra', path: '/infra', meta: { title: 'label.infrastructure' } },
         { name: 'imagestore', location: this.originLocation, meta: { title: 'label.secondary.storage' } }
       ]
       if (this.isDetail) {
         items.push({ name: selectorPage, location: this.listLocation, meta: { title: 'label.secondary.selector.rules' } })
-        items.push({ current: true, text: this.activeRule?.name || this.ruleId, meta: { title: 'label.details' } })
+        items.push({ current: true, text: this.activeRule?.name || this.ruleId, meta: { title: 'label.details', docHelp: this.$route.meta.docHelp } })
       } else {
-        items.push({ current: true, meta: { title: 'label.secondary.selector.rules' } })
+        items.push({ current: true, meta: { title: 'label.secondary.selector.rules', docHelp: this.$route.meta.docHelp } })
       }
       return items
     },
@@ -551,24 +553,14 @@ export default {
 </script>
 
 <style scoped src="@/style/components/view/list-toolbar.css" />
+<style scoped src="@/style/components/view/vm-acl-standard.css" />
+<style scoped lang="less" src="@/style/components/view/search-view.less" />
 
 <style scoped>
 .secondary-storage-selectors { min-width: 0; }
 .secondary-storage-selectors .breadcrumb-card { margin-bottom: 16px; }
 .secondary-storage-selectors .ant-alert { margin-bottom: 12px; }
 .secondary-storage-selectors .selector-zone { min-width: 140px; }
-.secondary-storage-selectors .vm-acl-breadcrumb-layout,
-.secondary-storage-selectors .autogen-toolbar-actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
-}
-.secondary-storage-selectors .autogen-toolbar-actions { justify-content: flex-end; }
-.selector-search { display: flex; align-items: center; gap: 6px; min-width: 0; }
 .selector-filters { min-width: 180px; }
 .selector-filter-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 12px; }
-@media (max-width: 576px) {
-  .secondary-storage-selectors .autogen-toolbar-actions { justify-content: flex-start; margin-top: 12px; }
-}
 </style>

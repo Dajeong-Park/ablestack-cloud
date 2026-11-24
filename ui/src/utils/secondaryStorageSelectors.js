@@ -47,12 +47,22 @@ export function selectorListQuery (query = {}) {
 }
 
 export function fixedSelectorId (rule) {
-  const match = typeof rule === 'string' ? quotedLiteral.exec(rule.trim()) : null
-  return isSelectorUuid(match?.[2]) ? match[2].toLowerCase() : ''
+  if (typeof rule !== 'string') return ''
+  const source = rule.trim().replace(/\r\n/g, '\n')
+  const literal = quotedLiteral.exec(source)?.[2]
+  if (isSelectorUuid(literal)) return literal.toLowerCase()
+  const id = /return pool\.id === '([^']+)';/.exec(source)?.[1]
+  const omitIndent = script => script.replace(/^[ \t]+/gm, '')
+  return isSelectorUuid(id) && omitIndent(source.replace(/;$/, '')) === omitIndent(fixedSelectorRule(id)) ? id.toLowerCase() : ''
 }
 
 export function fixedSelectorRule (id) {
-  return isSelectorUuid(id) ? JSON.stringify(id) : ''
+  if (!isSelectorUuid(id)) return ''
+  return `function findStorageWithSpecificId(pool) {
+    return pool.id === '${id}';
+}
+
+secondaryStorages.filter(findStorageWithSpecificId)[0].id`
 }
 
 export async function readSecondaryStorageSelectors (zoneid, { type, showRemoved = false } = {}) {
