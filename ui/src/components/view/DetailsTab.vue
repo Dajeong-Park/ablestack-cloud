@@ -189,6 +189,11 @@
             <a-tag :color="dataResource.deleteprotection === true ? 'warning' : dataResource.deleteprotection === false ? 'success' : 'default'">{{ $t('label.vm.protection.' + (resourceReadFailed() ? 'failed' : dataResource.deleteprotection === true ? 'protected' : dataResource.deleteprotection === false ? 'unprotected' : 'unknown')) }}</a-tag>
             <div>{{ $t('message.vm.delete.edit') }}</div>
           </div>
+          <div v-else-if="$route.meta.name === 'extension' && ['pathready', 'isuserdefined', 'orchestratorrequirespreparevm'].includes(item)">{{ $t(dataResource[item] ? 'label.yes' : 'label.no') }}</div>
+          <div v-else-if="$route.meta.name === 'extension' && ['path', 'id'].includes(item)" class="extension-long-value">
+            <span>{{ dataResource[item] }}</span>
+            <tooltip-button :tooltip="$t('label.copy')" icon="copy-outlined" size="small" :copyResource="dataResource[item]" @copy-success="$message.success($t('label.copied.clipboard'))" />
+          </div>
           <a-tag v-else-if="$route.meta.name === 'acllist' && item === 'fordisplay'">{{ $t(aclDisplayLabel(dataResource.fordisplay)) }}</a-tag>
           <div v-else-if="['acllist', 'ldapsetting'].includes($route.meta.name) && item === 'id'" :class="{ 'acl-details-id': $route.meta.name === 'acllist' }">
             <span>{{ dataResource.id }}</span>
@@ -1076,4 +1081,9 @@ export default {
 
 <style scoped>
 .kms-metadata { min-width: 0; overflow-wrap: anywhere; }
+</style>
+
+<style scoped>
+.extension-long-value { display: flex; align-items: flex-start; gap: 8px; }
+.extension-long-value span { min-width: 0; overflow-wrap: anywhere; }
 </style>

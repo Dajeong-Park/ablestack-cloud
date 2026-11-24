@@ -23,7 +23,7 @@
         :to="breadcrumbLocation(item)"
       >
         <render-icon v-if="index == 0" :icon="item.meta.icon" style="font-size: 16px" @click="resetToMainView" />
-        <span v-if="item.meta.title">{{ item.vpcParent ? $t('label.vpc') + ' · ' + (resource.vpcname || resource.vpcid) : $t(item.meta.title) }}</span>
+        <span v-if="item.text || item.meta.title">{{ item.text || (item.vpcParent ? $t('label.vpc') + ' · ' + (resource.vpcname || resource.vpcid) : $t(item.meta.title)) }}</span>
       </router-link>
       <router-link
         v-else-if="tungstenPaths.includes(item.path)"
@@ -77,6 +77,7 @@ import { oauthListLocation } from '@/utils/oauthConfiguration'
 import { ldapConfigRoute, ldapEndpointLabel, ldapListQuery } from '@/utils/ldapConfiguration'
 import { dnsServerListQuery } from '@/utils/dnsServer'
 import { physicalNetworkZoneLocation, zoneListQuery } from '@/utils/zone'
+import { extensionListQuery, extensionActionListQuery } from '@/utils/extension'
 import { clusterListQuery } from '@/utils/clusterSearch'
 import { primaryStorageListQuery } from '@/utils/primaryStorageSearch'
 import { secondaryStorageListQuery } from '@/utils/secondaryStorageSearch'
@@ -129,7 +130,22 @@ export default {
     }
   },
   computed: {
-    resolvedTrail () { return this.trail || this.breadList },
+    resolvedTrail () {
+      const trail = this.trail || this.breadList
+      if (this.$route.meta?.name !== 'customaction' || !this.resource.extensionid || !trail.length || !('listExtensions' in this.$store.getters.apis)) return trail
+      const list = extensionListQuery(this.$route.query)
+      return [
+        trail[0],
+        { name: 'extension', path: '/extension', location: { path: '/extension', query: list }, meta: { title: 'label.extensions' } },
+        {
+          name: 'extension-parent',
+          text: this.resource.extensionname || this.resource.extensionid,
+          location: { path: '/extension/' + this.resource.extensionid, query: { ...list, ...extensionActionListQuery(this.$route.query), tab: 'customactions' } },
+          meta: {}
+        },
+        trail.at(-1)
+      ]
+    },
     resourceTitle () {
       if (s2sGatewayRoute(this.$route)) return gatewayName(this.resource)
       if (isVmIdentityRoute(this.$route)) return vmDisplayName(this.resource)
@@ -171,6 +187,7 @@ export default {
     breadcrumbLocation (item) {
       if (item.location) return item.location
       if (item.path === '/runtimebundle' && this.$route.params?.id) return { path: item.path, query: runtimeCatalogListQuery(this.$route.query) }
+      if (item.path === '/extension' && this.$route.params?.id) return { path: item.path, query: extensionListQuery(this.$route.query) }
       if (item.path === '/oauthsetting' && this.$route.params?.id) return oauthListLocation(this.$route)
       if (item.path === '/ldapsetting' && this.$route.params?.id) return { path: item.path, query: ldapListQuery(this.$route.query) }
       if (item.path === '/account' && isAccountDetailRoute(this.$route)) {

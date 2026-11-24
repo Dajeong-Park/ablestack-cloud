@@ -1164,6 +1164,10 @@
               {{ resource.leaseexpiryaction }}
             </div>
           </div>
+          <div v-if="$route.meta?.name === 'extension'" class="resource-detail-item">
+            <strong>{{ $t('label.pathready') }}</strong>
+            <div><a-tag :color="resource.pathready ? 'success' : 'default'">{{ $t(resource.pathready ? 'label.yes' : 'label.no') }}</a-tag></div>
+          </div>
           <div class="account-center-tags" :class="{ 'account-related-actions': $route.meta.name === 'account' }" v-if="$route.meta.related">
             <a-divider/>
             <div v-for="item in $route.meta.related" :key="item.path">
