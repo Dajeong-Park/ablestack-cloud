@@ -1117,6 +1117,7 @@ public class ExtensionsManagerImplTest {
         when(cmd.getResourceId()).thenReturn(UUID.randomUUID().toString());
         when(cmd.getExtensionId()).thenReturn(1L);
         ExtensionVO extension = mock(ExtensionVO.class);
+        when(extension.getType()).thenReturn(Extension.Type.Orchestrator);
         ClusterVO clusterVO = mock(ClusterVO.class);
         when(clusterVO.getHypervisorType()).thenReturn(Hypervisor.HypervisorType.External);
         when(clusterDao.findByUuid(anyString())).thenReturn(clusterVO);
