@@ -16,7 +16,7 @@
 // under the License.
 
 <template>
-  <div class="list-view-table-wrapper" :class="{ 'kms-table': kmsTable, 'autoscale-list': $route.name === 'autoscalevmgroup', 'snapshot-list-table': $route.name === 'snapshot', 'snapshot-policy-list-table': $route.name === 'snapshotpolicy', 'kubernetes-iso-list-table': isKubernetesIsoMainList }" :tabindex="scrollRegionLabel ? 0 : undefined" :role="scrollRegionLabel ? 'region' : undefined" :aria-label="scrollRegionLabel" @keydown="scrollWideTable" @contextmenu="handleGlobalContextMenu">
+  <div class="list-view-table-wrapper" :class="{ 'kms-table': kmsTable, 'autoscale-list': $route.name === 'autoscalevmgroup', 'snapshot-list-table': $route.name === 'snapshot', 'snapshot-policy-list-table': $route.name === 'snapshotpolicy', 'kubernetes-iso-list-table': isKubernetesIsoMainList, 'usage-records-list-table': isUsageList }" :tabindex="scrollRegionLabel ? 0 : undefined" :role="scrollRegionLabel ? 'region' : undefined" :aria-label="scrollRegionLabel" @keydown="scrollWideTable" @contextmenu="handleGlobalContextMenu">
     <a-table
       size="middle"
       :loading="loading"
@@ -56,7 +56,7 @@
         </a-menu>
       </div>
     </template>
-    <template v-if="isIsoMainList || isKubernetesIsoMainList || kmsTable" #headerCell="{ column }">
+    <template v-if="isIsoMainList || isKubernetesIsoMainList || kmsTable || isUsageList" #headerCell="{ column }">
       <a-popover v-if="isKubernetesIsoMainList && column.key === 'filtercolumn'" :visible="columnPickerVisible" @update:visible="columnPickerVisibility" trigger="click" placement="bottomRight">
         <template #content>
           <div ref="columnPickerContent" @vue:mounted="columnPickerContentMounted" class="kubernetes-iso-column-picker" role="group" :aria-label="$t('label.select.columns')" @keydown.esc.stop.prevent="closeColumnPicker">
@@ -66,7 +66,7 @@
         <a-button ref="columnPickerTrigger" type="text" size="small" class="kubernetes-iso-columns-trigger" :aria-expanded="columnPickerVisible" :aria-label="$t('label.select.columns')" @keydown.esc.stop.prevent="closeColumnPicker"><filter-outlined /></a-button>
       </a-popover>
       <keyboard-tooltip v-else-if="isKubernetesIsoMainList && typeof column.title === 'string' && column.title" :title="column.title"><span tabindex="0" class="kubernetes-iso-header-text">{{ column.title }}</span></keyboard-tooltip>
-      <TableOverflowText v-else-if="kmsTable && column.key !== 'filtercolumn'" :text="column.title" />
+      <TableOverflowText v-else-if="isUsageList || (kmsTable && column.key !== 'filtercolumn')" :text="column.title" />
       <a-tooltip v-else-if="column.sorter" :title="$t('message.iso.search.sort.page')" :trigger="['hover', 'focus']"><span tabindex="0">{{ column.title }}</span></a-tooltip>
       <span v-else>{{ column.title }}</span>
     </template>
@@ -2617,7 +2617,7 @@ export default {
 .kms-table { min-width: 0; max-width: 100%; }
 .kms-table:focus-visible { outline: 2px solid var(--ui-focus); outline-offset: 2px; }
 .kms-table :deep(.ant-table-cell) { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.kms-table :deep(.ant-table-column-title) { min-width: 0; }
+.kms-table :deep(.ant-table-column-title), .usage-records-list-table :deep(.ant-table-column-title) { min-width: 0; }
 .kms-table :deep(a.table-overflow-text) { color: var(--ui-link); }
 .kubernetes-iso-column-picker :deep(.ant-checkbox-wrapper) { margin-left:0; }
 .kubernetes-iso-header-text { display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
