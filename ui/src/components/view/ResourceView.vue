@@ -88,8 +88,8 @@
                   :resource="resource"
                   :resourceType="tab.resourceType"
                   :loading="loading && !(quietRefresh && tab.name === 'details' && resource.id && resource.id === $route.params?.id)"
-                  :tab="$route.meta?.name === 's2svpnconn' ? tab.name : activeTab"
-                  v-bind="$route.meta?.name === 'kubernetesiso' && ['details','zones'].includes(tab.name) ? { observation: kubernetesIsoObservation } : {}"
+                  :tab="['runtimebundle', 's2svpnconn'].includes($route.meta?.name) ? tab.name : activeTab"
+                  v-bind="tabContextProps(tab)"
                   @show-zones="$route.meta?.name === 'kubernetesiso' && onTabChange('zones')"
                   @refresh-availability="refreshKubernetesIsoAvailability"
                   @change-resource="$emit('change-resource', $event)"
@@ -284,6 +284,15 @@ export default {
       }
     },
     tabInstanceKey (tab) { if (this.dnsZoneTabScope) return this.dnsZoneTabScope + ':' + tab.name; if (this.$route.meta?.name === 's2svpn') return this.s2sTabScope + ':' + tab.name; if (this.$route.meta?.name === 'kubernetesiso') return this.kubernetesIsoContext + ':' + tab.name; return this.isNetworkTabs ? this.networkTabScope + ':' + tab.name : tab.name },
+    tabContextProps (tab) {
+      if (this.$route.meta?.name === 'kubernetesiso' && ['details', 'zones'].includes(tab.name)) {
+        return { observation: this.kubernetesIsoObservation }
+      }
+      if (this.$route.meta?.name === 'runtimebundle' && tab.name !== 'details') {
+        return { active: tab.name === this.activeTab && this.resource.id === this.$route.params?.id }
+      }
+      return {}
+    },
     onTabChange (key) {
       this.conditionalTabNotice = ''
       this.activeTab = key

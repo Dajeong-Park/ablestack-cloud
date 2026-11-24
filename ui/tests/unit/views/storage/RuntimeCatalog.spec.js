@@ -135,6 +135,30 @@ describe('runtime catalogue mounted components and real ApiResponseSerializer re
     expect(wrapper.vm.rows).toEqual([])
     expect(wrapper.text()).not.toContain('message.runtime.catalog.records.previous.result')
   })
+
+  it('waits for its own tab and ignores responses received after deactivation or bundle change', async () => {
+    let settle
+    getAPI.mockReturnValueOnce(new Promise(resolve => { settle = resolve }))
+    wrapper = shallowMount(Records, {
+      props: { resource: resource(), tab: 'runtime.validations', active: false },
+      global: { mocks: { $t: key => key } }
+    })
+    expect(getAPI).not.toHaveBeenCalled()
+
+    await wrapper.setProps({ active: true })
+    expect(getAPI).toHaveBeenCalledTimes(1)
+    await wrapper.setProps({ active: false, resource: { id: 'second-bundle' } })
+    settle(copy(wire.validations))
+    await flushPromises()
+    expect(wrapper.vm.rows).toEqual([])
+    expect(getAPI).toHaveBeenCalledTimes(1)
+
+    await wrapper.setProps({ active: true })
+    await flushPromises()
+    expect(getAPI).toHaveBeenCalledTimes(2)
+    expect(getAPI).toHaveBeenLastCalledWith('listStorageServiceRuntimeBundleValidations', { bundleid: 'second-bundle', page: 1, pagesize: 10 })
+    expect(wrapper.vm.rows[0].id).toBe('validation-uuid')
+  })
   it('Storage Service template summaries consume the same catalogue without mutation or invented target compatibility', async () => {
     getAPI.mockResolvedValue(copy(wire.bundles))
     wrapper = shallowMount(Summary, { props: { resource: { id: 'storage-template', templatetype: 'SHAREDFS' } }, global: { mocks: { $route: { path: '/template/storage-template', meta: { name: 'template' } }, $store: { getters: { userInfo: { roletype: 'Admin' }, apis: { listStorageServiceRuntimeBundles: {} } } }, $t: x => x, $notifyError: jest.fn() }, stubs: { RouterLink: true } } })

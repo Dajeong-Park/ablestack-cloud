@@ -2,13 +2,13 @@
 <template>
   <div class="runtime-catalog-records">
     <a-space class="catalog-toolbar" wrap>
-      <a-button :loading="busy" @click="load"><template #icon><ReloadOutlined /></template>{{ $t('label.refresh') }}</a-button>
+      <a-button :loading="busy" @click="load()"><template #icon><ReloadOutlined /></template>{{ $t('label.refresh') }}</a-button>
     </a-space>
     <a-alert v-if="error" type="error" show-icon :message="$t('message.runtime.catalog.records.load.failed')">
       <template #description>
         <a-space wrap>
           <span v-if="hasSuccessfulRead">{{ $t('message.runtime.catalog.records.previous.result') }}</span>
-          <a-button size="small" :loading="busy" @click="load">{{ $t('label.retry') }}</a-button>
+          <a-button size="small" :loading="busy" @click="load()">{{ $t('label.retry') }}</a-button>
         </a-space>
       </template>
     </a-alert>
@@ -35,7 +35,7 @@
         <template v-else-if="column.key === 'view'"><a-button size="small" @click="detail = record">{{ $t('label.details') }}</a-button></template>
       </template>
     </a-table>
-    <a-pagination v-if="total > 0" :current="page" :page-size="pagesize" :total="total" show-size-changer @change="changePage" @show-size-change="changePage" />
+    <a-pagination v-if="total > 0" :current="page" :page-size="pagesize" :total="total" :disabled="busy" show-size-changer @change="changePage" />
     <MoldDialog class="sharedfs-standard-dialog" v-if="detail" :visible="true" :title="$t('label.details')" size="lg" @cancel="detail = null">
       <a-descriptions bordered size="small" :column="1">
         <a-descriptions-item v-for="field in ['requestid','state','phase','compatibility','errorcode','errormessage','reason','created','completed']" :key="field" :label="$t('label.' + field)">{{ detail[field] || '-' }}</a-descriptions-item>
@@ -50,23 +50,50 @@ import SharedFSTable from '@/components/storage/SharedFSTable.vue'
 import { getAPI } from '@/api'
 import { ReloadOutlined } from '@ant-design/icons-vue'
 import MoldDialog from '@/components/view/MoldDialog'
+
+const recordApis = {
+  'runtime.validations': 'listStorageServiceRuntimeBundleValidations',
+  'runtime.usages': 'listStorageServiceRuntimeBundleUsages',
+  'runtime.events': 'listStorageServiceRuntimeBundleEvents'
+}
+
 export default {
   name: 'RuntimeCatalogRecords',
   components: { APagination: SharedFSTablePagination, ATable: SharedFSTable, MoldDialog, ReloadOutlined },
-  props: { resource: { type: Object, required: true }, tab: { type: String, required: true } },
+  props: {
+    resource: { type: Object, required: true },
+    tab: { type: String, required: true },
+    active: { type: Boolean, default: true }
+  },
   data () { return { rows: [], total: 0, page: 1, pagesize: 10, busy: false, hasSuccessfulRead: false, error: false, epoch: 0, detail: null } },
   computed: {
+    scope () { return this.resource.id + ':' + this.tab },
     columns () {
       const names = this.tab === 'runtime.usages' ? ['type', 'target', 'state', 'created'] : this.tab === 'runtime.events' ? ['created', 'action', 'state', 'reason', 'revision', 'view'] : ['created', 'state', 'compatibility', 'errorcode', 'view']
       return names.map(key => ({ key, dataIndex: key, title: this.$t('label.' + (key === 'target' ? 'resource' : key === 'view' ? 'details' : key)), width: key === 'target' || key === 'reason' ? 280 : 150 }))
     }
   },
-  watch: { 'resource.id': 'resetScope', tab: 'resetScope' },
+  watch: {
+    scope: 'resetScope',
+    active (active) {
+      if (active) {
+        if (!this.hasSuccessfulRead) this.load()
+      } else {
+        this.epoch++
+        this.busy = false
+        this.detail = null
+      }
+    }
+  },
   created () { this.load() },
   beforeUnmount () { this.epoch++ },
   methods: {
     pretty (value) { try { return JSON.stringify(JSON.parse(value || '{}'), null, 2) } catch (_) { return value } },
-    changePage (page, size) { this.page = page; this.pagesize = size; this.load() },
+    changePage (page, size) {
+      if (this.page === page && this.pagesize === size) return
+      this.detail = null
+      this.load(page, size)
+    },
     resetScope () {
       this.epoch++
       this.rows = []
@@ -76,21 +103,23 @@ export default {
       this.error = false
       this.busy = false
       this.page = 1
+      this.pagesize = 10
       this.load()
     },
-    async load () {
-      if (!this.resource.id || this.busy) return
+    async load (page = this.page, pagesize = this.pagesize) {
+      const api = recordApis[this.tab]
+      if (!this.active || !api || !this.resource.id || this.busy) return
       this.busy = true
-      const epoch = this.epoch
-      const suffix = { 'runtime.validations': 'Validations', 'runtime.usages': 'Usages', 'runtime.events': 'Events' }[this.tab]
-      const api = 'listStorageServiceRuntimeBundle' + suffix
+      const epoch = ++this.epoch
       try {
-        const response = await getAPI(api, { bundleid: this.resource.id, page: this.page, pagesize: this.pagesize })
+        const response = await getAPI(api, { bundleid: this.resource.id, page, pagesize })
         if (epoch !== this.epoch) return
         const data = response[api.toLowerCase() + 'response']
         if (!data) throw new Error('Missing runtime catalogue records')
         this.rows = data.storageserviceruntimecatalogrecord || []
         this.total = data.count || 0
+        this.page = page
+        this.pagesize = pagesize
         this.hasSuccessfulRead = true
         this.error = false
       } catch {
