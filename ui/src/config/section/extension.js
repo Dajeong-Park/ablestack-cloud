@@ -144,13 +144,8 @@ export default {
       message: 'message.action.delete.extension',
       dataView: true,
       popup: true,
-      args: ['id', 'cleanup'],
-      mapping: {
-        id: {
-          value: (record, params) => { return record.id }
-        },
-        cleanup: false
-      },
+      standardDialogSize: 'sm',
+      component: shallowRef(defineAsyncComponent(() => import('@/views/extension/DeleteExtension.vue'))),
       show: (record) => { return record.isuserdefined }
     }
   ]
