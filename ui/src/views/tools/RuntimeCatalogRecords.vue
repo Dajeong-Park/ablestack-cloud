@@ -27,12 +27,13 @@
       :scroll="{ x: 700 }"
       size="small">
       <template #bodyCell="{ column, record }">
-        <template v-if="column.key === 'state'"><a-tag>{{ record.state }}</a-tag></template>
+        <template v-if="column.key === 'state'"><a-tag><RuntimeCatalogValue :group="valueGroup('state')" :value="record.state" /></a-tag></template>
         <template v-else-if="column.key === 'target'">
           <router-link v-if="record.sharedfilesystemid" :to="'/sharedfs/' + record.sharedfilesystemid + '?tab=runtime'">{{ record.name }}</router-link>
           <router-link v-else-if="record.vmid" :to="'/vm/' + record.vmid">{{ record.name }}</router-link><span v-else>{{ record.name }}</span>
         </template>
         <template v-else-if="column.key === 'view'"><a-button size="small" @click="openRecord(record, $event)">{{ $t('label.details') }}</a-button></template>
+        <RuntimeCatalogValue v-else-if="valueGroup(column.key)" :group="valueGroup(column.key)" :value="record[column.key]" />
       </template>
     </a-table>
     <a-pagination v-if="total > 0" :current="page" :page-size="pagesize" :total="total" :disabled="busy" show-size-changer @change="changePage" />
@@ -47,7 +48,7 @@
       @cancel="closeRecord">
       <a-descriptions bordered size="small" :column="1">
         <a-descriptions-item v-for="field in detailFields" :key="field" :label="$t(detailLabel(field))">
-          {{ detailValues[field] ?? '—' }}
+          <RuntimeCatalogValue :group="valueGroup(field)" :value="detailValues[field]" :show-code="field === 'errorcode'" />
         </a-descriptions-item>
       </a-descriptions>
       <details v-if="detail.detailsjson">
@@ -63,6 +64,7 @@ import SharedFSTable from '@/components/storage/SharedFSTable.vue'
 import { getAPI } from '@/api'
 import { ReloadOutlined } from '@ant-design/icons-vue'
 import MoldDialog from '@/components/view/MoldDialog'
+import RuntimeCatalogValue from '@/components/view/RuntimeCatalogValue'
 
 const recordApis = {
   'runtime.validations': 'listStorageServiceRuntimeBundleValidations',
@@ -72,7 +74,7 @@ const recordApis = {
 
 export default {
   name: 'RuntimeCatalogRecords',
-  components: { APagination: SharedFSTablePagination, ATable: SharedFSTable, MoldDialog, ReloadOutlined },
+  components: { APagination: SharedFSTablePagination, ATable: SharedFSTable, MoldDialog, ReloadOutlined, RuntimeCatalogValue },
   props: {
     resource: { type: Object, required: true },
     tab: { type: String, required: true },
@@ -118,6 +120,15 @@ export default {
   created () { this.load() },
   beforeUnmount () { this.epoch++ },
   methods: {
+    valueGroup (field) {
+      if (field === 'state') {
+        if (this.tab === 'runtime.validations') return 'validationstatus'
+        if (this.tab === 'runtime.usages') return 'usagestate'
+        return 'state'
+      }
+      if (['fromstate', 'tostate'].includes(field)) return 'state'
+      return ['type', 'action', 'phase', 'compatibility', 'errorcode'].includes(field) ? field : ''
+    },
     openRecord (record, event) {
       this.detailTrigger = event.currentTarget
       this.detail = record

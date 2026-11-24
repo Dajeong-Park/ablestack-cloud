@@ -16,9 +16,11 @@
 // under the License.
 
 import { shallowMount, flushPromises } from '@vue/test-utils'
+import { createI18n } from 'vue-i18n'
 import Action from '@/views/tools/RuntimeCatalogAction.vue'
 import Records from '@/views/tools/RuntimeCatalogRecords.vue'
 import Summary from '@/views/tools/RuntimeBundleCatalogSummary.vue'
+import RuntimeCatalogValue from '@/components/view/RuntimeCatalogValue.vue'
 import { getAPI, postAPI } from '@/api'
 import wire from '../../../fixtures/storage-1447-catalog-wire.json'
 jest.mock('@/api', () => ({ getAPI: jest.fn(), postAPI: jest.fn() }))
@@ -199,5 +201,20 @@ describe('runtime catalogue mounted components and real ApiResponseSerializer re
     expect(getAPI).toHaveBeenLastCalledWith('listStorageServiceRuntimeBundles', { purpose: 'catalog', page: 1, pagesize: 10 })
     expect(wrapper.vm.rows[0].state).toBe('SUSPENDED')
     expect(postAPI).not.toHaveBeenCalled()
+  })
+
+  it('localizes known diagnostic codes and preserves their wire value and unknown codes', async () => {
+    const key = 'label.runtime.catalog.errorcode.REGISTERED_METADATA_MISMATCH'
+    const translated = '서명된 메타데이터가 등록 정보와 다릅니다.'
+    const locale = createI18n({ locale: 'ko_KR', messages: { ko_KR: { [key]: translated } } })
+    wrapper = shallowMount(RuntimeCatalogValue, {
+      props: { group: 'errorcode', value: 'REGISTERED_METADATA_MISMATCH', showCode: true },
+      global: { plugins: [locale] }
+    })
+    expect(wrapper.text()).toContain(translated)
+    expect(wrapper.get('code').text()).toBe('REGISTERED_METADATA_MISMATCH')
+    await wrapper.setProps({ value: 'NEW_SERVER_DIAGNOSTIC' })
+    expect(wrapper.text()).toBe('NEW_SERVER_DIAGNOSTIC')
+    expect(wrapper.find('code').exists()).toBe(false)
   })
 })

@@ -5,6 +5,13 @@
 
 export const runtimeCatalogApi = 'listStorageServiceRuntimeBundles'
 
+export function runtimeCatalogTranslationKey (i18n, group, value) {
+  if (!group || value == null || value === '') return undefined
+  const key = 'label.runtime.catalog.' + group + '.' + value
+  // The locale files store complete dotted keys at their top level.
+  return Object.prototype.hasOwnProperty.call(i18n.getLocaleMessage(i18n.locale), key) ? key : undefined
+}
+
 export const runtimeCatalogChoices = {
   state: ['AVAILABLE', 'DISABLED', 'DRAFT', 'PUBLISHED', 'SUSPENDED', 'RETIRED', 'REVOKING', 'REVOKED'],
   validationstatus: ['UNVERIFIED', 'RUNNING', 'VERIFIED', 'FAILED', 'UNKNOWN']

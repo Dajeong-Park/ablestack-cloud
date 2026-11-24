@@ -40,8 +40,8 @@
     <template v-else>
       <a-descriptions :column="1" bordered size="small">
         <a-descriptions-item :label="$t('label.version')">{{ resource.version }}</a-descriptions-item>
-        <a-descriptions-item :label="$t('label.state')">{{ resource.state }}</a-descriptions-item>
-        <a-descriptions-item :label="$t('label.validationstatus')">{{ resource.validationstatus }}</a-descriptions-item>
+        <a-descriptions-item :label="$t('label.state')"><RuntimeCatalogValue group="state" :value="resource.state" /></a-descriptions-item>
+        <a-descriptions-item :label="$t('label.validationstatus')"><RuntimeCatalogValue group="validationstatus" :value="resource.validationstatus" /></a-descriptions-item>
         <a-descriptions-item :label="$t('label.referencecount')">{{ resource.referencecount }}</a-descriptions-item>
       </a-descriptions>
       <a-alert v-if="kind === 'REVOKE'" type="error" show-icon :message="$t('message.runtime.catalog.revoke')" />
@@ -53,7 +53,10 @@
       </a-form>
       <a-checkbox v-if="kind === 'REVOKE'" v-model:checked="acknowledged">{{ $t('message.runtime.catalog.ack') }}</a-checkbox>
     </template>
-    <a-alert v-if="error" type="error" show-icon :message="error" />
+    <a-alert v-if="error" type="error" show-icon>
+      <template #message><RuntimeCatalogValue group="errorcode" :value="errorCode || error" show-code /></template>
+      <template v-if="errorCode && errorCode !== error" #description><span>{{ error }}</span></template>
+    </a-alert>
     <MoldDialogActions :busy="busy">
       <a-button :disabled="busy" @click="close">{{ $t('label.cancel') }}</a-button>
       <a-button type="primary" :disabled="!valid" :loading="busy" @click="submit">{{ $t('label.runtime.catalog.' + kind.toLowerCase()) }}</a-button>
@@ -65,12 +68,14 @@ import { postAPI } from '@/api'
 import { creationRequestId } from '@/utils/sharedFsBacking'
 import MoldDialog from '@/components/view/MoldDialog'
 import MoldDialogActions from '@/components/view/MoldDialogActions'
+import RuntimeCatalogValue from '@/components/view/RuntimeCatalogValue'
+import { runtimeCatalogTranslationKey } from '@/utils/runtimeCatalog'
 
 const maximumBundleBytes = 64 * 1024 * 1024
 
 export default {
   name: 'RuntimeCatalogAction',
-  components: { MoldDialog, MoldDialogActions },
+  components: { MoldDialog, MoldDialogActions, RuntimeCatalogValue },
   props: { resource: { type: Object, default: () => ({}) }, currentAction: { type: Object, default: () => ({}) } },
   emits: ['close-action', 'refresh-data'],
   data () {
@@ -85,6 +90,10 @@ export default {
   },
   computed: {
     kind () { return this.currentAction.catalogAction || 'REGISTER' },
+    errorCode () {
+      return (this.error.match(/[A-Z][A-Z0-9]+(?:_[A-Z0-9]+)+/g) || [])
+        .find(code => runtimeCatalogTranslationKey(this.$i18n, 'errorcode', code))
+    },
     initialFocus () { return this.kind === 'REGISTER' ? '#runtime-catalog-version' : this.kind === 'VALIDATE' ? '.ant-modal-close' : '#runtime-catalog-reason' },
     fields () { return ['version', 'signingkeyid', 'runtimeabiversion', 'desiredstateschemaversion', 'serviceimpact', 'artifacturl', 'manifesturl', 'signatureurl', 'artifactsize', 'sha256', 'manifestsha256'] },
     artifactSize () {
@@ -131,11 +140,19 @@ export default {
           title: this.$t('label.runtime.catalog.' + this.kind.toLowerCase()),
           catchMessage: this.$t('error.fetching.data'),
           successMethod: () => { this.busy = false; this.$emit('refresh-data'); this.close() },
-          errorMethod: () => { this.busy = false; this.requestid = null; this.$emit('refresh-data') }
+          action: { label: 'label.runtime.catalog.' + this.kind.toLowerCase(), suppressErrorNotification: true },
+          errorMethod: result => {
+            this.busy = false
+            this.requestid = null
+            this.error = result?.jobresult?.errortext || this.$t('message.request.failed')
+            this.$emit('refresh-data')
+          }
         })
       } catch (e) {
-        this.busy = false; this.error = e?.response?.data?.errortext || e?.message || this.$t('error.fetching.data')
-        this.$notifyError(e); this.$emit('refresh-data')
+        const body = e?.response?.data || {}
+        this.busy = false
+        this.error = body.errortext || Object.values(body).find(value => value?.errortext)?.errortext || e?.message || this.$t('message.request.failed')
+        this.$emit('refresh-data')
       }
     }
   }
