@@ -876,6 +876,15 @@ body.dark-mode .usage-records-metrics .ant-card-meta-description {
   color: var(--ui-text-secondary);
 }
 
+body.dark-mode .usage-records-metrics .ant-card-grid:not(.ant-card-grid-hoverable:hover) {
+  box-shadow:
+    1px 0 0 var(--ui-border),
+    0 1px 0 var(--ui-border),
+    1px 1px 0 var(--ui-border),
+    1px 0 0 var(--ui-border) inset,
+    0 1px 0 var(--ui-border) inset;
+}
+
 body.dark-mode .usage-records-filters {
   .ant-select:not(.ant-select-disabled) .ant-select-selection-placeholder,
   .ant-input:not(:disabled)::placeholder,
