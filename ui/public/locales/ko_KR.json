@@ -11757,6 +11757,8 @@
   "label.storage.preflight.deadline": "관찰 기준 시각",
   "label.storage.preflight.heartbeat": "최근 heartbeat",
   "message.runtime.catalog.unused": "저장된 사용 참조가 없습니다. 삭제 직전에 서버가 다시 확인합니다.",
+  "message.runtime.catalog.records.load.failed": "런타임 번들 기록을 조회하지 못했습니다.",
+  "message.runtime.catalog.records.previous.result": "마지막으로 조회에 성공한 결과를 표시합니다.",
   "label.compatibility": "호환성",
   "label.artifactsize": "번들 크기(bytes)",
   "message.runtime.catalog.delete": "현재·이전 코드·진행 작업·전체 적용 이력이 있으면 삭제를 거부합니다. 삭제 후에도 버전 식별자와 감사 이력은 보존합니다.",

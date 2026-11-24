@@ -4,9 +4,28 @@
     <a-space class="catalog-toolbar" wrap>
       <a-button :loading="busy" @click="load"><template #icon><ReloadOutlined /></template>{{ $t('label.refresh') }}</a-button>
     </a-space>
-    <a-alert v-if="error" type="error" show-icon :message="error" />
-    <a-alert v-if="tab === 'runtime.usages'" :type="total ? 'warning' : 'info'" show-icon :message="$t(total ? 'message.runtime.catalog.used' : 'message.runtime.catalog.unused')" />
-    <a-table :columns="columns" :data-source="rows" row-key="id" :loading="busy && !readComplete" :pagination="false" :scroll="{ x: 700 }" size="small">
+    <a-alert v-if="error" type="error" show-icon :message="$t('message.runtime.catalog.records.load.failed')">
+      <template #description>
+        <a-space wrap>
+          <span v-if="hasSuccessfulRead">{{ $t('message.runtime.catalog.records.previous.result') }}</span>
+          <a-button size="small" :loading="busy" @click="load">{{ $t('label.retry') }}</a-button>
+        </a-space>
+      </template>
+    </a-alert>
+    <a-alert
+      v-if="tab === 'runtime.usages' && hasSuccessfulRead && !error"
+      :type="total ? 'warning' : 'info'"
+      show-icon
+      :message="$t(total ? 'message.runtime.catalog.used' : 'message.runtime.catalog.unused')" />
+    <a-table
+      v-if="hasSuccessfulRead || busy"
+      :columns="columns"
+      :data-source="rows"
+      row-key="id"
+      :loading="busy && !hasSuccessfulRead"
+      :pagination="false"
+      :scroll="{ x: 700 }"
+      size="small">
       <template #bodyCell="{ column, record }">
         <template v-if="column.key === 'state'"><a-tag>{{ record.state }}</a-tag></template>
         <template v-else-if="column.key === 'target'">
@@ -35,22 +54,33 @@ export default {
   name: 'RuntimeCatalogRecords',
   components: { APagination: SharedFSTablePagination, ATable: SharedFSTable, MoldDialog, ReloadOutlined },
   props: { resource: { type: Object, required: true }, tab: { type: String, required: true } },
-  data () { return { rows: [], total: 0, page: 1, pagesize: 10, busy: false, readComplete: false, error: '', epoch: 0, detail: null } },
+  data () { return { rows: [], total: 0, page: 1, pagesize: 10, busy: false, hasSuccessfulRead: false, error: false, epoch: 0, detail: null } },
   computed: {
     columns () {
       const names = this.tab === 'runtime.usages' ? ['type', 'target', 'state', 'created'] : this.tab === 'runtime.events' ? ['created', 'action', 'state', 'reason', 'revision', 'view'] : ['created', 'state', 'compatibility', 'errorcode', 'view']
       return names.map(key => ({ key, dataIndex: key, title: this.$t('label.' + (key === 'target' ? 'resource' : key === 'view' ? 'details' : key)), width: key === 'target' || key === 'reason' ? 280 : 150 }))
     }
   },
-  watch: { 'resource.id' () { this.epoch++; this.rows = []; this.detail = null; this.readComplete = false; this.busy = false; this.page = 1; this.load() }, tab () { this.epoch++; this.rows = []; this.detail = null; this.readComplete = false; this.busy = false; this.page = 1; this.load() } },
+  watch: { 'resource.id': 'resetScope', tab: 'resetScope' },
   created () { this.load() },
   beforeUnmount () { this.epoch++ },
   methods: {
     pretty (value) { try { return JSON.stringify(JSON.parse(value || '{}'), null, 2) } catch (_) { return value } },
     changePage (page, size) { this.page = page; this.pagesize = size; this.load() },
+    resetScope () {
+      this.epoch++
+      this.rows = []
+      this.total = 0
+      this.detail = null
+      this.hasSuccessfulRead = false
+      this.error = false
+      this.busy = false
+      this.page = 1
+      this.load()
+    },
     async load () {
       if (!this.resource.id || this.busy) return
-      this.busy = true; this.error = ''
+      this.busy = true
       const epoch = this.epoch
       const suffix = { 'runtime.validations': 'Validations', 'runtime.usages': 'Usages', 'runtime.events': 'Events' }[this.tab]
       const api = 'listStorageServiceRuntimeBundle' + suffix
@@ -58,8 +88,16 @@ export default {
         const response = await getAPI(api, { bundleid: this.resource.id, page: this.page, pagesize: this.pagesize })
         if (epoch !== this.epoch) return
         const data = response[api.toLowerCase() + 'response']
-        this.rows = data?.storageserviceruntimecatalogrecord || []; this.total = data?.count || 0
-      } catch (e) { if (epoch === this.epoch) { this.error = this.$t('error.fetching.data'); this.$notifyError(e) } } finally { if (epoch === this.epoch) { this.busy = false; this.readComplete = true } }
+        if (!data) throw new Error('Missing runtime catalogue records')
+        this.rows = data.storageserviceruntimecatalogrecord || []
+        this.total = data.count || 0
+        this.hasSuccessfulRead = true
+        this.error = false
+      } catch {
+        if (epoch === this.epoch) this.error = true
+      } finally {
+        if (epoch === this.epoch) this.busy = false
+      }
     }
   }
 }

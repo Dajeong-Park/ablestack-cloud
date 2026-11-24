@@ -88,6 +88,53 @@ describe('runtime catalogue mounted components and real ApiResponseSerializer re
     expect(getAPI).toHaveBeenLastCalledWith('listStorageServiceRuntimeBundleValidations', { bundleid: 'bundle-uuid', page: 2, pagesize: 20 })
     expect(postAPI).not.toHaveBeenCalled()
   })
+
+  it('reports unknown usage on failure and only reports zero after a successful lookup', async () => {
+    getAPI.mockRejectedValueOnce(new Error('unavailable'))
+    wrapper = shallowMount(Records, {
+      props: { resource: resource(), tab: 'runtime.usages' },
+      global: {
+        mocks: { $t: key => key },
+        stubs: { AAlert: { template: '<div>{{ message }}<slot name="description" /></div>', props: ['message'] }, ASpace: { template: '<div><slot /></div>' } }
+      }
+    })
+    expect(wrapper.text()).not.toContain('message.runtime.catalog.unused')
+    await flushPromises()
+    expect(wrapper.text()).toContain('message.runtime.catalog.records.load.failed')
+    expect(wrapper.text()).not.toContain('message.runtime.catalog.unused')
+    expect(wrapper.vm.hasSuccessfulRead).toBe(false)
+
+    getAPI.mockResolvedValueOnce({ liststorageserviceruntimebundleusagesresponse: {} })
+    await wrapper.vm.load()
+    expect(wrapper.text()).toContain('message.runtime.catalog.unused')
+    expect(wrapper.text()).not.toContain('message.runtime.catalog.records.load.failed')
+  })
+
+  it('keeps the last successful usage rows after a failure only within the same bundle', async () => {
+    const row = { id: 'current-reference', type: 'CURRENT' }
+    getAPI.mockResolvedValueOnce({ liststorageserviceruntimebundleusagesresponse: { count: 1, storageserviceruntimecatalogrecord: [row] } })
+    wrapper = shallowMount(Records, {
+      props: { resource: resource(), tab: 'runtime.usages' },
+      global: {
+        mocks: { $t: key => key },
+        stubs: { AAlert: { template: '<div>{{ message }}<slot name="description" /></div>', props: ['message'] }, ASpace: { template: '<div><slot /></div>' } }
+      }
+    })
+    await flushPromises()
+    expect(wrapper.text()).toContain('message.runtime.catalog.used')
+
+    getAPI.mockRejectedValueOnce(new Error('unavailable'))
+    await wrapper.vm.load()
+    expect(wrapper.vm.rows).toEqual([row])
+    expect(wrapper.text()).toContain('message.runtime.catalog.records.previous.result')
+    expect(wrapper.text()).not.toContain('message.runtime.catalog.used')
+
+    getAPI.mockRejectedValueOnce(new Error('unavailable'))
+    await wrapper.setProps({ resource: { id: 'different-bundle' } })
+    await flushPromises()
+    expect(wrapper.vm.rows).toEqual([])
+    expect(wrapper.text()).not.toContain('message.runtime.catalog.records.previous.result')
+  })
   it('Storage Service template summaries consume the same catalogue without mutation or invented target compatibility', async () => {
     getAPI.mockResolvedValue(copy(wire.bundles))
     wrapper = shallowMount(Summary, { props: { resource: { id: 'storage-template', templatetype: 'SHAREDFS' } }, global: { mocks: { $route: { path: '/template/storage-template', meta: { name: 'template' } }, $store: { getters: { userInfo: { roletype: 'Admin' }, apis: { listStorageServiceRuntimeBundles: {} } } }, $t: x => x, $notifyError: jest.fn() }, stubs: { RouterLink: true } } })
