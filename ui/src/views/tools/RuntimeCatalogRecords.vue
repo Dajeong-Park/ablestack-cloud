@@ -17,9 +17,9 @@
 
 <template>
   <div class="runtime-catalog-records">
-    <a-space class="catalog-toolbar" wrap>
+    <div class="catalog-toolbar">
       <a-button :loading="busy" @click="load()"><template #icon><ReloadOutlined /></template>{{ $t('label.refresh') }}</a-button>
-    </a-space>
+    </div>
     <a-alert v-if="error" type="error" show-icon :message="$t('message.runtime.catalog.records.load.failed')">
       <template #description>
         <a-space wrap>
@@ -214,6 +214,10 @@ export default {
 <style scoped lang="less">
 .runtime-catalog-records { min-width: 0; }
 .catalog-toolbar { display: flex; margin-bottom: 16px; }
+.runtime-catalog-records :deep(.sharedfs-table .ant-table-thead > tr > th.ant-table-cell-fix-left),
+.runtime-catalog-records :deep(.sharedfs-table .ant-table-thead > tr > th.ant-table-cell-fix-right) {
+  background-color: var(--ui-bg-elevated);
+}
 .ant-alert, .ant-descriptions { margin-bottom: 16px; }
 pre { white-space:pre-wrap; overflow-wrap:anywhere; color:var(--ui-text-primary); background:var(--ui-bg-surface); padding:16px; }
 summary { cursor: pointer; }
