@@ -17,6 +17,7 @@
 
 import { shallowRef, defineAsyncComponent } from 'vue'
 import store from '@/store'
+import { extensionTypeLabels } from '@/utils/extension'
 
 export default {
   name: 'extension',
@@ -45,7 +46,9 @@ export default {
     return fields
   },
   details: ['name', 'description', 'id', 'type', 'details', 'path', 'pathready', 'isuserdefined', 'orchestratorrequirespreparevm', 'reservedresourcedetails', 'created'],
-  filters: ['Orchestrator', 'NetworkOrchestrator'],
+  filters: Object.keys(extensionTypeLabels),
+  filterLabels: extensionTypeLabels,
+  searchFilters: ['name', 'id'],
   tabs: [{
     name: 'details',
     component: shallowRef(defineAsyncComponent(() => import('@/components/view/DetailsTab.vue')))

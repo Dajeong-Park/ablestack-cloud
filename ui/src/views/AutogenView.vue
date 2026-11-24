@@ -16,7 +16,7 @@
 // under the License.
 
 <template>
-  <div :class="{ 'autoscale-screen': $route.meta?.name === 'autoscalevmgroup', 'userdata-library': $route.meta?.name === 'userdata', 'affinity-library': $route.meta?.name === 'affinitygroup', 'snapshot-list-page': isSnapshotList, 'object-storage-ui': isObjectStorageUi, 'bucket-list-page': isBucketList, 'vm-list-page': isVmList, 'event-list-page': isEventList, 'vm-acl-standard': standardResourceToolbar, 'vpn-user-page': isVpnUser, 'vpn-customer-gateway-page': isVpnCustomerGateway, 'project-standard-page': isProjectUi, 'role-standard-page': isRoleUi, 'account-standard-page': isAccountUi, 'account-standard-list': isAccountList, 'acl-page': isAclUi, 'kms-management-page': kmsRoute($route), 'kms-list-page': kmsListRoute($route),  'public-ip-page': isPublicIpUi, 'volume-list-page': isVolumeList, 'template-list-page': isTemplateList, 'iso-list-page': isIsoList, 'kubernetes-iso-page': $route.meta?.name === 'kubernetesiso', 'kubernetes-iso-list-page': isKubernetesIsoList, 's2s-gateway-list-page': s2sGatewayListRoute($route), 's2s-connection-page': vpnConnectionRoute($route), 'asn-list-page': !!asnSearchAuth, 'host-standard-page': isHostUi, 'oauth-list-page': isOauthUi && !dataView, 'themed-list-toolbar': ((isLdapUi || isOauthUi) && !dataView) || isSecondaryStorageList || isPrimaryStorageList || isClusterList || isHostList || isZoneList || isZoneRelatedList || isAccountList || isRoleList || isGuestVlan || isIpv4Subnet || isDnsZone || isDnsServer || isVpnCustomerGateway || isVpnUser || vpnConnectionRoute($route) || isS2sSearchList || !!asnSearchAuth || isKubernetesIsoList || isPublicIpUi || isTemplateList || isIsoList || isVpcUi || isVmList || isProjectList || isAclUi || isEventList || isVolumeList || isGuestNetworkList || ($route.name === 'sharedfs' && !dataView), 'guest-network-page': isGuestNetworkUi, 'runtime-catalog-screen': $route.meta?.name === 'runtimebundle' }">
+  <div :class="{ 'autoscale-screen': $route.meta?.name === 'autoscalevmgroup', 'userdata-library': $route.meta?.name === 'userdata', 'affinity-library': $route.meta?.name === 'affinitygroup', 'snapshot-list-page': isSnapshotList, 'object-storage-ui': isObjectStorageUi, 'bucket-list-page': isBucketList, 'vm-list-page': isVmList, 'event-list-page': isEventList, 'vm-acl-standard': standardResourceToolbar, 'vpn-user-page': isVpnUser, 'vpn-customer-gateway-page': isVpnCustomerGateway, 'project-standard-page': isProjectUi, 'role-standard-page': isRoleUi, 'account-standard-page': isAccountUi, 'account-standard-list': isAccountList, 'acl-page': isAclUi, 'kms-management-page': kmsRoute($route), 'kms-list-page': kmsListRoute($route),  'public-ip-page': isPublicIpUi, 'volume-list-page': isVolumeList, 'template-list-page': isTemplateList, 'iso-list-page': isIsoList, 'kubernetes-iso-page': $route.meta?.name === 'kubernetesiso', 'kubernetes-iso-list-page': isKubernetesIsoList, 's2s-gateway-list-page': s2sGatewayListRoute($route), 's2s-connection-page': vpnConnectionRoute($route), 'asn-list-page': !!asnSearchAuth, 'host-standard-page': isHostUi, 'oauth-list-page': isOauthUi && !dataView, 'themed-list-toolbar': ((isLdapUi || isOauthUi) && !dataView) || isSecondaryStorageList || isPrimaryStorageList || isClusterList || isHostList || isZoneList || isZoneRelatedList || isAccountList || isRoleList || isGuestVlan || isIpv4Subnet || isDnsZone || isDnsServer || isVpnCustomerGateway || isVpnUser || vpnConnectionRoute($route) || isS2sSearchList || !!asnSearchAuth || isKubernetesIsoList || isPublicIpUi || isTemplateList || isIsoList || isVpcUi || isVmList || isProjectList || isAclUi || isEventList || isVolumeList || isGuestNetworkList || ($route.name === 'extension' && !dataView) || ($route.name === 'sharedfs' && !dataView), 'guest-network-page': isGuestNetworkUi, 'runtime-catalog-screen': $route.meta?.name === 'runtimebundle' }">
     <div class="content-breadcrumb">
       <a-card class="breadcrumb-card" style="z-index: 10">
         <a-row>
@@ -1025,6 +1025,7 @@ import { normalizePolicySearch, policyProjectScope, policySearchError, policySea
 import ActionButton from '@/components/view/ActionButton'
 import { affinityGroupQuery } from '@/utils/affinityGroupCreation'
 import SearchView from '@/components/view/SearchView'
+import { extensionListQuery, extensionActionListQuery, extensionTypeLabels } from '@/utils/extension'
 import SearchFilter from '@/components/view/SearchFilter'
 import { oauthConfigApi, oauthListLocation, oauthListQuery, oauthReadParams, oauthRoute, oauthSearchQuery } from '@/utils/oauthConfiguration'
 import { ldapConfigApi, ldapConfigRoute, ldapDomainPaths, ldapListQuery, ldapReadParams, ldapRemovedListQuery, ldapSearchQuery } from '@/utils/ldapConfiguration'
@@ -1771,7 +1772,7 @@ export default {
       if ('listDomains' in this.$store.getters.apis) options.push({ value: 'domain', label: this.$t('label.domain') })
       return options
     },
-    standardResourceToolbar () { return this.isLdapUi || this.isOauthUi || this.isSecondaryStorageUi || this.isPrimaryStorageUi || this.isClusterUi || this.isHostUi || this.isZoneUi || this.isPhysicalNetworkUi || this.isZoneRelatedList || this.isRoleUi || this.isVmUi || this.isAclUi || this.isVpnUser || this.isProjectUi || this.isVpnCustomerGateway || this.isGuestVlan || this.isIpv4Subnet || this.isDnsZone || this.isDnsServer },
+    standardResourceToolbar () { return ['extension', 'customaction'].includes(this.$route.meta?.name) || this.isLdapUi || this.isOauthUi || this.isSecondaryStorageUi || this.isPrimaryStorageUi || this.isClusterUi || this.isHostUi || this.isZoneUi || this.isPhysicalNetworkUi || this.isZoneRelatedList || this.isRoleUi || this.isVmUi || this.isAclUi || this.isVpnUser || this.isProjectUi || this.isVpnCustomerGateway || this.isGuestVlan || this.isIpv4Subnet || this.isDnsZone || this.isDnsServer },
     vpnUserAuth () { return this.isVpnUser ? vpnUserSearchAuth(this.$store.getters, this.$store.state?.user?.token) : null },
     vpnUserScope () { return this.isVpnUser ? vpnUserProject(this.$route.query, this.$store.getters) : null },
     vpnUserDeleteScope () {
@@ -1945,6 +1946,14 @@ export default {
     activeFiltersList () {
       if (asnRoute(this.$route) || this.isS2sSearchList) return []
       if (this.isIsoList) return isoFilterChips(this.$route.query, this.$store.getters)
+      if (this.$route.meta?.name === 'extension') {
+        const query = extensionListQuery(this.$route.query)
+        return ['name', 'id', 'type'].filter(key => query[key]).map(key => ({
+          key,
+          value: key === 'type' ? this.$t(extensionTypeLabels[query[key]]) : query[key],
+          isTag: false
+        }))
+      }
       const queryParams = this.isOauthUi ? oauthListQuery(this.$route.query) : this.isLdapUi ? ldapListQuery(this.$route.query) : this.isProjectList ? projectSearchQuery(this.$route.query, this.$store.getters) : { ...this.$route.query }
       const activeFilters = []
       for (const filter in queryParams) {
@@ -2006,6 +2015,7 @@ export default {
       return isAclListRoute(this.$route) && aclDisplaySupported(this.$store.getters) ? 'acl-display-filter' : undefined
     },
     filterValue () {
+      if (this.$route.meta?.name === 'extension') return extensionListQuery(this.$route.query).type || 'all'
       if (guestVlanRoute(this.$route)) return this.$route.query.allocatedonly === 'true' ? 'allocatedonly' : 'all'
       if (this.aclDisplayFilterId) return aclDisplayValue(this.$route.query.fordisplay) || 'true'
       if (this.isEventList) return eventArchiveScope(this.$route.query, this.isEventTimeline)
@@ -2763,6 +2773,9 @@ export default {
       }
       if (snapshotPolicyListRoute(this.$route) && !rebuildSchema) {
         this.columns.forEach(column => Object.assign(column, snapshotPolicySortColumn(column.key, params, this.$t)))
+      }
+      if (['extension', 'customaction'].includes(this.$route.meta?.name) && this.dataView) {
+        for (const key of ['name', 'type', 'keyword', ...Object.keys(extensionActionListQuery(this.$route.query))]) delete params[key]
       }
       delete params.q
       delete params.filter
@@ -3836,6 +3849,7 @@ export default {
         this.$router.push({ query })
         return
       }
+      if (this.$route.meta?.name === 'extension' && filter.key === 'type') return this.changeFilter('all')
       if (this.isIsoList && filter.key === 'isofilter') { this.changeFilter(['Admin', 'DomainAdmin'].includes(this.$store.getters.userInfo?.roletype) ? 'all' : 'self'); return }
       const queryParams = Object.assign({}, this.$route.query)
       if (filter.isTag) {
@@ -5088,6 +5102,12 @@ export default {
       this.$router.push({ query })
     },
     changeFilter (filter) {
+      if (this.$route.meta?.name === 'extension') {
+        const query = extensionListQuery({ ...this.$route.query, page: '1' })
+        if (extensionTypeLabels[filter]) query.type = filter
+        else delete query.type
+        return this.$router.push({ query })
+      }
       if (this.isPrimaryStorageList) return this.$router.push({ query: primaryStorageStatusQuery(this.$route.query, filter) })
       if (this.isClusterList) return this.$router.push({ query: clusterStatusQuery(this.$route.query, filter) })
       if (this.isHostList) return this.$router.push({ query: hostStatusQuery(this.$route.query, filter) })
@@ -5255,6 +5275,16 @@ export default {
       return this.$router.push({ query: oauthListQuery(query) })
     },
     onSearch (opts) {
+      if (this.$route.meta?.name === 'extension' && !this.dataView) {
+        const query = extensionListQuery({ ...this.$route.query, page: '1' })
+        if (Object.prototype.hasOwnProperty.call(opts || {}, 'searchQuery')) {
+          query.keyword = opts.searchQuery?.trim() || undefined
+        } else {
+          query.name = opts?.name?.trim() || undefined
+          query.id = opts?.id?.trim() || undefined
+        }
+        return this.$router.push({ query: extensionListQuery(query) })
+      }
       if (this.isOauthUi && !this.dataView) {
         const query = oauthSearchQuery(this.$route.query, opts || {})
         if (JSON.stringify(query) === JSON.stringify(this.$route.query)) return this.fetchData({ irefresh: true })

@@ -35,3 +35,24 @@ export function customActionResourceTypes (extensionType) {
     NetworkOrchestrator: ['Network', 'Vpc']
   }[extensionType] || []
 }
+
+export const extensionTypeLabels = {
+  Orchestrator: 'label.extension.type.orchestrator',
+  NetworkOrchestrator: 'label.extension.type.network'
+}
+
+export function extensionListQuery (query) {
+  const result = Object.fromEntries(['id', 'name', 'keyword', 'page', 'pagesize']
+    .filter(key => typeof query[key] === 'string' && query[key])
+    .map(key => [key, query[key]]))
+  const type = query.type || query.filter
+  if (extensionTypeLabels[type]) result.type = type
+  if (!result.keyword && typeof query.q === 'string' && query.q) result.keyword = query.q
+  return result
+}
+
+export function extensionActionListQuery (query) {
+  return Object.fromEntries(['actionkeyword', 'actiontype', 'actionstate', 'actionpage', 'actionpagesize']
+    .filter(key => typeof query[key] === 'string' && query[key])
+    .map(key => [key, query[key]]))
+}

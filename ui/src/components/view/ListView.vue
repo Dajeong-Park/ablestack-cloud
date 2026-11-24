@@ -201,6 +201,7 @@
           <router-link v-else-if="$route.meta?.name === 'account' && !resourcePath && record.id" :title="text" :to="accountDetailLocation($route, record, $store.getters, $store.state?.user?.token)">{{ text }}</router-link>
           <router-link v-else-if="$route.meta?.name === 'role' && !resourcePath && record.id" :title="text" :to="roleDetailLocation($route, record, $store.getters, $store.state?.user?.token)">{{ text }}</router-link>
           <router-link v-else-if="kmsListRoute($route) && !resourcePath && record.id" :to="kmsDetailLocation($route, record, $store.getters, $store.state?.user?.token)">{{ text }}</router-link>
+          <router-link v-else-if="$route.path === '/extension' && !resourcePath && record.id" :to="{ path: '/extension/' + record.id, query: extensionListQuery($route.query) }">{{ text }}</router-link>
           <span v-else-if="$route.path === '/imagestore' && !resourcePath && record.id">
             <router-link :to="{ path: '/imagestore/' + record.id, query: secondaryStorageListQuery($route.query) }">{{ text }}</router-link>
             <router-link v-if="record.hasannotations" :aria-label="$t('label.comments')" :to="{ path: '/imagestore/' + record.id, query: { ...secondaryStorageListQuery($route.query), tab: 'comments' } }"><message-filled /></router-link>
@@ -1355,6 +1356,7 @@ import Ipv4SubnetResourceLink from '@/components/widgets/Ipv4SubnetResourceLink'
 import { dnsServerListQuery } from '@/utils/dnsServer'
 import { hostStatusColor, hostStatusLabel } from '@/utils/hostPresentation'
 import { zoneFeatureLabel, zoneFeatureState, zoneListQuery, zoneMetricText } from '@/utils/zone'
+import { extensionListQuery } from '@/utils/extension'
 import { clusterListQuery, clusterStateLabel } from '@/utils/clusterSearch'
 import { primaryStorageListQuery } from '@/utils/primaryStorageSearch'
 import { secondaryStorageListQuery } from '@/utils/secondaryStorageSearch'
@@ -1723,6 +1725,7 @@ export default {
     zoneListQuery,
     hostListQuery,
     clusterListQuery,
+    extensionListQuery,
     primaryStorageListQuery,
     secondaryStorageListQuery,
     clusterStateLabel,

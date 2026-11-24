@@ -20,14 +20,22 @@
     <a-alert v-if="listRefreshFailed" type="warning" show-icon :message="$t('message.list.refresh.stale')">
       <template #action><a-button size="small" @click="fetchCustomActions">{{ $t('label.refresh') }}</a-button></template>
     </a-alert>
-    <a-button
-      type="primary"
-      style="width: 100%; margin-bottom: 10px"
-      @click="showAddCustomActionModal"
-      :loading="tabLoading"
-      :disabled="!('addCustomAction' in $store.getters.apis)">
-      <template #icon><plus-outlined /></template> {{ $t('label.add.custom.action') }}
-    </a-button>
+    <div class="extension-action-toolbar">
+      <a-button type="primary" @click="showAddCustomActionModal" :disabled="!('addCustomAction' in $store.getters.apis)">
+        <template #icon><plus-outlined /></template> {{ $t('label.add.custom.action') }}
+      </a-button>
+      <a-input-search v-model:value="searchInput" :aria-label="$t('label.search')" :placeholder="$t('label.search')" allow-clear @search="changeCriteria('actionkeyword', $event)" />
+      <a-select :value="criteria.actiontype || ''" :aria-label="$t('label.resourcetype')" @change="changeCriteria('actiontype', $event)">
+        <a-select-option value="">{{ $t('label.resourcetype') }} · {{ $t('label.all') }}</a-select-option>
+        <a-select-option v-for="type in resourceTypes" :key="type" :value="type">{{ type }}</a-select-option>
+      </a-select>
+      <a-select :value="criteria.actionstate || ''" :aria-label="$t('label.state')" @change="changeCriteria('actionstate', $event)">
+        <a-select-option value="">{{ $t('label.state') }} · {{ $t('label.all') }}</a-select-option>
+        <a-select-option value="true">{{ $t('label.enabled') }}</a-select-option>
+        <a-select-option value="false">{{ $t('label.disabled') }}</a-select-option>
+      </a-select>
+      <a-button @click="fetchCustomActions">{{ $t('label.refresh') }}</a-button>
+    </div>
     <a-table
       size="small"
       :columns="columns"
@@ -38,7 +46,7 @@
       :rowExpandable="(record) => record.parameters && Object.keys(record.parameters).length > 0">
       <template #bodyCell="{ column, text, record }">
         <template v-if="column.key === 'name'">
-          <router-link :to="{ path: '/customaction/' + record.id }">
+          <router-link :to="{ path: '/customaction/' + record.id, query: actionDetailQuery }">
             {{ text }}
           </router-link>
         </template>
@@ -137,6 +145,7 @@
 </template>
 
 <script>
+import { customActionResourceTypes, extensionActionListQuery, extensionListQuery } from '@/utils/extension'
 import { listRefreshMixin } from '@/utils/listRefreshMixin'
 
 import { getAPI, postAPI } from '@/api'
@@ -149,7 +158,7 @@ import Status from '@/components/widgets/Status'
 export default {
   mixins: [listRefreshMixin(['fetchCustomActions'], {
     scopeKey: vm => [vm.$route.path, vm.$store.getters.userInfo?.id, vm.$store.getters.project?.id,
-      vm.resource.id, vm.page, vm.pageSize, vm.listRevision]
+      vm.resource.id, vm.criteria, vm.page, vm.pageSize, vm.listRevision]
   })],
   name: 'ExtensionCustomActionsTab',
   components: {
@@ -195,14 +204,22 @@ export default {
           title: this.$t('label.actions')
         }
       ],
-      page: 1,
-      pageSize: 20,
+      criteria: extensionActionListQuery(this.$route.query),
+      searchInput: this.$route.query.actionkeyword || '',
+      page: Math.max(1, Number(this.$route.query.actionpage) || 1),
+      pageSize: [10, 20, 40, 80].includes(Number(this.$route.query.actionpagesize)) ? Number(this.$route.query.actionpagesize) : 20,
       totalCount: 0,
       showAddCustomAction: false,
       updateLoading: false,
       deleteLoading: false,
       showUpdateCustomAction: false,
       customActionForUpdate: {}
+    }
+  },
+  computed: {
+    resourceTypes () { return customActionResourceTypes(this.resource.type) },
+    actionDetailQuery () {
+      return { ...extensionListQuery(this.$route.query), ...this.actionQuery() }
     }
   },
   created () {
@@ -225,9 +242,26 @@ export default {
       this.listRevision += 1
       return this.fetchCustomActions()
     },
+    actionQuery () {
+      return extensionActionListQuery({ ...this.criteria, actionpage: String(this.page), actionpagesize: String(this.pageSize) })
+    },
+    syncQuery () {
+      const query = { ...this.$route.query, ...this.actionQuery() }
+      for (const key of ['actionkeyword', 'actiontype', 'actionstate']) {
+        if (!this.criteria[key]) delete query[key]
+      }
+      this.$router.replace({ query })
+    },
+    changeCriteria (key, value) {
+      this.criteria = { ...this.criteria, [key]: value?.trim() || '' }
+      this.page = 1
+      this.syncQuery()
+      this.fetchCustomActions()
+    },
     changePage (page, size) {
       this.page = size === this.pageSize ? page : 1
       this.pageSize = size
+      this.syncQuery()
       this.fetchCustomActions()
     },
     fetchCustomActions () {
@@ -242,6 +276,9 @@ export default {
         extensionid: this.resource.id,
         listall: true
       }
+      if (this.criteria.actionkeyword) params.keyword = this.criteria.actionkeyword
+      if (this.resourceTypes.includes(this.criteria.actiontype)) params.resourcetype = this.criteria.actiontype
+      if (['true', 'false'].includes(this.criteria.actionstate)) params.enabled = this.criteria.actionstate
       this.tabLoading = !listRequest.loaded
       return getAPI('listCustomActions', params).then(json => {
         if (!this.isListRequestCurrent('fetchCustomActions', listRequest)) return
@@ -249,6 +286,7 @@ export default {
         const lastPage = Math.max(1, Math.ceil(this.totalCount / this.pageSize))
         if (this.page > lastPage) {
           this.page = lastPage
+          this.syncQuery()
           return this.fetchCustomActions()
         }
         this.extensionCustomActions = json?.listcustomactionsresponse?.extensioncustomaction || []
@@ -315,3 +353,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.extension-action-toolbar { display: flex; flex-wrap: wrap; gap: 8px; margin-block: 0 12px; align-items: center; }
+.extension-action-toolbar :deep(.ant-input-search) { width: 220px; max-width: 100%; }
+.extension-action-toolbar :deep(.ant-select) { min-width: 140px; max-width: 100%; }
+</style>
