@@ -16,64 +16,102 @@
 // under the License.
 
 <template>
-  <div class="vm-acl-standard secondary-storage-selectors">
+  <div class="vm-acl-standard themed-list-toolbar secondary-storage-selectors">
     <div class="content-breadcrumb">
       <a-card class="breadcrumb-card">
-        <div class="vm-acl-breadcrumb-layout">
-          <a-breadcrumb class="breadcrumb">
-            <a-breadcrumb-item>
-              <router-link to="/infra">
-                <bank-outlined /> {{ $t('label.infrastructure') }}
-              </router-link>
-            </a-breadcrumb-item>
-            <a-breadcrumb-item>
-              <router-link :to="originLocation">{{ $t('label.secondary.storage') }}</router-link>
-            </a-breadcrumb-item>
-            <a-breadcrumb-item>
-              <span aria-current="page">{{ $t('label.secondary.selector.rules') }}</span>
-            </a-breadcrumb-item>
-          </a-breadcrumb>
-        </div>
+        <a-row>
+          <a-col :span="mobile ? 24 : 12" class="vm-acl-breadcrumb-layout">
+            <breadcrumb :trail="breadcrumbTrail" standard-layout>
+              <template #end>
+                <a-button :loading="loading || loadingZones" shape="round" size="small" @click="refresh">
+                  <template #icon><reload-outlined /></template>
+                  {{ $t('label.refresh') }}
+                </a-button>
+                <a-select
+                  v-if="!isDetail"
+                  id="secondary-selector-zone"
+                  :aria-label="$t('label.zone')"
+                  :placeholder="$t('label.zone')"
+                  :options="zoneOptions"
+                  :value="zoneId || undefined"
+                  :loading="loadingZones"
+                  size="small"
+                  class="selector-zone"
+                  @change="setFilter({ zoneid: $event, page: '1' })" />
+              </template>
+            </breadcrumb>
+          </a-col>
+          <a-col :span="mobile ? 24 : 12" class="autogen-toolbar-actions">
+            <a-dropdown v-if="isDetail && activeRule && !activeRule.removed && (canEdit || canRemove)" :trigger="['click']" placement="bottomRight">
+              <a-button ref="detailActions" type="primary" class="autogen-action-dropdown__button">
+                <template #icon><down-outlined /></template>
+                {{ $t('label.actions') }}
+              </a-button>
+              <template #overlay>
+                <a-menu>
+                  <a-menu-item
+                    v-if="canEdit"
+                    key="edit"
+                    :disabled="jsEnabled === false || checkingJs || !rowsReady"
+                    @click="openEdit(activeRule, $refs.detailActions?.$el)">
+                    <edit-outlined /> {{ $t('label.edit') }}
+                  </a-menu-item>
+                  <a-menu-item
+                    v-if="canRemove"
+                    key="remove"
+                    :disabled="!rowsReady"
+                    @click="openRemoval(activeRule, $refs.detailActions?.$el)">
+                    <delete-outlined /> {{ $t('label.delete') }}
+                  </a-menu-item>
+                </a-menu>
+              </template>
+            </a-dropdown>
+            <template v-else-if="!isDetail">
+              <a-button
+                v-if="canCreate"
+                ref="addButton"
+                type="primary"
+                shape="round"
+                :disabled="!zoneId || jsEnabled === false || checkingJs || readFailed || loading"
+                :loading="opening"
+                @click="openCreate">
+                <template #icon><plus-outlined /></template>
+                {{ $t('label.secondary.selector.add') }}
+              </a-button>
+              <div class="vm-acl-toolbar-search selector-search">
+                <a-input-search
+                  v-model:value="keywordDraft"
+                  class="input-search"
+                  :aria-label="$t('label.search')"
+                  :placeholder="$t('label.search')"
+                  allow-clear
+                  @search="setFilter({ keyword: $event, page: '1' })" />
+                <a-popover v-model:visible="filtersVisible" trigger="click" placement="bottomRight">
+                  <template #content>
+                    <a-form class="selector-filters" layout="vertical" @submit.prevent="applyFilters">
+                      <a-form-item html-for="secondary-selector-list-type" :label="$t('label.type')">
+                        <a-select id="secondary-selector-list-type" v-model:value="typeDraft" :options="typeOptions" />
+                      </a-form-item>
+                      <a-checkbox v-model:checked="removedDraft">{{ $t('label.secondary.selector.show.removed') }}</a-checkbox>
+                      <div class="selector-filter-actions">
+                        <a-button @click="resetFilters">{{ $t('label.reset') }}</a-button>
+                        <a-button type="primary" html-type="submit">{{ $t('label.apply') }}</a-button>
+                      </div>
+                    </a-form>
+                  </template>
+                  <a-button class="filter-button" :aria-label="$t('label.advanced.search')">
+                    <template #icon>
+                      <filter-two-tone v-if="selectorType || showRemoved" />
+                      <filter-outlined v-else />
+                    </template>
+                  </a-button>
+                </a-popover>
+              </div>
+            </template>
+          </a-col>
+        </a-row>
       </a-card>
     </div>
-
-    <resource-table-toolbar
-      v-model:search="keyword"
-      searchable
-      :loading="loading || loadingZones"
-      @refresh="refresh">
-      <a-select
-        id="secondary-selector-zone"
-        :aria-label="$t('label.zone')"
-        :placeholder="$t('label.zone')"
-        :options="zoneOptions"
-        :value="zoneId || undefined"
-        :loading="loadingZones"
-        class="selector-zone"
-        @change="setFilter({ zoneid: $event })" />
-      <a-select
-        :aria-label="$t('label.type')"
-        :value="selectorType"
-        :options="typeOptions"
-        @change="setFilter({ type: $event || undefined })" />
-      <a-checkbox
-        :checked="showRemoved"
-        @change="setFilter({ showremoved: $event.target.checked ? 'true' : undefined })">
-        {{ $t('label.secondary.selector.show.removed') }}
-      </a-checkbox>
-      <template #actions>
-        <a-button
-          v-if="canCreate"
-          ref="addButton"
-          type="primary"
-          :disabled="!zoneId || jsEnabled === false || checkingJs || readFailed || loading"
-          :loading="opening"
-          @click="openCreate">
-          <template #icon><plus-outlined /></template>
-          {{ $t('label.secondary.selector.add') }}
-        </a-button>
-      </template>
-    </resource-table-toolbar>
 
     <a-alert v-if="zonesFailed" type="error" show-icon :message="$t('message.secondary.selector.zones.failed')" />
     <a-alert v-else-if="jsEnabled === false && (canCreate || canEdit)" type="info" show-icon :message="$t('message.secondary.selector.js.disabled')" />
@@ -82,40 +120,43 @@
       type="error"
       show-icon
       :message="$t(rows.length ? 'message.list.refresh.stale' : 'message.secondary.selector.list.failed')" />
-    <a-table
-      v-if="zoneId && (!readFailed || rows.length)"
-      :columns="columns"
-      :data-source="filteredRows"
-      :loading="loading"
-      :pagination="{ current: page, pageSize: 10, showSizeChanger: false }"
-      :scroll="{ x: 660 }"
-      row-key="id"
-      @change="page = $event.current">
-      <template #bodyCell="{ column, record }">
-        <a-button v-if="column.key === 'name'" type="link" size="small" @click="openRule(record, 'view', $event)">
-          {{ record.name }}
-        </a-button>
-        <template v-else-if="column.key === 'target'">{{ targetLabel(record) }}</template>
-        <a-tag v-else-if="column.key === 'status'" :color="record.removed ? undefined : 'success'">
-          {{ record.removed ? $t('label.removed') : $t('label.active') }}
-        </a-tag>
-        <a-space v-else-if="column.key === 'actions' && !record.removed">
-          <a-button
-            v-if="canEdit"
-            size="small"
-            type="link"
-            :disabled="jsEnabled === false || checkingJs || !rowsReady"
-            @click="openRule(record, 'edit', $event)">
-            {{ $t('label.edit') }}
-          </a-button>
-          <a-button v-if="canRemove" size="small" type="link" danger :disabled="!rowsReady" @click="openRemoval(record, $event)">
-            {{ $t('label.delete') }}
-          </a-button>
-        </a-space>
-      </template>
-      <template #emptyText>{{ $t('message.secondary.selector.no.rules') }}</template>
-    </a-table>
-    <Empty v-else-if="!zoneId && !zonesFailed && !loadingZones" :description="$t('message.secondary.selector.choose.zone')" />
+
+    <template v-if="isDetail">
+      <resource-view
+        v-if="activeRule"
+        :resource="detailResource"
+        :tabs="detailTabs"
+        :ready-for-actions="rowsReady"
+        :read-pending="loading"
+        :read-failed="readFailed"
+        quiet-refresh />
+      <Empty
+        v-else-if="!zonesFailed && !loadingZones && !loading && !readFailed"
+        :description="$t(zoneId ? 'message.secondary.selector.rule.missing' : 'message.secondary.selector.detail.zone')" />
+    </template>
+    <template v-else>
+      <list-view
+        v-if="zoneId && (!readFailed || rows.length)"
+        :columns="columns"
+        :items="pageRows"
+        :loading="loading"
+        :empty-text="$t('message.secondary.selector.no.rules')"
+        :table-scroll="{ x: 620 }"
+        :resource-path="selectorPath"
+        :resource-link="detailLocation" />
+      <a-pagination
+        v-if="zoneId && filteredRows.length"
+        class="row-element"
+        size="small"
+        :current="page"
+        :page-size="pageSize"
+        :page-size-options="pageSizeOptions"
+        :total="filteredRows.length"
+        show-size-changer
+        show-quick-jumper
+        @change="changePage" />
+      <Empty v-else-if="!zoneId && !zonesFailed && !loadingZones" :description="$t('message.secondary.selector.choose.zone')" />
+    </template>
 
     <secondary-storage-selector-dialog
       v-if="dialog"
@@ -159,24 +200,29 @@ import { Empty } from 'ant-design-vue'
 import { getAPI, postAPI } from '@/api'
 import MoldDialog from '@/components/view/MoldDialog'
 import MoldDialogActions from '@/components/view/MoldDialogActions'
-import ResourceTableToolbar from '@/components/view/ResourceTableToolbar'
+import Breadcrumb from '@/components/widgets/Breadcrumb'
+import ListView from '@/components/view/ListView'
+import ResourceView from '@/components/view/ResourceView'
+import SecondaryStorageSelectorDetails from '@/views/infra/SecondaryStorageSelectorDetails'
 import SecondaryStorageSelectorDialog from '@/views/infra/SecondaryStorageSelectorDialog'
 import { secondaryStorageListQuery } from '@/utils/secondaryStorageSearch'
 import {
   fixedSelectorId, isSelectorUuid, readSecondaryStorageSelectors, readSelectorStores,
-  selectorApi, selectorConfigKey, selectorTypes
+  selectorApi, selectorConfigKey, selectorListQuery, selectorPage, selectorPageSizes, selectorTypes
 } from '@/utils/secondaryStorageSelectors'
 
 export default {
   name: 'SecondaryStorageSelectors',
-  components: { Empty, MoldDialog, MoldDialogActions, ResourceTableToolbar, SecondaryStorageSelectorDialog },
+  components: { Empty, Breadcrumb, ListView, ResourceView, MoldDialog, MoldDialogActions, SecondaryStorageSelectorDialog },
   data () {
     return {
       zones: [],
       rows: [],
       targetStores: [],
-      keyword: '',
-      page: 1,
+      keywordDraft: selectorListQuery(this.$route.query).keyword || '',
+      filtersVisible: false,
+      typeDraft: '',
+      removedDraft: false,
       loading: false,
       loadingZones: false,
       loadingStores: false,
@@ -200,15 +246,35 @@ export default {
   },
   computed: {
     apis () { return this.$store.getters.apis || {} },
+    mobile () { return this.$store.getters.device === 'mobile' },
+    selectorPath () { return '/' + selectorPage },
+    query () { return selectorListQuery(this.$route.query) },
     originLocation () {
       const history = this.$router.options.history.state?.secondaryStorageSelectorOrigin
       return { name: 'imagestore', query: secondaryStorageListQuery(history || {}) }
     },
-    requestedZone () { return isSelectorUuid(this.$route.query.zoneid) ? this.$route.query.zoneid : '' },
+    originState () { return { secondaryStorageSelectorOrigin: this.originLocation.query } },
+    listLocation () { return { name: selectorPage, query: this.query, state: this.originState } },
+    breadcrumbTrail () {
+      const items = [
+        { name: 'infra', path: '/infra', meta: { title: 'label.infrastructure', icon: 'bank-outlined' } },
+        { name: 'imagestore', location: this.originLocation, meta: { title: 'label.secondary.storage' } }
+      ]
+      if (this.isDetail) {
+        items.push({ name: selectorPage, location: this.listLocation, meta: { title: 'label.secondary.selector.rules' } })
+        items.push({ current: true, text: this.activeRule?.name || this.ruleId, meta: { title: 'label.details' } })
+      } else {
+        items.push({ current: true, meta: { title: 'label.secondary.selector.rules' } })
+      }
+      return items
+    },
+    requestedZone () { return this.query.zoneid || '' },
     zoneId () { return this.zones.some(zone => zone.id === this.requestedZone) ? this.requestedZone : '' },
     zoneName () { return this.zones.find(zone => zone.id === this.zoneId)?.name || this.zoneId },
-    selectorType () { return selectorTypes.includes(this.$route.query.type) ? this.$route.query.type : '' },
-    showRemoved () { return this.$route.query.showremoved === 'true' },
+    selectorType () { return this.query.type || '' },
+    showRemoved () { return this.query.showremoved === 'true' },
+    isDetail () { return !!this.$route.params.id },
+    ruleId () { return isSelectorUuid(this.$route.params.id) ? this.$route.params.id : '' },
     zoneOptions () { return this.zones.map(zone => ({ value: zone.id, label: zone.name || zone.id })) },
     typeOptions () {
       return [{ value: '', label: this.$t('label.all') }, ...selectorTypes.map(type => ({ value: type, label: type }))]
@@ -217,31 +283,62 @@ export default {
     canCreate () { return !!this.apis[selectorApi.create] },
     canEdit () { return !!this.apis[selectorApi.update] },
     canRemove () { return !!this.apis[selectorApi.remove] },
-    readKey () { return JSON.stringify([this.zoneId, this.selectorType, this.showRemoved, this.canList]) },
+    readKey () {
+      const scope = this.isDetail ? [this.ruleId] : [this.selectorType, this.showRemoved]
+      return JSON.stringify([this.zoneId, this.isDetail, scope, this.canList, this.$store.state.user?.token])
+    },
     rowsReady () { return this.rowsKey === this.readKey && !this.loading && !this.readFailed },
+    activeRule () {
+      if (!this.isDetail || !this.ruleId || this.rowsKey !== this.readKey) return null
+      return this.rows.find(rule => rule.id === this.ruleId && rule.zoneid === this.zoneId) || null
+    },
+    detailResource () {
+      const rule = this.activeRule
+      if (!rule) return {}
+      return {
+        ...rule,
+        zonename: this.zoneName,
+        selectorTarget: this.targetLabel(rule),
+        state: this.$t(rule.removed ? 'label.removed' : 'label.active')
+      }
+    },
+    detailTabs () { return [{ name: 'details', component: SecondaryStorageSelectorDetails }] },
     filteredRows () {
-      const term = this.keyword.trim().toLowerCase()
+      const term = (this.query.keyword || '').toLowerCase()
       return this.rows.filter(row => String(row.name || '').toLowerCase().includes(term))
     },
+    pageSizeOptions () { return selectorPageSizes },
+    pageSize () {
+      const configured = String(this.$store.getters.defaultListViewPageSize)
+      return Number(this.query.pagesize || (selectorPageSizes.includes(configured) ? configured : '20'))
+    },
+    page () {
+      return Math.min(Number(this.query.page || 1), Math.max(1, Math.ceil(this.filteredRows.length / this.pageSize)))
+    },
+    pageRows () {
+      const start = (this.page - 1) * this.pageSize
+      return this.filteredRows.slice(start, start + this.pageSize).map(row => ({
+        ...row, selectorTarget: this.targetLabel(row), selectorStatus: this.$t(row.removed ? 'label.removed' : 'label.active')
+      }))
+    },
     columns () {
-      const columns = [
-        { key: 'name', title: this.$t('label.name'), width: 180 },
-        { key: 'type', dataIndex: 'type', title: this.$t('label.type'), width: 105 },
-        { key: 'target', title: this.$t('label.secondary.selector.target'), width: 195, ellipsis: true },
-        { key: 'status', title: this.$t('label.state'), width: 90 }
+      return [
+        { key: 'name', dataIndex: 'name', title: this.$t('label.name'), width: 200 },
+        { key: 'type', dataIndex: 'type', title: this.$t('label.type'), width: 110 },
+        { key: 'selectorTarget', dataIndex: 'selectorTarget', title: this.$t('label.secondary.selector.target'), width: 210, ellipsis: true },
+        { key: 'selectorStatus', dataIndex: 'selectorStatus', title: this.$t('label.state'), width: 100 }
       ]
-      if (this.canEdit || this.canRemove) columns.push({ key: 'actions', title: this.$t('label.actions'), width: 90 })
-      return columns
     }
   },
   watch: {
-    readKey () {
-      this.keyword = ''
-      this.page = 1
-      this.readRows()
-    },
+    readKey () { this.readRows() },
+    '$route.query' () { this.keywordDraft = this.query.keyword || '' },
     zoneId () { this.readTargets() },
-    keyword () { this.page = 1 }
+    filtersVisible (open) {
+      if (!open) return
+      this.typeDraft = this.selectorType
+      this.removedDraft = this.showRemoved
+    }
   },
   created () {
     this.readZones()
@@ -254,10 +351,22 @@ export default {
   },
   methods: {
     setFilter (changes) {
-      return this.$router.replace({
-        query: { ...this.$route.query, ...changes },
-        state: { secondaryStorageSelectorOrigin: this.originLocation.query }
-      })
+      return this.$router.replace({ query: selectorListQuery({ ...this.query, ...changes }), state: this.originState })
+    },
+    detailLocation (rule) {
+      return { path: this.selectorPath + '/' + encodeURIComponent(rule.id), query: this.query, state: this.originState }
+    },
+    changePage (page, size) {
+      return this.setFilter({ page: size === this.pageSize ? page : 1, pagesize: size })
+    },
+    applyFilters () {
+      this.filtersVisible = false
+      return this.setFilter({ type: this.typeDraft, showremoved: this.removedDraft ? 'true' : undefined, page: '1' })
+    },
+    resetFilters () {
+      this.typeDraft = ''
+      this.removedDraft = false
+      return this.applyFilters()
     },
     async readZones () {
       if (!this.canList || this.loadingZones) return
@@ -276,8 +385,10 @@ export default {
         }
         if (request !== this.zoneVersion) return
         this.zones = zones
-        const next = this.zoneId || (zones.length === 1 ? zones[0].id : undefined)
-        if (next !== this.$route.query.zoneid) await this.setFilter({ zoneid: next })
+        if (!this.isDetail) {
+          const next = this.zoneId || (zones.length === 1 ? zones[0].id : undefined)
+          if (next !== this.$route.query.zoneid) await this.setFilter({ zoneid: next })
+        }
       } catch {
         if (request === this.zoneVersion) this.zonesFailed = true
       } finally {
@@ -302,18 +413,18 @@ export default {
       const key = this.readKey
       this.readFailed = false
       if (this.rowsKey !== key) this.rows = []
-      if (!this.zoneId || !this.canList) {
+      if (!this.zoneId || !this.canList || (this.isDetail && !this.ruleId)) {
         this.loading = false
         this.rowsKey = ''
         return
       }
       this.loading = true
       try {
-        const rows = await readSecondaryStorageSelectors(this.zoneId, { type: this.selectorType, showRemoved: this.showRemoved })
+        const scope = this.isDetail ? { showRemoved: true } : { type: this.selectorType, showRemoved: this.showRemoved }
+        const rows = await readSecondaryStorageSelectors(this.zoneId, scope)
         if (version !== this.listVersion || key !== this.readKey) return
-        this.rows = rows
+        this.rows = rows.filter(row => row.zoneid === this.zoneId && isSelectorUuid(row.id) && (!this.isDetail || row.id === this.ruleId))
         this.rowsKey = key
-        this.page = Math.min(this.page, Math.max(1, Math.ceil(this.filteredRows.length / 10)))
       } catch (error) {
         if (version !== this.listVersion || key !== this.readKey) return
         if ([401, 403].includes(error?.response?.status)) {
@@ -377,11 +488,10 @@ export default {
         this.opening = false
       }
     },
-    openRule (record, mode, event) {
-      if (!this.canList || record.zoneid !== this.zoneId) return
-      if (mode === 'edit' && (!this.canEdit || this.jsEnabled === false || !this.currentRule(record))) return
-      this.focusReturn = markRaw(event.currentTarget)
-      this.dialog = { mode, zoneid: this.zoneId, record: { ...record } }
+    openEdit (record, trigger) {
+      if (!this.canList || !this.canEdit || this.jsEnabled === false || !this.currentRule(record)) return
+      this.focusReturn = trigger ? markRaw(trigger) : null
+      this.dialog = { mode: 'edit', zoneid: this.zoneId, record: { ...record } }
       this.showRule = true
     },
     closeRule () {
@@ -391,9 +501,9 @@ export default {
       this.dialog = null
       this.restoreFocus()
     },
-    openRemoval (record, event) {
+    openRemoval (record, trigger) {
       if (!this.canRemove || !this.currentRule(record)) return
-      this.focusReturn = markRaw(event.currentTarget)
+      this.focusReturn = trigger ? markRaw(trigger) : null
       this.removal = { ...record }
     },
     closeRemoval () {
@@ -433,15 +543,32 @@ export default {
       if (key !== this.readKey) return
       close()
       this.$message.success(this.$t('label.success'))
-      await this.readRows()
+      if (this.isDetail && command === selectorApi.remove) await this.$router.push(this.listLocation)
+      else await this.readRows()
     }
   }
 }
 </script>
 
+<style scoped src="@/style/components/view/list-toolbar.css" />
+
 <style scoped>
 .secondary-storage-selectors { min-width: 0; }
 .secondary-storage-selectors .breadcrumb-card { margin-bottom: 16px; }
 .secondary-storage-selectors .ant-alert { margin-bottom: 12px; }
-.secondary-storage-selectors .selector-zone { min-width: 150px; }
+.secondary-storage-selectors .selector-zone { min-width: 140px; }
+.secondary-storage-selectors .vm-acl-breadcrumb-layout,
+.secondary-storage-selectors .autogen-toolbar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.secondary-storage-selectors .autogen-toolbar-actions { justify-content: flex-end; }
+.selector-search { display: flex; align-items: center; gap: 6px; min-width: 0; }
+.selector-filters { min-width: 180px; }
+.selector-filter-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 12px; }
+@media (max-width: 576px) {
+  .secondary-storage-selectors .autogen-toolbar-actions { justify-content: flex-start; margin-top: 12px; }
+}
 </style>

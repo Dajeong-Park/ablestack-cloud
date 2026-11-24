@@ -25,16 +25,7 @@
     :initial-focus="initialFocus"
     :after-close="() => $emit('after-close')"
     @cancel="$emit('cancel')">
-    <template v-if="viewOnly">
-      <dl class="acl-action-context">
-        <dt>{{ $t('label.name') }}</dt><dd>{{ dialog.record.name }}</dd>
-        <dt>{{ $t('label.description') }}</dt><dd>{{ dialog.record.description }}</dd>
-        <dt>{{ $t('label.zone') }}</dt><dd>{{ zoneName }}</dd>
-        <dt>{{ $t('label.type') }}</dt><dd>{{ dialog.record.type }}</dd>
-      </dl>
-      <pre class="selector-rule-text">{{ dialog.record.heuristicrule }}</pre>
-    </template>
-    <a-form v-else v-ctrl-enter="submit" layout="vertical" :model="form" @finish="submit">
+    <a-form v-ctrl-enter="submit" layout="vertical" :model="form" @finish="submit">
       <a-row :gutter="16">
         <a-col :xs="24" :sm="12">
           <a-form-item html-for="secondary-selector-editor-zone" :label="$t('label.zone')">
@@ -90,10 +81,8 @@
       <a-alert v-if="duplicate" type="warning" show-icon :message="$t('message.secondary.selector.duplicate')" />
     </a-form>
     <mold-dialog-actions :busy="busy">
-      <a-button id="secondary-selector-dialog-close" @click="$emit('cancel')">
-        {{ $t(viewOnly ? 'label.close' : 'label.cancel') }}
-      </a-button>
-      <a-button v-if="!viewOnly" type="primary" :loading="busy" :disabled="!canSave" @click="submit">
+      <a-button @click="$emit('cancel')">{{ $t('label.cancel') }}</a-button>
+      <a-button type="primary" :loading="busy" :disabled="!canSave" @click="submit">
         {{ $t('label.save') }}
       </a-button>
     </mold-dialog-actions>
@@ -136,12 +125,10 @@ export default {
   },
   computed: {
     editing () { return this.dialog.mode === 'edit' },
-    viewOnly () { return this.dialog.mode === 'view' },
     title () {
-      return this.viewOnly ? 'label.secondary.storage.selector' : this.editing ? 'label.secondary.selector.edit' : 'label.secondary.selector.add'
+      return this.editing ? 'label.secondary.selector.edit' : 'label.secondary.selector.add'
     },
     initialFocus () {
-      if (this.viewOnly) return '#secondary-selector-dialog-close'
       if (!this.editing) return '#secondary-selector-name'
       return fixedSelectorId(this.dialog.record.heuristicrule) ? '#secondary-selector-target' : '#secondary-selector-script'
     },
@@ -158,7 +145,7 @@ export default {
     requiresReplacement () { return this.editing && !fixedSelectorId(this.dialog.record.heuristicrule) && this.form.mode === 'fixed' },
     rule () { return this.form.mode === 'fixed' ? fixedSelectorRule(this.form.target) : this.form.script },
     canSave () {
-      if (this.busy || this.viewOnly || this.duplicate || !this.rule.trim() || this.rule.length > 65535) return false
+      if (this.busy || this.duplicate || !this.rule.trim() || this.rule.length > 65535) return false
       if (this.requiresReplacement && !this.confirmReplacement) return false
       if (this.form.mode === 'fixed' && (this.storesLoading || this.storesFailed || !this.storeOptions.some(option => option.value === this.form.target && !option.disabled))) return false
       return selectorTypes.includes(this.form.type) && !!this.form.name.trim() && !!this.form.description.trim()
@@ -178,11 +165,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.selector-rule-text {
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-  color: var(--ui-text);
-}
-</style>

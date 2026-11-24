@@ -20,6 +20,7 @@ import { getAPI } from '@/api'
 export const selectorTypes = ['ISO', 'TEMPLATE', 'SNAPSHOT', 'VOLUME', 'BACKUP']
 export const selectorConfigKey = 'js.interpretation.enabled'
 export const selectorPage = 'secondarystorageselector'
+export const selectorPageSizes = ['10', '20', '50', '100', '200']
 export const selectorApi = {
   list: 'listSecondaryStorageSelectors',
   create: 'createSecondaryStorageSelector',
@@ -32,6 +33,17 @@ const quotedLiteral = /^(['"])([^'"]+)\1;?$/
 
 export function isSelectorUuid (value) {
   return typeof value === 'string' && uuidPattern.test(value)
+}
+
+export function selectorListQuery (query = {}) {
+  const result = {}
+  if (isSelectorUuid(query.zoneid)) result.zoneid = query.zoneid
+  if (selectorTypes.includes(query.type)) result.type = query.type
+  if (query.showremoved === 'true') result.showremoved = 'true'
+  if (typeof query.keyword === 'string' && query.keyword.trim()) result.keyword = query.keyword.trim()
+  if (Number.isSafeInteger(Number(query.page)) && Number(query.page) > 0) result.page = String(Number(query.page))
+  if (selectorPageSizes.includes(String(query.pagesize))) result.pagesize = String(query.pagesize)
+  return result
 }
 
 export function fixedSelectorId (rule) {

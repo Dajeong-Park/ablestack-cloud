@@ -16,7 +16,7 @@
 // under the License.
 
 import { getAPI } from '@/api'
-import { fixedSelectorId, fixedSelectorRule, readSecondaryStorageSelectors, readSelectorStores } from '@/utils/secondaryStorageSelectors'
+import { fixedSelectorId, fixedSelectorRule, readSecondaryStorageSelectors, readSelectorStores, selectorListQuery } from '@/utils/secondaryStorageSelectors'
 
 jest.mock('@/api', () => ({ getAPI: jest.fn() }))
 
@@ -46,4 +46,10 @@ test('reads candidates without a page number for unlimited results', async () =>
   getAPI.mockResolvedValueOnce({ listimagestoresresponse: { imagestore: [row, { ...row, zoneid: 'other-zone' }] } })
   await expect(readSelectorStores(zone)).resolves.toEqual([row])
   expect(getAPI).toHaveBeenCalledWith('listImageStores', { zoneid: zone, pagesize: -1 }, { preserveOnFailure: true })
+})
+
+test('preserves the selector list scope without forwarding detail-only state', () => {
+  expect(selectorListQuery({ zoneid: zone, type: 'ISO', showremoved: 'true', keyword: ' target ', page: 2, pagesize: '10', tab: 'details' }))
+    .toEqual({ zoneid: zone, type: 'ISO', showremoved: 'true', keyword: 'target', page: '2', pagesize: '10' })
+  expect(selectorListQuery({ zoneid: ['invalid'], type: 'unknown', showremoved: 'false', page: -1, pagesize: '3' })).toEqual({})
 })

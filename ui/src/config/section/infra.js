@@ -59,6 +59,7 @@ export default {
       icon: 'aim-outlined',
       hidden: true,
       permission: [selectorApi.list],
+      details: ['name', 'id', 'zonename', 'type', 'description', 'state', 'created', 'removed'],
       component: () => import('@/views/infra/SecondaryStorageSelectors.vue')
     },
     backupRepositories,
