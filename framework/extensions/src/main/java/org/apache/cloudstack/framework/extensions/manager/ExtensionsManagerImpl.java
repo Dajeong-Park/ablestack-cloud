@@ -1090,6 +1090,9 @@ public class ExtensionsManagerImpl extends ManagerBase implements ExtensionsMana
                     String.format("Cluster ID: %s is not of %s hypervisor type", cluster.getId(),
                             cluster.getHypervisorType()));
         }
+        if (!Extension.Type.Orchestrator.equals(extension.getType())) {
+            throw new InvalidParameterValueException("Only Orchestrator extensions can be registered with an External cluster");
+        }
         final ExtensionResourceMap.ResourceType resourceType = ExtensionResourceMap.ResourceType.Cluster;
         ExtensionResourceMapVO existing =
                 extensionResourceMapDao.findByResourceIdAndType(cluster.getId(), resourceType);

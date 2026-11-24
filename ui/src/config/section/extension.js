@@ -68,12 +68,14 @@ export default {
     {
       name: 'vm',
       title: 'label.instances',
-      param: 'extensionid'
+      param: 'extensionid',
+      show: record => record.type === 'Orchestrator'
     },
     {
       name: 'template',
       title: 'label.templates',
-      param: 'extensionid'
+      param: 'extensionid',
+      show: record => record.type === 'Orchestrator'
     }
   ],
   actions: [
@@ -99,6 +101,7 @@ export default {
       icon: 'api-outlined',
       label: 'label.register.extension',
       message: 'message.action.register.extension',
+      show: record => ['Orchestrator', 'NetworkOrchestrator'].includes(record.type),
       dataView: true,
       popup: true,
       component: shallowRef(defineAsyncComponent(() => import('@/views/extension/RegisterExtension.vue')))

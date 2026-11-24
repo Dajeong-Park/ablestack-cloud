@@ -17,6 +17,10 @@
 
 <template>
   <div>
+    <a-button v-if="'registerExtension' in $store.getters.apis && ['Orchestrator', 'NetworkOrchestrator'].includes(resource.type)" type="primary" class="register-extension-resource" @click="registerModalVisible = true">
+      <template #icon><plus-outlined /></template>
+      {{ $t('label.register.extension') }}
+    </a-button>
     <a-table
       size="small"
       :columns="columns"
@@ -68,6 +72,14 @@
       </template>
     </a-table>
     <a-modal
+      v-if="registerModalVisible"
+      :visible="registerModalVisible"
+      :title="$t('label.register.extension')"
+      :footer="null"
+      @cancel="registerModalVisible = false">
+      <register-extension :resource="resource" @refresh-data="handleRefreshData" @close-action="registerModalVisible = false" />
+    </a-modal>
+    <a-modal
       v-if="updateModalVisible"
       :visible="updateModalVisible"
       :width="600"
@@ -90,13 +102,15 @@ import eventBus from '@/config/eventBus'
 import ObjectListTable from '@/components/view/ObjectListTable.vue'
 import TooltipButton from '@/components/widgets/TooltipButton'
 import UpdateRegisteredExtension from '@/views/extension/UpdateRegisteredExtension'
+import RegisterExtension from '@/views/extension/RegisterExtension'
 
 export default {
   name: 'ExtensionResourcesTab',
   components: {
     ObjectListTable,
     TooltipButton,
-    UpdateRegisteredExtension
+    UpdateRegisteredExtension,
+    RegisterExtension
   },
   inject: ['parentFetchData'],
   props: {
@@ -130,6 +144,7 @@ export default {
       ],
       unregisterLoading: false,
       updateModalVisible: false,
+      registerModalVisible: false,
       selectedResource: null
     }
   },
@@ -174,3 +189,7 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.register-extension-resource { margin-bottom: 12px; }
+</style>
