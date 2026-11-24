@@ -24,6 +24,15 @@
       :loading="loading"
       layout="vertical"
       @finish="handleSubmit">
+      <a-form-item name="resourcetype" :label="$t('label.resourcetype')">
+        <a-select
+          v-model:value="form.resourcetype"
+          :disabled="!resourceTypes.length"
+          :options="resourceTypeOptions"
+          :placeholder="$t('message.error.select')">
+        </a-select>
+        <a-alert v-if="resourceTypeChanged" type="info" show-icon :message="$t('message.extension.action.type.change')" />
+      </a-form-item>
       <a-form-item name="description" ref="description">
         <template #label>
           <tooltip-label :title="$t('label.description')" :tooltip="apiParams.description.description"/>
@@ -102,13 +111,14 @@
 
 <script>
 import { ref, reactive, toRaw } from 'vue'
-import { postAPI } from '@/api'
+import { getAPI, postAPI } from '@/api'
+import { customActionResourceTypes } from '@/utils/extension'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 import ParametersInput from '@/views/extension/ParametersInput'
 import DetailsInput from '@/components/widgets/DetailsInput'
 
 export default {
-  name: 'AddCustomAction',
+  name: 'UpdateCustomAction',
   components: {
     TooltipLabel,
     ParametersInput,
@@ -118,42 +128,60 @@ export default {
     resource: {
       type: Object,
       required: true
-    }
+    },
+    extension: { type: Object, default: null }
   },
   inject: ['parentFetchData'],
   data () {
     return {
       roleTypes: [],
+      extensionType: null,
       loading: false
     }
   },
   beforeCreate () {
     this.apiParams = this.$getApiParams('updateCustomAction')
-    this.extensionsApiParams = {
-      listall: true
-    }
   },
   created () {
     this.initForm()
     this.roleTypes = this.$fetchCustomActionRoleTypes()
+    this.loadExtensionType()
+  },
+  computed: {
+    resourceTypes () {
+      return customActionResourceTypes(this.extension?.type || this.extensionType)
+    },
+    resourceTypeChanged () {
+      return this.resourceTypes.includes(this.form.resourcetype) && this.form.resourcetype !== this.resource.resourcetype
+    },
+    resourceTypeOptions () {
+      const existing = this.resource.resourcetype
+      const options = this.resourceTypes.map(value => ({ label: value, value }))
+      if (existing && !this.resourceTypes.includes(existing)) options.unshift({ label: existing, value: existing, disabled: true })
+      return options
+    }
   },
   methods: {
-    fixParamatersOptions (params) {
-      if (!params) {
-        return
+    async loadExtensionType () {
+      if (this.extension?.type || !this.resource.extensionid || !('listExtensions' in this.$store.getters.apis)) return
+      try {
+        const data = await getAPI('listExtensions', { id: this.resource.extensionid, details: 'min' })
+        this.extensionType = data.listextensionsresponse?.extension?.[0]?.type
+      } catch (error) {
+        this.$notifyError(error)
       }
-      for (var param of params) {
-        if (!param.options || param.options.length === 0) {
-          continue
-        }
-        param.options = param.options.join(',')
-      }
-      return params
+    },
+    formatParameterOptions (params) {
+      return params?.map(param => ({
+        ...param,
+        options: Array.isArray(param.options) ? param.options.join(',') : param.options
+      }))
     },
     initForm () {
       this.formRef = ref()
       const formData = {
-        parameters: this.fixParamatersOptions(this.resource.parameters)
+        parameters: this.formatParameterOptions(this.resource.parameters),
+        resourcetype: this.resource.resourcetype
       }
       const keys = ['description', 'allowedroletypes', 'successmessage', 'errormessage', 'details', 'timeout']
       for (const key of keys) {
@@ -171,9 +199,10 @@ export default {
         const params = {
           id: this.resource.id
         }
+        if (this.resourceTypeChanged) params.resourcetype = values.resourcetype
         const keys = ['description', 'allowedroletypes', 'successmessage', 'errormessage', 'timeout']
         for (const key of keys) {
-          if (values[key] !== undefined || values[key] !== null) {
+          if (values[key] !== undefined && values[key] !== null) {
             params[key] = Array.isArray(values[key]) ? values[key].join(',') : values[key]
           }
         }

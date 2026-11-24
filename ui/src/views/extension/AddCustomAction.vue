@@ -53,13 +53,13 @@
           </a-select-option>
         </a-select>
       </a-form-item>
-      <a-form-item name="name" ref="name">
+      <a-form-item name="name" ref="name" :extra="$t('message.extension.action.name.rules')">
         <template #label>
           <tooltip-label :title="$t('label.name')" :tooltip="apiParams.name.description"/>
         </template>
         <a-input
           v-model:value="form.name"
-          :placeholder="apiParams.name.description"
+          :placeholder="$t('label.name')"
           v-focus="true" />
       </a-form-item>
       <a-form-item name="description" ref="description">
@@ -145,6 +145,7 @@
 
 <script>
 import { ref, reactive, toRaw } from 'vue'
+import { customActionResourceTypes } from '@/utils/extension'
 import { postAPI } from '@/api'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 import InfiniteScrollSelect from '@/components/widgets/InfiniteScrollSelect'
@@ -197,23 +198,18 @@ export default {
       })
       this.rules = reactive({
         extensionid: [{ required: true, message: `${this.$t('message.error.select')}` }],
-        name: [{ required: true, message: `${this.$t('message.error.name')}` }],
+        name: [
+          { required: true, message: this.$t('message.error.name') },
+          { pattern: /^[A-Za-z0-9 _-]{1,255}$/, message: this.$t('message.extension.action.name.rules') }
+        ],
         resourcetype: [{ required: true, message: `${this.$t('message.error.select')}` }]
       })
     },
     updateResourceTypeByExtension (selectedExtension) {
-      const type = selectedExtension?.type
-      if (type === 'NetworkOrchestrator') {
-        this.resourceTypeOptions = ['Network', 'Vpc']
-        this.form.resourcetype = 'Network'
-      } else if (type === 'Orchestrator') {
-        this.resourceTypeOptions = ['VirtualMachine']
-        this.form.resourcetype = 'VirtualMachine'
-      } else {
-        this.resourceTypeOptions = ['VirtualMachine', 'Network', 'Vpc']
-        if (!this.form.resourcetype) {
-          this.form.resourcetype = 'VirtualMachine'
-        }
+      const allowed = customActionResourceTypes(selectedExtension?.type)
+      this.resourceTypeOptions = allowed.length ? allowed : ['VirtualMachine', 'Network', 'Vpc']
+      if (!this.resourceTypeOptions.includes(this.form.resourcetype)) {
+        this.form.resourcetype = this.resourceTypeOptions[0]
       }
     },
     handleSubmit (e) {

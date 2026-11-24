@@ -28,3 +28,10 @@ export function getFilteredExternalDetails (details) {
   }
   return Object.keys(result).length > 0 ? result : null
 }
+
+export function customActionResourceTypes (extensionType) {
+  return {
+    Orchestrator: ['VirtualMachine'],
+    NetworkOrchestrator: ['Network', 'Vpc']
+  }[extensionType] || []
+}

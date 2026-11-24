@@ -6921,6 +6921,8 @@
   "message.extension.register.no.candidates": "No eligible resources are available.",
   "message.extension.register.already.linked": "All candidates are already registered with this extension.",
   "message.extension.register.load.failed": "Could not load eligible resources. Try again.",
+  "message.extension.action.name.rules": "Enter 1 to 255 letters (A–Z), digits, spaces, hyphens (-), or underscores (_).",
+  "message.extension.action.type.change": "Changing the resource type changes where this action can run.",
   "message.add.extension.resource.details": "Details to be sent to the extension during any operation for this resource.",
   "message.add.orchestrator.resource.details": "Details to be sent to the hypervisor.",
   "message.advisory.cks.endpoint.url.not.configured": "Endpoint URL which will be used by Kubernetes clusters is not configured correctly",
