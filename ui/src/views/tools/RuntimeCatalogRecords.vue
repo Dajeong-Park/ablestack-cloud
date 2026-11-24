@@ -1,4 +1,20 @@
-<!-- Licensed under the Apache License, Version 2.0. See the NOTICE file. -->
+// Licensed to the Apache Software Foundation (ASF) under one
+// or more contributor license agreements.  See the NOTICE file
+// distributed with this work for additional information
+// regarding copyright ownership.  The ASF licenses this file
+// to you under the Apache License, Version 2.0 (the
+// "License"); you may not use this file except in compliance
+// with the License.  You may obtain a copy of the License at
+//
+//   http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing,
+// software distributed under the License is distributed on an
+// "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+// KIND, either express or implied.  See the License for the
+// specific language governing permissions and limitations
+// under the License.
+
 <template>
   <div class="runtime-catalog-records">
     <a-space class="catalog-toolbar" wrap>
@@ -8,7 +24,7 @@
       <template #description>
         <a-space wrap>
           <span v-if="hasSuccessfulRead">{{ $t('message.runtime.catalog.records.previous.result') }}</span>
-          <a-button size="small" :loading="busy" @click="load()">{{ $t('label.retry') }}</a-button>
+          <a-button size="small" :loading="busy" @click="load(error.page, error.pagesize)">{{ $t('label.retry') }}</a-button>
         </a-space>
       </template>
     </a-alert>
@@ -80,7 +96,7 @@ export default {
     tab: { type: String, required: true },
     active: { type: Boolean, default: true }
   },
-  data () { return { rows: [], total: 0, page: 1, pagesize: 10, busy: false, hasSuccessfulRead: false, error: false, epoch: 0, detail: null, detailTrigger: null } },
+  data () { return { rows: [], total: 0, page: 1, pagesize: 10, busy: false, hasSuccessfulRead: false, error: null, epoch: 0, detail: null, detailTrigger: null } },
   computed: {
     scope () { return this.resource.id + ':' + this.tab },
     detailFields () {
@@ -164,7 +180,7 @@ export default {
       this.detail = null
       this.hasSuccessfulRead = false
       this.detailTrigger = null
-      this.error = false
+      this.error = null
       this.busy = false
       this.page = 1
       this.pagesize = 10
@@ -185,9 +201,9 @@ export default {
         this.page = page
         this.pagesize = pagesize
         this.hasSuccessfulRead = true
-        this.error = false
+        this.error = null
       } catch {
-        if (epoch === this.epoch) this.error = true
+        if (epoch === this.epoch) this.error = { page, pagesize }
       } finally {
         if (epoch === this.epoch) this.busy = false
       }

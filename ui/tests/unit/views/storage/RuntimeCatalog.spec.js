@@ -136,6 +136,37 @@ describe('runtime catalogue mounted components and real ApiResponseSerializer re
     expect(wrapper.text()).not.toContain('message.runtime.catalog.records.load.failed')
   })
 
+  it('retries the failed page and page size while retaining the last successful results', async () => {
+    wrapper = shallowMount(Records, {
+      props: { resource: resource(), tab: 'runtime.validations' },
+      global: {
+        mocks: { $t: key => key },
+        stubs: {
+          AAlert: { template: '<div><slot name="description" /></div>' },
+          ASpace: { template: '<div><slot /></div>' },
+          AButton: { template: '<button><slot /></button>' }
+        }
+      }
+    })
+    await flushPromises()
+    const previousRows = wrapper.vm.rows
+
+    getAPI.mockRejectedValueOnce(new Error('unavailable'))
+    wrapper.vm.changePage(2, 20)
+    await flushPromises()
+    expect(wrapper.vm.rows).toEqual(previousRows)
+    expect(wrapper.vm.page).toBe(1)
+    expect(wrapper.vm.pagesize).toBe(10)
+
+    const retry = wrapper.findAll('button').find(button => button.text() === 'label.retry')
+    await retry.trigger('click')
+    await flushPromises()
+    expect(getAPI).toHaveBeenLastCalledWith('listStorageServiceRuntimeBundleValidations', { bundleid: 'bundle-uuid', page: 2, pagesize: 20 })
+    expect(wrapper.vm.page).toBe(2)
+    expect(wrapper.vm.pagesize).toBe(20)
+    expect(wrapper.vm.error).toBeNull()
+  })
+
   it('keeps the last successful usage rows after a failure only within the same bundle', async () => {
     const row = { id: 'current-reference', type: 'CURRENT' }
     getAPI.mockResolvedValueOnce({ liststorageserviceruntimebundleusagesresponse: { count: 1, storageserviceruntimecatalogrecord: [row] } })
