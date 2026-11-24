@@ -10,8 +10,15 @@
           :label="$t('label.' + field)"
           :html-for="'runtime-catalog-' + field"
           :extra="$t('message.runtime.catalog.register.field.' + field)"
+          :validate-status="field === 'artifactsize' && artifactSizeInvalid ? 'error' : undefined"
+          :help="field === 'artifactsize' && artifactSizeInvalid ? $t('message.runtime.catalog.invalid.artifactsize') : undefined"
           :required="field !== 'artifactsize'">
-          <a-input-number v-if="field === 'artifactsize'" :id="'runtime-catalog-' + field" v-model:value="form[field]" :min="1" :max="67108864" style="width:100%" />
+          <a-input
+            v-if="field === 'artifactsize'"
+            id="runtime-catalog-artifactsize"
+            v-model:value="form.artifactsize"
+            :aria-invalid="artifactSizeInvalid"
+            inputmode="numeric" />
           <a-select v-else-if="field === 'serviceimpact'" :id="'runtime-catalog-' + field" v-model:value="form[field]">
             <a-select-option v-for="value in ['NONE', 'PROTOCOL_RESTART', 'VM_REBOOT']" :key="value" :value="value">
               {{ $t('label.runtime.catalog.serviceimpact.' + value) }}
@@ -48,6 +55,9 @@ import { postAPI } from '@/api'
 import { creationRequestId } from '@/utils/sharedFsBacking'
 import MoldDialog from '@/components/view/MoldDialog'
 import MoldDialogActions from '@/components/view/MoldDialogActions'
+
+const maximumBundleBytes = 64 * 1024 * 1024
+
 export default {
   name: 'RuntimeCatalogAction',
   components: { MoldDialog, MoldDialogActions },
@@ -66,11 +76,20 @@ export default {
   computed: {
     kind () { return this.currentAction.catalogAction || 'REGISTER' },
     fields () { return ['version', 'signingkeyid', 'runtimeabiversion', 'desiredstateschemaversion', 'serviceimpact', 'artifacturl', 'manifesturl', 'signatureurl', 'artifactsize', 'sha256', 'manifestsha256'] },
+    artifactSize () {
+      const value = String(this.form.artifactsize ?? '').trim()
+      if (!value) return null
+      return /^\d+$/.test(value) ? Number(value) : NaN
+    },
+    artifactSizeInvalid () {
+      const size = this.artifactSize
+      return size !== null && (!Number.isInteger(size) || size < 1 || size > maximumBundleBytes)
+    },
     valid () {
       if (this.busy) return false
       if (this.kind === 'DELETE' && Number(this.resource.referencecount) !== 0) return false
       if (this.kind !== 'REGISTER') return this.kind === 'VALIDATE' || (!!this.reason.trim() && (this.kind !== 'REVOKE' || this.acknowledged))
-      return this.fields.filter(x => x !== 'artifactsize').every(x => !!this.form[x]) &&
+      return !this.artifactSizeInvalid && this.fields.filter(x => x !== 'artifactsize').every(x => !!this.form[x]) &&
         ['sha256', 'manifestsha256'].every(x => /^[0-9a-fA-F]{64}$/.test(this.form[x])) &&
         ['version', 'signingkeyid', 'runtimeabiversion', 'desiredstateschemaversion'].every(x => /^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/.test(this.form[x])) &&
         ['artifacturl', 'manifesturl', 'signatureurl'].every(x => {
@@ -85,7 +104,9 @@ export default {
       this.busy = true; this.error = ''
       try {
         if (this.kind === 'REGISTER') {
-          await postAPI('registerStorageServiceRuntimeBundle', { ...this.form })
+          const { artifactsize, ...params } = this.form
+          if (this.artifactSize !== null) params.artifactsize = this.artifactSize
+          await postAPI('registerStorageServiceRuntimeBundle', params)
           this.$emit('refresh-data'); this.busy = false; this.close(); return
         }
         if (!this.requestid) this.requestid = creationRequestId('catalog')

@@ -11787,6 +11787,7 @@
   "message.runtime.catalog.register.field.manifesturl": "Enter the HTTP or HTTPS URL for the signed metadata document, without credentials or a fragment.",
   "message.runtime.catalog.register.field.signatureurl": "Enter the HTTP or HTTPS URL for the detached manifest signature, without credentials or a fragment.",
   "message.runtime.catalog.register.field.artifactsize": "Optional. Enter the bundle size in whole bytes, from 1 to 67,108,864 (64 MiB).",
+  "message.runtime.catalog.invalid.artifactsize": "Enter a whole number from 1 to 67,108,864 bytes.",
   "message.runtime.catalog.register.field.sha256": "Enter the 64-character hexadecimal SHA-256 checksum of the runtime bundle.",
   "message.runtime.catalog.register.field.manifestsha256": "Enter the 64-character hexadecimal SHA-256 checksum of the manifest file.",
   "label.runtime.catalog.serviceimpact.NONE": "No interruption declared",

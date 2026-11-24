@@ -11795,6 +11795,7 @@
   "message.runtime.catalog.register.field.manifesturl": "서명된 메타데이터 문서의 HTTP 또는 HTTPS URL을 입력하세요. 인증 정보와 프래그먼트는 제외하세요.",
   "message.runtime.catalog.register.field.signatureurl": "분리된 매니페스트 서명 파일의 HTTP 또는 HTTPS URL을 입력하세요. 인증 정보와 프래그먼트는 제외하세요.",
   "message.runtime.catalog.register.field.artifactsize": "선택 항목입니다. 번들 크기를 1~67,108,864바이트(64 MiB) 사이의 정수로 입력하세요.",
+  "message.runtime.catalog.invalid.artifactsize": "1~67,108,864바이트 사이의 정수를 입력하세요.",
   "message.runtime.catalog.register.field.sha256": "런타임 번들의 SHA-256 체크섬을 16진수 64자로 입력하세요.",
   "message.runtime.catalog.register.field.manifestsha256": "매니페스트 파일의 SHA-256 체크섬을 16진수 64자로 입력하세요.",
   "label.runtime.catalog.serviceimpact.NONE": "서비스 중단 없음",

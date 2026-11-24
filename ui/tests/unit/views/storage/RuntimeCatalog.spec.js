@@ -23,6 +23,18 @@ import { getAPI, postAPI } from '@/api'
 import wire from '../../../fixtures/storage-1447-catalog-wire.json'
 jest.mock('@/api', () => ({ getAPI: jest.fn(), postAPI: jest.fn() }))
 const copy = x => JSON.parse(JSON.stringify(x))
+const draftMetadata = {
+  version: 'v2',
+  signingkeyid: 'operator-key',
+  runtimeabiversion: '1',
+  desiredstateschemaversion: '1',
+  serviceimpact: 'NONE',
+  artifacturl: 'http://localhost/b',
+  manifesturl: 'http://localhost/m',
+  signatureurl: 'http://localhost/s',
+  sha256: 'a'.repeat(64),
+  manifestsha256: 'b'.repeat(64)
+}
 describe('runtime catalogue mounted components and real ApiResponseSerializer response', () => {
   let wrapper, poll
   const resource = () => copy(wire.bundles.liststorageserviceruntimebundlesresponse.storageserviceruntimebundle[0])
@@ -69,12 +81,24 @@ describe('runtime catalogue mounted components and real ApiResponseSerializer re
   })
   it('registers only draft metadata; registration does not start verification, publication or VM application', async () => {
     const vm = await mountAction('REGISTER')
-    vm.form = { version: 'v2', signingkeyid: 'operator-key', runtimeabiversion: '1', desiredstateschemaversion: '1', serviceimpact: 'NONE', artifacturl: 'http://localhost/b', manifesturl: 'http://localhost/m', signatureurl: 'http://localhost/s', sha256: 'a'.repeat(64), manifestsha256: 'b'.repeat(64) }
+    vm.form = { ...draftMetadata, artifactsize: '' }
     expect(vm.valid).toBe(true)
     await vm.submit()
-    expect(postAPI.mock.calls).toEqual([['registerStorageServiceRuntimeBundle', vm.form]])
+    expect(postAPI.mock.calls).toEqual([['registerStorageServiceRuntimeBundle', draftMetadata]])
     expect(wrapper.emitted('refresh-data')).toHaveLength(1)
     expect(wrapper.emitted('close-action')).toHaveLength(1)
+  })
+
+  it.each([['1', 1], ['67108864', 67108864], ['0', null], ['67108865', null], ['1.5', null]])('uses a whole byte count for bundle size %s', async (input, expected) => {
+    const vm = await mountAction('REGISTER')
+    vm.form = { ...draftMetadata, artifactsize: input }
+    await vm.submit()
+    if (expected === null) {
+      expect(vm.artifactSizeInvalid).toBe(true)
+      expect(postAPI).not.toHaveBeenCalled()
+    } else {
+      expect(postAPI).toHaveBeenCalledWith('registerStorageServiceRuntimeBundle', { ...draftMetadata, artifactsize: expected })
+    }
   })
   it('uses the named list record and explicit pagination contract for verification history', async () => {
     wrapper = shallowMount(Records, { props: { resource: resource(), tab: 'runtime.validations' }, global: { mocks: { $t: x => x, $notifyError: jest.fn() }, stubs: { RouterLink: true } } })
