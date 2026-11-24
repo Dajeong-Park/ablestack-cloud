@@ -199,6 +199,9 @@ export default {
         if (values.description) {
           params.description = values.description
         }
+        if (values.type === 'Orchestrator' && typeof values.orchestratorrequirespreparevm === 'boolean') {
+          params.orchestratorrequirespreparevm = values.orchestratorrequirespreparevm
+        }
         var path = values.path
         if (!path) {
           path = this.safeName + '.sh'
