@@ -49,7 +49,7 @@
           </a-select-option>
         </a-select>
         <a-alert v-if="resources.message" class="registration-notice" :type="resources.retry ? 'warning' : 'info'" show-icon :message="$t(resources.message)">
-          <template v-if="resources.retry" #action><a-button size="small" @click="fetchResources">{{ $t('label.refresh') }}</a-button></template>
+          <template v-if="resources.retry" #description><a-button size="small" @click="fetchResources">{{ $t('label.refresh') }}</a-button></template>
         </a-alert>
       </a-form-item>
       <a-form-item>
@@ -127,7 +127,7 @@ export default {
       try {
         const cluster = this.resourceType === 'Cluster'
         const params = cluster ? { hypervisor: 'External' } : {}
-        const data = await getAPI(this.listApi, params)
+        const data = await getAPI(this.listApi, params, { preserveOnFailure: true })
         const candidates = data[this.listApi.toLowerCase() + 'response']?.[this.resourceType.toLowerCase()] || []
         const linked = new Set((this.resource.resources || []).map(resource => resource.id))
         const eligible = candidates.filter(candidate => !cluster || candidate.hypervisortype === 'External')

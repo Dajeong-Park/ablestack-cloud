@@ -18,7 +18,7 @@
 <template>
   <div>
     <a-alert v-if="listRefreshFailed" type="warning" show-icon :message="$t('message.list.refresh.stale')">
-      <template #action><a-button size="small" @click="fetchCustomActions">{{ $t('label.refresh') }}</a-button></template>
+      <template #description><a-button size="small" @click="fetchCustomActions">{{ $t('label.refresh') }}</a-button></template>
     </a-alert>
     <div class="extension-action-toolbar">
       <a-button type="primary" @click="showAddCustomActionModal" :disabled="!('addCustomAction' in $store.getters.apis)">
@@ -285,7 +285,7 @@ export default {
       if (this.resourceTypes.includes(this.criteria.actiontype)) params.resourcetype = this.criteria.actiontype
       if (['true', 'false'].includes(this.criteria.actionstate)) params.enabled = this.criteria.actionstate
       this.tabLoading = !listRequest.loaded
-      return getAPI('listCustomActions', params).then(json => {
+      return getAPI('listCustomActions', params, { preserveOnFailure: true }).then(json => {
         if (!this.isListRequestCurrent('fetchCustomActions', listRequest)) return
         this.totalCount = json?.listcustomactionsresponse?.count || 0
         const lastPage = Math.max(1, Math.ceil(this.totalCount / this.pageSize))

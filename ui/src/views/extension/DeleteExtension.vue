@@ -25,7 +25,7 @@
     </a-checkbox>
     <p id="extension-delete-cleanup-description">{{ $t('message.extension.delete.cleanup') }}</p>
     <a-alert v-if="error" type="error" show-icon :message="error">
-      <template v-if="unverified" #action>
+      <template v-if="unverified" #description>
         <a-button size="small" :loading="loading" @click="recheck">{{ $t('label.refresh') }}</a-button>
       </template>
     </a-alert>
@@ -61,7 +61,7 @@ export default {
       this.loading = true
       this.error = ''
       try {
-        const response = await postAPI('deleteExtension', { id: target.id, cleanup: target.cleanup })
+        const response = await postAPI('deleteExtension', { id: target.id, cleanup: target.cleanup }, { preserveOnFailure: true })
         if (response.deleteextensionresponse?.success !== true) throw new Error(this.$t('message.request.failed'))
         this.complete(target)
       } catch (error) {
@@ -81,7 +81,7 @@ export default {
     },
     async reconcile (target, deletionError) {
       try {
-        const data = await getAPI('listExtensions', { id: target.id, details: 'min' })
+        const data = await getAPI('listExtensions', { id: target.id, details: 'min' }, { preserveOnFailure: true })
         const response = data?.listextensionsresponse
         if (!response || response.errorcode) throw new Error(this.$t('message.request.failed'))
         this.unverified = false
