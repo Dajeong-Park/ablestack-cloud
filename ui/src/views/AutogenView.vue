@@ -1462,8 +1462,13 @@ export default {
         this.fetchData()
       }
     },
-    vmDialogScope () {
-      if (this.showAction && this.vmStandardDialog) this.closeAction()
+    vmDialogScope: {
+      // Row actions assign their target before opening. Handle that change now,
+      // rather than closing the newly opened dialog in the next update cycle.
+      flush: 'sync',
+      handler () {
+        if (this.showAction && this.vmStandardDialog) this.closeAction()
+      }
     },
     vpnUserAuth: {
       flush: 'sync',

@@ -24,9 +24,13 @@ import fcntl
 import json
 import os
 from pathlib import Path
+import subprocess
+import sys
 import tempfile
+import textwrap
 import unittest
 from unittest.mock import patch
+import uuid
 
 import netbackup_host_configuration as ui
 
@@ -197,6 +201,101 @@ class NetBackupHostConfigurationTest(unittest.TestCase):
         self.assertIn("pass_fds", launch.call_args.kwargs)
         for secret in (self.request["adminapikey"], self.request["adminsecretkey"], self.request["netbackupapikey"]):
             self.assertNotIn(secret, ui.STATE.read_text())
+
+
+class NetBackupHookTimeoutResponseTest(unittest.TestCase):
+    def setUp(self):
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        self.root = Path(temporary.name)
+        self.conf = self.root / "bp.conf"
+        self.original = (b"SERVER = primary\nCLIENT_NAME = host\nBPSTART_TIMEOUT = 86400\n"
+                         b"BPEND_TIMEOUT = 86400\nCLIENT_READ_TIMEOUT = 86400\n")
+        self.bin = self.root / "bin"
+        self.bin.mkdir()
+        for name in ("systemctl", "service"):
+            command = self.bin / name
+            command.write_text("#!/bin/sh\n"
+                               "printf '%s\\n' 'restart stdout: synthetic-private-key'\n"
+                               "printf '%s\\n' 'restart stderr: synthetic-private-key' >&2\n"
+                               'exit "$TEST_RESTART_EXIT"\n')
+            command.chmod(0o700)
+
+    def reset(self):
+        self.conf.write_bytes(self.original)
+        self.conf.chmod(0o640)
+        self.request = dict(operationid=str(uuid.uuid4()), previous=86400, timeout=3600,
+                            hostname="host", hostip="192.0.2.1", netbackupurl="https://primary/netbackup",
+                            netbackupapikey="synthetic-private-key")
+
+    def invoke(self, action, service="systemctl", restart_exit=0):
+        request = self.root / "request.json"
+        request.write_text(json.dumps(dict(self.request, action="HOOK_TIMEOUT_" + action)))
+        request.chmod(0o600)
+        code = textwrap.dedent("""\
+            import os
+            from pathlib import Path
+            import sys
+            import netbackup_host_configuration as ui
+
+            root, service = Path(sys.argv[1]), sys.argv[2]
+            ui.ROOT = root
+            ui.LOCK = root / "configuration.lock"
+            ui.setup.NETBACKUP_BP_CONF_PATH = root / "bp.conf"
+            ui.setup.shutil.which = lambda name: str(root / "bin" / name) if name == service else None
+            ui.status = lambda: dict(state="COMPLETED", configured=True, policyinventorycomplete=True)
+            def idle(args):
+                print("preflight stdout: synthetic-private-key")
+                print("preflight stderr: synthetic-private-key", file=sys.stderr)
+            ui.no_external_jobs = idle
+            sys.argv = [ui.__file__, "--request", str(root / "request.json")]
+            ui.main()
+            """)
+        # Match Script.executeIgnoreExitValue: Agent parses both streams as one JSON document.
+        result = subprocess.run([sys.executable, "-c", code, str(self.root), service],
+                                cwd=Path(ui.__file__).parent, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+                                text=True, timeout=15,
+                                env=dict(os.environ, PATH=str(self.bin) + os.pathsep + os.environ.get("PATH", ""),
+                                         TEST_RESTART_EXIT=str(restart_exit)))
+        self.assertEqual(0, result.returncode, result.stdout)
+        self.assertFalse(request.exists())
+        value = json.loads(result.stdout)
+        self.assertNotIn("synthetic-private-key", result.stdout)
+        if action == "CHECK":
+            self.request["fingerprint"] = value["fingerprint"]
+        return value
+
+    def test_apply_rollback_and_commit_each_return_a_single_json_receipt(self):
+        for service in ("systemctl", "service"):
+            with self.subTest(service=service):
+                self.reset()
+                self.assertEqual("CHECKED", self.invoke("CHECK", service)["state"])
+                self.assertEqual("APPLIED", self.invoke("APPLY", service)["state"])
+                for key in ("BPSTART_TIMEOUT", "BPEND_TIMEOUT", "CLIENT_READ_TIMEOUT"):
+                    self.assertIn(key + " = 3600\n", self.conf.read_text())
+                self.assertEqual(0o640, self.conf.stat().st_mode & 0o777)
+                self.assertEqual("ROLLED_BACK", self.invoke("ROLLBACK", service)["state"])
+                self.assertEqual(self.original, self.conf.read_bytes())
+                self.assertEqual("CHECKED", self.invoke("CHECK", service)["state"])
+                self.assertEqual("APPLIED", self.invoke("APPLY", service)["state"])
+                self.assertEqual("COMMITTED", self.invoke("COMMIT", service)["state"])
+                self.assertFalse(list((self.root / "hook-timeouts").glob("*.pending.json")))
+
+    def test_failed_apply_or_rollback_keeps_a_json_receipt_and_can_be_recovered(self):
+        for service in ("systemctl", "service"):
+            for action in ("APPLY", "ROLLBACK"):
+                with self.subTest(service=service, action=action):
+                    self.reset()
+                    self.invoke("CHECK", service)
+                    if action == "ROLLBACK":
+                        self.invoke("APPLY", service)
+                    result = self.invoke(action, service, restart_exit=7)
+                    self.assertEqual("FAILED", result["state"])
+                    self.assertIn("exit status 7", result["message"])
+                    self.assertTrue(list((self.root / "hook-timeouts").glob("*.pending.json")))
+                    self.assertEqual("RECOVERED", self.invoke("RECOVER", service)["state"])
+                    self.assertEqual(self.original, self.conf.read_bytes())
+                    self.assertFalse(list((self.root / "hook-timeouts").glob("*.pending.json")))
 
 
 if __name__ == "__main__":
