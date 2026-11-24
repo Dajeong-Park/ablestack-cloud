@@ -32,6 +32,7 @@
       :dataSource="extensionCustomActions"
       :rowKey="item => item.id"
       :pagination="false"
+      :loading="tabLoading"
       :rowExpandable="(record) => record.parameters && Object.keys(record.parameters).length > 0">
       <template #bodyCell="{ column, text, record }">
         <template v-if="column.key === 'name'">
@@ -94,6 +95,16 @@
           :data-array="record.parameters" />
       </template>
     </a-table>
+    <a-pagination
+      style="margin-top: 12px"
+      size="small"
+      :current="page"
+      :page-size="pageSize"
+      :total="totalCount"
+      :show-total="total => $t('label.total') + ' ' + total + ' ' + $t('label.items')"
+      :page-size-options="['10', '20', '40', '80']"
+      show-size-changer
+      @change="changePage" />
 
     <a-modal
       style="min-width: 1000px;"
@@ -205,6 +216,11 @@ export default {
     fetchData () {
       this.fetchCustomActions()
     },
+    changePage (page, size) {
+      this.page = size === this.pageSize ? page : 1
+      this.pageSize = size
+      this.fetchCustomActions()
+    },
     fetchCustomActions () {
       const listRequest = this.listRequestToken('fetchCustomActions')
 
@@ -220,8 +236,12 @@ export default {
       this.tabLoading = !listRequest.loaded
       return getAPI('listCustomActions', params).then(json => {
         if (!this.isListRequestCurrent('fetchCustomActions', listRequest)) return
-        this.extensionCustomActions = []
         this.totalCount = json?.listcustomactionsresponse?.count || 0
+        const lastPage = Math.max(1, Math.ceil(this.totalCount / this.pageSize))
+        if (this.page > lastPage) {
+          this.page = lastPage
+          return this.fetchCustomActions()
+        }
         this.extensionCustomActions = json?.listcustomactionsresponse?.extensioncustomaction || []
         this.tabLoading = false
       }).catch(error => {

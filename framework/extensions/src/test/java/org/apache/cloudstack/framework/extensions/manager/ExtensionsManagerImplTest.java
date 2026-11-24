@@ -803,7 +803,7 @@ public class ExtensionsManagerImplTest {
         doReturn(resp1).when(extensionsManager).createExtensionResponse(eq(ext1), any());
         doReturn(resp2).when(extensionsManager).createExtensionResponse(eq(ext2), any());
 
-        List<ExtensionResponse> result = extensionsManager.listExtensions(cmd);
+        List<ExtensionResponse> result = extensionsManager.listExtensions(cmd).first();
 
         assertEquals(2, result.size());
         assertTrue(result.contains(resp1));
@@ -829,7 +829,7 @@ public class ExtensionsManagerImplTest {
         ExtensionResponse resp = mock(ExtensionResponse.class);
         doReturn(resp).when(extensionsManager).createExtensionResponse(eq(ext), any());
 
-        List<ExtensionResponse> result = extensionsManager.listExtensions(cmd);
+        List<ExtensionResponse> result = extensionsManager.listExtensions(cmd).first();
 
         assertEquals(1, result.size());
         assertEquals(resp, result.get(0));
@@ -854,7 +854,7 @@ public class ExtensionsManagerImplTest {
         ExtensionResponse resp = mock(ExtensionResponse.class);
         doReturn(resp).when(extensionsManager).createExtensionResponse(eq(ext), any());
 
-        List<ExtensionResponse> result = extensionsManager.listExtensions(cmd);
+        List<ExtensionResponse> result = extensionsManager.listExtensions(cmd).first();
 
         assertEquals(1, result.size());
         assertEquals(resp, result.get(0));
@@ -1595,7 +1595,7 @@ public class ExtensionsManagerImplTest {
 
         try (MockedStatic<CallContext> ignored = mockStatic(CallContext.class)) {
             mockCallerRole(RoleType.Admin);
-            List<ExtensionCustomActionResponse> result = extensionsManager.listCustomActions(cmd);
+            List<ExtensionCustomActionResponse> result = extensionsManager.listCustomActions(cmd).first();
 
             assertEquals(2, result.size());
             assertTrue(result.contains(resp1));

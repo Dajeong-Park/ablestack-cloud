@@ -3276,7 +3276,7 @@ export default {
           return
         }
 
-        if (!this.dataView && (this.isLdapUi || policyPage || Object.prototype.hasOwnProperty.call(json[responseName], 'count'))) {
+        if (!this.dataView && (this.isLdapUi || policyPage || requestApi === 'listExtensions' || Object.prototype.hasOwnProperty.call(json[responseName], 'count'))) {
           const lastPage = Math.max(1, Math.ceil(apiItemCount / this.pageSize))
           if (this.page > lastPage) {
             this.$router.replace({ query: { ...this.$route.query, page: String(lastPage) } })
