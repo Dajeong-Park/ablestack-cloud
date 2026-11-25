@@ -134,6 +134,7 @@
           :class="{ 'template-name-cell': (isTemplateMainList || isKubernetesIsoMainList) && record.id, 'project-list-name-cell': isProjectMainList }"
           :style="{ minWidth: (isTemplateMainList || isKubernetesIsoMainList) && record.id ? 0 : '120px' }">
           <QuickView
+            v-if="$route.path !== '/extension' || resourcePath"
             style="margin-left: 5px"
             :actions="actions"
             :resource="record"
