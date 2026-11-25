@@ -22,6 +22,7 @@
   <PublicIpSearch v-else-if="apiName === 'listPublicIpAddresses'" @search="$emit('search', $event)" />
   <SnapshotSearch v-else-if="apiName === 'listSnapshots'" @search="$emit('search', $event)" />
   <SnapshotPolicySearch v-else-if="apiName === 'listSnapshotPolicies'" @search="$emit('search', $event)" />
+  <RuntimeCatalogSearch v-else-if="apiName === 'listStorageServiceRuntimeBundles'" @search="$emit('search', $event)" />
   <span v-else :style="styleSearch">
     <span v-if="!searchFilters || searchFilters.length === 0" style="display: flex;">
       <a-input-search
@@ -266,6 +267,7 @@ import PublicIpSearchSelect from '@/components/view/PublicIpSearchSelect'
 import { publicIpProject } from '@/utils/publicIpSearch'
 import SnapshotSearch from '@/components/view/SnapshotSearch'
 import SnapshotPolicySearch from '@/components/view/SnapshotPolicySearch'
+import RuntimeCatalogSearch from '@/components/view/RuntimeCatalogSearch'
 import VolumeSearchSelect from '@/components/view/VolumeSearchSelect'
 import NetworkSearchSelect from '@/components/view/NetworkSearchSelect'
 import VnfSearchSelect from '@/components/view/VnfSearchSelect'
@@ -286,6 +288,7 @@ export default {
     S2sGatewaySearch,
     AsnSearch,
     SnapshotPolicySearch,
+    RuntimeCatalogSearch,
     VolumeSearchSelect,
     NetworkSearchSelect,
     VnfSearchSelect

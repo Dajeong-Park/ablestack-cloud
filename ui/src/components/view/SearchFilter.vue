@@ -25,7 +25,7 @@
       v-for="filter in this.searchFilters"
       :key="filter.key + filter.value"
     >
-      <a-col v-if="(kms && filter.key === 'projectid') || !['page', 'pagesize', 'q', 'keyword', 'tags', 'projectid', 'sortkey', 'sortorder'].includes(filter.key)">
+      <a-col v-if="(kms && filter.key === 'projectid') || (runtimeCatalog && filter.key === 'keyword') || !['page', 'pagesize', 'q', 'keyword', 'tags', 'projectid', 'sortkey', 'sortorder'].includes(filter.key)">
         <a-tag
           v-if="!filter.isTag"
           closable
@@ -64,6 +64,7 @@ import { publicIpPickerConfig } from '@/utils/publicIpSearch'
 import { affinityPolicy } from '@/utils/affinityGroupPresentation'
 import { snapshotSearchLabel, snapshotSearchValue, snapshotPickerScope } from '@/utils/storageSnapshotSearch'
 import { networkPickerApi, networkPickerParams } from '@/utils/guestNetworkSearch'
+import { runtimeCatalogApi, runtimeCatalogChoices } from '@/utils/runtimeCatalog'
 
 export default {
   name: 'SearchFilter',
@@ -191,6 +192,7 @@ export default {
     }
   },
   computed: {
+    runtimeCatalog () { return this.apiName === runtimeCatalogApi },
     kms () { return kmsApis.includes(this.apiName) },
     lookupScope () { return JSON.stringify([this.$store?.getters?.userInfo?.id, this.$store?.getters?.userInfo?.roletype, this.$store?.getters?.userInfo?.roleid, Object.keys(this.$store?.getters?.apis || {}).sort(), this.$store?.state?.user?.token, this.$store?.getters?.project?.id, this.$route.query?.projectid, this.$route.path, this.apiName]) }
   },
@@ -201,6 +203,9 @@ export default {
   },
   methods: {
     publicIpFilterValue (filter) {
+      if (this.runtimeCatalog && runtimeCatalogChoices[filter.key]?.includes(filter.value)) {
+        return this.$t('label.runtime.catalog.' + filter.key + '.' + filter.value)
+      }
       if (this.apiName !== 'listPublicIpAddresses') return filter.value
       const value = filter.rawValue ?? filter.value
       if (filter.key === 'state') return this.$t(publicIpState(value).key)
@@ -246,6 +251,8 @@ export default {
       return (text.length <= length) ? text : (text.substring(0, length - 3) + '...')
     },
     retrieveFieldLabel (fieldName) {
+      if (this.runtimeCatalog && fieldName === 'keyword') return this.$t('label.runtime.catalog.keyword')
+      if (this.runtimeCatalog && fieldName === 'version') return this.$t('label.runtime.catalog.version.exact')
       if (this.apiName === 'listOauthProviderConfigurations') {
         if (fieldName === 'provider') return this.$t('label.oauth.search.provider')
         if (fieldName === 'domainid') return this.$t('label.domain')

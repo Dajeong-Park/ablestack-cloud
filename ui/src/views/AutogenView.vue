@@ -28,7 +28,7 @@
             <breadcrumb :resource="resource" :standard-layout="standardResourceToolbar">
               <template #end>
                 <a-button
-                  v-if="$route.meta?.name !== 'runtimebundle'"
+                  :data-testid="isRuntimeCatalog ? 'runtime-catalog-refresh' : undefined"
                   :loading="loading || ($route.meta?.name === 'vnfapp' && vnfProjectSync) || ((isSecondaryStorageUi || isPrimaryStorageUi || isClusterUi || isZoneUi || isPhysicalNetworkUi || vpnConnectionRoute($route) || ['vmgroup', 'vnfapp'].includes($route.meta?.name) || isSnapshotList || isAclUi) && listRequestPending)"
                   :disabled="(isSnapshotList || isAclUi) && listRequestPending || isVpnUser && (vpnUserProjectSwitching || listRequestPending)"
                   style="margin-bottom: 5px"
@@ -217,13 +217,11 @@
               </span>
             </template>
             <a-button
-              v-if="$route.meta?.name === 'runtimebundle'"
-              data-testid="runtime-catalog-refresh"
-              :loading="loading"
-              :aria-label="$t('label.refresh')"
-              @click="fetchData({ irefresh: true })">
-              <template #icon><reload-outlined /></template>
-              {{ $t('label.refresh') }}
+              v-if="$route.meta?.name === 'runtimebundle' && !dataView"
+              :aria-pressed="$route.query.history === 'deleted'"
+              data-testid="runtime-catalog-history"
+              @click="toggleRuntimeCatalogHistory">
+              {{ $t($route.query.history === 'deleted' ? 'label.runtime.catalog.active.list' : 'label.runtime.catalog.deleted.history') }}
             </a-button>
             <AsnListTools v-if="asnSearchAuth" :selected="selectedItems" :ready="asnListReady" :scope="listScope()" @refresh="resetSelection(); $refs.listview?.resetSelection(); fetchData({ irefresh: true })" />
             <ProjectListSearch v-if="isProjectList" class="project-toolbar-search" @search="onSearch" />
@@ -1010,6 +1008,7 @@ import { canDeleteIpv4Subnet, ipv4SubnetListQuery, ipv4SubnetReadParams, ipv4Sub
 import EventCsvDialog from '@/views/event/EventCsvDialog'
 import EventMutationDialog from '@/views/event/EventMutationDialog'
 import VpnUserDeleteDialog from '@/views/network/VpnUserDeleteDialog'
+import { runtimeCatalogFilters } from '@/utils/runtimeCatalog'
 import { canDeleteVpnUsers, vpnUserDeleteTargets } from '@/utils/vpnUserDeletion'
 import { vpnCustomerGatewayActionKey } from '@/utils/vpnCustomerGatewayJobs'
 import { vpnUserOwner, vpnUserVisibleColumns } from '@/utils/vpnUserPresentation'
@@ -1654,6 +1653,7 @@ export default {
     isGuestNetworkUi () { return ['guestnetwork', 'networkoffering'].includes(this.$route.meta?.name) },
     isProjectUi () { return this.$route.meta?.name === 'project' },
     isVmUi () { return this.$route.meta?.name === 'vm' },
+    isRuntimeCatalog () { return this.$route.meta?.name === 'runtimebundle' },
     isVmList () { return !this.dataView && this.isVmUi },
     projectStateOptions () {
       return [{ value: '', label: this.$t('label.all') },
@@ -1773,7 +1773,7 @@ export default {
       return options
     },
     isExtensionUi () { return ['extension', 'customaction'].includes(this.$route.meta?.name) },
-    standardResourceToolbar () { return this.isExtensionUi || this.isLdapUi || this.isOauthUi || this.isSecondaryStorageUi || this.isPrimaryStorageUi || this.isClusterUi || this.isHostUi || this.isZoneUi || this.isPhysicalNetworkUi || this.isZoneRelatedList || this.isRoleUi || this.isVmUi || this.isAclUi || this.isVpnUser || this.isProjectUi || this.isVpnCustomerGateway || this.isGuestVlan || this.isIpv4Subnet || this.isDnsZone || this.isDnsServer },
+    standardResourceToolbar () { return this.isExtensionUi || this.isLdapUi || this.isOauthUi || this.isSecondaryStorageUi || this.isPrimaryStorageUi || this.isClusterUi || this.isHostUi || this.isZoneUi || this.isPhysicalNetworkUi || this.isZoneRelatedList || this.isRoleUi || this.isVmUi || this.isRuntimeCatalog || this.isAclUi || this.isVpnUser || this.isProjectUi || this.isVpnCustomerGateway || this.isGuestVlan || this.isIpv4Subnet || this.isDnsZone || this.isDnsServer },
     vpnUserAuth () { return this.isVpnUser ? vpnUserSearchAuth(this.$store.getters, this.$store.state?.user?.token) : null },
     vpnUserScope () { return this.isVpnUser ? vpnUserProject(this.$route.query, this.$store.getters) : null },
     vpnUserDeleteScope () {
@@ -1945,6 +1945,10 @@ export default {
     vmGroupQueryReady () { return ['ready', 'empty'].includes(this.vmGroupQueryStatus) && this.listLoadedScope === this.listScope() && !this.listRequestPending },
     snapshotSecurityScope () { return JSON.stringify([this.$store.getters.userInfo?.id, this.$store.getters.project?.id, this.$store.state?.user?.token, this.$store.getters.userInfo?.roletype, ...(snapshotDetailRoute(this.$route) ? [this.$store.getters.userInfo?.roleid, snapshotDetailPermissions(this.$store.getters)] : []), ...(policyDetailRoute(this.$route) ? [this.$store.getters.userInfo?.roleid, policyDetailPermissions(this.$store.getters)] : [])]) },
     activeFiltersList () {
+      if (this.$route.meta?.name === 'runtimebundle') {
+        const { history, ...filters } = runtimeCatalogFilters(this.$route.query)
+        return Object.entries(filters).map(([key, value]) => ({ key, value }))
+      }
       if (asnRoute(this.$route) || this.isS2sSearchList) return []
       if (this.isIsoList) return isoFilterChips(this.$route.query, this.$store.getters)
       if (this.$route.meta?.name === 'extension') {
@@ -1990,6 +1994,7 @@ export default {
       return activeFilters
     },
     showSearchFilters () {
+      if (this.$route.meta?.name === 'runtimebundle') return !this.dataView && this.activeFiltersList.length > 0
       if (this.isOauthUi) return !this.dataView && this.activeFiltersList.some(filter => ['id', 'provider', 'scope', 'domainid'].includes(filter.key))
       if (ipv4SubnetRoute(this.$route)) return !this.dataView && this.activeFiltersList.some(filter => ['zoneid', 'parentid', 'subnet', 'networkid', 'vpcid'].includes(filter.key))
       if (isAclListRoute(this.$route)) return !this.dataView && this.activeFiltersList.length > 0
@@ -2052,6 +2057,7 @@ export default {
       return 'self'
     },
     visibleDataViewActions () {
+      if (this.$route.meta?.name === 'runtimebundle' && (this.resource.id !== this.$route.params?.id || this.resource.state === 'DELETED')) return []
       if ((this.isLdapUi || this.isOauthUi) && (!this.storageActionReady || this.resource?.id !== this.$route.params?.id)) return []
       if ((this.isVpnUser || this.isVpnCustomerGateway) && !this.storageActionReady) return []
       if (this.isAclUi && (this.listRefreshError || this.resource?.id !== this.$route.params?.id)) return []
@@ -2079,6 +2085,7 @@ export default {
       }).map(action => policyBackgroundRead ? { ...action, disabled: () => true } : action)
     },
     visibleListActions () {
+      if (this.$route.meta?.name === 'runtimebundle' && this.$route.query.history === 'deleted') return []
       if (this.isVpnUser && this.vpnUserProjectSwitching) return []
       if (vnfRoute(this.$route) && !this.storageActionReady) return []
       if (this.isObjectStorageUi && !this.storageActionReady) return []
@@ -3645,7 +3652,7 @@ export default {
       const snapshotDialog = this.currentAction?.storageSnapshotMode || this.currentAction?.snapshotStandardDialog
       const vpnUserDelete = !!this.currentAction?.vpnUserDeleteTargets
       const kmsDialog = kmsRoute(this.$route) && this.currentAction?.selfManagedDialog
-      const guardedDialog = this.isExtensionUi || this.isLdapUi || this.isOauthUi || this.isSecondaryStorageUi || this.isPrimaryStorageUi || this.isClusterUi || this.isHostUi || this.isZoneUi || this.isPhysicalNetworkUi || !!this.currentAction?.vpnCustomerGatewayScope || ['downloadEvents', 'addVpnUser'].includes(this.currentAction?.api) || !!this.currentAction?.eventMutationTargets || vpnUserDelete || kmsDialog || this.isProjectUi || ['kubernetesiso', 's2svpn', 's2svpnconn'].includes(this.$route.meta?.name) || this.vmStandardDialog || this.roleStandardDialog || this.accountStandardDialog || this.aclStandardDialog || this.publicIpStandardDialog || snapshotDialog || !!this.currentAction?.vnfReinstallCurrent || !!this.currentAction?.vnfUnmanageCurrent
+      const guardedDialog = this.isExtensionUi || this.isLdapUi || this.isOauthUi || this.isSecondaryStorageUi || this.isPrimaryStorageUi || this.isClusterUi || this.isHostUi || this.isZoneUi || this.isPhysicalNetworkUi || !!this.currentAction?.vpnCustomerGatewayScope || ['downloadEvents', 'addVpnUser'].includes(this.currentAction?.api) || !!this.currentAction?.eventMutationTargets || vpnUserDelete || kmsDialog || this.isProjectUi || this.isRuntimeCatalog || ['kubernetesiso', 's2svpn', 's2svpnconn'].includes(this.$route.meta?.name) || this.vmStandardDialog || this.roleStandardDialog || this.accountStandardDialog || this.aclStandardDialog || this.publicIpStandardDialog || snapshotDialog || !!this.currentAction?.vnfReinstallCurrent || !!this.currentAction?.vnfUnmanageCurrent
       const policyDeleteDialog = this.currentAction?.policyDeleteDialog
       const deletedPolicyDetail = policyDeleteDialog && policyDetailRoute(this.$route) && this.currentAction.policyListScope === this.listScope() && result?.removed?.includes(this.$route.params?.id)
       let policyListLocation
@@ -3890,6 +3897,10 @@ export default {
       queryParams.pagesize = String(this.pageSize)
       if (this.isProjectList && filter.key === 'account') delete queryParams.username
       this.$router.push({ query: this.isProjectList ? projectSearchQuery(queryParams, this.$store.getters) : queryParams })
+    },
+    toggleRuntimeCatalogHistory () {
+      const query = runtimeCatalogFilters({ ...this.$route.query, history: this.$route.query.history === 'deleted' ? undefined : 'deleted' })
+      this.$router.push({ query: { ...query, page: '1', pagesize: String(this.pageSize) } })
     },
     onRowSelectionChange (selection) {
       if (this.isProjectList && !this.storageActionReady && selection?.length) return
@@ -5731,10 +5742,20 @@ export default {
 <style scoped>
 .vm-action-error { overflow-wrap: anywhere; margin-bottom: 16px; }
 .ldap-list-return { color: var(--ui-link); }
-.runtime-catalog-screen :deep(.breadcrumb-card > .ant-card-body > .ant-row) { display:flex; flex-direction:column; gap:8px; }
-.runtime-catalog-screen :deep(.breadcrumb-card .ant-col) { width:100%; max-width:100%; float:none !important; }
-.runtime-catalog-screen :deep(.autogen-toolbar-actions) { display:flex !important; align-items:center; gap:8px; }
-.runtime-catalog-screen :deep(.autogen-action-dropdown__trigger) { float:none !important; }
+.runtime-catalog-screen :deep(.ant-tabs-content-holder),
+.runtime-catalog-screen :deep(.ant-tabs-tabpane),
+.runtime-catalog-screen :deep(.card-content) { min-width: 0; }
+.runtime-catalog-screen :deep(.resource-details-list .ant-list-item > div) {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 767px) {
+  .runtime-catalog-screen :deep(.autogen-toolbar-actions .vm-acl-toolbar-search) {
+    flex-basis: 100%;
+    width: 100% !important;
+  }
+}
 
 .kms-management-page { min-width: 0; max-width: 100%; }
 .kms-display-filter { min-width: 100px; margin-inline-start: 8px; margin-bottom: 5px; }

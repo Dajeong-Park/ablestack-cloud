@@ -83,7 +83,7 @@
                   :key="tabInstanceKey(tab)"
                   :resource="tabResource(tab)"
                   :loading="loading && !(quietRefresh && tab.name === 'details' && resource.id && resource.id === $route.params?.id)"
-                  :tab="$route.meta?.name === 's2svpnconn' ? tab.name : activeTab"
+                  :tab="['runtimebundle', 's2svpnconn'].includes($route.meta?.name) ? tab.name : activeTab"
                   v-bind="tabProperties(tab)"
                   v-on="tabListeners(tab, true)" />
               </keep-alive>
@@ -330,6 +330,9 @@ export default {
       if (tab.resourceType) props.resourceType = tab.resourceType
       if (this.$route.meta?.name === 'kubernetesiso' && ['details', 'zones'].includes(tab.name)) {
         props.observation = this.kubernetesIsoObservation
+      }
+      if (this.$route.meta?.name === 'runtimebundle' && tab.name !== 'details') {
+        props.active = tab.name === this.activeTab && this.resource.id === this.$route.params?.id
       }
       return props
     },
